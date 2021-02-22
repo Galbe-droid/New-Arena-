@@ -1,10 +1,13 @@
-class Character
+using System;
+
+class Monster
 {
-  public int PlayerId{get;set;}
-  public string PlayerName {get; set;}
+  public int MonsterId{get;set;}
+  public string MonsterName {get; set;}
   
   public int XP {get; set;}
   public int Level {get; set;}
+  public int Tier {get; set;}
 
   public int Str{get; set;}
   public int Int{get; set;}
@@ -14,13 +17,14 @@ class Character
   public int Health{get; set;}
   public int Mana{get; set;}
 
-  public Character(int playerId, string playerName, int str, int inte, int agi, int vig)
+  public Monster(int monsterId, string monsterName, int tier, int str, int inte, int agi, int vig)
   {
-    PlayerId = playerId;
-    PlayerName = playerName;
+    MonsterId = MonsterId;
+    MonsterName = MonsterName;
 
     XP = 0;
     Level = 1;
+    Tier = tier;
 
     Str = str;
     Int = inte;
