@@ -57,7 +57,9 @@ class MainMenu
       }
       else
       {
-        Console.WriteLine("In Construction");
+        GameScreen.CharacterSelection();
+        Character chosen = CharacterSelection.Select();
+        MainClass.GameStart(chosen);
       }
     }
     else if(decision == "C")
@@ -74,7 +76,10 @@ class MainMenu
       }
       else
       {
-        Console.WriteLine("In Construction");
+        Lists.PlayerShowList();
+        Console.Write("Press any key to continue...");
+        Console.ReadKey();
+        Console.Clear();
       }
     }
   }

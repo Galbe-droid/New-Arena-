@@ -6,11 +6,16 @@ class CharacterCreation
   {
     int Health = 5 * vig;
     int Mana = 3 * inte;
-        
-    Console.WriteLine("=================================");    
+           
+    Console.WriteLine("STATS");
     Console.WriteLine("Name:" + name + "   XP:" + xp + "   Level:" + lvl);
     Console.WriteLine("HP:" + Health + " Mana:" + Mana);
     Console.WriteLine("Str:" + str + " Int:" + inte + " Agi:" +  agi + " Vig:" + vig);
-    Console.WriteLine("=================================");
+  }
+
+  public static void CreatorMainScreen()
+  {
+    Console.WriteLine("Select one of the options to chance its values.");
+    Console.WriteLine("N - Name\nS - Str / I - Int\nA- Agi / V - Vig\nE - Exit(it will not save the character) / F - Finish");
   }
 }
