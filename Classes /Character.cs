@@ -11,10 +11,10 @@ class Character
   public int Agi{get; set;}
   public int Vig{get; set;}
 
-  public int Health{get; set;}
-  public int Damage{get; set;}
-  public int Mana{get; set;}
-  public int ManaSpend{get; set;}
+  public float Health{get; set;}
+  public float Damage{get; set;}
+  public float Mana{get; set;}
+  public float ManaSpend{get; set;}
 
   public Character(int id, string name, int str, int inte, int agi, int vig)
   {
@@ -29,8 +29,8 @@ class Character
     Agi = agi;
     Vig = vig; 
 
-    Health = 5 + (vig * 5);
-    Mana = 3 + (inte * 3);
+    Health = 10 + (vig * 10);
+    Mana = 5 + (inte * 5);
 
     Damage = 0;
     ManaSpend = 0;

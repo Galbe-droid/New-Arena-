@@ -59,7 +59,16 @@ class MainMenu
       {
         GameScreen.CharacterSelection();
         Character chosen = CharacterSelection.Select();
-        MainClass.GameStart(chosen);
+        if(chosen == null)
+        {
+          Console.ReadKey();
+          Console.Clear();
+        }
+        else
+        {
+          Console.Clear();
+          MainClass.GameStart(chosen);
+        }        
       }
     }
     else if(decision == "C")
@@ -81,6 +90,11 @@ class MainMenu
         Console.ReadKey();
         Console.Clear();
       }
+    }
+    else
+    {
+      Console.WriteLine("Invalid");
+      Console.ReadKey();
     }
   }
 }

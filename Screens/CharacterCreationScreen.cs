@@ -4,8 +4,8 @@ class CharacterCreation
 {
   public static void Creator(string name, int xp, int lvl, int str, int inte, int agi, int vig)
   {
-    int Health = 5 * vig;
-    int Mana = 3 * inte;
+    float Health = 10 + (10 * vig);
+    float Mana = 5 + (5 * inte);
            
     Console.WriteLine("STATS");
     Console.WriteLine("Name:" + name + "   XP:" + xp + "   Level:" + lvl);

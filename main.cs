@@ -23,7 +23,7 @@ class MainClass {
     string name = "Nameless"; 
     int xp = 0;
     int lvl = 1;
-    int str = 0, inte = 0, agi = 0, vig = 0;
+    int str = 1, inte = 1, agi = 1, vig = 1;
 
     Console.Clear();
     Console.WriteLine("AHHH a new face here");
@@ -77,9 +77,36 @@ class MainClass {
   public static void GameStart(Character chosen)
   {
     bool GameOn = true;
+    int days = 0;
+    string dayMoment = "";
+    
     while(GameOn)
     {
-      
+      days++;
+      bool daytime = true;
+
+      if(daytime == true)
+      {
+        dayMoment = " Daytime";
+      }
+      else
+      {
+        dayMoment = " Nightime";
+      }
+
+      GameScreen.CharacterStats(chosen);
+      GameScreen.ArenaChoices(days, dayMoment);
+
+      Console.Write("Chose:");
+      string Decision = Console.ReadLine().ToUpper();
+
+      if(Decision == "E")
+      {
+        GameOn = false;
+      }
+
+      GameStartMenu.ArenaMenu(Decision);
+      Console.ReadKey();
     }
   }
 }

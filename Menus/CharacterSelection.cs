@@ -24,6 +24,7 @@ class CharacterSelection
       Character chosen = GameList.Find(c => c.Id == idSelection);
       return chosen;
     }
+    Console.WriteLine("Character not Found");
     return null;
   }
 }

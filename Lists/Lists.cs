@@ -28,7 +28,7 @@ class Lists
   {
     foreach(Character c in CharacterList)
     {
-      Console.WriteLine("=====================");
+      Console.WriteLine("=================================");
       Console.WriteLine("ID:" + c.Id + " Name:" + c.Name + "  Lvl:" + c.Level + "  Xp:" + c.Xp);
     }
   }
