@@ -2,7 +2,12 @@ using System;
 using System.Collections.Generic;
 
 class MainClass {
+  
   public static void Main (string[] args) {
+    //Loading
+    MonsterList.AddMonsters();
+
+    //End Loading
     bool program = true;
     while(program)
     {
@@ -104,8 +109,11 @@ class MainClass {
       {
         GameOn = false;
       }
+      else
+      {
+        GameStartMenu.ArenaMenu(Decision, chosen);
+      }
 
-      GameStartMenu.ArenaMenu(Decision);
       Console.ReadKey();
     }
   }

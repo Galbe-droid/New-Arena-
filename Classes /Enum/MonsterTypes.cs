@@ -1,7 +1,7 @@
 enum Types
 {
   Prefab,
-  Ofensive,
+  Offensive,
   Defensive,
   Balance
 }

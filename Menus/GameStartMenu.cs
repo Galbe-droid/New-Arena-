@@ -1,13 +1,19 @@
 using System;
+using System.Collections.Generic;
 
 class GameStartMenu
 {
-  public static void ArenaMenu(string decision)
+  public static void ArenaMenu(string decision, Character chosen)
   {
     switch(decision)
     {
       case("N"):
-        Console.WriteLine("Not Ready!");
+        Console.Clear();
+        GameScreen.CharacterStats(chosen);
+
+        List<Monster> Cages = new List<Monster>(MonsterGeneration.MonsterOfTheDay());
+        ArenaEntrance.MonsterOfTheDayDisplay(Cages);
+        Console.ReadKey();
         break;
 
       case("M"):

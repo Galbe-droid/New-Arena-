@@ -6,7 +6,7 @@ class MonsterList{
   public static List<Monster> Monsters = new List<Monster>();
 
   //Monster Prefabs public Monster(int id, string name, int level, Type type, int str, int inte, int agi, int vig)
-  public void AddMonsters()
+  public static void AddMonsters()
   {
     Monsters.Add(new Monster(0, "Slime", 1, Types.Prefab, 3, 3, 3, 3));
 
