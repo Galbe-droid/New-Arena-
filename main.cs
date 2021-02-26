@@ -82,14 +82,12 @@ class MainClass {
   public static void GameStart(Character chosen)
   {
     bool GameOn = true;
-    int days = 0;
+    int days = 1;
     string dayMoment = "";
-    
+    bool daytime = true;    
+
     while(GameOn)
     {
-      days++;
-      bool daytime = true;
-
       if(daytime == true)
       {
         dayMoment = " Daytime";
@@ -112,9 +110,13 @@ class MainClass {
       else
       {
         GameStartMenu.ArenaMenu(Decision, chosen);
-      }
-
-      Console.ReadKey();
+        if(daytime == false)
+        {
+          days = ArenaBehaviour.DayPassing(days);
+        }
+        daytime = ArenaBehaviour.DayToNight(daytime);
+        
+      }      
     }
   }
 }

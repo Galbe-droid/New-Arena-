@@ -32,4 +32,21 @@ class Monster
     Health = 5 + (vig * 5);
     Mana = 3 + (inte * 3);
   }
+
+  public Monster(Monster monster)
+  {
+    Id = monster.Id;
+    Name = monster.Name;
+
+    Level = monster.Level;
+    Type = monster.Type;
+
+    Str = monster.Str;
+    Int = monster.Int;
+    Agi = monster.Agi;
+    Vig = monster.Vig; 
+
+    Health = 5 + (Vig * 5);
+    Mana = 3 + (Int * 3);
+  }
 }

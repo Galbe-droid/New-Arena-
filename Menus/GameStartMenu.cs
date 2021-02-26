@@ -10,10 +10,12 @@ class GameStartMenu
       case("N"):
         Console.Clear();
         GameScreen.CharacterStats(chosen);
-
+        
         List<Monster> Cages = new List<Monster>(MonsterGeneration.MonsterOfTheDay());
         ArenaEntrance.MonsterOfTheDayDisplay(Cages);
         Console.ReadKey();
+        MonsterGeneration.CleaningCages();
+        Console.Clear();
         break;
 
       case("M"):
