@@ -6,6 +6,7 @@ class MainClass {
   public static void Main (string[] args) {
     //Loading
     MonsterList.AddMonsters();
+    FoodList.AddFruits();
 
     //End Loading
     bool program = true;
