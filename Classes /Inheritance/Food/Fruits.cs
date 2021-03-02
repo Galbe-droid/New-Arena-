@@ -9,7 +9,7 @@ class Fruit : Food
     Cost = cost;
     Rarity = rarity;
     RecoveryHp = hp; 
-    RecoveryHp = mp;
+    RecoveryMp = mp;
     Type = type;
   }
 
@@ -20,7 +20,7 @@ class Fruit : Food
     Cost = f.Cost;
     Rarity = f.Rarity;
     RecoveryHp = f.RecoveryHp; 
-    RecoveryHp = f.RecoveryMp;
+    RecoveryMp = f.RecoveryMp;
     Type = f.Type;
   }
 }

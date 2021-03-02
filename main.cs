@@ -86,6 +86,7 @@ class MainClass {
     int days = 1;
     string dayMoment = "";
     bool daytime = true;    
+    bool Exit = false;
 
     while(GameOn)
     {
@@ -110,13 +111,15 @@ class MainClass {
       }
       else
       {
-        GameStartMenu.ArenaMenu(Decision, chosen);
-        if(daytime == false)
+        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit);
+        if(Exit == false)
         {
-          days = ArenaBehaviour.DayPassing(days);
-        }
-        daytime = ArenaBehaviour.DayToNight(daytime);
-        
+          if(daytime == false)
+          {
+            days = ArenaBehaviour.DayPassing(days);
+          }
+          daytime = ArenaBehaviour.DayToNight(daytime);
+        }          
       }      
     }
   }

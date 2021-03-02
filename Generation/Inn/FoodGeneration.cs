@@ -26,17 +26,17 @@ class FoodGeneration
 
     if(fruit.Type == FruitType.New)
     {
-      fruit.RecoveryHp += Convert.ToInt32(fruit.RecoveryHp * 0.10);
+      fruit.RecoveryHp += (int)(fruit.RecoveryHp * 0.2f);
+      return fruit;
     }
     else
     {
-      fruit.RecoveryHp -= Convert.ToInt32(fruit.RecoveryHp * 0.2);
-    }
-
-    return fruit;
+      fruit.RecoveryHp -= (int)(fruit.RecoveryHp * 0.2f);
+      return fruit;
+    }    
   }
 
-  public static List<Fruit> ListOfFoodOfTheDay()
+  public static List<Fruit> ListOfFruitOfTheDay()
   {
     for(int i = 0; i < 5; i++)
     {

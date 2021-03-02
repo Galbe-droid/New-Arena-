@@ -9,5 +9,4 @@ abstract class Food
 
   public int RecoveryHp {get; set;}
   public int RecoveryMp {get; set;}
-
 }
