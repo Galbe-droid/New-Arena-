@@ -111,7 +111,7 @@ class MainClass {
       }
       else
       {
-        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit);
+        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit, daytime);
         if(Exit == false)
         {
           if(daytime == false)
@@ -121,6 +121,13 @@ class MainClass {
           daytime = ArenaBehaviour.DayToNight(daytime);
         }          
       }      
-    }
+    }   
+  }
+
+  public static void Combat(Character chosen, Monster cage)
+  {
+    Console.Clear();
+    CombatScreen.Stats(chosen, cage);
+    Console.ReadKey();
   }
 }

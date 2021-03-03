@@ -11,5 +11,4 @@ class MonsterList{
     Monsters.Add(new Monster(0, "Slime", 1, Types.Prefab, 3, 3, 3, 3));
     Monsters.Add(new Monster(1, "Spider", 1, Types.Prefab, 3, 1, 4, 4));
   }
- 
 }

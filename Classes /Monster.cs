@@ -14,7 +14,11 @@ class Monster
   public int Vig{get; set;}
 
   public float Health{get; set;}
+  public float Damage{get; set;}
+
   public float Mana{get; set;}
+  public float ManaSpend{get; set;}
+  
 
   public Monster(int id, string name, int level, Types type, int str, int inte, int agi, int vig)
   {
@@ -31,6 +35,9 @@ class Monster
 
     Health = 5 + (vig * 5);
     Mana = 3 + (inte * 3);
+
+    Damage = 0;
+    ManaSpend = 0;
   }
 
   public Monster(Monster monster)
@@ -48,5 +55,28 @@ class Monster
 
     Health = 5 + (Vig * 5);
     Mana = 3 + (Int * 3);
+
+    Damage = 0;
+    ManaSpend = 0;
+  }
+  
+  public Monster()
+  {
+    Id = 0;
+    Name = "Monster";
+
+    Level = 0;
+    Type = Types.Prefab;
+
+    Str = 0;
+    Int = 0;
+    Agi = 0;
+    Vig = 0; 
+
+    Health = 5 + (Vig * 5);
+    Mana = 3 + (Int * 3);
+    
+    Damage = 0;
+    ManaSpend = 0;
   }
 }

@@ -95,6 +95,7 @@ class MainMenu
     {
       Console.WriteLine("Invalid");
       Console.ReadKey();
+      Console.Clear();
     }
   }
 }
