@@ -124,10 +124,83 @@ class MainClass {
     }   
   }
 
-  public static void Combat(Character chosen, Monster cage)
+  public static void Combat(Character chosen, Monster monster)
   {
-    Console.Clear();
-    CombatScreen.Stats(chosen, cage);
-    Console.ReadKey();
+    bool CombatOn = true;
+    bool DeathCheck = false;
+    bool DefenseActiveChar = false;
+    bool DefenseActiveMonster = false;
+
+    while(CombatOn)
+    {
+      Random rand = new Random();
+      chosen.Initiative = rand.Next(0,20) + chosen.Agi;
+      monster.Initiative = rand.Next(0,20) + monster.Agi;
+
+      while(chosen.Initiative == monster.Initiative);
+      {
+        chosen.Initiative = rand.Next(0,20) + chosen.Agi;
+        monster.Initiative = rand.Next(0,20) + monster.Agi;
+      }
+    
+      Console.Clear();
+
+      CombatScreen.Stats(chosen, monster);
+      
+      Console.WriteLine();   
+
+      CombatScreen.CombatChoices(chosen, monster);
+
+      Console.Write("Choose:");
+      string Choice = Console.ReadLine();
+      Choice.ToUpper();
+
+      while(Choice != "A" || Choice != "D")
+      {
+        Choice = Console.ReadLine();
+        Choice.ToUpper();
+      }
+
+      
+
+      if(chosen.Initiative > monster.Initiative)
+      {
+        if(!DefenseActiveChar)
+        {
+          chosen.ModDefense -= CombatBehaviour.DefenseOption(chosen.Defense);
+        }
+        DefenseActiveChar = CombatMenu.CombatChoices(chosen, monster, Choice, DeathCheck, DefenseActiveChar);
+        if(DefenseActiveChar)
+        {
+          chosen.ModDefense += CombatBehaviour.DefenseOption(chosen.Defense);
+          DefenseActiveChar = false;
+        }
+      }
+      else
+      {
+        if(!DefenseActiveChar)
+        {
+          chosen.ModDefense -= CombatBehaviour.DefenseOption(chosen.Defense);
+        }
+        DefenseActiveChar = CombatMenu.CombatChoices(chosen, monster, Choice, DeathCheck, DefenseActiveChar);
+        if(DefenseActiveChar)
+        {
+          chosen.ModDefense += CombatBehaviour.DefenseOption(chosen.Defense);
+          DefenseActiveChar = false;
+        }
+      }
+
+      if(DeathCheck)
+      {
+        if(chosen.Health <= chosen.Damage)
+        {
+          CombatOn = false;
+        }
+        else if(monster.Health <= monster.Damage)
+        {
+          CombatOn = false;
+        }
+      }
+    }
   }
 }
