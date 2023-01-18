@@ -8,13 +8,20 @@ class MainClass {
     MonsterList.AddMonsters();
     FoodList.AddFruits();
 
+    //For Debugging proposses only 
+    Console.ReadKey();
+
     //End Loading
+    //Main Screen
+    Console.Clear();
     bool program = true;
     while(program)
     {
+      //Visuals for the Main title Info 
       Console.WriteLine("=================================");
       MainScreen.TitleScreen();
       Console.WriteLine("=================================");
+      //MainMenu Controls de Options selection 
       if(MainMenu.TitleMenu() == "E")
       {
         program = false;
@@ -22,17 +29,18 @@ class MainClass {
     }
   }
 
+  //Character Creation Process 
   public static void CreationProcess()
   {
     bool CharacterMaker = true;
     int id = Lists.IdPlayerGeneration();
     string name = "Nameless"; 
-    int xp = 0;
-    int lvl = 1;
-    int str = 1, inte = 1, agi = 1, vig = 1;
+    int xp = 0, lvl = 1, str = 1, inte = 1, agi = 1, vig = 1;
 
     Console.Clear();
     Console.WriteLine("AHHH a new face here");
+    //While loop for Character Creation, changing stats and info 
+    //Inside de loop has the menu and info display, switch cases and the inserion of the var to the caracter class 
     while(CharacterMaker)
     {
       Console.WriteLine("=================================");
@@ -73,6 +81,7 @@ class MainClass {
         case "F":
           Console.Clear();
           Character character = new Character(id, name, str, inte, agi, vig);
+          //Adding the caracter on the caracter list then disable this screen and going back to the main menu 
           Lists.CharacterList.Add(character);
           CharacterMaker = false;
           break;  
@@ -80,6 +89,7 @@ class MainClass {
     }
   }
 
+  //Game start it must contains a character, contains screen and info about the main game screen   
   public static void GameStart(Character chosen)
   {
     bool GameOn = true;
@@ -99,7 +109,9 @@ class MainClass {
         dayMoment = " Nightime";
       }
 
+      //Screen info for caracter stats 
       GameScreen.CharacterStats(chosen);
+      //Screen info for Game activities
       GameScreen.ArenaChoices(days, dayMoment);
 
       Console.Write("Chose:");
@@ -111,94 +123,70 @@ class MainClass {
       }
       else
       {
-        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit, daytime);
-        if(Exit == false)
-        {
-          if(daytime == false)
-          {
-            days = ArenaBehaviour.DayPassing(days);
-          }
-          daytime = ArenaBehaviour.DayToNight(daytime);
-        }          
+        //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen
+        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit, ref daytime); 
       }      
     }   
   }
 
+  //Combat Screen
   public static void Combat(Character chosen, Monster monster)
   {
     bool CombatOn = true;
-    bool DeathCheck = false;
-    bool DefenseActiveChar = false;
-    bool DefenseActiveMonster = false;
+    bool charBigInit;
 
-    while(CombatOn)
-    {
+    //If both caracter are alive this boolean is true
+    while(CombatOn){
+
+      //Generating initiative
       Random rand = new Random();
       chosen.Initiative = rand.Next(0,20) + chosen.Agi;
       monster.Initiative = rand.Next(0,20) + monster.Agi;
 
+      //Ignore values that are the same 
       while(chosen.Initiative == monster.Initiative);
       {
         chosen.Initiative = rand.Next(0,20) + chosen.Agi;
         monster.Initiative = rand.Next(0,20) + monster.Agi;
       }
+
+      //Send to the game if the character will be the first to act
+      if (chosen.Initiative > monster.Initiative){
+        charBigInit = true;
+      }
+      else{
+        charBigInit = false;
+      }
     
       Console.Clear();
 
+      //Loads Combat Screen
       CombatScreen.Stats(chosen, monster);
       
       Console.WriteLine();   
 
-      CombatScreen.CombatChoices(chosen, monster);
+      //Loads Combat Choice, currently only attack and defense
+      CombatScreen.CombatChoices(chosen, monster);    
 
-      Console.Write("Choose:");
-      string Choice = Console.ReadLine();
-      Choice.ToUpper();
-
-      while(Choice != "A" || Choice != "D")
-      {
-        Choice = Console.ReadLine();
-        Choice.ToUpper();
-      }
-
+      //Checks if both caracter and player arent dead
+      if(!monster.DeathCheck() && !chosen.DeathCheck()){        
+        Console.Write("Choose:");
+        string Choice;
       
+        do{
+          Choice = Console.ReadLine();
+          Choice.ToUpper();
+        }while(Choice == "A" || Choice == "D");  
 
-      if(chosen.Initiative > monster.Initiative)
-      {
-        if(!DefenseActiveChar)
-        {
-          chosen.ModDefense -= CombatBehaviour.DefenseOption(chosen.Defense);
-        }
-        DefenseActiveChar = CombatMenu.CombatChoices(chosen, monster, Choice, DeathCheck, DefenseActiveChar);
-        if(DefenseActiveChar)
-        {
-          chosen.ModDefense += CombatBehaviour.DefenseOption(chosen.Defense);
-          DefenseActiveChar = false;
-        }
+        //Send the player choice to the logic so the turns can play out
+        CombatMenu.CombatChoices(ref chosen, ref monster, Choice, charBigInit);
       }
-      else
-      {
-        if(!DefenseActiveChar)
-        {
-          chosen.ModDefense -= CombatBehaviour.DefenseOption(chosen.Defense);
-        }
-        DefenseActiveChar = CombatMenu.CombatChoices(chosen, monster, Choice, DeathCheck, DefenseActiveChar);
-        if(DefenseActiveChar)
-        {
-          chosen.ModDefense += CombatBehaviour.DefenseOption(chosen.Defense);
-          DefenseActiveChar = false;
-        }
-      }
-
-      if(DeathCheck)
-      {
-        if(chosen.Health <= chosen.Damage)
-        {
+      else{
+        //Only Vicotry screen for now 
+        if(monster.Dead == true){
+          Console.WriteLine("Victory!!");
           CombatOn = false;
-        }
-        else if(monster.Health <= monster.Damage)
-        {
-          CombatOn = false;
+          Console.ReadLine();
         }
       }
     }

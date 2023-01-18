@@ -1,8 +1,9 @@
+//Fruit class it generate a fruit, It easy to find in the inn but wont recovery a lot 
 class Fruit : Food
 {
-  public FruitType Type {get; set;}
-
-  public Fruit(int id, string name, int cost, int rarity, int hp, int mp, FruitType type)
+  public FruitQuality Quality {get; set;}
+  
+  public Fruit(int id, string name, int cost, int rarity, int hp, int mp, FruitQuality quality)
   {
     Id = id;
     Name = name; 
@@ -10,7 +11,7 @@ class Fruit : Food
     Rarity = rarity;
     RecoveryHp = hp; 
     RecoveryMp = mp;
-    Type = type;
+    Quality = quality;
   }
 
   public Fruit(Fruit f)
@@ -21,6 +22,6 @@ class Fruit : Food
     Rarity = f.Rarity;
     RecoveryHp = f.RecoveryHp; 
     RecoveryMp = f.RecoveryMp;
-    Type = f.Type;
+    Quality = f.Quality;
   }
 }

@@ -13,13 +13,12 @@ class CharacterCreationMenu
   }
 
   public static int StatsInput(int stats)
-  {
-    while(stats <= 0)
-    {
+  {    
+    do{
       Console.WriteLine("Actual value: " + stats);
       Console.Write("New value(Don't insert 0 or less than that): ");
       stats = int.Parse(Console.ReadLine());
-    }
+    }while(stats <= 0);
     Console.Clear();
     return stats;
   }

@@ -54,7 +54,9 @@ class MainMenu
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("No Characters avaliable, please create one first.");
         Console.ResetColor();
-      }
+        Console.ReadKey();
+        Console.Clear();
+        }
       else
       {
         GameScreen.CharacterSelection();

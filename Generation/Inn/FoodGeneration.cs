@@ -10,7 +10,7 @@ class FoodGeneration
   public static List<Fruit> FruitsPrefab = FoodList.FruitList;
 
   //Enum
-  public static Array typeListFruit = Enum.GetValues(typeof(FruitType));
+  public static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
 
   public static Fruit FruitCreator()
   {
@@ -19,12 +19,12 @@ class FoodGeneration
 
     Fruit fruit = new Fruit(FruitsPrefab.Find(f => f.Id == randId));
 
-    while(fruit.Type == FruitType.Prefab)
+    while(fruit.Quality == FruitQuality.Prefab)
     {
-      fruit.Type = (FruitType)typeListFruit.GetValue(random.Next(typeListFruit.Length));
+      fruit.Quality = (FruitQuality)typeListFruit.GetValue(random.Next(typeListFruit.Length));
     }
 
-    if(fruit.Type == FruitType.New)
+    if(fruit.Quality == FruitQuality.New)
     {
       fruit.RecoveryHp += (int)(fruit.RecoveryHp * 0.2f);
       return fruit;

@@ -2,6 +2,7 @@ using System;
 
 class ArenaBehaviour
 {
+  //Controls Day and night behaviour, certain activities depend on it 
   public static bool DayToNight(bool dayTime)
   {
     if(dayTime == true)
@@ -16,9 +17,12 @@ class ArenaBehaviour
     }
   }
 
-  public static int DayPassing(int day)
+  //Count the days passing no usage for now 
+  public static int DayPassing(int day, bool dayTime)
   {
-    day++;
+    if(!dayTime){
+      day++;
+    }    
     return day;
   } 
 }

@@ -28,6 +28,8 @@ class Monster
   public int ModDodge{get; set;}
   public int ModAttack{get; set;}
 
+  public bool Dead{get; set;}
+
 
   public Monster(int id, string name, int level, Types type, int str, int inte, int agi, int vig)
   {
@@ -55,6 +57,8 @@ class Monster
     ModDefense = 0;
     ModDodge = 0;
     ModAttack = 0;
+
+    Dead = false;
   }
 
   public Monster(Monster monster)
@@ -83,6 +87,8 @@ class Monster
     ModDefense = 0;
     ModDodge = 0;
     ModAttack = 0;
+
+    Dead = false;
   }
   
   public Monster()
@@ -111,5 +117,35 @@ class Monster
     ModDefense = 0;
     ModDodge = 0;
     ModAttack = 0;
+  }
+
+  public float ActualHp(){
+    float maxHealth = this.Health;
+    maxHealth -= this.Damage;
+    if(maxHealth < 0){
+      maxHealth = 0;
+    }
+
+    DeathCheck();
+
+    return maxHealth;
+  }
+
+  public float ActualMp(){
+    float maxMana = this.Mana;
+    maxMana -= this.ManaSpend;
+    if(maxMana < 0){
+      maxMana = 0;
+    }
+
+    return maxMana;
+  }
+
+  public bool DeathCheck(){
+    if(this.Health <= this.Damage){
+      this.Dead = true;
+      }
+    
+    return this.Dead;
   }
 }

@@ -3,29 +3,27 @@ using System.Collections.Generic;
 
 class GameStartMenu
 {
-  public static bool ArenaMenu(string decision, Character chosen, bool exit, bool DayOrNight)
+  public static bool ArenaMenu(string decision, Character chosen, bool exit, ref bool DayOrNight)
   {
     switch(decision)
     {
       case("N"):
+        int choice;
+        Monster monster = new Monster();
         Console.Clear();
         GameScreen.CharacterStats(chosen);
         
         List<Monster> Cages = new List<Monster>(MonsterGeneration.MonsterOfTheDay());
 
         ArenaEntrance.MonsterOfTheDayDisplay(Cages);
-
-        Console.Write("Choice(0 to go back):");
-        int choice = int.Parse(Console.ReadLine());
-        while(choice < 0 || choice > Cages.Count)
-        {
-          choice = int.Parse(Console.ReadLine());
-        }
-
-        Monster monster = new Monster();        
+        
+        do{
+          choice = InputCheck.IntCheck("Choice(0 to go back):", "Only Numbers.");
+        }while(choice < 0 || choice > Cages.Count);     
 
         if(choice == 0)
         {
+          MonsterGeneration.CleaningCages();
           Console.Clear();
           return true;
         }
@@ -36,6 +34,7 @@ class GameStartMenu
             if (i == choice - 1)
             {
               monster = new Monster(Cages[i]);
+              DayOrNight = !DayOrNight;
             }
           }
           MonsterGeneration.CleaningCages();
@@ -65,15 +64,18 @@ class GameStartMenu
 
           InnScreen.FoodDisplay(FruitTable);
 
-          Console.Write("Choice(Leave in Blank to go Back):");
-          string choiceInn = Console.ReadLine();
-          if(choiceInn == "")
+          int choiceInn = InputCheck.IntCheck("Choice(0 To go back):", "Only Number:");
+          if(choiceInn == 0)
           {
             Console.Clear();
+            FoodGeneration.ClearFoods();     
             return true;
           }
           else
           {
+            choiceInn--;
+            Console.WriteLine("Food eaten!");
+            Console.ReadKey();
             FoodGeneration.ClearFoods();        
             Console.Clear();
           }       

@@ -11,7 +11,7 @@ class InnScreen
 
     foreach(Fruit f in FruitsOfTheDay)
     {
-      Console.WriteLine(count + " - Name:" + f.Name + " Hp:" + f.RecoveryHp + " Mp:" + f.RecoveryMp + " Condition:" + f.Type);
+      Console.WriteLine((count + 1) + " - Name:" + f.Name + " Hp:" + f.RecoveryHp + " Mp:" + f.RecoveryMp + " Condition:" + f.Quality);
       count ++ ;
     }
 

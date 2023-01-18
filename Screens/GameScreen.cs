@@ -8,7 +8,6 @@ class GameScreen
   public static void CharacterSelection()
   {
     Lists.PlayerShowList();
-    Console.Write("Select you caracter by Id:");    
   }
 
   public static void CharacterStats(Character chosen)

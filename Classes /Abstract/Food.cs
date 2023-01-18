@@ -1,3 +1,4 @@
+//Food abstract classes, since is a abstraction all foods types uses this base
 abstract class Food
 {
   public int Id {get; set;}

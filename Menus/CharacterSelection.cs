@@ -7,7 +7,7 @@ class CharacterSelection
 
   public static Character Select()
   {
-    int idSelection = int.Parse(Console.ReadLine());
+    int idSelection = InputCheck.IntCheck("Select you caracter by Id:", "Only Numbers:");
 
     if(idSelection > GameList.Count || idSelection < -1)
     {

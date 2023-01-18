@@ -1,18 +1,27 @@
 using System;
 
+//Monster Behaviour in combate 
+//Still a lot of work
 class CombatMonsterBehaviour
 {
-  public static bool MonsterChoice(Character c, Monster m, bool DefenseBoost)
+  //Method receive Player defense, Player Dodge chance, Monster damage and monster type
+  public static bool MonsterChoice(int CharDefense, int ChaDodge, int MonsterDamage, Types MonsterType)
   {
-    if(m.Type == Types.Offensive)
+    //Depending of the monster type it will be more inclined to use certain actions 
+    if(MonsterType == Types.Offensive)
     {
       return false;
     }
-    else if(m.Type == Types.Defensive)
+    else if(MonsterType == Types.Defensive)
     {
       return false;
     }
-    else if(m.Type == Types.Balance)
+    else if(MonsterType == Types.Balance)
+    {
+      return false;
+    }
+    //Failsafe
+    else
     {
       return false;
     }
