@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
-
+//Character Class, have all the stats for the player 
+//Under modifications, passing some stats to an Abstract class
+//Base Stats, Death
+//Still no: Skills, classes(Maybe)
 class Character
 {
   public int Id {get; set;}

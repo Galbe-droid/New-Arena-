@@ -12,7 +12,7 @@ class AttributeAlocation
     //Quatity of points to be allocated 
     int atributes = monster.Level * 3;
 
-    while(atributes == 0)
+    while(atributes > 0)
     {
       int chance = random.Next(0, 100); 
 
@@ -48,7 +48,7 @@ class AttributeAlocation
     Random random = new Random();
     int atributes = monster.Level * 3;
 
-    while(atributes == 0)
+    while(atributes > 0)
     {
       int chance = random.Next(0, 100); 
       if(chance >= 0 && chance <= 60)
@@ -84,7 +84,7 @@ class AttributeAlocation
     Random random = new Random();
     int atributes = monster.Level * 3;
 
-    while(atributes == 0)
+    while(atributes > 0)
     {
       int chance = random.Next(0, 100); 
       if(chance >= 0 && chance <= 60)

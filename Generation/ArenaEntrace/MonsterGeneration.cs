@@ -20,10 +20,7 @@ class MonsterGeneration
     monsterChoosen.Level = random.Next(monsterChoosen.Level, monsterChoosen.Level + 3);
 
     //1Offensive, 2Defensive, 3Balance 
-    while(monsterChoosen.Type == Types.Prefab)
-    {
-      monsterChoosen.Type = (Types)typeList.GetValue(random.Next(typeList.Length));
-    }   
+    monsterChoosen.Type = (Types)typeList.GetValue(random.Next(1, typeList.Length));
 
     if(monsterChoosen.Type == Types.Offensive)
     {
@@ -41,6 +38,7 @@ class MonsterGeneration
     return monsterChoosen;
   }
 
+  //Generates 5 monster per day
   public static List<Monster> MonsterOfTheDay()
   {
     for(int i = 0; i < 5; i++)
@@ -51,6 +49,7 @@ class MonsterGeneration
     return MonstersListOfTheDay;
   }
 
+  //Remove monster from the list 
   public static void CleaningCages()
   {
     if(MonstersListOfTheDay.Count > 0)

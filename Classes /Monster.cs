@@ -1,5 +1,8 @@
 using System;
-
+//Monster Classes have all the stats for the monster 
+//Under modifications, passing some stats to an Abstract class
+//Base Stats, Death, Monster Type
+//Still no: Skills, Boss(Maybe)
 class Monster
 {
   public int Id{get;set;}

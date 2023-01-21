@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 class GameStartMenu
 {
-  public static bool ArenaMenu(string decision, Character chosen, bool exit, ref bool DayOrNight)
-  {
+  public static bool ArenaMenu(string decision, Character chosen, bool exit, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, ref bool timePass)
+  {    
     switch(decision)
     {
       case("N"):
@@ -13,17 +13,13 @@ class GameStartMenu
         Console.Clear();
         GameScreen.CharacterStats(chosen);
         
-        List<Monster> Cages = new List<Monster>(MonsterGeneration.MonsterOfTheDay());
-
-        ArenaEntrance.MonsterOfTheDayDisplay(Cages);
-        
+        ArenaEntrance.MonsterOfTheDayDisplay(Cages);        
         do{
           choice = InputCheck.IntCheck("Choice(0 to go back):", "Only Numbers.");
         }while(choice < 0 || choice > Cages.Count);     
 
         if(choice == 0)
-        {
-          MonsterGeneration.CleaningCages();
+        {          
           Console.Clear();
           return true;
         }
@@ -34,10 +30,10 @@ class GameStartMenu
             if (i == choice - 1)
             {
               monster = new Monster(Cages[i]);
-              DayOrNight = !DayOrNight;
             }
           }
-          MonsterGeneration.CleaningCages();
+          timePass = true;
+          DayOrNight = !DayOrNight;
           MainClass.Combat(chosen, monster);
           Console.Clear();
         }
@@ -60,23 +56,21 @@ class GameStartMenu
         }
         else
         {
-          List<Fruit>FruitTable = new List<Fruit>(FoodGeneration.ListOfFruitOfTheDay());
-
-          InnScreen.FoodDisplay(FruitTable);
+          InnScreen.FoodDisplay(FoodTable);
 
           int choiceInn = InputCheck.IntCheck("Choice(0 To go back):", "Only Number:");
           if(choiceInn == 0)
           {
-            Console.Clear();
-            FoodGeneration.ClearFoods();     
+            Console.Clear();  
             return true;
           }
           else
           {
+            timePass = true;
             choiceInn--;
             Console.WriteLine("Food eaten!");
-            Console.ReadKey();
-            FoodGeneration.ClearFoods();        
+            Console.ReadKey();   
+            DayOrNight = !DayOrNight;
             Console.Clear();
           }       
           break;

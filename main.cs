@@ -97,16 +97,36 @@ class MainClass {
     string dayMoment = "";
     bool daytime = true;    
     bool Exit = false;
+    bool timePass = true;
+    List<Monster> Cages = new List<Monster>();
+    List<Food> innFoodTable = new List<Food>();
 
     while(GameOn)
     {
       if(daytime == true)
       {
+        //Make list persistent
+        if(timePass){
+          MonsterGeneration.CleaningCages();
+          Cages = MonsterGeneration.MonsterOfTheDay();
+        }
         dayMoment = " Daytime";
       }
       else
       {
-        dayMoment = " Nightime";
+        //Make list persistent
+        if(timePass){
+          MonsterGeneration.CleaningCages();
+          FoodGeneration.ClearFoods();
+          Cages = MonsterGeneration.MonsterOfTheDay();
+          innFoodTable = FoodGeneration.ListOfFruitOfTheDay();
+        }
+        dayMoment = " Nightime";        
+      }
+
+      //If player dont advance time the list doens't change 
+      if(timePass){
+        timePass = !timePass;
       }
 
       //Screen info for caracter stats 
@@ -123,8 +143,8 @@ class MainClass {
       }
       else
       {
-        //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen
-        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit, ref daytime); 
+        //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
+        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit,ref daytime, Cages, innFoodTable, ref timePass);        
       }      
     }   
   }

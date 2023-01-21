@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class FoodGeneration
 {
   //ListOfTheDay
-  public static List<Fruit> FruitOfTheDay = new List<Fruit>();
+  public static List<Food> FruitOfTheDay = new List<Food>();
 
   //Prefabs
   public static List<Fruit> FruitsPrefab = FoodList.FruitList;
@@ -12,6 +12,7 @@ class FoodGeneration
   //Enum
   public static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
 
+  //Creates the fruits and place then on the list
   public static Fruit FruitCreator()
   {
     Random random = new Random();
@@ -19,10 +20,7 @@ class FoodGeneration
 
     Fruit fruit = new Fruit(FruitsPrefab.Find(f => f.Id == randId));
 
-    while(fruit.Quality == FruitQuality.Prefab)
-    {
-      fruit.Quality = (FruitQuality)typeListFruit.GetValue(random.Next(typeListFruit.Length));
-    }
+    fruit.Quality = (FruitQuality)typeListFruit.GetValue(random.Next(1, typeListFruit.Length));
 
     if(fruit.Quality == FruitQuality.New)
     {
@@ -36,7 +34,8 @@ class FoodGeneration
     }    
   }
 
-  public static List<Fruit> ListOfFruitOfTheDay()
+  //Place the fruit on the list 
+  public static List<Food> ListOfFruitOfTheDay()
   {
     for(int i = 0; i < 5; i++)
     {
@@ -46,6 +45,7 @@ class FoodGeneration
     return FruitOfTheDay;
   }
 
+  //Clear the fruits of the list
   public static void ClearFoods()
   {
     if(FruitOfTheDay.Count > 0)

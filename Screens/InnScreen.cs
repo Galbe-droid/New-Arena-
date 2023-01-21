@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class InnScreen
 {
   
-  public static void FoodDisplay(List<Fruit> FruitsOfTheDay)
+  public static void FoodDisplay(List<Food> FruitsOfTheDay)
   {
     int count = 0;
     Console.WriteLine("============Fruits==============");
