@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//This screen shown the HP and MP for the player on the Arena Entrace 
 class GameScreen
 {
   public static List<Character> GameList = Lists.CharacterList;

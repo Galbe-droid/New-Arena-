@@ -1,5 +1,6 @@
 using System;
 
+//This are the menus for the caracter creation, one access the name the other one access the stats of the player 
 class CharacterCreationMenu
 {
   public static string NameInput(string name)
@@ -16,8 +17,7 @@ class CharacterCreationMenu
   {    
     do{
       Console.WriteLine("Actual value: " + stats);
-      Console.Write("New value(Don't insert 0 or less than that): ");
-      stats = int.Parse(Console.ReadLine());
+      stats = InputCheck.IntCheck("New value(Don't insert 0 or less than that):", "Only Numbers:");
     }while(stats <= 0);
     Console.Clear();
     return stats;

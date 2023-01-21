@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//This screen shows the player info on the Arena main menu 
 class ArenaEntrance
 {
   public static void MonsterOfTheDayDisplay(List<Monster> displayList)

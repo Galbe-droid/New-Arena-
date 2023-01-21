@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//Prefab mosters, this list are load in the beginning and used inseide de the game to produce the monster that the player fights 
 class MonsterList{
 
   public static List<Monster> Monsters = new List<Monster>();

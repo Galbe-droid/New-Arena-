@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//This are the prefab list of food this list is load in the beginning before the game loads, then inside the game this prefab are used  
 class FoodList
 {
   public static List<Fruit> FruitList = new List<Fruit>();

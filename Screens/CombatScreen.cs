@@ -1,5 +1,6 @@
 using System;
 
+//This screen shows the combat stats of player and monster, and players options for the combat 
 class CombatScreen
 {
   public static void Stats(Character c, Monster m)

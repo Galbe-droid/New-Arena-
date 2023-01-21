@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//Character Selection options, if there are no characters created the menu goes back to the main menu.
 class CharacterSelection
 {
   public static List<Character> GameList = Lists.CharacterList;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//All characters created are put on a list, the list is persistent but it no preserve the character in case of a reload
 class Lists
 {
   public static List<Character> CharacterList = new List<Character>();

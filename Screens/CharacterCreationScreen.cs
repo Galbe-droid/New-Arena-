@@ -1,5 +1,6 @@
 using System;
 
+//This screen Show the player stats on the character creation
 class CharacterCreation
 {
   public static void Creator(string name, int xp, int lvl, int str, int inte, int agi, int vig)
