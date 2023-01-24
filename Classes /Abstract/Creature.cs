@@ -1,74 +1,44 @@
-using System;
 using System.Collections.Generic;
-//Character Class, have all the stats for the player 
-//Under modifications, passing some stats to an Abstract class
-//Base Stats, Death
-//Still no: Skills, classes(Maybe)
-class Character
-{
-  public int Id {get; set;}
-  public string Name {get; set;}
+//Creature Abstraction to use with player and monster 
+//This holds all information that any player or monster share
+abstract class Creature{
   
-  public int Xp {get; set;}
+  public string Name {get; set;}
+
   public int Level {get; set;}
 
+  //Base Stats
   public int Str{get; set;}
   public int Int{get; set;}
   public int Agi{get; set;}
   public int Vig{get; set;}
 
+  //Base Sub Stats
   public int Defense {get; set;}
   public int Dodge {get; set;}
   public int Attack {get; set;}
 
   public float Health{get; set;}
   public float Damage{get; set;}
+
   public float Mana{get; set;}
   public float ManaSpend{get; set;}
 
+  //Initiative and modifies
   public int Initiative{get; set;}
   public int ModDefense{get; set;}
   public int ModDodge{get; set;}
   public int ModAttack{get; set;}
 
+  //Checking
   public bool Dead{get; set;}
+  public bool isDefensive{get; set;}
 
-  public List<BuffSkill> BuffSkillList {get; set;} 
-  public List<BuffSkill> ActivedBuffs {get; set;}
+  //List for Skills
+  public List<SkillBase> SkillTrained = new List<SkillBase>();
+  public List<SkillBase> BuffAndDebuffActive = new List<SkillBase>();
 
-  public Character(int id, string name, int str, int inte, int agi, int vig)
-  {
-    Id = id;
-    Name = name;
-
-    Xp = 0;
-    Level = 1;
-
-    Str = str;
-    Int = inte;
-    Agi = agi;
-    Vig = vig; 
-
-    Defense = Vig/2;
-    Dodge = 0 + (500 * Agi);
-    Attack = Str;
-
-    Health = 10 + (vig * 10);
-    Mana = 5 + (inte * 5);
-
-    Damage = 0;
-    ManaSpend = 0;
-    
-    Initiative = 0;
-    ModDefense = 0;
-    ModDodge = 0;
-    ModAttack = 0;
-
-    Dead = false;
-
-    //BuffSkillList.Add(new BuffSkill(0,"Defesive Boost", 1, ModDefense, Defense*2, true));
-  }
-
+  //Indicates Actual HP after damage
   public float ActualHp(){
     float maxHealth = this.Health;
     maxHealth -= this.Damage;
@@ -81,6 +51,7 @@ class Character
     return maxHealth;
   }
 
+  //Indicates Actual MP after casting
   public float ActualMp(){
     float maxMana = this.Mana;
     maxMana -= this.ManaSpend;
@@ -91,6 +62,7 @@ class Character
     return maxMana;
   }
 
+  //Checks if the creature is dead
   public bool DeathCheck(){
     if(this.Health <= this.Damage){
       this.Dead = true;
@@ -98,9 +70,15 @@ class Character
 
     return this.Dead;
   }
-    
-  public static void AcountingBuffSkills(List<BuffSkill> actived)
-  {
-    
+
+  //Use on the beggining of combat for monsters, it loads a pre base skill 
+  //For players this loads after character creation 
+  public void Initialization(){
+    foreach(BuffSkill b in SkillList.BuffSkillList){
+      if(b.Id == 0){
+        SkillTrained.Add(b);
+      }
+    }
   }
+  
 }

@@ -25,10 +25,20 @@ class CombatMenu
     case "a":
         if (charBigInit){
           m.Damage += CombatBehaviour.AttackOption(cTrueAttack, mTrueDefense, mTrueDodge);
-          CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type);
+
+          //Checks if player or monster are dead 
+          if(m.Dead || c.Dead)
+            break;
+          
+          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
         }    
         else {
-          CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type);
+          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
+
+          //Checks if player or monster are dead
+          if(m.Dead || c.Dead)
+            break;
+          
           m.Damage += CombatBehaviour.AttackOption(cTrueAttack, mTrueDefense, mTrueDodge);
         }      
         break;
@@ -37,7 +47,7 @@ class CombatMenu
         break;
 
       default:
-        Console.Write("Invalid.")
+        Console.Write("Invalid.");
         break;
     }
     Console.WriteLine("End of Turn !");

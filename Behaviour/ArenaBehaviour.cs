@@ -16,13 +16,4 @@ class ArenaBehaviour
       return dayTime;
     }
   }
-
-  //Count the days passing no usage for now 
-  public static int DayPassing(int day, bool dayTime)
-  {
-    if(!dayTime){
-      day++;
-    }    
-    return day;
-  } 
 }

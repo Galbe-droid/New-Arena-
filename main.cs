@@ -5,8 +5,10 @@ class MainClass {
   
   public static void Main (string[] args) {
     //Loading
+    SkillList.AddSkills();
     MonsterList.AddMonsters();
     FoodList.AddFruits();
+    
 
     //For Debugging proposses only 
     Console.ReadKey();
@@ -81,7 +83,9 @@ class MainClass {
         case "F":
           Console.Clear();
           Character character = new Character(id, name, str, inte, agi, vig);
-          //Adding the caracter on the caracter list then disable this screen and going back to the main menu 
+          //Adding the caracter on the caracter list then disable this screen and going back to the main menu
+          //Applies the initial skill on it 
+          character.Initialization();
           Lists.CharacterList.Add(character);
           CharacterMaker = false;
           break;  
@@ -93,7 +97,7 @@ class MainClass {
   public static void GameStart(Character chosen)
   {
     bool GameOn = true;
-    int days = 1;
+    int days = 0;
     string dayMoment = "";
     bool daytime = true;    
     bool Exit = false;
@@ -109,6 +113,7 @@ class MainClass {
         if(timePass){
           MonsterGeneration.CleaningCages();
           Cages = MonsterGeneration.MonsterOfTheDay();
+          days++;
         }
         dayMoment = " Daytime";
       }
@@ -160,15 +165,12 @@ class MainClass {
 
       //Generating initiative
       Random rand = new Random();
-      chosen.Initiative = rand.Next(0,20) + chosen.Agi;
-      monster.Initiative = rand.Next(0,20) + monster.Agi;
-
       //Ignore values that are the same 
-      while(chosen.Initiative == monster.Initiative);
+      do
       {
         chosen.Initiative = rand.Next(0,20) + chosen.Agi;
         monster.Initiative = rand.Next(0,20) + monster.Agi;
-      }
+      }while(chosen.Initiative == monster.Initiative);
 
       //Send to the game if the character will be the first to act
       if (chosen.Initiative > monster.Initiative){
@@ -205,6 +207,11 @@ class MainClass {
         //Only Vicotry screen for now 
         if(monster.Dead == true){
           Console.WriteLine("Victory!!");
+          CombatOn = false;
+          Console.ReadLine();
+        }
+        else if(chosen.Dead == true){
+          Console.WriteLine("Defeated!!");
           CombatOn = false;
           Console.ReadLine();
         }

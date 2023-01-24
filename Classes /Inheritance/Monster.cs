@@ -1,39 +1,12 @@
 using System;
-//Monster Classes have all the stats for the monster 
+//Monster uses Creature Abstraction 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death, Monster Type
 //Still no: Skills, Boss(Maybe)
-class Monster
+class Monster : Creature
 {
   public int Id{get;set;}
-  public string Name {get; set;}
-  
-  public int Level {get; set;}
   public Types Type {get; set;}
-
-  public int Str{get; set;}
-  public int Int{get; set;}
-  public int Agi{get; set;}
-  public int Vig{get; set;}
-
-  public int Defense {get; set;}
-  public int Dodge {get; set;}
-  public int Attack {get; set;}
-
-  public float Health{get; set;}
-  public float Damage{get; set;}
-
-  public float Mana{get; set;}
-  public float ManaSpend{get; set;}
-
-  public int Initiative{get; set;}
-  public int ModDefense{get; set;}
-  public int ModDodge{get; set;}
-  public int ModAttack{get; set;}
-
-  public bool Dead{get; set;}
-
-
   public Monster(int id, string name, int level, Types type, int str, int inte, int agi, int vig)
   {
     Id = id;
@@ -120,35 +93,5 @@ class Monster
     ModDefense = 0;
     ModDodge = 0;
     ModAttack = 0;
-  }
-
-  public float ActualHp(){
-    float maxHealth = this.Health;
-    maxHealth -= this.Damage;
-    if(maxHealth < 0){
-      maxHealth = 0;
-    }
-
-    DeathCheck();
-
-    return maxHealth;
-  }
-
-  public float ActualMp(){
-    float maxMana = this.Mana;
-    maxMana -= this.ManaSpend;
-    if(maxMana < 0){
-      maxMana = 0;
-    }
-
-    return maxMana;
-  }
-
-  public bool DeathCheck(){
-    if(this.Health <= this.Damage){
-      this.Dead = true;
-      }
-    
-    return this.Dead;
   }
 }

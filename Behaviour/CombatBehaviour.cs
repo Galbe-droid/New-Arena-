@@ -8,7 +8,7 @@ class CombatBehaviour
   {
     //Basic attacks generate from '' to +20 for the basic damage and defense
     Random rand = new Random();
-    int TotalAtaque = rand.Next(0,21) + Attacker;
+    int TotalAttack = rand.Next(0,21) + Attacker;
     int TotalDefense = rand.Next(0,21) + Defender;
 
     //Dodge Change uses 6 digits to make a 0.000 to 100.000% chance 
@@ -17,21 +17,23 @@ class CombatBehaviour
 
     if(DodgeChance < DefenderDodge)
     {
-      Console.WriteLine("Dodged");
+      Console.WriteLine("Monster Dodged");
       return 0;
     }
     else
     {
       //If Defense is equal of greater then attack then this keep informs the player 
-      if(TotalDefense >= TotalAtaque)
+      if(TotalDefense >= TotalAttack)
       {
-        Console.WriteLine("Defended");
+        Console.WriteLine("Monster Defended");
         return 0;
       }
       else
       {
         //The method return the damage that the player made on the monster 
-        return TotalAtaque - TotalDefense;
+        Console.WriteLine("Monster Hit !!");
+        Console.WriteLine("Damage: -" + (TotalAttack - TotalDefense));
+        return TotalAttack - TotalDefense;
       }
     }
   }

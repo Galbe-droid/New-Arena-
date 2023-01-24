@@ -3,7 +3,10 @@ abstract class SkillBase
 {
   public int Id{get; set;}
   public string Name {get; set;}
+  public string Desc {get; set;}
   public int TurnMax {get; set;}
   public int Turns {get; set;}
-  public bool Activate {get; set;}
+  public bool IsActivedOnce {get; set;}
+
+  public abstract int Applying(ref int stat);
 }

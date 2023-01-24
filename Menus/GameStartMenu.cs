@@ -94,7 +94,7 @@ class GameStartMenu
         break;      
 
       default:
-        Console.WriteLine("Invalid.")
+        Console.WriteLine("Invalid.");
         break;
     }
     return false;
