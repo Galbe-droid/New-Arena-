@@ -9,5 +9,5 @@ abstract class SkillBase
   public bool IsActivedOnce {get; set;}
   public bool Initiated {get; set;}
 
-  public abstract int Applying(int stat);
+  public abstract int Applying();
 }

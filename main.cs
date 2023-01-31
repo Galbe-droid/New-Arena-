@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class MainClass {
   
@@ -162,7 +163,19 @@ class MainClass {
 
     //If both caracter are alive this boolean is true
     while(CombatOn){
+      //Checking for Buffs and Debuffs
+      chosen.CheckForBuffsDebuffs();
 
+      Console.WriteLine("ModDef: " + chosen.ModDefense);
+
+      Console.WriteLine(chosen.BuffAndDebuffActive.Count);
+      if(chosen.BuffAndDebuffActive.Count != 0){
+        foreach(BuffSkill b in chosen.BuffAndDebuffActive.ToList()){
+          Console.WriteLine(b.Turns);
+          Console.ReadKey();
+        }
+      }
+      
       //Generating initiative
       Random rand = new Random();
       //Ignore values that are the same 
@@ -183,7 +196,7 @@ class MainClass {
       Console.Clear();
 
       //Loads Combat Screen
-      CombatScreen.Stats(chosen, monster);
+      CombatScreen.Stats(ref chosen,ref monster);
       
       Console.WriteLine();   
 
@@ -211,6 +224,7 @@ class MainClass {
           Console.ReadLine();
         }
         else if(chosen.Dead == true){
+          chosen.Damage = 0;
           Console.WriteLine("Defeated!!");
           CombatOn = false;
           Console.ReadLine();

@@ -39,10 +39,17 @@ class CombatBehaviour
   }
 
   public static void DefensiveChoice(ref Character c){
-        foreach(BuffSkill b in c.SkillTrained){
-          if(b.Name == "Defensive Position"){
-            c.BuffAndDebuffActive.Add(b); 
-          }
+    foreach(BuffSkill b in c.SkillTrained){
+      if(b.Name == "Defensive Position" && !c.BuffAndDebuffActive.Exists(x => x.Name == "Defensive Position")){
+        c.BuffAndDebuffActive.Add(new BuffSkill(b){}); 
+      }
+      else{
+        if(c.BuffAndDebuffActive.Exists(x => x.Name == "Defensive Position")){
+          c.BuffAndDebuffActive.Find(x => x.Name == "Defensive Position").Turns = 0;
+          Console.WriteLine("Skill Reset");
+          Console.WriteLine(b.ToString());
         }
+      }
+    }
   }
 }

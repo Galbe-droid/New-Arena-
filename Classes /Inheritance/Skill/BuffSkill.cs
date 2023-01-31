@@ -1,3 +1,4 @@
+using System;
 //Under Construction
 class BuffSkill : SkillBase
 {
@@ -19,29 +20,49 @@ class BuffSkill : SkillBase
     Turns = 0;
     Qty = qty;
     IsActivedOnce = isActivedOnce;
-    Initiated = false
+    Initiated = false;
     Repeated = true;
     Tracked = 0;
     WhereToApply = whereToApply;
   }
 
-  public override int Applying(int stat){    
+  public BuffSkill(BuffSkill buff){
+    Id = buff.Id;
+    Name = buff.Name;
+    Desc = buff.Desc;
+    TurnMax = buff.TurnMax;
+    Turns = 0;
+    Qty = buff.Qty;
+    IsActivedOnce = buff.IsActivedOnce;
+    Initiated = false;
+    Repeated = true;
+    Tracked = 0;
+    WhereToApply = buff.WhereToApply;
+  }
+
+  public override int Applying(){    
     if(this.IsActivedOnce && this.Repeated){
       this.Repeated = false;      
       this.Tracked += this.Qty;
-      return stat += this.Qty;
+      return this.Tracked;
     }
     else if(!this.IsActivedOnce && this.Repeated){
       this.Tracked += this.Qty;
-      return stat += this.Qty;
+      return this.Tracked;
     }
     else{
-      return stat;
+      return 0;
     }
   }
 
-  public int Removal(ref int stat){
-    return stat -= this.Tracked;
+  public int Removal(){
+    return this.Tracked;
+  }
+
+  public override string ToString(){
+    return "Name: " + this.Name + "\n" +
+           "Turns: " + this.Turns + "\n" +
+           "Qty: " + this.Qty;
   }
 }
 

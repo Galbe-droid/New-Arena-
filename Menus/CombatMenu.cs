@@ -44,7 +44,7 @@ class CombatMenu
         break;
         
     case "d":
-        
+        CombatBehaviour.DefensiveChoice(ref c);
         break;
 
       default:

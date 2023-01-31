@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 //Creature Abstraction to use with player and monster 
 //This holds all information that any player or monster share
 abstract class Creature{
@@ -71,26 +73,49 @@ abstract class Creature{
     return this.Dead;
   }
 
+  //It checks and apply/Removes the buffs
   public void CheckForBuffsDebuffs(){
+    int stats; 
     if(this.BuffAndDebuffActive.Count != 0){
-      foreach(BuffSkill b in this.BuffAndDebuffActive){
-        if(b.WhereToApply == BuffType.Defense){
-          b.Applying(this.ModDefense);
+      foreach(BuffSkill b in this.BuffAndDebuffActive.ToList()){
+        if(b.Turns <= b.TurnMax){
+          if(b.WhereToApply == BuffType.Defense){
+            stats = b.Applying();
+            this.ModDefense += stats;
+            b.Turns++;
+          }
+          else if(b.WhereToApply == BuffType.Dodge){
+            b.Applying();  
+            b.Turns++;
+          }
+          else if(b.WhereToApply == BuffType.Attack){
+            b.Applying();
+            b.Turns++;
+          }
         }
-        else if(b.WhereToApply == BuffType.Dodge){
-          b.Applying(this.ModDodge);
-        }
-        else if(b.WhereToApply == BuffType.Attack){
-          b.Applying(this.ModAttack);
+        else{
+          if(b.WhereToApply == BuffType.Defense){
+            this.ModDefense -= b.Removal();
+            BuffAndDebuffActive.Remove(b);   
+            Console.ReadKey();
+          }
+          else if(b.WhereToApply == BuffType.Dodge){
+            b.Removal();
+            BuffAndDebuffActive.Remove(b);   
+          }
+          else if(b.WhereToApply == BuffType.Attack){
+            b.Removal();
+            BuffAndDebuffActive.Remove(b);   
+          }
         }
       }
     }
   }
-
+    
   //Use on the beggining of combat for monsters, it loads a pre base skill 
   //For players this loads after character creation 
   public void Initialization(){
-    foreach(BuffSkill b in SkillList.BuffSkillList){
+    foreach(BuffSkill b in SkillList.BuffSkillList.ToList()){
       if(b.Id == 0){
         SkillTrained.Add(b);
       }

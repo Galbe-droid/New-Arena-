@@ -3,7 +3,7 @@ using System;
 //This screen shows the combat stats of player and monster, and players options for the combat 
 class CombatScreen
 {
-  public static void Stats(Character c, Monster m)
+  public static void Stats(ref Character c, ref Monster m)
   {
     int CharTrueDefense = c.Defense + c.ModDefense;
     float CharTrueDodge = ((c.Dodge + c.ModDodge) / 100000f) * 100f;
