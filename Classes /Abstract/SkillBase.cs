@@ -7,6 +7,7 @@ abstract class SkillBase
   public int TurnMax {get; set;}
   public int Turns {get; set;}
   public bool IsActivedOnce {get; set;}
+  public bool Initiated {get; set;}
 
-  public abstract int Applying(ref int stat);
+  public abstract int Applying(int stat);
 }

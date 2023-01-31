@@ -6,6 +6,6 @@ class SkillList{
 
   //int id, string name, string desc, int turnsMax, int qty, bool isActivedOnce
   public static void AddSkills(){
-    BuffSkillList.Add(new BuffSkill(0,"Defensive Position", "Increase Base Defese", 2, 4, true));
+    BuffSkillList.Add(new BuffSkill(0,"Defensive Position", "Increase Base Defese", 2, 4, true, BuffType.Defense));
   }
 }

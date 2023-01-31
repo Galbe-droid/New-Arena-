@@ -44,6 +44,7 @@ class CombatMenu
         break;
         
     case "d":
+        
         break;
 
       default:

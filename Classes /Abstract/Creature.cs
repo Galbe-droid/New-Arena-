@@ -71,6 +71,22 @@ abstract class Creature{
     return this.Dead;
   }
 
+  public void CheckForBuffsDebuffs(){
+    if(this.BuffAndDebuffActive.Count != 0){
+      foreach(BuffSkill b in this.BuffAndDebuffActive){
+        if(b.WhereToApply == BuffType.Defense){
+          b.Applying(this.ModDefense);
+        }
+        else if(b.WhereToApply == BuffType.Dodge){
+          b.Applying(this.ModDodge);
+        }
+        else if(b.WhereToApply == BuffType.Attack){
+          b.Applying(this.ModAttack);
+        }
+      }
+    }
+  }
+
   //Use on the beggining of combat for monsters, it loads a pre base skill 
   //For players this loads after character creation 
   public void Initialization(){
@@ -79,6 +95,5 @@ abstract class Creature{
         SkillTrained.Add(b);
       }
     }
-  }
-  
+  }  
 }

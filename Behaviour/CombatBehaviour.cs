@@ -37,4 +37,12 @@ class CombatBehaviour
       }
     }
   }
+
+  public static void DefensiveChoice(ref Character c){
+        foreach(BuffSkill b in c.SkillTrained){
+          if(b.Name == "Defensive Position"){
+            c.BuffAndDebuffActive.Add(b); 
+          }
+        }
+  }
 }
