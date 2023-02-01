@@ -73,7 +73,7 @@ abstract class Creature{
     return this.Dead;
   }
 
-  //It checks and apply/Removes the buffs
+  //It checks and apply/Removes the buffs and also where to apply and reduce 
   public void CheckForBuffsDebuffs(){
     int stats; 
     if(this.BuffAndDebuffActive.Count != 0){
@@ -97,7 +97,6 @@ abstract class Creature{
           if(b.WhereToApply == BuffType.Defense){
             this.ModDefense -= b.Removal();
             BuffAndDebuffActive.Remove(b);   
-            Console.ReadKey();
           }
           else if(b.WhereToApply == BuffType.Dodge){
             b.Removal();

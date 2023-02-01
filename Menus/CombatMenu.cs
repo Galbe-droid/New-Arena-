@@ -44,7 +44,21 @@ class CombatMenu
         break;
         
     case "d":
-        CombatBehaviour.DefensiveChoice(ref c);
+        if(charBigInit){
+          CombatBehaviour.DefensiveChoice(ref c);
+
+          if(m.Dead || c.Dead)
+            break;
+          
+          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
+        }else{          
+          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
+
+          if(m.Dead || c.Dead)
+            break;
+          
+          CombatBehaviour.DefensiveChoice(ref c);
+        }     
         break;
 
       default:

@@ -6,7 +6,7 @@ class BuffSkill : SkillBase
   public int Qty {get; set;}
   //Stat get Increased by turn
   public bool Repeated {get; set;}
-  //Keeps track of the buff so it can be safely removed 
+  //Keeps track of the buff so it can be safely removed and added in case the buff has a multiple stages 
   public int Tracked{get;set;}
   //Where to put the buff 
   public BuffType WhereToApply {get; set;}

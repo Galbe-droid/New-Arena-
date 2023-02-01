@@ -38,7 +38,10 @@ class CombatBehaviour
     }
   }
 
+  //Executes a basic Defense Movement, it increases the Defense for 2 turns
   public static void DefensiveChoice(ref Character c){
+    Console.WriteLine(c.Name + " is assuming a Defensive stance");
+    //It searches if the skill is already activated, if it is then it time is reset
     foreach(BuffSkill b in c.SkillTrained){
       if(b.Name == "Defensive Position" && !c.BuffAndDebuffActive.Exists(x => x.Name == "Defensive Position")){
         c.BuffAndDebuffActive.Add(new BuffSkill(b){}); 
@@ -46,8 +49,6 @@ class CombatBehaviour
       else{
         if(c.BuffAndDebuffActive.Exists(x => x.Name == "Defensive Position")){
           c.BuffAndDebuffActive.Find(x => x.Name == "Defensive Position").Turns = 0;
-          Console.WriteLine("Skill Reset");
-          Console.WriteLine(b.ToString());
         }
       }
     }

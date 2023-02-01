@@ -35,7 +35,7 @@ class Character : Creature
     
     Initiative = 0;
     ModDefense = 0;
-    ModDodge = 0;
+    ModDodge = 0 * 500;
     ModAttack = 0;
 
     Dead = false;
