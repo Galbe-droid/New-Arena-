@@ -11,6 +11,7 @@ Working:
   6. Day and Night Cycle.
 
 In Progress: 
+
   1.Combat
     1.1.Attack // Complete
     1.2.Defend // Only Player
