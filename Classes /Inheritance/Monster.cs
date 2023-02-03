@@ -29,6 +29,7 @@ class Monster : Creature
 
     Damage = 0;
     ManaSpend = 0;
+    
     Initiative = 0;
     ModDefense = 0;
     ModDodge = 0;

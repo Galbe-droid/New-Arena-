@@ -30,10 +30,10 @@ class CombatMenu
           if(m.Dead || c.Dead)
             break;
           
-          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
+          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
         }    
         else {
-          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
+          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
 
           //Checks if player or monster are dead
           if(m.Dead || c.Dead)
@@ -50,9 +50,9 @@ class CombatMenu
           if(m.Dead || c.Dead)
             break;
           
-          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
+          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
         }else{          
-          c.Damage += CombatMonsterBehaviour.MonsterChoice(cTrueDefense, cTrueDodge, mTrueAttack, m.Type, c.Name);
+          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
 
           if(m.Dead || c.Dead)
             break;

@@ -34,7 +34,6 @@ abstract class Creature{
 
   //Checking
   public bool Dead{get; set;}
-  public bool isDefensive{get; set;}
 
   //List for Skills
   public List<SkillBase> SkillTrained = new List<SkillBase>();
@@ -71,6 +70,19 @@ abstract class Creature{
      }
 
     return this.Dead;
+  }
+
+  //Informs the total stats (stats + ModStats)
+  public int TotalAttack(){
+     return this.Attack + this.ModAttack;
+  }
+
+  public int TotalDefense(){
+    return this.Defense + this.ModDefense;
+  }
+
+  public int TotalDodge(){
+    return this.Dodge + this.ModDodge;
   }
 
   //It checks and apply/Removes the buffs and also where to apply and reduce 

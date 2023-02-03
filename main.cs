@@ -165,12 +165,13 @@ class MainClass {
     while(CombatOn){
       //Checking for Buffs and Debuffs
       chosen.CheckForBuffsDebuffs();
+      monster.CheckForBuffsDebuffs();
 
-      Console.WriteLine("ModDef: " + chosen.ModDefense);
+      Console.WriteLine("ModDef: " + monster.ModDefense);
 
-      Console.WriteLine(chosen.BuffAndDebuffActive.Count);
-      if(chosen.BuffAndDebuffActive.Count != 0){
-        foreach(BuffSkill b in chosen.BuffAndDebuffActive.ToList()){
+      Console.WriteLine(monster.BuffAndDebuffActive.Count);
+      if(monster.BuffAndDebuffActive.Count != 0){
+        foreach(BuffSkill b in monster.BuffAndDebuffActive.ToList()){
           Console.WriteLine(b.Turns);
           Console.ReadKey();
         }

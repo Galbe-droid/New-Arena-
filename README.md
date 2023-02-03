@@ -10,7 +10,7 @@ Working:
   5. Displays for Combat Arena and Main Menu 
   6. Day and Night Cycle.
 
-In Progress: 
+In Progress:
 
   1.Combat
     1.1.Attack // Complete

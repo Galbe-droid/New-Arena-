@@ -31,7 +31,7 @@ class CombatBehaviour
       else
       {
         //The method return the damage that the player made on the monster 
-        Console.WriteLine("Monster Hit !!");
+        Console.WriteLine("Monster Damage !!");
         Console.WriteLine("Damage: -" + (TotalAttack - TotalDefense));
         return TotalAttack - TotalDefense;
       }

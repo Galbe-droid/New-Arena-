@@ -5,13 +5,9 @@ class CombatScreen
 {
   public static void Stats(ref Character c, ref Monster m)
   {
-    int CharTrueDefense = c.Defense + c.ModDefense;
-    float CharTrueDodge = ((c.Dodge + c.ModDodge) / 100000f) * 100f;
-    int CharTrueAttack = c.Attack + c.ModAttack;
+    float CharTrueDodge = (c.TotalDodge() / 100000f) * 100f;
 
-    int MonsterTrueDefense = m.Defense + m.ModDefense;
-    float MonsterTrueDodge = ((m.Dodge + m.ModDodge) / 100000f) * 100f;
-    int MonsterTrueAttack = m.Attack + m.ModAttack;
+    float MonsterTrueDodge = (m.TotalDodge() / 100000f) * 100f;
     
 
     Console.WriteLine("Name:" + c.Name + " Lvl:" + c.Level + "  ///  " + "Monster:" + m.Name + " Lvl:" + m.Level);
@@ -39,10 +35,10 @@ class CombatScreen
     Console.WriteLine(c.Initiative + " ///// " + m.Initiative);
 
     Console.WriteLine("Attack");
-    Console.WriteLine(CharTrueAttack + " ///// " + MonsterTrueAttack);
+    Console.WriteLine(c.TotalAttack() + " ///// " + m.TotalAttack());
 
     Console.WriteLine("Defense");
-    Console.WriteLine(CharTrueDefense + " ///// " + MonsterTrueDefense);
+    Console.WriteLine(c.TotalDefense() + " ///// " + m.TotalDefense());
 
     Console.WriteLine("Dodge");
     Console.WriteLine(CharTrueDodge + "%  ///// " + MonsterTrueDodge + "%");

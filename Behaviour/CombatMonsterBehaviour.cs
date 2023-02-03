@@ -5,25 +5,72 @@ using System;
 class CombatMonsterBehaviour
 {
   //Method receive Player defense, Player Dodge chance, Monster damage and monster type
-  public static int MonsterChoice(int charDefense, int charDodge, int monsterDamage, Types monsterType, string charName)
+  public static Character MonsterChoice(ref Character c, ref Monster m )
   {
     //Depending of the monster type it will be more inclined to use certain actions 
-    if(monsterType == Types.Offensive)
-    {
-      
-      return MonsterAttack(charDefense, charDodge, monsterDamage, charName);
+    Random rand = new Random();
+    int choice = rand.Next(0,101);
+    
+    if(m.Type == Types.Offensive)
+    { 
+      if((choice >= 0 || choice <=75)){
+        c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+        return c;
+      }
+      else{
+        if(!m.BuffAndDebuffActive.Exists(x => x.Id == 0)){
+          MonsterDefense(ref m);
+          return c;
+        }       
+        else{
+          if(m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 1){
+            MonsterDefense(ref m);
+            return c;
+          }
+          else{
+            c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+            return c;
+          }
+        }
+      }      
     }
-    else if(monsterType == Types.Defensive)
+    else if(m.Type  == Types.Defensive)
     {
-      return MonsterAttack(charDefense, charDodge, monsterDamage, charName);
+      if((choice >= 0 || choice <=25)){
+        c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+        return c;
+      }
+      else{
+        if(m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 1){
+          MonsterDefense(ref m);
+          return c;
+        }
+        else{
+          c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+          return c;
+        }
+      }
     }
-    else if(monsterType == Types.Balance)
+    else if(m.Type  == Types.Balance)
     {
-      return MonsterAttack(charDefense, charDodge, monsterDamage, charName);
+      if((choice >= 0 || choice <= 50)){
+        c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+        return c;
+      }
+      else{
+        if(m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 1){
+          MonsterDefense(ref m);
+          return c;
+        }
+        else{
+          c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+          return c;
+        }
+      }
     }
     else{
       Console.WriteLine("An error occur");
-      return 0;
+      return c;
     }
   }
 
@@ -53,10 +100,20 @@ class CombatMonsterBehaviour
       else
       {
         //The method return the damage that the player made on the monster
-        Console.WriteLine(charName + " Hit !!");
+        Console.WriteLine(charName + " Damage !!");
         Console.WriteLine("Damage: - " + (TotalAttack - TotalDefense));
         return TotalAttack - TotalDefense;
       }
+    }
+  }
+
+  //Allows monsters to use the Defensive Position
+  public static void MonsterDefense(ref Monster m){
+    Console.WriteLine(m.Name + " is Assuming a Defensive Position");
+    if(!m.BuffAndDebuffActive.Exists(x => x.Id == 0)){
+      m.BuffAndDebuffActive.Add(new BuffSkill((BuffSkill)m.SkillTrained.Find(x => x.Id == 0)){});
+    }else{
+      m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns = 0;
     }
   }
 }
