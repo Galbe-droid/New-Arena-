@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 class GameStartMenu
 {
-  public static bool ArenaMenu(string decision, Character chosen, bool exit, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, ref bool timePass)
+  public static bool ArenaMenu(string decision,ref Character chosen, bool exit, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, ref bool timePass)
   {    
     switch(decision)
     {
@@ -78,9 +78,12 @@ class GameStartMenu
           }
           else
           {
-            timePass = true;
             choiceInn--;
+            Food foodChoice = FoodTable[choiceInn];
+            timePass = true;
             Console.WriteLine("Food eaten!");
+            chosen.Damage -= foodChoice.RecoveryHp;
+            chosen.ManaSpend -= foodChoice.RecoveryMp;
             Console.ReadKey();   
             DayOrNight = !DayOrNight;
             Console.Clear();
@@ -91,7 +94,8 @@ class GameStartMenu
       //Training Hall
       //Under Development 
       case("T"):
-        Console.WriteLine("Not Ready!");
+        Console.Clear();
+        TrainingHallMenu.TrainingDecision(ref chosen);
         break;      
 
       default:

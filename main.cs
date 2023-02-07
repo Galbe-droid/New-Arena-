@@ -150,7 +150,7 @@ class MainClass {
       else
       {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
-        Exit = GameStartMenu.ArenaMenu(Decision, chosen, Exit,ref daytime, Cages, innFoodTable, ref timePass);        
+        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, Cages, innFoodTable, ref timePass);        
       }      
     }   
   }
@@ -166,16 +166,6 @@ class MainClass {
       //Checking for Buffs and Debuffs
       chosen.CheckForBuffsDebuffs();
       monster.CheckForBuffsDebuffs();
-
-      Console.WriteLine("ModDef: " + monster.ModDefense);
-
-      Console.WriteLine(monster.BuffAndDebuffActive.Count);
-      if(monster.BuffAndDebuffActive.Count != 0){
-        foreach(BuffSkill b in monster.BuffAndDebuffActive.ToList()){
-          Console.WriteLine(b.Turns);
-          Console.ReadKey();
-        }
-      }
       
       //Generating initiative
       Random rand = new Random();
@@ -228,6 +218,7 @@ class MainClass {
           chosen.Damage = 0;
           Console.WriteLine("Defeated!!");
           CombatOn = false;
+          chosen.Dead = false;
           Console.ReadLine();
         }
       }

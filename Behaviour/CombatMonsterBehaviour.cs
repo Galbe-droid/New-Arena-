@@ -13,7 +13,7 @@ class CombatMonsterBehaviour
     
     if(m.Type == Types.Offensive)
     { 
-      if((choice >= 0 || choice <=75)){
+      if((choice >= 0 && choice <= 75)){
         c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
         return c;
       }
@@ -21,27 +21,9 @@ class CombatMonsterBehaviour
         if(!m.BuffAndDebuffActive.Exists(x => x.Id == 0)){
           MonsterDefense(ref m);
           return c;
-        }       
-        else{
-          if(m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 1){
-            MonsterDefense(ref m);
-            return c;
-          }
-          else{
-            c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
-            return c;
-          }
         }
-      }      
-    }
-    else if(m.Type  == Types.Defensive)
-    {
-      if((choice >= 0 || choice <=25)){
-        c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
-        return c;
-      }
-      else{
-        if(m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 1){
+        //Prevent Monsters from Repeat Defende Every Time 
+        else if(m.BuffAndDebuffActive.Exists(x => x.Id == 0) && m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 2){
           MonsterDefense(ref m);
           return c;
         }
@@ -49,16 +31,41 @@ class CombatMonsterBehaviour
           c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
           return c;
         }
-      }
+      }      
     }
-    else if(m.Type  == Types.Balance)
+    else if(m.Type  == Types.Defensive)
     {
-      if((choice >= 0 || choice <= 50)){
+      if((choice >= 0 && choice <= 25)){
         c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
         return c;
       }
       else{
-        if(m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 1){
+        if(!m.BuffAndDebuffActive.Exists(x => x.Id == 0)){
+          MonsterDefense(ref m);
+          return c;
+        }
+        else if(m.BuffAndDebuffActive.Exists(x => x.Id == 0) && m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 2){
+          MonsterDefense(ref m);
+          return c;
+        }
+        else{
+          c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+          return c;
+        }
+      } 
+    }
+    else if(m.Type  == Types.Balance)
+    {
+      if((choice >= 0 && choice <= 50)){
+        c.Damage += MonsterAttack(c.TotalDefense(), c.TotalDodge(), m.TotalAttack(), c.Name);
+        return c;
+      }
+      else{
+        if(!m.BuffAndDebuffActive.Exists(x => x.Id == 0)){
+          MonsterDefense(ref m);
+          return c;
+        }
+        else if(m.BuffAndDebuffActive.Exists(x => x.Id == 0) && m.BuffAndDebuffActive.Find(x => x.Id == 0).Turns > 2){
           MonsterDefense(ref m);
           return c;
         }
@@ -110,6 +117,7 @@ class CombatMonsterBehaviour
   //Allows monsters to use the Defensive Position
   public static void MonsterDefense(ref Monster m){
     Console.WriteLine(m.Name + " is Assuming a Defensive Position");
+    
     if(!m.BuffAndDebuffActive.Exists(x => x.Id == 0)){
       m.BuffAndDebuffActive.Add(new BuffSkill((BuffSkill)m.SkillTrained.Find(x => x.Id == 0)){});
     }else{

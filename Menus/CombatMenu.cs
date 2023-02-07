@@ -8,23 +8,15 @@ class CombatMenu
 {
   public static void CombatChoices(ref Character c, ref Monster m, string choice, bool charBigInit)
   {
-    int cTrueAttack = c.Attack + c.ModAttack;
-    int cTrueDefense = c.Defense + c.ModDefense;
-    int cTrueDodge = c.Dodge + c.ModDodge;
-
-    int mTrueAttack = m.Attack + m.ModAttack;
-    int mTrueDefense = m.Defense + m.ModDefense;
-    int mTrueDodge = m.Dodge + m.ModDodge;
-
     choice.ToUpper();
 
     Console.WriteLine("Turn Start !!");
     
     switch(choice)
     {
-    case "a":
+      case "a":
         if (charBigInit){
-          m.Damage += CombatBehaviour.AttackOption(cTrueAttack, mTrueDefense, mTrueDodge);
+          m.Damage += CombatBehaviour.AttackOption(c.TotalAttack(), m.TotalDefense(), m.TotalDodge());
 
           //Checks if player or monster are dead 
           if(m.Dead || c.Dead)
@@ -39,11 +31,11 @@ class CombatMenu
           if(m.Dead || c.Dead)
             break;
           
-          m.Damage += CombatBehaviour.AttackOption(cTrueAttack, mTrueDefense, mTrueDodge);
+          m.Damage += CombatBehaviour.AttackOption(c.TotalAttack(), m.TotalDefense(), m.TotalDodge());
         }      
         break;
         
-    case "d":
+      case "d":
         if(charBigInit){
           CombatBehaviour.DefensiveChoice(ref c);
 

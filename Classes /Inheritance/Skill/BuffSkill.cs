@@ -1,5 +1,5 @@
 using System;
-//Under Construction
+
 class BuffSkill : SkillBase
 {
   //Stat Increase
@@ -10,6 +10,8 @@ class BuffSkill : SkillBase
   public int Tracked{get;set;}
   //Where to put the buff 
   public BuffType WhereToApply {get; set;}
+
+  public BuffSkill(){}
 
   public BuffSkill(int id, string name, string desc, int turnsMax, int qty, bool isActivedOnce, BuffType whereToApply)
   {
