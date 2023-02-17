@@ -2,7 +2,7 @@ using System;
 //Buff and Debuff are similar in composition
 //But using a different class I can separate then and place then for the right targets 
 class DebuffSkill : BuffSkill{
-  public DebuffSkill(int id, string name, string desc, int turnsMax, int qty, bool isActivedOnce, BuffType whereToApply){
+  public DebuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply){
     Id = id;
     Name = name;
     Desc = desc;
@@ -11,6 +11,7 @@ class DebuffSkill : BuffSkill{
     Qty = qty;
     IsActivedOnce = isActivedOnce;
     Initiated = false;
+    Cost = cost;
     Repeated = true;
     Tracked = 0;
     WhereToApply = whereToApply;
@@ -25,8 +26,29 @@ class DebuffSkill : BuffSkill{
     Qty = debuff.Qty;
     IsActivedOnce = debuff.IsActivedOnce;
     Initiated = false;
+    Cost = debuff.Cost;
     Repeated = true;
     Tracked = 0;
     WhereToApply = debuff.WhereToApply;
+  }
+
+  public override string ToString(){
+    string whereToAct; 
+
+    if(this.WhereToApply == BuffType.Defense){
+      whereToAct = "Defense"; 
+    }
+    else if(this.WhereToApply == BuffType.Dodge){
+      whereToAct = "Dodge"; 
+    }
+    else{
+      whereToAct = "Attack"; 
+    }
+    
+    return "Name: " + this.Name + " | " +
+           "Cost: " + this.Cost + " | " + 
+           "Turns Durantion: " + this.TurnMax + " | " +
+           "Qty: " + this.Qty + " | " + 
+           "Decreases: " + whereToAct; 
   }
 }

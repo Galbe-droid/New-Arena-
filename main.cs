@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-class MainClass {
-  
+class MainClass {  
   public static void Main (string[] args) {
     //Loading
     SkillList.AddSkills();
@@ -105,6 +104,7 @@ class MainClass {
     bool timePass = true;
     List<Monster> Cages = new List<Monster>();
     List<Food> innFoodTable = new List<Food>();
+    List<SkillBase> SkillCapableOfTraining = new List<SkillBase>();
 
     while(GameOn)
     {
@@ -150,7 +150,7 @@ class MainClass {
       else
       {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
-        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, Cages, innFoodTable, ref timePass);        
+        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, Cages, innFoodTable, SkillCapableOfTraining, ref timePass);        
       }      
     }   
   }

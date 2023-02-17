@@ -13,7 +13,7 @@ class BuffSkill : SkillBase
 
   public BuffSkill(){}
 
-  public BuffSkill(int id, string name, string desc, int turnsMax, int qty, bool isActivedOnce, BuffType whereToApply)
+  public BuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply)
   {
     Id = id;
     Name = name;
@@ -23,6 +23,7 @@ class BuffSkill : SkillBase
     Qty = qty;
     IsActivedOnce = isActivedOnce;
     Initiated = false;
+    Cost = cost;
     Repeated = true;
     Tracked = 0;
     WhereToApply = whereToApply;
@@ -37,6 +38,7 @@ class BuffSkill : SkillBase
     Qty = buff.Qty;
     IsActivedOnce = buff.IsActivedOnce;
     Initiated = false;
+    Cost = buff.Cost;
     Repeated = true;
     Tracked = 0;
     WhereToApply = buff.WhereToApply;
@@ -62,9 +64,23 @@ class BuffSkill : SkillBase
   }
 
   public override string ToString(){
-    return "Name: " + this.Name + "\n" +
-           "Turns: " + this.Turns + "\n" +
-           "Qty: " + this.Qty;
+    string whereToAct; 
+
+    if(this.WhereToApply == BuffType.Defense){
+      whereToAct = "Defense"; 
+    }
+    else if(this.WhereToApply == BuffType.Dodge){
+      whereToAct = "Dodge"; 
+    }
+    else{
+      whereToAct = "Attack"; 
+    }
+    
+    return "Name: " + this.Name + " | " +
+           "Cost: " + this.Cost + " | " + 
+           "Turns Durantion: " + this.TurnMax + " | " +
+           "Qty: " + this.Qty + " | " + 
+           "Increases: " + whereToAct; 
   }
 }
 

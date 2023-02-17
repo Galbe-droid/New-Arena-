@@ -8,6 +8,7 @@ abstract class SkillBase
   public int Turns {get; set;}
   public bool IsActivedOnce {get; set;}
   public bool Initiated {get; set;}
+  public int Cost {get; set;}
 
   public abstract int Applying();
 }

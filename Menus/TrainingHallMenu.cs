@@ -1,7 +1,8 @@
 using System; 
+using System.Collections.Generic;
 
 class TrainingHallMenu{
-  public static Character TrainingDecision(ref Character chosen){
+  public static Character TrainingDecision(ref Character chosen, List<SkillBase>SkillList){
     string choice;
 
     do{
@@ -37,4 +38,28 @@ class TrainingHallMenu{
 
     return chosen;
   }
+
+  public static Character SkillForToday(ref Character c, List<SkillBase>SkillList){
+   List<SkillBase> ListOfAvaliableSkills = new List<SkillBase>();
+
+    foreach(SkillBase s in SkillList){
+      if(!c.SkillTrained.Exists(x => x.Id == s.Id)){
+        ListOfAvaliableSkills.Add(s);
+      }
+    }
+
+    return c;
+  }
+
+  public static Character SkillTraining(ref Character c, SkillBase skillChoice){
+    if(skillChoice.GetType() == typeof(DebuffSkill)){
+      c.SkillTrained.Add(new DebuffSkill((DebuffSkill)skillChoice));
+    }
+    else if(skillChoice.GetType() == typeof(BuffSkill)){
+      c.SkillTrained.Add(new BuffSkill((BuffSkill)skillChoice));
+    }
+
+    return c;
+  }
 }
+
