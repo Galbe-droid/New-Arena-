@@ -10,6 +10,8 @@ class Character : Creature
   
   public int Xp {get; set;}
 
+  public List<SkillBase> CapableOfLearn = new List<SkillBase>();
+
   public Character(int id, string name, int str, int inte, int agi, int vig)
   {
     Id = id;
@@ -40,4 +42,19 @@ class Character : Creature
 
     Dead = false;
   }
+
+  public void FillAvaliableSkill(){
+    foreach(BuffSkill s in SkillList.BuffSkillList){
+      if(!this.SkillTrained.Exists(x => x.Id == s.Id)){
+        this.CapableOfLearn.Add(s);
+      }
+    }
+
+    foreach(DebuffSkill s in SkillList.DebuffSkillList){
+      if(!this.SkillTrained.Exists(x => x.Id == s.Id)){
+        this.CapableOfLearn.Add(s);
+      }
+    }
+  }
+  
 }

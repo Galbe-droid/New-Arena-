@@ -7,8 +7,7 @@ class MainClass {
     //Loading
     SkillList.AddSkills();
     MonsterList.AddMonsters();
-    FoodList.AddFruits();
-    
+    FoodList.AddFruits();  
 
     //For Debugging proposses only 
     Console.ReadKey();
@@ -86,6 +85,8 @@ class MainClass {
           //Adding the caracter on the caracter list then disable this screen and going back to the main menu
           //Applies the initial skill on it 
           character.Initialization();
+          character.FillAvaliableSkill();
+        
           Lists.CharacterList.Add(character);
           CharacterMaker = false;
           break;  
@@ -104,7 +105,7 @@ class MainClass {
     bool timePass = true;
     List<Monster> Cages = new List<Monster>();
     List<Food> innFoodTable = new List<Food>();
-    List<SkillBase> SkillCapableOfTraining = new List<SkillBase>();
+
 
     while(GameOn)
     {
@@ -134,13 +135,13 @@ class MainClass {
       if(timePass){
         timePass = !timePass;
       }
-
+      
       //Screen info for caracter stats 
       GameScreen.CharacterStats(chosen);
       //Screen info for Game activities
       GameScreen.ArenaChoices(days, dayMoment);
 
-      Console.Write("Chose:");
+      Console.Write("Chose:");      
       string Decision = Console.ReadLine().ToUpper();
 
       if(Decision == "E")
@@ -150,7 +151,7 @@ class MainClass {
       else
       {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
-        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, Cages, innFoodTable, SkillCapableOfTraining, ref timePass);        
+        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, Cages, innFoodTable, ref timePass);        
       }      
     }   
   }

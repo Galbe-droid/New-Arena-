@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 class TrainingHallMenu{
-  public static Character TrainingDecision(ref Character chosen, List<SkillBase>SkillList){
+  public static Character TrainingDecision(ref Character chosen){
     string choice;
 
     do{
@@ -39,7 +39,7 @@ class TrainingHallMenu{
     return chosen;
   }
 
-  public static Character SkillForToday(ref Character c, List<SkillBase>SkillList){
+  /*public static Character SkillForToday(ref Character c, List<SkillBase>SkillList){
    List<SkillBase> ListOfAvaliableSkills = new List<SkillBase>();
 
     foreach(SkillBase s in SkillList){
@@ -60,6 +60,6 @@ class TrainingHallMenu{
     }
 
     return c;
-  }
+  }*/
 }
 
