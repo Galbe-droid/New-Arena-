@@ -15,7 +15,7 @@ In Progress:
   1.Combat
     1.1.Attack // Complete
     1.2.Defend // Complete
-    1.3 Skills // TBD
+    1.3 Skills // In Progress - Player
     1.4 Itens // TBD 
     
   2.Inn
@@ -24,14 +24,14 @@ In Progress:
     2.3. Food Types (Fruits, Meals and Potions) // Only Fruits - In Progress
     2.4. Taking Food // TBD 
     
-  3.Training Hall // TBD
+  3.Training Hall // In Progress
   
   4.Market // TBD 
   
   5.Player/Monsters
     5.1 Base Function - Stats and hp/mp working // Complete
     5.2 Skill Trained - A list of learned skills // Complete
-    5.3 Buff and DeBuffs // In Progress - Buff
+    5.3 Buff and DeBuffs // In Progress - Debuff / Buff Complete
     5.4 Temporary Effects - Temporary Shilds or hp // TBD
     5.5 Equipaments // TBD
     5.6 Iten Bag // TBD

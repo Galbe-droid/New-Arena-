@@ -1,8 +1,9 @@
 using System; 
 using System.Collections.Generic;
+using System.Linq;
 
-class TrainingHallMenu{
-  public static Character TrainingDecision(ref Character chosen){
+class TrainingHallMenu{  
+  public static void TrainingDecision(ref Character chosen, List<SkillBase>skillOfTheDay){
     string choice;
 
     do{
@@ -21,6 +22,12 @@ class TrainingHallMenu{
 
         case "K":
           Console.WriteLine("Skil Training not ready.");
+          if(skillOfTheDay.Count >= 1){
+            SkillToLearn(ref chosen, ref skillOfTheDay);
+          }else{
+            Console.WriteLine("There is no Skill To Learn");
+            Console.ReadKey();
+          }          
           Console.Clear();
           break;
 
@@ -35,31 +42,40 @@ class TrainingHallMenu{
       }
     }while(choice.ToUpper() != "X");
     Console.Clear();
-
-    return chosen;
   }
 
-  /*public static Character SkillForToday(ref Character c, List<SkillBase>SkillList){
-   List<SkillBase> ListOfAvaliableSkills = new List<SkillBase>();
+  public static void SkillToLearn(ref Character c,ref List<SkillBase>skillOfTheDay){
+    int choice;
 
-    foreach(SkillBase s in SkillList){
-      if(!c.SkillTrained.Exists(x => x.Id == s.Id)){
-        ListOfAvaliableSkills.Add(s);
+    SkillTrainingScreen.SkillDisplay(skillOfTheDay);
+
+    Console.WriteLine();
+    choice = InputCheck.IntCheck("Skill Choice (0 to go back): ", "Invalid");
+
+    choice -= 1;
+    
+    if(choice == -1){
+
+    }
+    else{
+      if((choice + 1) > skillOfTheDay.Count || (choice + 1) < 1){
+        Console.WriteLine("Invalid");
+        Console.ReadKey();
       }
-    }
-
-    return c;
+      else{
+        if(c.Xp <  skillOfTheDay[choice].Cost){
+          Console.WriteLine("Not enough experience !");
+          Console.ReadKey();
+        }
+        else{
+          Console.WriteLine("Skill: " + skillOfTheDay[choice].Name + " was added ! ");
+          Console.ReadKey();
+          c.SkillTrained.Add(skillOfTheDay[choice]);
+          c.CapableOfLearn.Remove(skillOfTheDay[choice]);
+          skillOfTheDay.Remove(skillOfTheDay[choice]);        
+        }       
+      }
+    }    
   }
-
-  public static Character SkillTraining(ref Character c, SkillBase skillChoice){
-    if(skillChoice.GetType() == typeof(DebuffSkill)){
-      c.SkillTrained.Add(new DebuffSkill((DebuffSkill)skillChoice));
-    }
-    else if(skillChoice.GetType() == typeof(BuffSkill)){
-      c.SkillTrained.Add(new BuffSkill((BuffSkill)skillChoice));
-    }
-
-    return c;
-  }*/
 }
 

@@ -46,9 +46,9 @@ class DebuffSkill : BuffSkill{
     }
     
     return "Name: " + this.Name + " | " +
-           "Cost: " + this.Cost + " | " + 
+           "Cost: " + this.Cost + "xp | " + 
            "Turns Durantion: " + this.TurnMax + " | " +
-           "Qty: " + this.Qty + " | " + 
-           "Decreases: " + whereToAct; 
+           "Decreases: " + whereToAct + " | " + 
+           "Qty: " + this.Qty;
   }
 }

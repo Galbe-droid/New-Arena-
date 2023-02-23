@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 class GameStartMenu
 {
-  public static bool ArenaMenu(string decision,ref Character chosen, bool exit, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, ref bool timePass)
+  public static bool ArenaMenu(string decision,ref Character chosen, bool exit, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, List<SkillBase> skillOfTheDay, ref bool timePass)
   {    
     switch(decision)
     {
@@ -95,7 +95,7 @@ class GameStartMenu
       //Under Development 
       case("T"):
         Console.Clear();
-        TrainingHallMenu.TrainingDecision(ref chosen);
+        TrainingHallMenu.TrainingDecision(ref chosen, skillOfTheDay);
         break;      
 
       default:

@@ -77,10 +77,10 @@ class BuffSkill : SkillBase
     }
     
     return "Name: " + this.Name + " | " +
-           "Cost: " + this.Cost + " | " + 
+           "Cost: " + this.Cost + "xp | " + 
            "Turns Durantion: " + this.TurnMax + " | " +
-           "Qty: " + this.Qty + " | " + 
-           "Increases: " + whereToAct; 
+           "Increases: " + whereToAct + " | " + 
+           "Qty: " + this.Qty;
   }
 }
 

@@ -103,9 +103,9 @@ class MainClass {
     bool daytime = true;    
     bool Exit = false;
     bool timePass = true;
-    List<Monster> Cages = new List<Monster>();
+    List<Monster> cages = new List<Monster>();
     List<Food> innFoodTable = new List<Food>();
-
+    List<SkillBase> skillOfTheDay = new List<SkillBase>();
 
     while(GameOn)
     {
@@ -114,7 +114,9 @@ class MainClass {
         //Make list persistent
         if(timePass){
           MonsterGeneration.CleaningCages();
-          Cages = MonsterGeneration.MonsterOfTheDay();
+          SkillChoices.ClearSkills();
+          cages = MonsterGeneration.MonsterOfTheDay();
+          skillOfTheDay = SkillChoices.LearningSkill(chosen);
           days++;
         }
         dayMoment = " Daytime";
@@ -125,8 +127,10 @@ class MainClass {
         if(timePass){
           MonsterGeneration.CleaningCages();
           FoodGeneration.ClearFoods();
-          Cages = MonsterGeneration.MonsterOfTheDay();
+          SkillChoices.ClearSkills();
+          cages = MonsterGeneration.MonsterOfTheDay();
           innFoodTable = FoodGeneration.ListOfFruitOfTheDay();
+          skillOfTheDay = SkillChoices.LearningSkill(chosen);
         }
         dayMoment = " Nightime";        
       }
@@ -151,7 +155,7 @@ class MainClass {
       else
       {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
-        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, Cages, innFoodTable, ref timePass);        
+        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, cages, innFoodTable, skillOfTheDay, ref timePass);        
       }      
     }   
   }
