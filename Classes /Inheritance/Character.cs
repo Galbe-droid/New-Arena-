@@ -44,17 +44,10 @@ class Character : Creature
   }
 
   public void FillAvaliableSkill(){
-    foreach(BuffSkill s in SkillList.BuffSkillList){
+    foreach(SkillBase s in SkillList.AllSkills){
       if(!this.SkillTrained.Exists(x => x.Id == s.Id)){
         this.CapableOfLearn.Add(s);
       }
     }
-
-    foreach(DebuffSkill s in SkillList.DebuffSkillList){
-      if(!this.SkillTrained.Exists(x => x.Id == s.Id)){
-        this.CapableOfLearn.Add(s);
-      }
-    }
-  }
-  
+  }  
 }

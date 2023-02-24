@@ -9,15 +9,19 @@ using System.Collections.Generic;
 //301 - 400 : DefenseSkills
 
 class SkillList{
-  public static List<BuffSkill> BuffSkillList = new List<BuffSkill>();
+  public static List<SkillBase> AllSkills = new List<SkillBase>();
+  /*public static List<BuffSkill> BuffSkillList = new List<BuffSkill>();
   public static List<DebuffSkill> DebuffSkillList = new List<DebuffSkill>();
+  public static List<AttackSkill> AttackSkillList = new List<AttackSkill>();*/
 
-  //int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce
   public static void AddSkills(){
-    //BuffSkills
-    BuffSkillList.Add(new BuffSkill(0,"Defensive Position", "Increase Base Defese", 2, 4, 0, true, BuffType.Defense));
+    //BuffSkills int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce
+    AllSkills.Add(new BuffSkill(0,"Defensive Position", "Increase Base Defese", 2, 4, 0, true, BuffType.Defense));
 
-    //DebuffSkills
-    DebuffSkillList.Add(new DebuffSkill(101, "Nasty Provocation", "Decrease Enemy Dodge", 2, 2, 0, true, BuffType.Dodge));
+    //DebuffSkills int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce
+    AllSkills.Add(new DebuffSkill(101, "Nasty Provocation", "Decrease Enemy Dodge", 2, 2, 0, true, BuffType.Dodge));
+
+    //AttackSkills int id, string name, string desc, int turnsMax, int cost, int minDamage, int maxDamage, float modifier, StatsType playerStat
+    AllSkills.Add(new AttackSkill(201, "Deep Strike", "A far more powerful strike", 3, 0, 10, 20, 1.3, StatsType.Str));
   }
 }

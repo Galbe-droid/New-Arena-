@@ -7,6 +7,7 @@ class SkillTrainingScreen{
     int count = 0;
     Console.WriteLine("============Skills==============");
 
+
     foreach(SkillBase s in skills)
     {
       Console.WriteLine();

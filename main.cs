@@ -86,7 +86,7 @@ class MainClass {
           //Applies the initial skill on it 
           character.Initialization();
           character.FillAvaliableSkill();
-        
+                
           Lists.CharacterList.Add(character);
           CharacterMaker = false;
           break;  
@@ -116,7 +116,7 @@ class MainClass {
           MonsterGeneration.CleaningCages();
           SkillChoices.ClearSkills();
           cages = MonsterGeneration.MonsterOfTheDay();
-          skillOfTheDay = SkillChoices.LearningSkill(chosen);
+          skillOfTheDay = SkillChoices.LearningSkill(chosen);  
           days++;
         }
         dayMoment = " Daytime";
@@ -133,7 +133,7 @@ class MainClass {
           skillOfTheDay = SkillChoices.LearningSkill(chosen);
         }
         dayMoment = " Nightime";        
-      }
+      }     
 
       //If player dont advance time the list doens't change 
       if(timePass){

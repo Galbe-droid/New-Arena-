@@ -12,25 +12,36 @@ class SkillChoices{
     
     foreach(SkillBase s in c.CapableOfLearn){
       ids[count] = s.Id;
-      Console.WriteLine(ids[count]);
     }
 
     if(ids.Length >= 5){
       while(SkillOfTheDay.Count != 5){
         int idSelected = rand.Next(0, ids.Length);
+        
+        bool thisExist = SkillOfTheDay.Contains(c.CapableOfLearn.Find(x => x.Id == ids[idSelected]));
 
-        SkillOfTheDay.Add(c.CapableOfLearn.Find(x => x.Id == ids[idSelected]));
-
-        SkillOfTheDay.Distinct().ToList();
+        if(!thisExist){
+          SkillOfTheDay.Add(c.CapableOfLearn.Find(x => x.Id == ids[idSelected]));
+        }
       }
     }
     else if(ids.Length < 5 && ids.Length > 0){
+      
       while(SkillOfTheDay.Count != ids.Length){
         int idSelected = rand.Next(0, ids.Length);
+        SkillBase s;
+        s = c.CapableOfLearn.Find(x => x.Id == ids[idSelected]);
+        
+        bool thisExist = SkillOfTheDay.Contains(c.CapableOfLearn.Find(x => x.Id == ids[idSelected]));
 
-        SkillOfTheDay.Add(c.CapableOfLearn.Find(x => x.Id == ids[idSelected]));
-
-        SkillOfTheDay.Distinct().ToList();
+        if(!thisExist){
+          if(s.GetType() == typeof(DebuffSkill)){
+            SkillOfTheDay.Add(new DebuffSkill((DebuffSkill)s));
+          }
+          else if(s.GetType() == typeof(AttackSkill)){
+            SkillOfTheDay.Add(new AttackSkill((AttackSkill)s));
+          }         
+        }
       }
     }
 

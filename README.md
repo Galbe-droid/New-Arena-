@@ -25,6 +25,8 @@ In Progress:
     2.4. Taking Food // TBD 
     
   3.Training Hall // In Progress
+    3.1 Stats Increase // TBD
+    3.2 Skill Training // Complete
   
   4.Market // TBD 
   
@@ -39,7 +41,7 @@ In Progress:
   6.Skills 
     6.1 Base of Skills - A base for all skills to base on // Complete
       6.1.1 Simple Buff Skills // Completed 
-      6.1.2 Simple Debuff Skills // In Progress
+      6.1.2 Simple Debuff Skills // Completed
       6.1.3 Simple Damage Skills // TBD
       6.1.4 Simple Defense Skills // TDB 
     6.2 Monsters Exclusive Skills // TDB

@@ -126,7 +126,7 @@ abstract class Creature{
   //Use on the beggining of combat for monsters, it loads a pre base skill 
   //For players this loads after character creation 
   public void Initialization(){
-    foreach(BuffSkill b in SkillList.BuffSkillList.ToList()){
+    foreach(SkillBase b in SkillList.AllSkills){
       if(b.Id == 0){
         SkillTrained.Add(b);
       }
