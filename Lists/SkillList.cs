@@ -10,9 +10,9 @@ using System.Collections.Generic;
 
 class SkillList{
   public static List<SkillBase> AllSkills = new List<SkillBase>();
-  /*public static List<BuffSkill> BuffSkillList = new List<BuffSkill>();
-  public static List<DebuffSkill> DebuffSkillList = new List<DebuffSkill>();
-  public static List<AttackSkill> AttackSkillList = new List<AttackSkill>();*/
+  //public static List<BuffSkill> BuffSkillList = new List<BuffSkill>();
+  //public static List<DebuffSkill> DebuffSkillList = new List<DebuffSkill>();
+  //public static List<AttackSkill> AttackSkillList = new List<AttackSkill>();
 
   public static void AddSkills(){
     //BuffSkills int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce

@@ -9,9 +9,6 @@ class MainClass {
     MonsterList.AddMonsters();
     FoodList.AddFruits();  
 
-    //For Debugging proposses only 
-    Console.ReadKey();
-
     //End Loading
     //Main Screen
     Console.Clear();

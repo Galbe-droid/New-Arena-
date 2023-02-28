@@ -45,9 +45,17 @@ class Character : Creature
 
   public void FillAvaliableSkill(){
     foreach(SkillBase s in SkillList.AllSkills){
-      if(!this.SkillTrained.Exists(x => x.Id == s.Id)){
-        this.CapableOfLearn.Add(s);
-      }
+      if(!this.CapableOfLearn.Exists(x => x.Id == s.Id)){
+        if(s.GetType() == typeof(BuffSkill)){
+          CapableOfLearn.Add(new BuffSkill((BuffSkill)s));
+        }
+        else if(s.GetType() == typeof(DebuffSkill)){
+          CapableOfLearn.Add(new DebuffSkill((DebuffSkill)s));
+        }
+        else if(s.GetType() == typeof(AttackSkill)){
+          CapableOfLearn.Add(new AttackSkill((AttackSkill)s));
+        }
+      }      
     }
   }  
 }
