@@ -83,7 +83,7 @@ class MainClass {
           //Applies the initial skill on it 
           character.Initialization();
           character.FillAvaliableSkill();
-                
+        
           Lists.CharacterList.Add(character);
           CharacterMaker = false;
           break;  

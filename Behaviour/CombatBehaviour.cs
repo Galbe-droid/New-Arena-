@@ -53,4 +53,31 @@ class CombatBehaviour
       }
     }
   }
+
+  public static void SkillChoice(ref Character c){
+    int count = 0; 
+    int choice = 0;
+
+    foreach(BuffSkill buff in c.SkillTrained){
+      if(s.Id != 0){
+        if(s.GetType() == typeof(BuffSkill)){
+          Console.WriteLine($"{count+1} Name: {s.Name} || Type:{s.GetType()} \n
+                          Description: {s.Desc} \n
+                          Affects: {(BuffSkill)s.WhereToApply}");
+          count++;
+        }
+        else if(s.GetType() == typeof(DebuffSkill)){
+          Console.WriteLine($"{count+1} Name: {s.Name} || Type:{s.GetType()} \n
+                          Description: {s.Desc} \n
+                          Affects: {(DebuffSkill)s.WhereToApply}");
+        }
+        else{
+          Console.WriteLine($"{count+1} Name: {s.Name} || Type:{s.GetType()} \n
+                          Description: {s.Desc} \n
+                          Damage: ({(AttackSkill)s.MinDamage} ~ {(AttackSkill)s.MaxDamage}) * {(AttackSkill)s.Modifier}({(AttackSkill)s.PlayerStat})");
+          count++;
+        }
+      }
+    }
+  }
 }

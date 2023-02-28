@@ -53,6 +53,21 @@ class CombatMenu
         }     
         break;
 
+      case "s":
+        if(charBigInit){
+    
+          if(m.Dead || c.Dead)
+            break;
+          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
+        }
+        else{
+          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
+          if(m.Dead || c.Dead)
+            break;
+          
+        }
+        break;
+
       default:
         Console.Write("Invalid.");
         break;

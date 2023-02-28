@@ -49,7 +49,7 @@ class GameScreen
     Console.WriteLine("Arena Gates / Day:" + dayCount + " / " + dayMoment);
     
 
-    Console.WriteLine("N - Entrance " + dayMoment + "\nM - Market / I - Inn \nT - Trainning Hall / E - Exit Game");
+    Console.WriteLine("N - Entrance " + dayMoment + "\nM - Market / I - Inn \nT - Trainning Hall / C - See Character\nE - Exit Game");
   }
 
   private static void _CharacterBar(float tick, float HealthOrMana, float DamageOrSpend)

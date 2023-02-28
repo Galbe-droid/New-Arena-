@@ -45,17 +45,39 @@ class Character : Creature
 
   public void FillAvaliableSkill(){
     foreach(SkillBase s in SkillList.AllSkills){
-      if(!this.CapableOfLearn.Exists(x => x.Id == s.Id)){
+      if(!this.CapableOfLearn.Exists(x => x.Id == s.Id) && !this.SkillTrained.Exists(x => x.Id == s.Id)){
         if(s.GetType() == typeof(BuffSkill)){
-          CapableOfLearn.Add(new BuffSkill((BuffSkill)s));
+          this.CapableOfLearn.Add(new BuffSkill((BuffSkill)s));
         }
         else if(s.GetType() == typeof(DebuffSkill)){
-          CapableOfLearn.Add(new DebuffSkill((DebuffSkill)s));
+          this.CapableOfLearn.Add(new DebuffSkill((DebuffSkill)s));
         }
         else if(s.GetType() == typeof(AttackSkill)){
-          CapableOfLearn.Add(new AttackSkill((AttackSkill)s));
+          this.CapableOfLearn.Add(new AttackSkill((AttackSkill)s));
         }
       }      
     }
-  }  
+  }
+
+  public void ExcludingSkills(int id){
+    this.CapableOfLearn.Remove(this.CapableOfLearn.Find(s => s.Id == id));
+  }
+
+  public override string ToString(){
+    return $"Name: {this.Name} \n" +
+           $"Total Xp: {this.Xp} || Total Gold: 0 \n" +
+           $"Str: {this.Str} || Agi: {this.Agi} || Int: {this.Int} || Vit: {this.Vig} \n" +
+           "=======================================\n" +
+           "Skill Learned: \n";
+  }
+
+  public string ShowSkills(){
+    string longString = "";
+    foreach(SkillBase s in this.SkillTrained){
+      if(s.Id != 0){
+        longString += $"Name: {s.Name} || Type: {s.GetType()} \n";
+        }
+    }
+    return longString;
+  }
 }

@@ -96,7 +96,16 @@ class GameStartMenu
       case("T"):
         Console.Clear();
         TrainingHallMenu.TrainingDecision(ref chosen, skillOfTheDay);
-        break;      
+        break;    
+
+      case("C"):
+        Console.Clear();
+        String character = chosen.ToString();
+        Console.WriteLine(character + chosen.ShowSkills());
+        Console.WriteLine("Press anything to go back...");
+        Console.ReadKey();
+        Console.Clear();
+        break;
 
       default:
         Console.WriteLine("Invalid.");
