@@ -80,4 +80,8 @@ class AttackSkill : SkillBase{
            "Damage: (" + this.MinDamage + " ~ " + this.MaxDamage + ") + " + String.Format("{0:N1}", this.Modifier) + " * " + mainStat + " | " +
            "Cooldown: " + this.TurnMax;
     }
+
+  public override string SkillDescription(){
+    return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Damage: ({this.MinDamage} ~ {this.MaxDamage}) * {this.Modifier}({this.PlayerStat})"; 
+  }
 }

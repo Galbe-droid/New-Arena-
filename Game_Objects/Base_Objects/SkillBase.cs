@@ -11,4 +11,6 @@ abstract class SkillBase
   public int Cost {get; set;}
 
   public abstract int Applying();
+
+  public abstract string SkillDescription();
 }

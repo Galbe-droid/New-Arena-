@@ -51,4 +51,8 @@ class DebuffSkill : BuffSkill{
            "Decreases: " + whereToAct + " | " + 
            "Qty: " + this.Qty;
   }
+
+  public override string SkillDescription(){
+    return $"Name: {this.Name} || Type:Debuff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply}";
+  }
 }

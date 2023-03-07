@@ -82,5 +82,9 @@ class BuffSkill : SkillBase
            "Increases: " + whereToAct + " | " + 
            "Qty: " + this.Qty;
   }
+
+  public override string SkillDescription(){
+    return $"Name: {this.Name} || Type:Buff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply}";
+  }
 }
 
