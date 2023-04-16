@@ -51,11 +51,11 @@ class AttackSkill : SkillBase{
   }
 
   public override int Applying(){
-    if(this.Cooldown && this.Turns == this.TurnMax){
+    if(this.Cooldown && this.CooldownTurns == this.TurnMax){
       this.Cooldown = false;
     }
     else{
-      this.Turns ++;
+      this.CooldownTurns ++;
     }
 
     return 0;
