@@ -13,7 +13,7 @@ class BuffSkill : SkillBase
 
   public BuffSkill(){}
 
-  public BuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply)
+  public BuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, int cooldownTurns, bool isActivedOnce, BuffType whereToApply)
   {
     Id = id;
     Name = name;
@@ -24,6 +24,8 @@ class BuffSkill : SkillBase
     IsActivedOnce = isActivedOnce;
     Initiated = false;
     Cost = cost;
+    Cooldown = false;
+    CooldownTurns = cooldownTurns
     Repeated = true;
     Tracked = 0;
     WhereToApply = whereToApply;
@@ -39,6 +41,8 @@ class BuffSkill : SkillBase
     IsActivedOnce = buff.IsActivedOnce;
     Initiated = false;
     Cost = buff.Cost;
+    Cooldown = false;
+    CooldownTurns = buff.CooldownTurns
     Repeated = true;
     Tracked = 0;
     WhereToApply = buff.WhereToApply;

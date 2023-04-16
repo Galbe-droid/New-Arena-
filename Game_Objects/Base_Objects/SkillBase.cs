@@ -9,6 +9,8 @@ abstract class SkillBase
   public bool IsActivedOnce {get; set;}
   public bool Initiated {get; set;}
   public int Cost {get; set;}
+  public bool Cooldown {get; set;}
+  public int CooldownTurns {get; set;}
 
   public abstract int Applying();
 

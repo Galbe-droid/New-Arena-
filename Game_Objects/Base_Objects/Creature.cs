@@ -122,6 +122,14 @@ abstract class Creature{
       }
     }
   }
+
+  public void CheckForCooldowns(){
+    foreach(AttackSkill s in SkillTrained){
+      if(s.Cooldown == true){
+        s.Applying();
+      }
+    }
+  }
     
   //Use on the beggining of combat for monsters, it loads a pre base skill 
   //For players this loads after character creation 

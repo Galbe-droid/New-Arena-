@@ -27,6 +27,7 @@ class AttackSkill : SkillBase{
     Modifier = modifier;
     PlayerStat = playerStat;
     Cooldown = false;
+    CooldownTurns = 0;
   }
 
   public AttackSkill(AttackSkill attack)
@@ -42,6 +43,7 @@ class AttackSkill : SkillBase{
     Modifier = attack.Modifier;
     PlayerStat = attack.PlayerStat;
     Cooldown = false;
+    CooldownTurns = 0;
   }
 
   public int ApplyModifier(int stat){

@@ -50,7 +50,7 @@ class TrainingHallMenu{
     
     Console.WriteLine();
     do{
-      choice = InputCheck.IntCheck("Skill Choice (0 to go back): ", "Invalid");
+      choice = InputCheck.ListLength("Skill Choice (0 to go back): ", skillOfTheDay.Count);
     }while((choice -1) > skillOfTheDay.Count || (choice -1) < -1);
 
     choice -= 1;

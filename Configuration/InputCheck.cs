@@ -16,4 +16,20 @@ class InputCheck{
     
     return inputResult;
   }
+
+  public static int ListLength(string message, int listLength){
+    Console.Write(message);
+    int inputResult = 0;
+
+    Console.WriteLine(listLength);
+    
+    do{
+      inputResult = IntCheck("", "Number Only");
+      if(inputResult > listLength){
+         Console.Write("Number not listed");
+      }      
+    }while(inputResult > listLength || inputResult <= 0);
+
+    return inputResult;
+  }
 }

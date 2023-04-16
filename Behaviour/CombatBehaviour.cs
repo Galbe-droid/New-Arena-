@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 //Controls player Attacks options, here is where the commands of the player happen
 class CombatBehaviour
@@ -54,16 +56,41 @@ class CombatBehaviour
     }
   }
 
-  public static void SkillChoice(ref Character c){
+  public static void SkillChoice(ref Character c, ref Monster m){
     int count = 0; 
     int choice = 0;
+    int page = 0;
+    int skillCount = 0;
+    List<SkillBase> skillList = new List<SkillBase>(c.SkillTrained);
+    skillList.Remove(skillList.Find(s => s.Id == 0));
 
-    foreach(SkillBase s in c.SkillTrained){
-      if(s.Id != 0){
-        Console.WriteLine($"{count + 1} " + s.SkillDescription());
-        count++;
-        
+    decimal pageLimit = (skillList.Count < 3) ? 0 : Math.Ceiling(Convert.ToDecimal(skillCount)/3);
+    skillCount = (skillList.Count > (3 + (3 * page))) ? 3 : skillList.Count;
+
+    Console.WriteLine(skillCount);
+    Console.WriteLine(pageLimit);
+    
+    do{
+      for(int i = 0; i < skillCount; i ++){
+        if(!skillList.ElementAt(count + (page * 3)).Cooldown){
+          Console.WriteLine($"{i + 1} - {skillList.ElementAt(count + (page * 3)).SkillDescription()}");
+          Console.WriteLine("======================================");
+          count++;        
+        }
+      }           
+        Console.WriteLine();  
+      if(pageLimit != 0){
+        choice = InputCheck.ListLength("Choose Skill by number (0 to go back) / 4 - last page / 5 - next page", skillCount);
+        if (choice == 4 && page != 0){
+          page -= 1;
+        }
+        else if (choice == 5 && page < pageLimit){
+          page += 1; 
+        }
       }
-    }
+      else{
+        choice = InputCheck.ListLength("Choose Skill by number: ", skillCount);
+      }
+    }while((choice == 4 || choice == 5));   
   }
 }

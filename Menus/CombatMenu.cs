@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 //This menu is the options for attacks of the player
 //A - Basic Attacks - Working
@@ -54,18 +55,23 @@ class CombatMenu
         break;
 
       case "s":
-        if(charBigInit){
-    
-          if(m.Dead || c.Dead)
-            break;
-          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
+        if(c.SkillTrained.Count == 1){
+          Console.WriteLine("No Skills.");
         }
-        else{
-          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
-          if(m.Dead || c.Dead)
-            break;
-          
-        }
+        else{          
+          if(charBigInit){
+            CombatBehaviour.SkillChoice(ref c, ref m);
+            if(m.Dead || c.Dead)
+              break;
+            c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
+          }
+          else{
+            c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
+            if(m.Dead || c.Dead)
+              break;
+            CombatBehaviour.SkillChoice(ref c, ref m);          
+          }
+        }        
         break;
 
       default:
