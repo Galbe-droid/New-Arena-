@@ -14,5 +14,9 @@ abstract class SkillBase
 
   public abstract int Applying();
 
+  public abstract void CooldownInitiation();
+
   public abstract string SkillDescription();
+
+  public abstract string SkillOnCooldown();
 }

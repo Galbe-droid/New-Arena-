@@ -20,8 +20,6 @@ class InputCheck{
   public static int ListLength(string message, int listLength){
     Console.Write(message);
     int inputResult = 0;
-
-    Console.WriteLine(listLength);
     
     do{
       inputResult = IntCheck("", "Number Only");
@@ -29,6 +27,20 @@ class InputCheck{
          Console.Write("Number not listed");
       }      
     }while(inputResult > listLength || inputResult <= 0);
+
+    return inputResult;
+  }
+
+  public static int LimitCheck(string message, int limit){
+    Console.Write(message);
+    int inputResult = 0;
+
+    do{
+      inputResult = IntCheck("", "Number Only");
+      if(inputResult > limit){
+         Console.Write("Number not listed");
+      }      
+    }while(inputResult > limit || inputResult < 0);
 
     return inputResult;
   }

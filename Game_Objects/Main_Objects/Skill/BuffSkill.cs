@@ -13,7 +13,7 @@ class BuffSkill : SkillBase
 
   public BuffSkill(){}
 
-  public BuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, int cooldownTurns, bool isActivedOnce, BuffType whereToApply)
+  public BuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply)
   {
     Id = id;
     Name = name;
@@ -25,7 +25,7 @@ class BuffSkill : SkillBase
     Initiated = false;
     Cost = cost;
     Cooldown = false;
-    CooldownTurns = cooldownTurns
+    CooldownTurns = 0;
     Repeated = true;
     Tracked = 0;
     WhereToApply = whereToApply;
@@ -42,7 +42,7 @@ class BuffSkill : SkillBase
     Initiated = false;
     Cost = buff.Cost;
     Cooldown = false;
-    CooldownTurns = buff.CooldownTurns
+    CooldownTurns = 0;
     Repeated = true;
     Tracked = 0;
     WhereToApply = buff.WhereToApply;
@@ -67,6 +67,10 @@ class BuffSkill : SkillBase
     return this.Tracked;
   }
 
+  public override void CooldownInitiation(){
+    this.Cooldown = true;
+  }
+
   public override string ToString(){
     string whereToAct; 
 
@@ -89,6 +93,10 @@ class BuffSkill : SkillBase
 
   public override string SkillDescription(){
     return $"Name: {this.Name} || Type:Buff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply}";
+  }
+
+  public override string SkillOnCooldown(){
+    return $"Name: {this.Name} || On Cooldown for more {this.TurnMax - this.CooldownTurns} turns...";
   }
 }
 

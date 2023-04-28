@@ -10,7 +10,7 @@ class CombatMenu
   public static void CombatChoices(ref Character c, ref Monster m, string choice, bool charBigInit)
   {
     choice.ToUpper();
-
+    bool actionMade = false;
     Console.WriteLine("Turn Start !!");
     
     switch(choice)
@@ -34,6 +34,7 @@ class CombatMenu
           
           m.Damage += CombatBehaviour.AttackOption(c.TotalAttack(), m.TotalDefense(), m.TotalDodge());
         }      
+        actionMade = true;
         break;
         
       case "d":
@@ -51,7 +52,8 @@ class CombatMenu
             break;
           
           CombatBehaviour.DefensiveChoice(ref c);
-        }     
+        }    
+        actionMade = true; 
         break;
 
       case "s":

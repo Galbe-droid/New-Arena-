@@ -12,6 +12,7 @@ class DebuffSkill : BuffSkill{
     IsActivedOnce = isActivedOnce;
     Initiated = false;
     Cost = cost;
+    CooldownTurns = 0;
     Repeated = true;
     Tracked = 0;
     WhereToApply = whereToApply;
@@ -27,6 +28,7 @@ class DebuffSkill : BuffSkill{
     IsActivedOnce = debuff.IsActivedOnce;
     Initiated = false;
     Cost = debuff.Cost;
+    CooldownTurns = 0;
     Repeated = true;
     Tracked = 0;
     WhereToApply = debuff.WhereToApply;
@@ -54,5 +56,9 @@ class DebuffSkill : BuffSkill{
 
   public override string SkillDescription(){
     return $"Name: {this.Name} || Type:Debuff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply}";
+  }
+
+   public override string SkillOnCooldown(){
+    return $"Name: {this.Name} || On Cooldown for more {this.TurnMax - this.CooldownTurns} turns...";
   }
 }

@@ -61,6 +61,10 @@ class AttackSkill : SkillBase{
     return 0;
   }  
 
+  public override void CooldownInitiation(){
+    this.Cooldown = true;
+  }
+
   public override string ToString(){
     string mainStat; 
 
@@ -85,5 +89,9 @@ class AttackSkill : SkillBase{
 
   public override string SkillDescription(){
     return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Damage: ({this.MinDamage} ~ {this.MaxDamage}) * {this.Modifier}({this.PlayerStat})"; 
+  }
+
+  public override string SkillOnCooldown(){
+    return $"Name: {this.Name} || On Cooldown for more {this.TurnMax - this.CooldownTurns} turns...";
   }
 }

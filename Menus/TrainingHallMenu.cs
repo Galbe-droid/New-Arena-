@@ -45,10 +45,11 @@ class TrainingHallMenu{
 
   public static void SkillToLearn(ref Character c, List<SkillBase>skillOfTheDay){
     int choice;
-
+    //Show the skill avaliable to learn for a day
     SkillTrainingScreen.SkillDisplay(skillOfTheDay);
     
     Console.WriteLine();
+    //Player Choice
     do{
       choice = InputCheck.ListLength("Skill Choice (0 to go back): ", skillOfTheDay.Count);
     }while((choice -1) > skillOfTheDay.Count || (choice -1) < -1);
@@ -59,6 +60,7 @@ class TrainingHallMenu{
         
     }
     else{
+      //Initiate applying the skill on the player caracter and removing the skill from the day list
       if(c.Xp >= skillOfTheDay[choice].Cost){
         Console.WriteLine("Skill: {0} Learned !", skillOfTheDay[choice].Name);
         if(skillOfTheDay[choice].GetType() == typeof(BuffSkill)){
@@ -70,6 +72,7 @@ class TrainingHallMenu{
         else if(skillOfTheDay[choice].GetType() == typeof(AttackSkill)){
           c.SkillTrained.Add(new AttackSkill((AttackSkill)skillOfTheDay[choice]));
         }
+        //Remove the skill so it cannot appear again 
         c.ExcludingSkills(skillOfTheDay[choice].Id);
         skillOfTheDay.Remove(skillOfTheDay[choice]);
         

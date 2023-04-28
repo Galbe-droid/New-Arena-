@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 class SkillList{
   public static List<SkillBase> AllSkills = new List<SkillBase>();
-  //public static List<BuffSkill> BuffSkillList = new List<BuffSkill>();
-  //public static List<DebuffSkill> DebuffSkillList = new List<DebuffSkill>();
-  //public static List<AttackSkill> AttackSkillList = new List<AttackSkill>();
 
   public static void AddSkills(){
-    //BuffSkills int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce
+    //BuffSkills int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, bool isActivedOnce
     AllSkills.Add(new BuffSkill(0,"Defensive Position", "Increase Base Defese", 2, 4, 0, true, BuffType.Defense));
+    AllSkills.Add(new BuffSkill(10,"Light Movement", "Increase Dodge Chance", 2, 15, 0, true, BuffType.Dodge));
+    AllSkills.Add(new BuffSkill(11,"Weak Point", "Aims on the weak point", 3, 4, 0, true, BuffType.Attack));
+    AllSkills.Add(new BuffSkill(12,"Stone Defenses", "Increase Def over 3 turns", 3, 2, 0, true, BuffType.Defense));
 
     //DebuffSkills int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce
     AllSkills.Add(new DebuffSkill(101, "Nasty Provocation", "Decrease Enemy Dodge", 2, 2, 0, true, BuffType.Dodge));

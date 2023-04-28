@@ -59,34 +59,58 @@ class CombatBehaviour
   public static void SkillChoice(ref Character c, ref Monster m){
     int count = 0; 
     int choice = 0;
-    int page = 0;
-    int skillCount = 0;
+    int page = 1;
+    //Receive a copy of the trained skills of the caracter 
     List<SkillBase> skillList = new List<SkillBase>(c.SkillTrained);
+    //Remove "Defensive Position" from the list 
     skillList.Remove(skillList.Find(s => s.Id == 0));
-
-    decimal pageLimit = (skillList.Count < 3) ? 0 : Math.Ceiling(Convert.ToDecimal(skillCount)/3);
-    skillCount = (skillList.Count > (3 + (3 * page))) ? 3 : skillList.Count;
-
-    Console.WriteLine(skillCount);
+    //This int needs to be initiated after everything, it controls the 3 skills per page and need to be initiated after the list but before the pageLimite
+    int skillCount = skillList.Count;
+    //Create pages in case the skill list has more then 3 skills, excluding "Defensive Position"
+    decimal pageLimit = (skillList.Count < 3) ? 1 : Math.Ceiling(Convert.ToDecimal(skillCount)/3);
+    
     Console.WriteLine(pageLimit);
+    Console.WriteLine((skillCount/3));
     
     do{
+      Console.Clear();
+      CombatScreen.Stats(ref c,ref m);
+      //Create a page for each 3 skills
+      skillCount = (skillList.Count > 3 + ((page - 1) * 3)) ? 3 : skillCount = skillList.Count - (page - 1) * 3;
+
+      //Loop for display the image 
+      Console.WriteLine($"=================Page {page}/{pageLimit} ====================");
       for(int i = 0; i < skillCount; i ++){
-        if(!skillList.ElementAt(count + (page * 3)).Cooldown){
-          Console.WriteLine($"{i + 1} - {skillList.ElementAt(count + (page * 3)).SkillDescription()}");
-          Console.WriteLine("======================================");
-          count++;        
+        int currentPage = (page - 1) * 3;
+        if(!skillList.ElementAt(i + currentPage).Cooldown){
+          Console.WriteLine($"{i + 1} - {skillList.ElementAt(i + currentPage).SkillDescription()}");
+          Console.WriteLine("======================================");   
+        }
+        else{
+          Console.ForegroundColor = ConsoleColor.DarkGray;
+          skillList.ElementAt(i + currentPage).SkillOnCooldown();
+          Console.ResetColor();
         }
       }           
-        Console.WriteLine();  
-      if(pageLimit != 0){
-        choice = InputCheck.ListLength("Choose Skill by number (0 to go back) / 4 - last page / 5 - next page", skillCount);
-        if (choice == 4 && page != 0){
+      Console.WriteLine();  
+      //Loop for changing the page in case it has more then 3 skills 
+      if(pageLimit > 1){
+        choice = InputCheck.LimitCheck("Choose Skill by number (0 to go back) / 4 - last page / 5 - next page", 5);
+        if (choice == 4 && page > 1){
           page -= 1;
         }
         else if (choice == 5 && page < pageLimit){
           page += 1; 
         }
+        else if(choice == 4 && page == 1){
+          page = Convert.ToInt32(pageLimit);
+        }
+        else if(choice == 5 && page == pageLimit){
+          page = 1;
+        }
+        else{
+          choice *= page;
+        }        
       }
       else{
         choice = InputCheck.ListLength("Choose Skill by number: ", skillCount);
