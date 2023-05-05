@@ -10,7 +10,7 @@ class SkillTrainingScreen{
 
     foreach(SkillBase s in skills)
     {
-      Console.WriteLine((count + 1) + " - " + s.ToString());
+      Console.WriteLine($"{count + 1} - {s.ToString()}");
       count ++ ;
     }
 

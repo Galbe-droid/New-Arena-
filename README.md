@@ -15,7 +15,7 @@ In Progress:
   1.Combat
     1.1.Attack // Complete
     1.2.Defend // Complete
-    1.3 Skills // In Progress - Player
+    1.3 Skills // Complete - Player
     1.4 Itens // TBD 
     
   2.Inn
@@ -33,7 +33,7 @@ In Progress:
   5.Player/Monsters
     5.1 Base Function - Stats and hp/mp working // Complete
     5.2 Skill Trained - A list of learned skills // Complete
-    5.3 Buff and DeBuffs // In Progress - Debuff / Buff Complete
+    5.3 Buff and DeBuffs // Complete
     5.4 Temporary Effects - Temporary Shilds or hp // TBD
     5.5 Equipaments // TBD
     5.6 Iten Bag // TBD
@@ -42,8 +42,8 @@ In Progress:
     6.1 Base of Skills - A base for all skills to base on // Complete
       6.1.1 Simple Buff Skills // Completed 
       6.1.2 Simple Debuff Skills // Completed
-      6.1.3 Simple Damage Skills // TBD
-      6.1.4 Simple Defense Skills // TDB 
+      6.1.3 Simple Damage Skills // Completed
+      6.1.4 Simple Defense Skills // Completed 
     6.2 Monsters Exclusive Skills // TDB
     
   7.GamePlay

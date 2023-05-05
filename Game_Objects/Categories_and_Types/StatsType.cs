@@ -1,6 +1,6 @@
 enum StatsType{
   Str,
   Agi,
-  Vit,
+  Vig,
   Inte
 }

@@ -154,6 +154,8 @@ class MainClass {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
         Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, cages, innFoodTable, skillOfTheDay, ref timePass);        
       }      
+
+      Console.Clear();
     }   
   }
 
@@ -165,17 +167,20 @@ class MainClass {
 
     //If both caracter are alive this boolean is true
     while(CombatOn){
-      //Checking for Buffs and Debuffs
+      //Checking for Buffs and Debuffs and counting turns for cooldown
+      if(chosen.SkillTrained.Exists(skill => skill.Cooldown == true)){
+        CombatBehaviour.PlayerCooldownCounting(chosen, monster);
+      }      
       chosen.CheckForBuffsDebuffs();
-      monster.CheckForBuffsDebuffs();
+      monster.CheckForBuffsDebuffs();     
       
       //Generating initiative
       Random rand = new Random();
       //Ignore values that are the same 
       do
       {
-        chosen.Initiative = rand.Next(0,20) + chosen.Agi;
-        monster.Initiative = rand.Next(0,20) + monster.Agi;
+        chosen.Initiative = rand.Next(0,21) + chosen.Agi;
+        monster.Initiative = rand.Next(0,21) + monster.Agi;
       }while(chosen.Initiative == monster.Initiative);
 
       //Send to the game if the character will be the first to act
@@ -188,26 +193,9 @@ class MainClass {
     
       Console.Clear();
 
-      //Loads Combat Screen
-      CombatScreen.Stats(ref chosen,ref monster);
-      
-      Console.WriteLine();   
-
-      //Loads Combat Choice, currently only attack and defense
-      CombatScreen.CombatChoices(chosen, monster);    
-
       //Checks if both caracter and player arent dead
       if(!monster.DeathCheck() && !chosen.DeathCheck()){        
-        Console.Write("Choose:");
-        string Choice;
-      
-        do{
-          Choice = Console.ReadLine();
-          Choice.ToUpper();
-        }while(Choice == "A" || Choice == "D");  
-
-        //Send the player choice to the logic so the turns can play out
-        CombatMenu.CombatChoices(ref chosen, ref monster, Choice, charBigInit);
+        CombatMenu.CombatChoices(ref chosen, ref monster, charBigInit);
       }
       else{
         //Only Vicotry screen for now 

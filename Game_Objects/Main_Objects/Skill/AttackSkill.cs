@@ -1,69 +1,35 @@
 using System;
 
-class AttackSkill : SkillBase{
-
-  public int MinDamage {get;set;}
-
-  public int MaxDamage {get;set;}
-
-  public double Modifier {get;set;}
-
-  public StatsType PlayerStat {get;set;}
-
-  public bool Cooldown {get;set;}
-  
-  public AttackSkill(){}
-
-  public AttackSkill(int id, string name, string desc, int turnsMax, int cost, int minDamage, int maxDamage, double modifier, StatsType playerStat)
-  {
+class AttackSkill : OneShotSkill{
+  public AttackSkill(int id, string name, string desc, int turnsMax, int cost, int minDamage, int maxDamage, double modifier, StatsType playerStat){
     Id = id;
     Name = name;
     Desc = desc;
     TurnMax = turnsMax;
     Turns = 0;
     Cost = cost;
-    MinDamage = minDamage;
-    MaxDamage = maxDamage;
+    MinValue = minDamage;
+    MaxValue = maxDamage;
     Modifier = modifier;
     PlayerStat = playerStat;
     Cooldown = false;
     CooldownTurns = 0;
   }
 
-  public AttackSkill(AttackSkill attack)
-  {
+  public AttackSkill(AttackSkill attack){
     Id = attack.Id;
     Name = attack.Name;
     Desc = attack.Desc;
     TurnMax = attack.TurnMax;
     Turns = 0; 
     Cost = attack.Cost;
-    MinDamage = attack.MinDamage;
-    MaxDamage = attack.MaxDamage;
+    MinValue = attack.MinValue;
+    MaxValue = attack.MaxValue;
     Modifier = attack.Modifier;
     PlayerStat = attack.PlayerStat;
     Cooldown = false;
     CooldownTurns = 0;
-  }
-
-  public int ApplyModifier(int stat){
-    return (int)Math.Truncate(stat * this.Modifier);
-  }
-
-  public override int Applying(){
-    if(this.Cooldown && this.CooldownTurns == this.TurnMax){
-      this.Cooldown = false;
-    }
-    else{
-      this.CooldownTurns ++;
-    }
-
-    return 0;
   }  
-
-  public override void CooldownInitiation(){
-    this.Cooldown = true;
-  }
 
   public override string ToString(){
     string mainStat; 
@@ -74,7 +40,7 @@ class AttackSkill : SkillBase{
     else if(this.PlayerStat == StatsType.Agi){
       mainStat = "Agi"; 
     }
-    else if(this.PlayerStat == StatsType.Vit){
+    else if(this.PlayerStat == StatsType.Vig){
       mainStat = "Vit"; 
     }
     else{
@@ -83,15 +49,11 @@ class AttackSkill : SkillBase{
     
     return "Name: " + this.Name + " | " +
            "Cost: " + this.Cost + "xp | " + 
-           "Damage: (" + this.MinDamage + " ~ " + this.MaxDamage + ") + " + String.Format("{0:N1}", this.Modifier) + " * " + mainStat + " | " +
-           "Cooldown: " + this.TurnMax;
-    }
-
-  public override string SkillDescription(){
-    return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Damage: ({this.MinDamage} ~ {this.MaxDamage}) * {this.Modifier}({this.PlayerStat})"; 
+           "Damage: (" + this.MinValue + " ~ " + this.MaxValue + ") + " + String.Format("{0:N1}", this.Modifier) + " * " + mainStat + " | " +
+           "Cooldown: " + (this.TurnMax + 1);
   }
 
-  public override string SkillOnCooldown(){
-    return $"Name: {this.Name} || On Cooldown for more {this.TurnMax - this.CooldownTurns} turns...";
+  public override string SkillDescription(){
+    return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Damage: ({this.MinValue} ~ {this.MaxValue}) * {this.Modifier}({this.PlayerStat})"; 
   }
 }

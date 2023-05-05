@@ -55,6 +55,9 @@ class Character : Creature
         else if(s.GetType() == typeof(AttackSkill)){
           this.CapableOfLearn.Add(new AttackSkill((AttackSkill)s));
         }
+        else if(s.GetType() == typeof(DefenseSkill)){
+          this.CapableOfLearn.Add(new DefenseSkill((DefenseSkill)s));
+        }
       }      
     }
   }

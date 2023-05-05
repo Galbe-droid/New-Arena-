@@ -3,7 +3,7 @@ using System;
 //This screen shows the combat stats of player and monster, and players options for the combat 
 class CombatScreen
 {
-  public static void Stats(ref Character c, ref Monster m)
+  public static void Stats(Character c, Monster m)
   {
     float CharTrueDodge = (c.TotalDodge() / 100000f) * 100f;
 
@@ -61,6 +61,6 @@ class CombatScreen
 
     Console.WriteLine();
 
-    Console.WriteLine("Options: A - Atack / D - Defend");
+    Console.WriteLine("Options: A - Attack / S - Skill / D - Defend");
   }
 }

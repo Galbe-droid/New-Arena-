@@ -37,7 +37,8 @@ abstract class Creature{
 
   //List for Skills
   public List<SkillBase> SkillTrained = new List<SkillBase>();
-  public List<SkillBase> BuffAndDebuffActive = new List<SkillBase>();
+  public List<SkillBase> BuffActive = new List<SkillBase>();
+  public List<SkillBase> DebuffActive = new List<SkillBase>();
 
   //Indicates Actual HP after damage
   public float ActualHp(){
@@ -74,59 +75,90 @@ abstract class Creature{
 
   //Informs the total stats (stats + ModStats)
   public int TotalAttack(){
-     return this.Attack + this.ModAttack;
+     return (this.Attack + this.ModAttack) <= 0 ? 0 : this.Attack + this.ModAttack;
   }
 
   public int TotalDefense(){
-    return this.Defense + this.ModDefense;
+    return (this.Defense + this.ModDefense) <= 0 ? 0 : this.Defense + this.ModDefense;
   }
 
   public int TotalDodge(){
-    return this.Dodge + this.ModDodge;
+    int returnDodge = (this.Dodge + this.ModDodge) <= 0 ? 0 : this.Dodge + this.ModDodge;
+    return returnDodge >= 90000 ? 90000 : returnDodge;
   }
 
   //It checks and apply/Removes the buffs and also where to apply and reduce 
   public void CheckForBuffsDebuffs(){
-    int stats; 
-    if(this.BuffAndDebuffActive.Count != 0){
-      foreach(BuffSkill b in this.BuffAndDebuffActive.ToList()){
+    _BuffCheck();
+    _DebuffCheck();
+  }
+
+  private void _BuffCheck(){
+    if(this.BuffActive.Count != 0){
+      foreach(BuffSkill b in this.BuffActive.ToList()){    
         if(b.Turns <= b.TurnMax){
           if(b.WhereToApply == BuffType.Defense){
-            stats = b.Applying();
-            this.ModDefense += stats;
+            this.ModDefense += b.Applying();
             b.Turns++;
           }
-          else if(b.WhereToApply == BuffType.Dodge){
-            b.Applying();  
+          else if(b.WhereToApply == BuffType.Dodge){ 
+            this.ModDodge += b.Applying();
             b.Turns++;
           }
           else if(b.WhereToApply == BuffType.Attack){
-            b.Applying();
+            this.ModAttack += b.Applying();
             b.Turns++;
           }
         }
         else{
           if(b.WhereToApply == BuffType.Defense){
             this.ModDefense -= b.Removal();
-            BuffAndDebuffActive.Remove(b);   
+            BuffActive.Remove(b);   
           }
           else if(b.WhereToApply == BuffType.Dodge){
-            b.Removal();
-            BuffAndDebuffActive.Remove(b);   
+            this.ModDodge -= b.Removal();
+            BuffActive.Remove(b);   
           }
           else if(b.WhereToApply == BuffType.Attack){
-            b.Removal();
-            BuffAndDebuffActive.Remove(b);   
+            this.ModAttack -=b.Removal();
+            BuffActive.Remove(b);   
           }
         }
       }
     }
   }
 
-  public void CheckForCooldowns(){
-    foreach(AttackSkill s in SkillTrained){
-      if(s.Cooldown == true){
-        s.Applying();
+  private void _DebuffCheck(){
+    if(this.DebuffActive.Count != 0){
+      foreach(DebuffSkill d in this.DebuffActive.ToList()){
+        if(d.Turns <= d.TurnMax){
+          if(d.WhereToApply == BuffType.Defense){            
+            this.ModDefense += d.Applying();
+            d.Turns++;
+          }
+          else if(d.WhereToApply == BuffType.Dodge){ 
+            this.ModDodge += d.Applying();
+            d.Turns++;
+          }
+          else if(d.WhereToApply == BuffType.Attack){
+            this.ModAttack += d.Applying();
+            d.Turns++;
+          }
+        }
+        else{
+          if(d.WhereToApply == BuffType.Defense){
+            this.ModDefense -= d.Removal();
+            DebuffActive.Remove(d);   
+          }
+          else if(d.WhereToApply == BuffType.Dodge){
+            this.ModDodge -= d.Removal();
+            DebuffActive.Remove(d);   
+          }
+          else if(d.WhereToApply == BuffType.Attack){
+            this.ModAttack -= d.Removal();
+            DebuffActive.Remove(d);   
+          }
+        }
       }
     }
   }

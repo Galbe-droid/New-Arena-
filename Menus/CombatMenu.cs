@@ -3,84 +3,76 @@ using System.Collections.Generic;
 
 //This menu is the options for attacks of the player
 //A - Basic Attacks - Working
-//D - Basic Defense - under Development
-//S - Skill - TBD
+//D - Basic Defense - Working
+//S - Skill - on Development
 class CombatMenu
 {
-  public static void CombatChoices(ref Character c, ref Monster m, string choice, bool charBigInit)
-  {
-    choice.ToUpper();
-    bool actionMade = false;
-    Console.WriteLine("Turn Start !!");
+  public static void CombatChoices(ref Character c, ref Monster m, bool charBigInit)
+  {    
+    Console.WriteLine("Turn Start !!");    
+
+    if(charBigInit){
+      UpdateConsole.UpdateCombatStats(c, m);
+      PlayerChoice(ref c, ref m);
+      UpdateConsole.StaticMessage("Player turn ended.");
+    }
+    else{
+      UpdateConsole.UpdateCombatStats(c, m);
+      PlayerChoice(ref c, ref m);
+      UpdateConsole.StaticMessage("Player turn ended.");
+    }
     
-    switch(choice)
-    {
+    Console.WriteLine("End of Turn !");
+    Console.ReadLine();
+  }
+
+  public static void PlayerChoice(ref Character c, ref Monster m){
+    string choice = "";
+    bool actionMade = false;
+
+    do{
+      //Loads Combat Choice, currently only attack and defense
+      CombatScreen.CombatChoices(c, m);    
+
+      Console.Write("Choose:");
+
+      do{
+        choice = Console.ReadLine();
+      }while(choice != "a" && choice != "d" && choice != "s");  
+
+      PlayerOptions(ref c, ref m, choice, ref actionMade);
+
+      if(actionMade == false)
+        UpdateConsole.UpdateCombatStats(c, m);  
+
+    }while(actionMade == false);
+  }
+
+  public static void PlayerOptions(ref Character c, ref Monster m, string choice, ref bool actionMade){
+    switch(choice){
       case "a":
-        if (charBigInit){
-          m.Damage += CombatBehaviour.AttackOption(c.TotalAttack(), m.TotalDefense(), m.TotalDodge());
-
-          //Checks if player or monster are dead 
-          if(m.Dead || c.Dead)
-            break;
-          
-          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
-        }    
-        else {
-          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
-
-          //Checks if player or monster are dead
-          if(m.Dead || c.Dead)
-            break;
-          
-          m.Damage += CombatBehaviour.AttackOption(c.TotalAttack(), m.TotalDefense(), m.TotalDodge());
-        }      
+        m.Damage += CombatBehaviour.AttackOption(c, m);
         actionMade = true;
         break;
-        
+
       case "d":
-        if(charBigInit){
-          CombatBehaviour.DefensiveChoice(ref c);
-
-          if(m.Dead || c.Dead)
-            break;
-          
-          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
-        }else{          
-          c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
-
-          if(m.Dead || c.Dead)
-            break;
-          
-          CombatBehaviour.DefensiveChoice(ref c);
-        }    
-        actionMade = true; 
+        CombatBehaviour.DefensiveChoice(c);
+        actionMade = true;
         break;
 
       case "s":
         if(c.SkillTrained.Count == 1){
-          Console.WriteLine("No Skills.");
+          UpdateConsole.StaticMessage("No Skills.");
         }
-        else{          
-          if(charBigInit){
-            CombatBehaviour.SkillChoice(ref c, ref m);
-            if(m.Dead || c.Dead)
-              break;
-            c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
-          }
-          else{
-            c = CombatMonsterBehaviour.MonsterChoice(ref c, ref m);
-            if(m.Dead || c.Dead)
-              break;
-            CombatBehaviour.SkillChoice(ref c, ref m);          
-          }
-        }        
+        else{
+          int skillChoice = CombatBehaviour.SkillChoice(c, m, out skillChoice);
+          actionMade = skillChoice == -1 ? false : true;
+        }
         break;
 
       default:
-        Console.Write("Invalid.");
+        Console.Write("Invalid");
         break;
     }
-    Console.WriteLine("End of Turn !");
-    Console.ReadLine();
   }
 }

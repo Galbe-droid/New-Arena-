@@ -72,6 +72,9 @@ class TrainingHallMenu{
         else if(skillOfTheDay[choice].GetType() == typeof(AttackSkill)){
           c.SkillTrained.Add(new AttackSkill((AttackSkill)skillOfTheDay[choice]));
         }
+        else if(skillOfTheDay[choice].GetType() == typeof(DefenseSkill)){
+          c.SkillTrained.Add(new DefenseSkill((DefenseSkill)skillOfTheDay[choice]));
+        }
         //Remove the skill so it cannot appear again 
         c.ExcludingSkills(skillOfTheDay[choice].Id);
         skillOfTheDay.Remove(skillOfTheDay[choice]);

@@ -1,7 +1,6 @@
 using System; 
-//Buff and Debuff are similar in composition
-//But using a different class I can separate then and place then for the right targets 
-class DebuffSkill : BuffSkill{
+
+class DebuffSkill : PerTurnSkill{
   public DebuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply){
     Id = id;
     Name = name;
@@ -10,11 +9,10 @@ class DebuffSkill : BuffSkill{
     Turns = 0;
     Qty = qty;
     IsActivedOnce = isActivedOnce;
-    Initiated = false;
     Cost = cost;
     CooldownTurns = 0;
-    Repeated = true;
     Tracked = 0;
+    IsUsed = false;
     WhereToApply = whereToApply;
   }
 
@@ -26,11 +24,10 @@ class DebuffSkill : BuffSkill{
     Turns = 0;
     Qty = debuff.Qty;
     IsActivedOnce = debuff.IsActivedOnce;
-    Initiated = false;
     Cost = debuff.Cost;
     CooldownTurns = 0;
-    Repeated = true;
     Tracked = 0;
+    IsUsed = false;
     WhereToApply = debuff.WhereToApply;
   }
 
@@ -51,14 +48,11 @@ class DebuffSkill : BuffSkill{
            "Cost: " + this.Cost + "xp | " + 
            "Turns Durantion: " + this.TurnMax + " | " +
            "Decreases: " + whereToAct + " | " + 
-           "Qty: " + this.Qty;
+           "Qty: " + this.Qty + " | " +
+           "Cooldown: " + (this.TurnMax + 1);
   }
 
   public override string SkillDescription(){
     return $"Name: {this.Name} || Type:Debuff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply}";
-  }
-
-   public override string SkillOnCooldown(){
-    return $"Name: {this.Name} || On Cooldown for more {this.TurnMax - this.CooldownTurns} turns...";
   }
 }

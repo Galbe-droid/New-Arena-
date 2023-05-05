@@ -26,7 +26,7 @@ class InputCheck{
       if(inputResult > listLength){
          Console.Write("Number not listed");
       }      
-    }while(inputResult > listLength || inputResult <= 0);
+    }while(inputResult > listLength || inputResult < 0);
 
     return inputResult;
   }
