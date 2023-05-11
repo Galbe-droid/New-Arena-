@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class MonsterGeneration
 {
@@ -7,11 +8,18 @@ class MonsterGeneration
 
   public static List<Monster> monsterListPrefab = MonsterList.Monsters;
 
-  public static Array typeList = Enum.GetValues(typeof(Types));
-  
-
   public static Monster Creator()
   {
+    Array typeList = Enum.GetValues(typeof(Types));  
+
+    List<SubTypes> subTypesOffensive = new List<SubTypes>();
+    subTypesOffensive.Add(SubTypes.Brute);
+    subTypesOffensive.Add(SubTypes.Tatical);
+
+    List<SubTypes> subTypesDefense = new List<SubTypes>();
+    subTypesDefense.Add(SubTypes.Support);
+    subTypesDefense.Add(SubTypes.Survival);
+
     Random random = new Random();
     int randId = random.Next(monsterListPrefab.Count);
 
@@ -19,21 +27,12 @@ class MonsterGeneration
     
     monsterChoosen.Level = random.Next(monsterChoosen.Level, monsterChoosen.Level + 3);
 
-    //1Offensive, 2Defensive, 3Balance 
     monsterChoosen.Type = (Types)typeList.GetValue(random.Next(1, typeList.Length));
 
-    if(monsterChoosen.Type == Types.Offensive)
-    {
-      AttributeAlocation.OffensiveMonster(monsterChoosen);
-    }
-    else if(monsterChoosen.Type == Types.Defensive)
-    {
-      AttributeAlocation.DefensiveMonster(monsterChoosen);
-    }
-    else if(monsterChoosen.Type == Types.Balance)
-    {
-      AttributeAlocation.BalanceMonster(monsterChoosen);
-    }
+    monsterChoosen.SubType[0] = (SubTypes)subTypesOffensive.ElementAt(random.Next(0, subTypesOffensive.Count));
+    monsterChoosen.SubType[1] = (SubTypes)subTypesDefense.ElementAt(random.Next(0, subTypesDefense.Count));
+
+    AttributeAlocation.PlacingAtributes(monsterChoosen);
 
     return monsterChoosen;
   }

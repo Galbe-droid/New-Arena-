@@ -10,9 +10,9 @@ class ArenaEntrance
 
     foreach(Monster m in displayList)
     {
-      Console.WriteLine("===========Cage:" + cage + "================");
-      Console.WriteLine("Name:" + m.Name + " Lvl:" + m.Level + " Behavior: " + m.Type );
-      Console.WriteLine("Stats: Str:" + m.Str + " Int:" + m.Int + " Agi:" + m.Agi + " Vig:" + m.Vig);
+      Console.WriteLine("=====================Cage:" + cage + "========================");
+      Console.WriteLine($"Species: {m.Species} Name: {m.Name} Lvl: {m.Level} Behavior: {m.Type}, {m.SubType[0]} and {m.SubType[1]}");
+      Console.WriteLine($"Stats: Str: {m.Str} Int: {m.Int} Age: {m.Agi} Vig: {m.Vig}");
       cage ++;
     }
   }

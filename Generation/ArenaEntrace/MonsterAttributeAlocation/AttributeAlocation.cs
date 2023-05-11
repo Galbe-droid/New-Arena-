@@ -6,70 +6,36 @@ using System;
 class AttributeAlocation
 {
   //Generate a Balace Type Monster
-  public static Monster BalanceMonster(Monster monster)
+  public static Monster PlacingAtributes(Monster monster)
   {
     Random random = new Random();
     //Quatity of points to be allocated 
     int atributes = monster.Level * 3;
+    int[] atributeChance = MonsterProbability(monster.Type);
 
     while(atributes > 0)
     {
       int chance = random.Next(0, 100); 
 
-      if(chance >= 0 && chance <= 25)
+      if(chance >= atributeChance[0] && chance <= atributeChance[1])
       {
         monster.Str++;
         atributes--;
       }
 
-      if(chance >= 26 && chance <= 50)
+      if(chance >= atributeChance[2] && chance <= atributeChance[3])
       {
         monster.Int++;
         atributes--;
       }
 
-      if(chance >= 51 && chance <= 75)
+      if(chance >= atributeChance[4] && chance <= atributeChance[5])
       {
         monster.Agi++;
         atributes--;
       }
 
-      if(chance >= 76 && chance <= 100)
-      {
-        monster.Vig++;
-        atributes--;
-      }
-    }
-    return monster;
-  }
-  //Generate a Offensive Monster More focus on STR less on INT
-  public static Monster OffensiveMonster(Monster monster)
-  {
-    Random random = new Random();
-    int atributes = monster.Level * 3;
-
-    while(atributes > 0)
-    {
-      int chance = random.Next(0, 100); 
-      if(chance >= 0 && chance <= 60)
-      {
-        monster.Str++;
-        atributes--;
-      }
-
-      if(chance >= 61 && chance <= 70)
-      {
-        monster.Int++;
-        atributes--;
-      }
-
-      if(chance >= 71 && chance <= 85)
-      {
-        monster.Agi++;
-        atributes--;
-      }
-
-      if(chance >= 86 && chance <= 100)
+      if(chance >= atributeChance[6] && chance <= atributeChance[7])
       {
         monster.Vig++;
         atributes--;
@@ -78,39 +44,19 @@ class AttributeAlocation
     return monster;
   }
 
-  //Generate a Defensive Monster more focus on VIG lass on STR
-  public static Monster DefensiveMonster(Monster monster)
-  {
-    Random random = new Random();
-    int atributes = monster.Level * 3;
-
-    while(atributes > 0)
-    {
-      int chance = random.Next(0, 100); 
-      if(chance >= 0 && chance <= 60)
-      {
-        monster.Vig++;
-        atributes--;
-      }
-
-      if(chance >= 61 && chance <= 70)
-      {
-        monster.Str++;
-        atributes--;
-      }
-
-      if(chance >= 71 && chance <= 85)
-      {
-        monster.Int++;
-        atributes--;
-      }
-
-      if(chance >= 86 && chance <= 100)
-      {
-        monster.Agi++;
-        atributes--;
-      }
+  public static int[] MonsterProbability(Types t){
+    //values for the probability of monster each action 
+    if(t == Types.Balance){
+      int[] values = {0,25,26,50,51,75,76,100};
+      return values;
+    }else if(t == Types.Offensive){
+      int[] values = {0,60,61,70,71,85,86,100};
+      return values;
+    }else if(t == Types.Defensive){
+      int[] values = {0,20,21,40,41,60,61,100};
+      return values;
     }
-    return monster;
+
+    return null;
   }
 }

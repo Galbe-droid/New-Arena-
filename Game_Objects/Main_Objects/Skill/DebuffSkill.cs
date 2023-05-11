@@ -1,10 +1,11 @@
 using System; 
 
 class DebuffSkill : PerTurnSkill{
-  public DebuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply){
+  public DebuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply){
     Id = id;
     Name = name;
     Desc = desc;
+    MinLevel = minLevel;
     TurnMax = turnsMax;
     Turns = 0;
     Qty = qty;
@@ -20,6 +21,7 @@ class DebuffSkill : PerTurnSkill{
     Id = debuff.Id;
     Name = debuff.Name;
     Desc = debuff.Desc;
+    MinLevel = debuff.MinLevel;
     TurnMax = debuff.TurnMax;
     Turns = 0;
     Qty = debuff.Qty;

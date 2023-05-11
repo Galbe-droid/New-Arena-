@@ -10,7 +10,7 @@ class CombatMonsterBehaviour
     //Depending of the monster type it will be more inclined to use certain actions 
     Random rand = new Random();
     int choice = rand.Next(0,101);
-    int [] monsterType = MonsterProbability(m.Type);
+    int [] monsterType = TypeProbability(m.Type);
 
     if((choice >= monsterType[0] && choice <= monsterType[1])){
       c.Damage += CombatBehaviour.AttackOption(m, c);
@@ -29,19 +29,30 @@ class CombatMonsterBehaviour
     } 
   }
 
-  public static int[] MonsterProbability(Types t){
+  public static int[] TypeProbability(Types t){
     //values for the probability of monster each action 
-    if(t == Types.Balance){
+    if(t == Types.Offensive){
       int[] values = {0,75};
       return values;
     }else if(t == Types.Balance){
       int[] values = {0,50};
       return values;
-    }else if(t == Types.Balance){
+    }else if(t == Types.Defensive){
       int[] values = {0,25};
       return values;
     }
+    return null;
+  }
 
+  public static int[] SubTypeProbability(SubTypes t){
+    //values for the probability of monster each action 
+    if(t == SubTypes.Brute || t == SubTypes.Survival){
+      int[] values = {0,75};
+      return values;
+    }else if(t == SubTypes.Tatical || t == SubTypes.Support){
+      int[] values = {0,50};
+      return values;
+    }
     return null;
   }
 }

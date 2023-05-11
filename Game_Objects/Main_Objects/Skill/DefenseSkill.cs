@@ -1,10 +1,11 @@
 using System;
 
 class DefenseSkill : OneShotSkill{
-    public DefenseSkill(int id, string name, string desc, int turnsMax, int cost, int minValue, int maxValue, double modifier, StatsType playerStat){
+    public DefenseSkill(int id, string name, string desc, int minLevel, int turnsMax, int cost, int minValue, int maxValue, double modifier, StatsType playerStat){
     Id = id;
     Name = name;
     Desc = desc;
+    MinLevel = minLevel;
     TurnMax = turnsMax;
     Turns = 0;
     Cost = cost;
@@ -20,6 +21,7 @@ class DefenseSkill : OneShotSkill{
     Id = defense.Id;
     Name = defense.Name;
     Desc = defense.Desc;
+    MinLevel = defense.MinLevel;
     TurnMax = defense.TurnMax;
     Turns = 0; 
     Cost = defense.Cost;

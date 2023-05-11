@@ -5,12 +5,16 @@ using System;
 //Still no: Skills, Boss(Maybe)
 class Monster : Creature
 {
-  public int Id{get;set;}
+  public int Id {get; set;}
+  public String Species {get; set;}
   public Types Type {get; set;}
-  public Monster(int id, string name, int level, Types type, int str, int inte, int agi, int vig)
+  public SubTypes[] SubType = new SubTypes[2];
+
+  public Monster(int id, string species, int level, Types type, int str, int inte, int agi, int vig)
   {
     Id = id;
-    Name = name;
+    Species = species;
+    Name = "";
 
     Level = level;
     Type = type;
@@ -24,8 +28,8 @@ class Monster : Creature
     Dodge = 0 + (500 * Agi);
     Attack = Str;
 
-    Health = 5 + (vig * 5);
-    Mana = 3 + (inte * 3);
+    Health = 5 + (Vig * 5);
+    Mana = 3 + (Int * 3);
 
     Damage = 0;
     ManaSpend = 0;
@@ -41,7 +45,8 @@ class Monster : Creature
   public Monster(Monster monster)
   {
     Id = monster.Id;
-    Name = monster.Name;
+    Species = monster.Species;
+    Name = "";
 
     Level = monster.Level;
     Type = monster.Type;

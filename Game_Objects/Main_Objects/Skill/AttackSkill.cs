@@ -1,10 +1,11 @@
 using System;
 
 class AttackSkill : OneShotSkill{
-  public AttackSkill(int id, string name, string desc, int turnsMax, int cost, int minDamage, int maxDamage, double modifier, StatsType playerStat){
+  public AttackSkill(int id, string name, string desc, int minLevel, int turnsMax, int cost, int minDamage, int maxDamage, double modifier, StatsType playerStat){
     Id = id;
     Name = name;
     Desc = desc;
+    MinLevel = minLevel;
     TurnMax = turnsMax;
     Turns = 0;
     Cost = cost;
@@ -20,6 +21,7 @@ class AttackSkill : OneShotSkill{
     Id = attack.Id;
     Name = attack.Name;
     Desc = attack.Desc;
+    MinLevel = attack.MinLevel;
     TurnMax = attack.TurnMax;
     Turns = 0; 
     Cost = attack.Cost;

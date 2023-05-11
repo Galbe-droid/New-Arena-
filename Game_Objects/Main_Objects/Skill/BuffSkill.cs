@@ -1,11 +1,12 @@
 using System;
 
 class BuffSkill : PerTurnSkill{
-  public BuffSkill(int id, string name, string desc, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply)
+  public BuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply)
   {
     Id = id;
     Name = name;
     Desc = desc;
+    MinLevel = minLevel;
     TurnMax = turnsMax;
     Turns = 0;
     Qty = qty;
@@ -22,6 +23,7 @@ class BuffSkill : PerTurnSkill{
     Id = buff.Id;
     Name = buff.Name;
     Desc = buff.Desc;
+    MinLevel = buff.MinLevel;
     TurnMax = buff.TurnMax;
     Turns = 0;
     Qty = buff.Qty;

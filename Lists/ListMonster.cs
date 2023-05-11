@@ -5,8 +5,14 @@ using System.Collections.Generic;
 class MonsterList{
 
   public static List<Monster> Monsters = new List<Monster>();
+  public static Dictionary<int, List<MonsterVariation>> ListOfMonsterVariation = new Dictionary<int, List<MonsterVariation>>();
+
+  public static List<MonsterVariation> SlimeVariation = new List<MonsterVariation>();
+  public static List<MonsterVariation> SpiderVariation = new List<MonsterVariation>();
+  public static List<MonsterVariation> GolemVariation = new List<MonsterVariation>();
 
   //Monster Prefabs public Monster(int id, string name, int level, Type type, int str, int inte, int agi, int vig)
+  //This are the base of the monster species, this objects are generate and then combine with the specific monster class 
   public static void AddMonsters()
   {
     Monsters.Add(new Monster(0, "Slime", 1, Types.Prefab, 3, 3, 3, 3));
