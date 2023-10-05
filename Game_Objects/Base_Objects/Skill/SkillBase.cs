@@ -7,7 +7,7 @@ abstract class SkillBase
   public int MinLevel {get; set;}
   public int TurnMax {get; set;}
   public int Turns {get; set;}
-  public int Cost {get; set;}
+  public int XpCost {get; set;}
   public bool Cooldown {get; set;}
   public int CooldownTurns {get; set;}
 

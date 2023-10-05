@@ -43,6 +43,68 @@ class Character : Creature
     Dead = false;
   }
 
+  public Character(Character character)
+  {
+    Id = character.Id;
+    Name = character.Name;
+
+    Xp = 0;
+    Level = 1;
+
+    Str = character.Str;
+    Int = character.Int;
+    Agi = character.Agi;
+    Vig = character.Vig; 
+
+    Defense = Vig/2;
+    Dodge = 0 + (500 * Agi);
+    Attack = Str;
+
+    Health = 10 + (character.Vig * 10);
+    Mana = 5 + (character.Int * 5);
+
+    Damage = 0;
+    ManaSpend = 0;
+    
+    Initiative = 0;
+    ModDefense = 0;
+    ModDodge = 0 * 500;
+    ModAttack = 0;
+
+    Dead = false;
+  }
+
+   public Character()
+  {
+    Id = 9999;
+    Name = "";
+
+    Xp = 0;
+    Level = 1;
+
+    Str = 0;
+    Int = 0;
+    Agi = 0;
+    Vig = 0; 
+
+    Defense = Vig/2;
+    Dodge = 0 + (500 * Agi);
+    Attack = Str;
+
+    Health = 10 + (0 * 10);
+    Mana = 5 + (0 * 5);
+
+    Damage = 0;
+    ManaSpend = 0;
+    
+    Initiative = 0;
+    ModDefense = 0;
+    ModDodge = 0 * 500;
+    ModAttack = 0;
+
+    Dead = false;
+  }
+
   public void FillAvaliableSkill(){
     foreach(SkillBase s in SkillList.AllSkills){
       if(!this.CapableOfLearn.Exists(x => x.Id == s.Id) && !this.SkillTrained.Exists(x => x.Id == s.Id)){

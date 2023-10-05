@@ -1,15 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Behaviour;
 
 class MainClass {  
   public static void Main (string[] args) {
     //Loading
+    SkillList.CreateMonsterSkillList();
     SkillList.AddSkills();
     MonsterList.AddMonsters();
+    MonsterList.CreateMonsterVariationList();
     FoodList.AddFruits();  
-
     //End Loading
+
     //Main Screen
     Console.Clear();
     bool program = true;
@@ -163,13 +166,14 @@ class MainClass {
   public static void Combat(Character chosen, Monster monster)
   {
     bool CombatOn = true;
+    bool SomeoneDied = false;
     bool charBigInit;
 
     //If both caracter are alive this boolean is true
     while(CombatOn){
-      //Checking for Buffs and Debuffs and counting turns for cooldown
-      if(chosen.SkillTrained.Exists(skill => skill.Cooldown == true)){
-        CombatBehaviour.PlayerCooldownCounting(chosen, monster);
+      //Checking for Buffs and Debuffs and counting turns for cooldown if none skill is in cooldown then the code dont execute
+      if(chosen.SkillTrained.Exists(skill => skill.Cooldown == true) || monster.SkillTrained.Exists(skill => skill.Cooldown == true)){
+        SkillUse.CooldownCounting(chosen, monster);
       }      
       chosen.CheckForBuffsDebuffs();
       monster.CheckForBuffsDebuffs();     
@@ -192,12 +196,21 @@ class MainClass {
       }
     
       Console.Clear();
+      if(chosen.DeathCheck() || monster.DeathCheck()){
+        SomeoneDied = true;
+      }
 
       //Checks if both caracter and player arent dead
-      if(!monster.DeathCheck() && !chosen.DeathCheck()){        
-        CombatMenu.CombatChoices(ref chosen, ref monster, charBigInit);
+      if(!SomeoneDied)
+      {
+        ArenaBehaviour.TurnControl(ref chosen, ref monster, charBigInit);
+
+        Console.WriteLine("End of Turn !");
+        SkillUse.CooldownCounting(chosen, monster);
+        Console.ReadLine();
       }
-      else{
+      else
+      {
         //Only Vicotry screen for now 
         if(monster.Dead == true){
           Console.WriteLine("Victory!!");

@@ -1,4 +1,5 @@
-using System; 
+using System;
+using System.Collections.Generic;
 
 //Creating a monster for the player to choose from 
 //This code places the points on the monster
@@ -10,7 +11,7 @@ class AttributeAlocation
   {
     Random random = new Random();
     //Quatity of points to be allocated 
-    int atributes = monster.Level * 3;
+    int atributes = monster.Level * 2;
     int[] atributeChance = MonsterProbability(monster.Type);
 
     while(atributes > 0)
@@ -58,5 +59,24 @@ class AttributeAlocation
     }
 
     return null;
+  }
+
+  //Variation extra atributes 
+  public static void AddExtraStats(ref MonsterVariation monster){
+    monster.Str += monster.ExtraStr;
+    monster.Int += monster.ExtraInt;
+    monster.Agi += monster.ExtraAgi;
+    monster.Vig += monster.ExtraVig; 
+  }
+
+  public static void AddSkills(ref Monster monster)
+  {
+    List<SkillBase> ListOfMonsterSkill = SkillList.ListPerMonster[monster.Id];
+
+    foreach (SkillBase skill in ListOfMonsterSkill){
+      if(monster.Level >= skill.MinLevel){
+        monster.SkillTrained.Add(skill);
+      }
+    }
   }
 }

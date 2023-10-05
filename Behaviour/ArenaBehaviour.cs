@@ -16,4 +16,39 @@ class ArenaBehaviour
       return dayTime;
     }
   }
+  public static void TurnControl(ref Character chosen, ref Monster monster, bool initiative)
+  {
+    if(initiative)
+    {
+      Console.WriteLine("Turn Start !!");
+      //Player Turn 
+      if(!chosen.DeathCheck())
+      {
+        CombatMenu.CombatChoices(ref chosen, ref monster);
+        UpdateConsole.StaticMessage("Player turn ended.");
+      }      
+      //Monster Turn
+      if(!monster.DeathCheck())
+      {
+        CombatMonsterBehaviour.MonsterChoice(ref chosen, ref monster);
+        UpdateConsole.StaticMessage($"{monster.Name} turn ended.");
+      }
+      
+    }
+    else
+    {
+      //Monster Turn
+      if(!monster.DeathCheck())
+      {
+        CombatMonsterBehaviour.MonsterChoice(ref chosen, ref monster);
+        UpdateConsole.StaticMessage($"{monster.Name} turn ended.");
+      }
+      //Player Turn 
+      if(!chosen.DeathCheck())
+      {
+        CombatMenu.CombatChoices(ref chosen, ref monster);
+        UpdateConsole.StaticMessage("Player turn ended.");
+      }      
+    }    
+  }
 }

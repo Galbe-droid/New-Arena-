@@ -1,5 +1,7 @@
 enum BuffType{
   Defense,
   Dodge,
-  Attack
+  Attack,
+  Hp,
+  Mp
 }

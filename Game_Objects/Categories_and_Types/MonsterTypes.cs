@@ -13,10 +13,8 @@ enum Types
 enum SubTypes
 {
   Prefab,
-  //Regular attacks or skills
   Brute,
   Tatical,
-  //Support or Healer
   Support,
   Survival
 }

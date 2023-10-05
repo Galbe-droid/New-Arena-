@@ -41,6 +41,7 @@ class GameStartMenu
           //Change to night 
           DayOrNight = !DayOrNight;
           //Initiate Combat 
+          AttributeAlocation.AddSkills(ref monster);
           monster.Initialization();
           MainClass.Combat(chosen, monster);
           Console.Clear();

@@ -109,20 +109,32 @@ abstract class Creature{
             this.ModAttack += b.Applying();
             b.Turns++;
           }
+          else if(b.WhereToApply == BuffType.Hp){
+            if(this.Damage > 0){
+              this.Damage = this.Damage - b.Qty <= 0 ? 0 : this.Damage - b.Applying();
+              b.Turns = b.TurnMax + 1;
+            }
+            b.Turns = b.TurnMax + 1;
+          }
+          else if(b.WhereToApply == BuffType.Mp){
+            if(this.ManaSpend > 0){
+              this.ManaSpend = this.ManaSpend - b.Qty <= 0 ? 0 : this.ManaSpend - b.Applying();
+              b.Turns = b.TurnMax + 1;
+            }
+            b.Turns = b.TurnMax + 1;
+          }
         }
         else{
           if(b.WhereToApply == BuffType.Defense){
-            this.ModDefense -= b.Removal();
-            BuffActive.Remove(b);   
+            this.ModDefense -= b.Removal();  
           }
           else if(b.WhereToApply == BuffType.Dodge){
             this.ModDodge -= b.Removal();
-            BuffActive.Remove(b);   
           }
           else if(b.WhereToApply == BuffType.Attack){
             this.ModAttack -=b.Removal();
-            BuffActive.Remove(b);   
           }
+          BuffActive.Remove(b);   
         }
       }
     }
@@ -144,20 +156,32 @@ abstract class Creature{
             this.ModAttack += d.Applying();
             d.Turns++;
           }
+          else if(d.WhereToApply == BuffType.Hp){
+            if(this.Damage < this.Health){
+              this.Damage = this.Damage + d.Qty <= this.Health ? this.Health : this.Damage + d.Applying();
+              d.Turns = d.TurnMax + 1;
+            }
+            d.Turns = d.TurnMax + 1;
+          }
+          else if(d.WhereToApply == BuffType.Mp){
+            if(this.ManaSpend < this.Mana){
+              this.ManaSpend = this.ManaSpend + d.Qty <= this.Mana ? this.Mana : this.ManaSpend + d.Applying();
+              d.Turns = d.TurnMax + 1;
+            }
+            d.Turns = d.TurnMax + 1;
+          }
         }
         else{
           if(d.WhereToApply == BuffType.Defense){
             this.ModDefense -= d.Removal();
-            DebuffActive.Remove(d);   
           }
           else if(d.WhereToApply == BuffType.Dodge){
             this.ModDodge -= d.Removal();
-            DebuffActive.Remove(d);   
           }
           else if(d.WhereToApply == BuffType.Attack){
             this.ModAttack -= d.Removal();
-            DebuffActive.Remove(d);   
           }
+          DebuffActive.Remove(d);   
         }
       }
     }

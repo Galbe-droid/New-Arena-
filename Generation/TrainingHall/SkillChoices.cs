@@ -35,7 +35,8 @@ class SkillChoices{
 
     //It checks if the skill is already trained 
     foreach(SkillBase s in c.CapableOfLearn){
-      if(!c.SkillTrained.Exists(x => x.Id == s.Id)){
+      if(!c.SkillTrained.Exists(x => x.Id == s.Id))
+      {
         ids[count] = s.Id;
         count++;
       }      

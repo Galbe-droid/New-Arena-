@@ -7,12 +7,19 @@ using System.Collections.Generic;
 //101 - 200 : DebuffSkills
 //201 - 300 : AttackSkills
 //301 - 400 : DefenseSkills
+//1001 - 1010 : SlimeSkills
+//1101 - 1110 : SpiderSkills
+//1201 - 1210 : GolemSkills
 
 //Dodge works by 0.0% = 0 and 100.0% = 100000
 
 class SkillList{
   public static List<SkillBase> AllSkills = new List<SkillBase>();
+  public static List<SkillBase> SlimeSkillList = new List<SkillBase>();
+  public static List<SkillBase> SpiderSkillList = new List<SkillBase>();
+  public static List<SkillBase> GolemSkillList = new List<SkillBase>();
   public static Dictionary<int, List<SkillBase>> ListPerMonster = new Dictionary<int, List<SkillBase>>();
+
 
   public static void AddSkills(){
     //BuffSkills int id, string name, string desc, int MinLevel, int turnsMax, int qty, int cost, bool isActivedOnce
@@ -30,5 +37,23 @@ class SkillList{
 
     //DefenseSkills int id, string name, string desc, int MinLevel, int turnsMax, int cost, int minValue, int maxValuew, float modifier, StatsType playerStat
     AllSkills.Add(new DefenseSkill(301, "First-Aid", "Simple regeneration", 0, 1, 0, 5, 15, 1.5, StatsType.Inte));
+
+    //SlimeSkills 
+    SlimeSkillList.Add(new AttackSkill(1001, "Volatility", "Explodes On the enemy", 0, 2, 0, 1, 15, 1.0, StatsType.Vig));
+    SlimeSkillList.Add(new DefenseSkill(1002, "Increase Mass", "Generate more of it", 0, 5, 0, 7, 12, 1.0, StatsType.Inte));
+
+    //SpiderSkills
+    SpiderSkillList.Add(new DebuffSkill(1101, "Shoot Web", "Shoot a web, debilitating enemy movement by time", 0, 2, -3000, 0, false, BuffType.Dodge));
+    SpiderSkillList.Add(new DebuffSkill(1102, "Poison Bite", "Poison the enemy", 0, 3, 3, 0, true, BuffType.Hp));
+
+    //GolemSkills
+    GolemSkillList.Add(new BuffSkill(1201, "Ancient Power", "Extracts old power to increase attack", 0, 5, 1, 0, false, BuffType.Attack));
+    GolemSkillList.Add(new BuffSkill(1202, "Defensive Grid", "Increase its defense over time", 0, 5, 1, 0, false, BuffType.Defense));
+  }
+
+  public static void CreateMonsterSkillList(){
+    ListPerMonster.Add(0, SlimeSkillList);
+    ListPerMonster.Add(1, SpiderSkillList);
+    ListPerMonster.Add(2, GolemSkillList);
   }
 }

@@ -4,19 +4,22 @@ using System.Linq;
 
 class MonsterGeneration
 {
-  public static List<Monster> MonstersListOfTheDay = new List<Monster>();
+  public static List<Monster> MonstersListOfTheDay = new();
 
   public static List<Monster> monsterListPrefab = MonsterList.Monsters;
 
+  public static Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterList.ListOfMonsterVariation;
+
   public static Monster Creator()
   {
+    //REGULAR MONSTER GENERATION
     Array typeList = Enum.GetValues(typeof(Types));  
 
-    List<SubTypes> subTypesOffensive = new List<SubTypes>();
+    List<SubTypes> subTypesOffensive = new();
     subTypesOffensive.Add(SubTypes.Brute);
     subTypesOffensive.Add(SubTypes.Tatical);
 
-    List<SubTypes> subTypesDefense = new List<SubTypes>();
+    List<SubTypes> subTypesDefense = new();
     subTypesDefense.Add(SubTypes.Support);
     subTypesDefense.Add(SubTypes.Survival);
 
@@ -33,8 +36,20 @@ class MonsterGeneration
     monsterChoosen.SubType[1] = (SubTypes)subTypesDefense.ElementAt(random.Next(0, subTypesDefense.Count));
 
     AttributeAlocation.PlacingAtributes(monsterChoosen);
+    //
 
-    return monsterChoosen;
+    //ADDING VARIATION
+    List<MonsterVariation> monsterVariations = new(monsterVariationDictionary[monsterChoosen.Id]);
+    int randVarId = random.Next(monsterVariations.Count);
+
+    MonsterVariation monsterVariation = new(monsterChoosen, monsterVariations.Find(mv => mv.VariationId == randVarId));
+
+    AttributeAlocation.AddExtraStats(ref monsterVariation);
+
+    monsterVariations.Clear();
+    //
+
+    return monsterVariation;
   }
 
   //Generates 5 monster per day

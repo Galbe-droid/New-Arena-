@@ -61,7 +61,7 @@ class TrainingHallMenu{
     }
     else{
       //Initiate applying the skill on the player caracter and removing the skill from the day list
-      if(c.Xp >= skillOfTheDay[choice].Cost){
+      if(c.Xp >= skillOfTheDay[choice].XpCost){
         Console.WriteLine("Skill: {0} Learned !", skillOfTheDay[choice].Name);
         if(skillOfTheDay[choice].GetType() == typeof(BuffSkill)){
           c.SkillTrained.Add(new BuffSkill((BuffSkill)skillOfTheDay[choice]));

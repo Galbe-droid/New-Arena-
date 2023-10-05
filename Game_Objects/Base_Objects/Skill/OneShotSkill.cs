@@ -7,7 +7,7 @@ abstract class OneShotSkill : SkillBase{
 
     public double Modifier {get;set;}
 
-    public StatsType PlayerStat {get;set;}
+    public StatsType Stat {get;set;}
 
     public int ApplyModifier(int stat){
         return (int)Math.Truncate(stat * this.Modifier);

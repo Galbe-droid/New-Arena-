@@ -1,29 +1,20 @@
 using System;
 using System.Collections.Generic;
+using New_Arena_.Behaviour;
 
 //This menu is the options for attacks of the player
 //A - Basic Attacks - Working
 //D - Basic Defense - Working
-//S - Skill - on Development
+//S - Skill - Working
 class CombatMenu
 {
-  public static void CombatChoices(ref Character c, ref Monster m, bool charBigInit)
+  public static void CombatChoices(ref Character c, ref Monster m)
   {    
-    Console.WriteLine("Turn Start !!");    
-
-    if(charBigInit){
-      UpdateConsole.UpdateCombatStats(c, m);
-      PlayerChoice(ref c, ref m);
-      UpdateConsole.StaticMessage("Player turn ended.");
-    }
-    else{
-      UpdateConsole.UpdateCombatStats(c, m);
-      PlayerChoice(ref c, ref m);
-      UpdateConsole.StaticMessage("Player turn ended.");
-    }
     
-    Console.WriteLine("End of Turn !");
-    Console.ReadLine();
+
+    UpdateConsole.UpdateCombatStats(c, m);
+    PlayerChoice(ref c, ref m);
+    
   }
 
   public static void PlayerChoice(ref Character c, ref Monster m){
@@ -51,12 +42,12 @@ class CombatMenu
   public static void PlayerOptions(ref Character c, ref Monster m, string choice, ref bool actionMade){
     switch(choice){
       case "a":
-        m.Damage += CombatBehaviour.AttackOption(c, m);
+        m.Damage += BasicCombatBehaviour.AttackOption<Creature>(c, m);
         actionMade = true;
         break;
 
       case "d":
-        CombatBehaviour.DefensiveChoice(c);
+        BasicCombatBehaviour.DefensiveOption(c);
         actionMade = true;
         break;
 
@@ -65,7 +56,7 @@ class CombatMenu
           UpdateConsole.StaticMessage("No Skills.");
         }
         else{
-          int skillChoice = CombatBehaviour.SkillChoice(c, m, out skillChoice);
+          int skillChoice = PlayerSkillUse.SkillChoice(c, m, out skillChoice);
           actionMade = skillChoice == -1 ? false : true;
         }
         break;

@@ -1,7 +1,7 @@
 using System;
 
 class BuffSkill : PerTurnSkill{
-  public BuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply)
+  public BuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, BuffType whereToApply)
   {
     Id = id;
     Name = name;
@@ -11,7 +11,7 @@ class BuffSkill : PerTurnSkill{
     Turns = 0;
     Qty = qty;
     IsActivedOnce = isActivedOnce;
-    Cost = cost;
+    XpCost = xpCost;
     Cooldown = false;
     CooldownTurns = 0;
     Tracked = 0;
@@ -28,7 +28,7 @@ class BuffSkill : PerTurnSkill{
     Turns = 0;
     Qty = buff.Qty;
     IsActivedOnce = buff.IsActivedOnce;
-    Cost = buff.Cost;
+    XpCost = buff.XpCost;
     Cooldown = false;
     CooldownTurns = 0;
     Tracked = 0;
@@ -50,7 +50,7 @@ class BuffSkill : PerTurnSkill{
     }
     
     return "Name: " + this.Name + " | " +
-           "Cost: " + this.Cost + "xp | " + 
+           "Cost: " + this.XpCost + "xp | " + 
            "Turns Durantion: " + this.TurnMax + " | " +
            "Increases: " + whereToAct + " | " + 
            "Qty: " + this.Qty + " | " +

@@ -6,15 +6,13 @@ using System;
 class Monster : Creature
 {
   public int Id {get; set;}
-  public String Species {get; set;}
   public Types Type {get; set;}
   public SubTypes[] SubType = new SubTypes[2];
 
-  public Monster(int id, string species, int level, Types type, int str, int inte, int agi, int vig)
+  public Monster(int id, string name, int level, Types type, int str, int inte, int agi, int vig)
   {
     Id = id;
-    Species = species;
-    Name = "";
+    Name = name;
 
     Level = level;
     Type = type;
@@ -45,8 +43,7 @@ class Monster : Creature
   public Monster(Monster monster)
   {
     Id = monster.Id;
-    Species = monster.Species;
-    Name = "";
+    Name = monster.Name;
 
     Level = monster.Level;
     Type = monster.Type;

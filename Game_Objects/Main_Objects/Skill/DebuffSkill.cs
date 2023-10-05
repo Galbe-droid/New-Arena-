@@ -1,7 +1,7 @@
 using System; 
 
 class DebuffSkill : PerTurnSkill{
-  public DebuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int cost, bool isActivedOnce, BuffType whereToApply){
+  public DebuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, BuffType whereToApply){
     Id = id;
     Name = name;
     Desc = desc;
@@ -10,7 +10,7 @@ class DebuffSkill : PerTurnSkill{
     Turns = 0;
     Qty = qty;
     IsActivedOnce = isActivedOnce;
-    Cost = cost;
+    XpCost = xpCost;
     CooldownTurns = 0;
     Tracked = 0;
     IsUsed = false;
@@ -26,7 +26,7 @@ class DebuffSkill : PerTurnSkill{
     Turns = 0;
     Qty = debuff.Qty;
     IsActivedOnce = debuff.IsActivedOnce;
-    Cost = debuff.Cost;
+    XpCost = debuff.XpCost;
     CooldownTurns = 0;
     Tracked = 0;
     IsUsed = false;
@@ -47,7 +47,7 @@ class DebuffSkill : PerTurnSkill{
     }
     
     return "Name: " + this.Name + " | " +
-           "Cost: " + this.Cost + "xp | " + 
+           "Cost: " + this.XpCost + "xp | " + 
            "Turns Durantion: " + this.TurnMax + " | " +
            "Decreases: " + whereToAct + " | " + 
            "Qty: " + this.Qty + " | " +

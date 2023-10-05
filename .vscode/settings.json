@@ -1,0 +1,4 @@
+{
+    "dotnet.defaultSolution": "New-Arena-.sln",
+    "FSharp.suggestGitignore": false
+}

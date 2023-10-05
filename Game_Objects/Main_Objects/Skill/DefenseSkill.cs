@@ -1,18 +1,18 @@
 using System;
 
 class DefenseSkill : OneShotSkill{
-    public DefenseSkill(int id, string name, string desc, int minLevel, int turnsMax, int cost, int minValue, int maxValue, double modifier, StatsType playerStat){
+    public DefenseSkill(int id, string name, string desc, int minLevel, int turnsMax, int xpCost, int minValue, int maxValue, double modifier, StatsType playerStat){
     Id = id;
     Name = name;
     Desc = desc;
     MinLevel = minLevel;
     TurnMax = turnsMax;
     Turns = 0;
-    Cost = cost;
+    XpCost = xpCost;
     MinValue = minValue;
     MaxValue = maxValue;
     Modifier = modifier;
-    PlayerStat = playerStat;
+    Stat = playerStat;
     Cooldown = false;
     CooldownTurns = 0;
   }
@@ -24,11 +24,11 @@ class DefenseSkill : OneShotSkill{
     MinLevel = defense.MinLevel;
     TurnMax = defense.TurnMax;
     Turns = 0; 
-    Cost = defense.Cost;
+    XpCost = defense.XpCost;
     MinValue = defense.MinValue;
     MaxValue = defense.MaxValue;
     Modifier = defense.Modifier;
-    PlayerStat = defense.PlayerStat;
+    Stat = defense.Stat;
     Cooldown = false;
     CooldownTurns = 0;
   }  
@@ -36,13 +36,13 @@ class DefenseSkill : OneShotSkill{
   public override string ToString(){
     string mainStat; 
 
-    if(this.PlayerStat == StatsType.Str){
+    if(this.Stat == StatsType.Str){
       mainStat = "Str"; 
     }
-    else if(this.PlayerStat == StatsType.Agi){
+    else if(this.Stat == StatsType.Agi){
       mainStat = "Agi"; 
     }
-    else if(this.PlayerStat == StatsType.Vig){
+    else if(this.Stat == StatsType.Vig){
       mainStat = "Vit"; 
     }
     else{
@@ -50,12 +50,12 @@ class DefenseSkill : OneShotSkill{
     }
     
     return "Name: " + this.Name + " | " +
-           "Cost: " + this.Cost + "xp | " + 
+           "Cost: " + this.XpCost + "xp | " + 
            "Recovery: (" + this.MinValue + " ~ " + this.MaxValue + ") + " + String.Format("{0:N1}", this.Modifier) + " * " + mainStat + " | " +
            "Cooldown: " + (this.TurnMax + 1);
   }
 
   public override string SkillDescription(){
-    return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Healing: ({this.MinValue} ~ {this.MaxValue}) * {this.Modifier}({this.PlayerStat})"; 
+    return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Healing: ({this.MinValue} ~ {this.MaxValue}) * {this.Modifier}({this.Stat})"; 
   }
 }
