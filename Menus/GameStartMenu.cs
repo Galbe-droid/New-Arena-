@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
 
 class GameStartMenu
 {
-  public static bool ArenaMenu(string decision,ref Character chosen, bool exit, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, List<SkillBase> skillOfTheDay, ref bool timePass)
-  {    
+  public static void ArenaMenu(string decision,ref Character chosen, ref bool DayOrNight, List<Monster> Cages, List<IFood>FoodTable, List<SkillBase> skillOfTheDay, ref bool timePass)
+  {       
     switch(decision)
     {
       //Goes to the cages 
@@ -26,7 +27,6 @@ class GameStartMenu
         if(choice == 0)
         {          
           Console.Clear();
-          return true;
         }
         else 
         {
@@ -65,32 +65,12 @@ class GameStartMenu
           Console.Write("The feast in this inn only start at night");
           Console.ReadLine();
           Console.Clear();
-          return true;
         }
         else
         {
-          InnScreen.FoodDisplay(FoodTable);
-
-          int choiceInn = InputCheck.IntCheck("Choice(0 To go back):", "Only Number:");
-          if(choiceInn == 0)
-          {
-            Console.Clear();  
-            return true;
-          }
-          else
-          {
-            choiceInn--;
-            Food foodChoice = FoodTable[choiceInn];
-            timePass = true;
-            Console.WriteLine("Food eaten!");
-            chosen.Damage -= foodChoice.RecoveryHp;
-            chosen.ManaSpend -= foodChoice.RecoveryMp;
-            Console.ReadKey();   
-            DayOrNight = !DayOrNight;
-            Console.Clear();
-          }       
-          break;
-        }        
+          ArenaBehaviour.InnFunction(ref chosen, FoodTable);         
+        }
+        break;        
 
       //Training Hall
       //Under Development 
@@ -112,6 +92,5 @@ class GameStartMenu
         Console.WriteLine("Invalid.");
         break;
     }
-    return false;
   }
 }

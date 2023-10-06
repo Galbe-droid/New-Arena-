@@ -20,8 +20,6 @@ class CombatMonsterBehaviour
     if(choice <= monsterTypeChance[0]){
       rand.Next();
       int choiceOfAttack = rand.Next(0,101);
-      Console.WriteLine(choiceOfAttack + " Attack");
-      Console.ReadLine();
 
       if(choiceOfAttack <= monsterTypeChance[1])
       {
@@ -34,7 +32,6 @@ class CombatMonsterBehaviour
         Console.WriteLine($"Estou aqui ataque {possibleAttacksSkills.Count}");
         if(possibleAttacksSkills.Count != 0)
         {
-          Console.WriteLine("Usei Skill");
           int skillDecision = rand.Next(possibleAttacksSkills.Count);
           SkillUse.AttackSkillUse<Creature>(m, c, (AttackSkill)possibleAttacksSkills[skillDecision]);
         }
@@ -46,8 +43,6 @@ class CombatMonsterBehaviour
     }
     else{
       int choiceOfDefense = rand.Next(0,101);
-      Console.WriteLine(choiceOfDefense + " Defese");
-      Console.ReadLine();
       if(choiceOfDefense <= monsterTypeChance[2])
       {
         ExecuteBasicDefense(c, m);
@@ -55,8 +50,6 @@ class CombatMonsterBehaviour
       else
       {
         int choiceOfSkill = rand.Next(0,101);
-        Console.WriteLine(choiceOfSkill + " Skill");
-        Console.ReadLine();
 
         List<SkillBase> possibleDefenseSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DefenseSkill)).Where(s => s.Cooldown == false).ToList();
         List<SkillBase> possibleDebuffSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DebuffSkill)).Where(s => s.Cooldown == false).ToList();
@@ -64,7 +57,6 @@ class CombatMonsterBehaviour
 
         if(possibleDefenseSkills.Count != 0 || possibleDebuffSkills.Count != 0 || possibleBuffSkills.Count != 0)
         {
-          Console.WriteLine("Estou aqui defesa");
           if((choiceOfSkill >= 0 && choiceOfSkill >= monsterTypeChance[3]))
           {
             if(possibleDefenseSkills.Count == 0){

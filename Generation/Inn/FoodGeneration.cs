@@ -1,41 +1,45 @@
 using System;
 using System.Collections.Generic;
+using New_Arena_.Game_Objects.Base_Objects;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
 
 class FoodGeneration
 {
-  //ListOfTheDay
-  public static List<Food> FruitOfTheDay = new List<Food>();
+    //ListOfTheDay
+    private static List<IFood> fruitOfTheDay = new List<IFood>();
 
-  //Prefabs
-  public static List<Fruit> FruitsPrefab = FoodList.FruitList;
+    //Prefabs
+    public static List<Fruit> FruitsPrefab = FoodList.FruitList;
 
-  //Enum
-  public static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
+    //Enum
+    public static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
 
-  //Creates the fruits and place then on the list
-  public static Fruit FruitCreator()
-  {
-    Random random = new Random();
-    int randId = random.Next(FruitsPrefab.Count);
+    public static List<IFood> FruitOfTheDay { get => fruitOfTheDay; set => fruitOfTheDay = value; }
 
-    Fruit fruit = new Fruit(FruitsPrefab.Find(f => f.Id == randId));
-
-    fruit.Quality = (FruitQuality)typeListFruit.GetValue(random.Next(1, typeListFruit.Length));
-
-    if(fruit.Quality == FruitQuality.New)
+    //Creates the fruits and place then on the list
+    public static Fruit FruitCreator()
     {
-      fruit.RecoveryHp += (int)(fruit.RecoveryHp * 0.2f);
-      return fruit;
+      Random random = new Random();
+      int randId = random.Next(FruitsPrefab.Count);
+  
+      Fruit fruit = new Fruit(FruitsPrefab.Find(f => f.Id == randId));
+  
+      fruit.Quality = (FruitQuality)typeListFruit.GetValue(random.Next(1, typeListFruit.Length));
+  
+      if(fruit.Quality == FruitQuality.New)
+      {
+        fruit.RecoveryHp += (int)(fruit.RecoveryHp * 0.2f);
+        return fruit;
+      }
+      else
+      {
+        fruit.RecoveryHp -= (int)(fruit.RecoveryHp * 0.2f);
+        return fruit;
+      }    
     }
-    else
-    {
-      fruit.RecoveryHp -= (int)(fruit.RecoveryHp * 0.2f);
-      return fruit;
-    }    
-  }
 
   //Place the fruit on the list 
-  public static List<Food> ListOfFruitOfTheDay()
+  public static List<IFood> ListOfFruitOfTheDay()
   {
     for(int i = 0; i < 5; i++)
     {

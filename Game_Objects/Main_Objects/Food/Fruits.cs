@@ -1,9 +1,19 @@
 //Fruit class it generate a fruit, It easy to find in the inn but wont recovery a lot 
-class Fruit : Food
+using System;
+using New_Arena_.Game_Objects.Base_Objects;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
+
+class Fruit : ItemBase, IFood
 {
   public FruitQuality Quality {get; set;}
-  
-  public Fruit(int id, string name, int cost, int rarity, int hp, int mp, FruitQuality quality)
+  public int Cost { get; set; }
+  public int Rarity { get; set; }
+  public int RecoveryHp { get; set; }
+  public int RecoveryMp { get; set; }
+  Type IFood.Quality { get; set; }
+  public bool FoodEaten {get; set;}
+
+    public Fruit(int id, string name, int cost, int rarity, int hp, int mp, FruitQuality quality)
   {
     Id = id;
     Name = name; 
@@ -12,6 +22,7 @@ class Fruit : Food
     RecoveryHp = hp; 
     RecoveryMp = mp;
     Quality = quality;
+    FoodEaten = false;
   }
 
   public Fruit(Fruit f)
@@ -23,5 +34,6 @@ class Fruit : Food
     RecoveryHp = f.RecoveryHp; 
     RecoveryMp = f.RecoveryMp;
     Quality = f.Quality;
+    FoodEaten = false;
   }
 }

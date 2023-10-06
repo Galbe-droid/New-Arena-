@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using New_Arena_.Game_Objects.Base_Objects;
 //Character uses abstraction Creature 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death
@@ -11,6 +12,8 @@ class Character : Creature
   public int Xp {get; set;}
 
   public List<SkillBase> CapableOfLearn = new List<SkillBase>();
+
+  public List<ItemBase> ItemBag = new List<ItemBase>();
 
   public Character(int id, string name, int str, int inte, int agi, int vig)
   {

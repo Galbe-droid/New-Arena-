@@ -25,13 +25,13 @@ In Progress:
     2.4. Taking Food // TBD 
     
   3.Training Hall // In Progress
-    3.1 Stats Increase // TBD
+    3.1 Stats Increase // Complete
     3.2 Skill Training // Complete
   
   4.Market // TBD 
   
   5.Player/Monsters
-    5.1 Base Function - Stats and hp/mp working // Complete / MP - TBD
+    5.1 Base Function - Stats and hp/mp working // Complete
     5.2 Skill Trained - A list of learned skills // Complete
     5.3 Buff and DeBuffs // Complete
     5.4 Equipaments // TBD

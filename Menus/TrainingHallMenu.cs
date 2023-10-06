@@ -16,8 +16,14 @@ class TrainingHallMenu{
 
       switch(choice){
         case "S":
-          Console.WriteLine("Stats Training not ready.");
-          Console.Clear();
+          bool statusIncreasing = true;
+          do
+          { 
+            Console.Clear();
+            GameScreen.CharacterStats(chosen);
+            statusIncreasing = StatsIncrease(ref chosen);                        
+          }while(statusIncreasing);  
+          ArenaBehaviour.UpdateCharacter(chosen);        
           break;
 
         case "K":
@@ -85,6 +91,39 @@ class TrainingHallMenu{
         Console.WriteLine("Insulficient Xp.");
         Console.ReadKey();
       }
-    }    
+    }   
+  }
+
+  public static bool StatsIncrease(ref Character chosen)
+  {
+    string choice = "";
+
+    Console.WriteLine("Choose a status to improve: "); 
+    Console.WriteLine("S - Str / A - Agi / I - Int / V - Vig");
+    Console.Write("Choose (Any other key to go back):");
+    choice = Console.ReadLine().ToUpper();        
+
+    switch(choice)
+    {
+      case("S"):
+        chosen.Str++;
+        return true;
+
+      case("A"):
+        chosen.Agi++;
+        return true;
+
+      case("I"):
+        chosen.Int++;
+        return true;
+
+      case("V"):
+        chosen.Vig++;
+        return true;
+
+      default:
+        Console.WriteLine("Error.");
+        return false;
+    }
   }
 }

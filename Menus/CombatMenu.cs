@@ -8,15 +8,6 @@ using New_Arena_.Behaviour;
 //S - Skill - Working
 class CombatMenu
 {
-  public static void CombatChoices(ref Character c, ref Monster m)
-  {    
-    
-
-    UpdateConsole.UpdateCombatStats(c, m);
-    PlayerChoice(ref c, ref m);
-    
-  }
-
   public static void PlayerChoice(ref Character c, ref Monster m){
     string choice = "";
     bool actionMade = false;

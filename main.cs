@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using New_Arena_.Behaviour;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
 
 class MainClass {  
   public static void Main (string[] args) {
@@ -101,10 +102,9 @@ class MainClass {
     int days = 0;
     string dayMoment = "";
     bool daytime = true;    
-    bool Exit = false;
     bool timePass = true;
     List<Monster> cages = new List<Monster>();
-    List<Food> innFoodTable = new List<Food>();
+    List<IFood> innFoodTable = new List<IFood>();
     List<SkillBase> skillOfTheDay = new List<SkillBase>();
 
     while(GameOn)
@@ -155,7 +155,7 @@ class MainClass {
       else
       {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
-        Exit = GameStartMenu.ArenaMenu(Decision,ref chosen, Exit,ref daytime, cages, innFoodTable, skillOfTheDay, ref timePass);        
+        GameStartMenu.ArenaMenu(Decision,ref chosen, ref daytime, cages, innFoodTable, skillOfTheDay, ref timePass);        
       }      
 
       Console.Clear();
@@ -203,8 +203,8 @@ class MainClass {
       //Checks if both caracter and player arent dead
       if(!SomeoneDied)
       {
+        UpdateConsole.UpdateCombatStats(chosen, monster);
         ArenaBehaviour.TurnControl(ref chosen, ref monster, charBigInit);
-
         Console.WriteLine("End of Turn !");
         SkillUse.CooldownCounting(chosen, monster);
         Console.ReadLine();
