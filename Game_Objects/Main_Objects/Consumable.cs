@@ -3,17 +3,16 @@ using System;
 using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
 
-class Fruit : ItemBase, IFood
+class Consumable : ItemBase, IFood
 {
-  public FruitQuality Quality {get; set;}
   public int Cost { get; set; }
   public int Rarity { get; set; }
   public int RecoveryHp { get; set; }
   public int RecoveryMp { get; set; }
-  Type IFood.Quality { get; set; }
   public bool FoodEaten {get; set;}
+  public Enum Quality { get; set; }
 
-    public Fruit(int id, string name, int cost, int rarity, int hp, int mp, FruitQuality quality)
+    public Consumable(int id, string name, int cost, int rarity, int hp, int mp, Enum quality)
   {
     Id = id;
     Name = name; 
@@ -25,7 +24,7 @@ class Fruit : ItemBase, IFood
     FoodEaten = false;
   }
 
-  public Fruit(Fruit f)
+  public Consumable(Consumable f)
   {
     Id = f.Id;
     Name = f.Name; 
@@ -34,6 +33,18 @@ class Fruit : ItemBase, IFood
     RecoveryHp = f.RecoveryHp; 
     RecoveryMp = f.RecoveryMp;
     Quality = f.Quality;
+    FoodEaten = false;
+  }
+
+  public Consumable()
+  {
+    Id = 9999;
+    Name = ""; 
+    Cost = 0;
+    Rarity = 0;
+    RecoveryHp = 0; 
+    RecoveryMp = 0;
+    Quality = Quality;
     FoodEaten = false;
   }
 }

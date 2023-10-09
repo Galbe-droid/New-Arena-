@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
 
 class ArenaBehaviour
@@ -14,7 +15,7 @@ class ArenaBehaviour
       //Player Turn 
       if(!chosen.DeathCheck())
       {
-        CombatMenu. PlayerChoice(ref chosen, ref monster);
+        CombatMenu.PlayerChoice(ref chosen, ref monster);
         UpdateConsole.StaticMessage("Player turn ended.");
       }      
       //Monster Turn
@@ -36,7 +37,7 @@ class ArenaBehaviour
       //Player Turn 
       if(!chosen.DeathCheck())
       {
-        CombatMenu. PlayerChoice(ref chosen, ref monster);
+        CombatMenu.PlayerChoice(ref chosen, ref monster);
         UpdateConsole.StaticMessage("Player turn ended.");
       }      
     }    
@@ -70,8 +71,9 @@ class ArenaBehaviour
     Console.Clear();
   }
 
-  public static void FoodConsuption(ref Character chosen, List<IFood> foodTable)
+  private static void FoodConsuption(ref Character chosen, List<IFood> foodTable)
   {
+    Console.WriteLine("Ready To Eat");
     int choiceEat = InputCheck.IntCheck("Choice(0 To go back/Exit will pass time !):", "Only Number:");
     int[] acceptedOptions = {1,2,3,4,5};
 
@@ -86,35 +88,51 @@ class ArenaBehaviour
         chosen.ManaSpend -= chosen.ManaSpend < foodChoice.RecoveryMp ? chosen.ManaSpend : foodChoice.RecoveryMp;
         foodTable[choiceEat].FoodEaten = true;
         Console.ReadKey();
-
       }while(!acceptedOptions.Contains(choiceEat));    
     }   
 
     
   }
-  public static void TakeFood(ref Character chosen, List<IFood> foodTable)
+  private static void TakeFood(ref Character chosen, List<IFood> foodTable)
   {
     int choiceTake = InputCheck.IntCheck("Choice(0 To go back/Exit will pass time !):", "Only Number:");
     int[] acceptedOptions = {1,2,3,4,5};
 
     if(choiceTake != 0)
     {
-      choiceTake--;
-      IFood foodTake = foodTable[choiceTake];
-
+      IFood foodTake;
       do
       {
+        choiceTake--;
+        foodTake = foodTable[choiceTake];
+
         if(foodTake.FoodEaten == true)
         {
           UpdateConsole.StaticMessage("Food Already Eaten ");
           Console.ReadKey();
+          Console.Clear();
+          GameScreen.CharacterStats(chosen);
+          InnScreen.FoodDisplay(foodTable);
+          choiceTake = InputCheck.IntCheck("Choice(0 To go back/Exit will pass time !):", "Only Number:");
         }
         else
         {
-
+          chosen.ItemBag.Add(IFoodConversor(foodTake));
         }
 
-      }while(!acceptedOptions.Contains(choiceTake) && foodTake.FoodEaten != true);
+      }while(!acceptedOptions.Contains(choiceTake) || foodTake.FoodEaten == true);
     }   
+  }
+
+  private static ItemBase IFoodConversor(IFood food)
+  {
+    
+    if(food.GetType() == typeof(Consumable))
+    {
+      Consumable fruit;
+      return fruit = (Consumable)food;
+    }
+
+    return null;
   }
 }

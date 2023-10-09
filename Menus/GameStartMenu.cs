@@ -69,6 +69,9 @@ class GameStartMenu
         else
         {
           ArenaBehaviour.InnFunction(ref chosen, FoodTable);         
+          timePass = true;
+          //Change to night 
+          DayOrNight = !DayOrNight;
         }
         break;        
 
@@ -82,7 +85,11 @@ class GameStartMenu
       case("C"):
         Console.Clear();
         String character = chosen.ToString();
-        Console.WriteLine(character + chosen.ShowSkills());
+        Console.WriteLine(character);
+        Console.WriteLine("=============Skill============");
+        Console.WriteLine(chosen.ShowSkills());
+        Console.WriteLine("=============Bag============");
+        Console.WriteLine(chosen.ShowBag());
         Console.WriteLine("Press anything to go back...");
         Console.ReadKey();
         Console.Clear();

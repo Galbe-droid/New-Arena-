@@ -14,8 +14,6 @@ class CombatMonsterBehaviour
     Random rand = new Random();
     int choice = rand.Next(0,101);
     List<int> monsterTypeChance = TypeProbability(m.Type, m.SubType);
-    Console.WriteLine(choice);
-    Console.ReadLine();
 
     if(choice <= monsterTypeChance[0]){
       rand.Next();
@@ -28,8 +26,7 @@ class CombatMonsterBehaviour
       else
       {
         List<SkillBase> possibleAttacksSkills = m.SkillTrained.Where(s => s.GetType() == typeof(AttackSkill)).Where(s => s.Cooldown == false).ToList();
-
-        Console.WriteLine($"Estou aqui ataque {possibleAttacksSkills.Count}");
+        
         if(possibleAttacksSkills.Count != 0)
         {
           int skillDecision = rand.Next(possibleAttacksSkills.Count);

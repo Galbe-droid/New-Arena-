@@ -134,9 +134,7 @@ class Character : Creature
   public override string ToString(){
     return $"Name: {this.Name} \n" +
            $"Total Xp: {this.Xp} || Total Gold: 0 \n" +
-           $"Str: {this.Str} || Agi: {this.Agi} || Int: {this.Int} || Vit: {this.Vig} \n" +
-           "=======================================\n" +
-           "Skill Learned: \n";
+           $"Str: {this.Str} || Agi: {this.Agi} || Int: {this.Int} || Vit: {this.Vig} \n";
   }
 
   public string ShowSkills(){
@@ -145,6 +143,14 @@ class Character : Creature
       if(s.Id != 0){
         longString += $"Name: {s.Name} || Type: {s.GetType()} \n";
         }
+    }
+    return longString;
+  }
+
+  public string ShowBag(){
+    string longString = "";
+    foreach(ItemBase i in this.ItemBag){
+      longString += $"Name: {i.Name} || Type: {i.GetType()} \n";
     }
     return longString;
   }

@@ -28,7 +28,7 @@ class TrainingHallMenu{
 
         case "K":
           if(skillOfTheDay.Count >= 1){
-            SkillToLearn(ref chosen, skillOfTheDay);
+            chosen = SkillToLearn(chosen, skillOfTheDay);
           }else{
             Console.WriteLine("There is no Skill To Learn");
             Console.ReadKey();
@@ -49,7 +49,7 @@ class TrainingHallMenu{
     Console.Clear();
   }
 
-  public static void SkillToLearn(ref Character c, List<SkillBase>skillOfTheDay){
+  public static Character SkillToLearn(Character c, List<SkillBase>skillOfTheDay){
     int choice;
     //Show the skill avaliable to learn for a day
     SkillTrainingScreen.SkillDisplay(skillOfTheDay);
@@ -92,6 +92,8 @@ class TrainingHallMenu{
         Console.ReadKey();
       }
     }   
+
+    return c;
   }
 
   public static bool StatsIncrease(ref Character chosen)

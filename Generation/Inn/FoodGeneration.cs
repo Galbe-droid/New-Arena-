@@ -9,7 +9,7 @@ class FoodGeneration
     private static List<IFood> fruitOfTheDay = new List<IFood>();
 
     //Prefabs
-    public static List<Fruit> FruitsPrefab = FoodList.FruitList;
+    public static List<Consumable> FruitsPrefab = FoodList.FruitList;
 
     //Enum
     public static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
@@ -17,16 +17,16 @@ class FoodGeneration
     public static List<IFood> FruitOfTheDay { get => fruitOfTheDay; set => fruitOfTheDay = value; }
 
     //Creates the fruits and place then on the list
-    public static Fruit FruitCreator()
+    public static Consumable FruitCreator()
     {
       Random random = new Random();
       int randId = random.Next(FruitsPrefab.Count);
   
-      Fruit fruit = new Fruit(FruitsPrefab.Find(f => f.Id == randId));
+      Consumable fruit = new Consumable(FruitsPrefab.Find(f => f.Id == randId));
   
       fruit.Quality = (FruitQuality)typeListFruit.GetValue(random.Next(1, typeListFruit.Length));
   
-      if(fruit.Quality == FruitQuality.New)
+      if((FruitQuality)fruit.Quality == FruitQuality.New)
       {
         fruit.RecoveryHp += (int)(fruit.RecoveryHp * 0.2f);
         return fruit;

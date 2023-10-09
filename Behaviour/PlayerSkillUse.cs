@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Screens;
 
 namespace New_Arena_.Behaviour
 {
@@ -19,38 +20,19 @@ namespace New_Arena_.Behaviour
       int skillCount = skillList.Count;
       //Create pages in case the skill list has more then 3 skills, excluding "Defensive Position"
       decimal pageLimit = (skillList.Count < 3) ? 1 : Math.Ceiling(Convert.ToDecimal(skillCount)/3);
-
-      Console.WriteLine(pageLimit);
-      Console.WriteLine((skillCount/3));
       do
       {
         Console.Clear();
         //Reinstante the screen so player can chance pages with flowing the screen 
         CombatScreen.Stats(c, m);
+        
         //Create a page for each 3 skills
         skillCount = (skillList.Count > 3 + ((page - 1) * 3)) ? 3 : skillCount = skillList.Count - (page - 1) * 3;
 
         //Loop for display the image 
-        Console.WriteLine($"=================Page {page}/{pageLimit} ====================");
-        for(int i = 0; i < skillCount; i ++){
-          int currentPage = (page - 1) * 3;
-          currentPage += i;
-          if(!skillList.ElementAt(currentPage).Cooldown){
-            Console.WriteLine($"{i + 1} - {skillList.ElementAt(currentPage).SkillDescription()}");
-            Console.WriteLine("======================================");   
-          }
-          else{
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            if(skillList.ElementAt(currentPage).Cooldown && (c.BuffActive.Exists(s => s.Id == skillList.ElementAt(currentPage).Id) || m.DebuffActive.Exists(s => s.Id == skillList.ElementAt(currentPage).Id))){
-              Console.WriteLine($"{i + 1} - {skillList.ElementAt(currentPage).Name} currently activated...");
-            }else{
-              Console.WriteLine($"{i + 1} - {skillList.ElementAt(currentPage).SkillOnCooldown()}");
-            }          
-            Console.ResetColor();
-            Console.WriteLine("======================================");   
-          }
-        }           
+        SkillListInCombat.Screen(page, pageLimit, skillCount, skillList, c, m);          
         Console.WriteLine();  
+
         //Loop for changing the page in case it has more then 3 skills 
         if(pageLimit > 1)
         {
@@ -68,10 +50,9 @@ namespace New_Arena_.Behaviour
             page = 1;
           }
           else{
-            //multiplay the choice with the page getting the correct position +1
-            choice *= page;
-            //Corrects the possition 
-            choice -= 1;
+            //multiplay the choice with the page getting the correct position 
+            choice = (choice * page) - 1;
+
             //Check if skill is on cooldown and prevent using it 
             if(skillList.ElementAt(choice).Cooldown){
               _skillInCooldown = true;

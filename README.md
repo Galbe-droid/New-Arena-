@@ -16,15 +16,15 @@ In Progress:
     1.1.Attack // Complete
     1.2.Defend // Complete
     1.3 Skills // Complete
-    1.4 Itens // TBD 
+    1.4 Itens // Complete
     
   2.Inn
     2.1. Food Display // Complete
     2.2. Food Consuption // Complete
     2.3. Food Types (Fruits, Meals and Potions) // Only Fruits - In Progress
-    2.4. Taking Food // TBD 
+    2.4. Taking Food // Complete
     
-  3.Training Hall // In Progress
+  3.Training Hall
     3.1 Stats Increase // Complete
     3.2 Skill Training // Complete
   
@@ -35,7 +35,7 @@ In Progress:
     5.2 Skill Trained - A list of learned skills // Complete
     5.3 Buff and DeBuffs // Complete
     5.4 Equipaments // TBD
-    5.5 Iten Bag // TBD
+    5.5 Iten Bag // Complete
     
   6.Skills 
     6.1 Base of Skills - A base for all skills to base on // Complete

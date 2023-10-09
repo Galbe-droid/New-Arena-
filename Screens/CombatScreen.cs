@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
 
 //This screen shows the combat stats of player and monster, and players options for the combat 
 class CombatScreen
@@ -61,6 +63,43 @@ class CombatScreen
 
     Console.WriteLine();
 
-    Console.WriteLine("Options: A - Attack / S - Skill / D - Defend");
+    Console.Write("Options: A - Attack / ");
+
+    if(c.SkillTrained.Count <= 1)
+    {
+      Console.ForegroundColor = ConsoleColor.DarkGray;
+      Console.Write("S - Skill");
+      Console.ResetColor();
+      Console.Write(" / ");
+    }
+    else
+    {
+      Console.Write("S - Skill / ");
+    }
+
+    if(c.BuffActive.Exists(skill => skill.Id == 0))
+    {
+      Console.ForegroundColor = ConsoleColor.DarkGray;
+      Console.Write("D - Defend");
+      Console.ResetColor();
+      Console.Write(" / ");
+    }
+    else
+    {
+      Console.Write("D - Defend / ");
+    }    
+
+    if(!c.ItemBag.Exists(food => food.Id <= 100))
+    {
+      Console.ForegroundColor = ConsoleColor.DarkGray;
+      Console.Write("I - Item");
+      Console.ResetColor();
+    }
+    else
+    {
+      Console.Write("I - Item");
+    }
+
+    Console.WriteLine();
   }
 }

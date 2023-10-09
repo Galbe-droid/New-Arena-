@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using New_Arena_.Behaviour;
+using New_Arena_.Game_Objects.Base_Objects;
 
 //This menu is the options for attacks of the player
 //A - Basic Attacks - Working
 //D - Basic Defense - Working
 //S - Skill - Working
+//I - Item - In Progress
 class CombatMenu
 {
   public static void PlayerChoice(ref Character c, ref Monster m){
@@ -17,10 +20,11 @@ class CombatMenu
       CombatScreen.CombatChoices(c, m);    
 
       Console.Write("Choose:");
+      string[] acceptableChoices = {"a", "d", "s", "i"};
 
       do{
         choice = Console.ReadLine();
-      }while(choice != "a" && choice != "d" && choice != "s");  
+      }while(!acceptableChoices.Contains(choice));  
 
       PlayerOptions(ref c, ref m, choice, ref actionMade);
 
@@ -50,6 +54,22 @@ class CombatMenu
           int skillChoice = PlayerSkillUse.SkillChoice(c, m, out skillChoice);
           actionMade = skillChoice == -1 ? false : true;
         }
+        break;
+
+      case "i":
+        if(c.ItemBag.Count == 0)
+        {
+          UpdateConsole.StaticMessage("No itens... ");
+          break;
+        }
+        
+        Consumable consume = new(BasicCombatBehaviour.ItemOption(c.ItemBag));
+        if(consume.Id == 9999)
+          break;
+
+        c = BasicCombatBehaviour.ConsumableUse(c, consume);
+        c.ItemBag.Remove(c.ItemBag.First(item => item.Id == consume.Id));
+        actionMade = true;
         break;
 
       default:

@@ -11,7 +11,7 @@ class InnScreen
     int count = 0;
     Console.WriteLine("============Fruits==============");
 
-    foreach(Fruit f in FruitsOfTheDay)
+    foreach(Consumable f in FruitsOfTheDay)
     {
       if(f.FoodEaten == false)
       {
@@ -27,35 +27,5 @@ class InnScreen
     }
 
     Console.WriteLine("================================");
-  }
-
-
-  public static void InnChoices(bool eating, bool taking)
-  { 
-    if(eating)
-    {
-      Console.ForegroundColor = ConsoleColor.DarkGray;
-      Console.Write("1 - Eat Food");
-      Console.ResetColor();
-    }  
-    else
-    {
-      Console.Write("1 - Eat Food");
-    } 
-
-    Console.Write(" / ");
-
-    if(eating)
-    {
-      Console.ForegroundColor = ConsoleColor.DarkGray;
-      Console.Write("2 - Take Some Food");
-      Console.ResetColor();
-    }
-    else
-    {
-      Console.Write("2 - Take Some Food");
-    }
-
-    Console.WriteLine();
   }
 }

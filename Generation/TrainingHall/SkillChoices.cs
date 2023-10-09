@@ -8,15 +8,13 @@ class SkillChoices{
 
   //Returns the list above to the TrainingHallMenu with the skills to learn
   public static List<SkillBase> LearningSkill(Character c){    
-    int CapableOfLearnLength = c.CapableOfLearn.Count;
-
     //If the player has more then 5 skill to learn he will receive only 5 skill to learn per day, it's random
-    if(CapableOfLearnLength >= 5){
+    if(c.CapableOfLearn.Count >= 5){
       PopulatingList(5, c);
       return SkillOfTheDay;
     }
-    else if(CapableOfLearnLength < 5 && CapableOfLearnLength > 0){
-      PopulatingList(CapableOfLearnLength, c);
+    else if(c.CapableOfLearn.Count < 5 && c.CapableOfLearn.Count > 0){
+      PopulatingList(c.CapableOfLearn.Count, c);
       return SkillOfTheDay;
     }
     else{
@@ -29,13 +27,11 @@ class SkillChoices{
     Random rand = new Random();
 
     int count = 0;
-    //Pick up the total quantity of skills that are avaliable to learn, minus the Id 0 skill witch is the defense options 
-    int capableOfLearnQuantity = (c.CapableOfLearn.Count() - c.SkillTrained.Count()) + 1;
-    int[] ids = new int[capableOfLearnQuantity];
+    int[] ids = new int[skillQty];
 
     //It checks if the skill is already trained 
     foreach(SkillBase s in c.CapableOfLearn){
-      if(!c.SkillTrained.Exists(x => x.Id == s.Id))
+      if(!c.SkillTrained.Exists(x => x.Id == s.Id) && count != skillQty)
       {
         ids[count] = s.Id;
         count++;
