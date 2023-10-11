@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
+using New_Arena_.Loading;
 
 class FoodGeneration
 {
@@ -9,7 +10,7 @@ class FoodGeneration
     private static List<IFood> fruitOfTheDay = new List<IFood>();
 
     //Prefabs
-    public static List<Consumable> FruitsPrefab = FoodList.FruitList;
+    public static List<Consumable> FruitsPrefab = ItemsLoading.ConsumablesList;
 
     //Enum
     public static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));

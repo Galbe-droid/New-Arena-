@@ -1,7 +1,7 @@
 using System;
 
 class BuffSkill : PerTurnSkill{
-  public BuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, BuffType whereToApply)
+  public BuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, string whereToApplyString)
   {
     Id = id;
     Name = name;
@@ -16,7 +16,8 @@ class BuffSkill : PerTurnSkill{
     CooldownTurns = 0;
     Tracked = 0;
     IsUsed = false;
-    WhereToApply = whereToApply;
+    WhereToApplyString = "";
+    WhereToApply = ApplyingType(WhereToApplyString);
   }
 
   public BuffSkill(BuffSkill buff){
@@ -34,6 +35,11 @@ class BuffSkill : PerTurnSkill{
     Tracked = 0;
     IsUsed = false;
     WhereToApply = buff.WhereToApply;
+  }
+
+  public BuffSkill()
+  {
+      
   }
 
   public override string ToString(){

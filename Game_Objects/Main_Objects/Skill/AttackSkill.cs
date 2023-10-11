@@ -1,7 +1,7 @@
 using System;
 
 class AttackSkill : OneShotSkill{
-  public AttackSkill(int id, string name, string desc, int minLevel, int turnsMax, int xpCost, int minDamage, int maxDamage, double modifier, StatsType playerStat){
+  public AttackSkill(int id, string name, string desc, int minLevel, int turnsMax, int xpCost, int minDamage, int maxDamage, double modifier, string playerStat){
     Id = id;
     Name = name;
     Desc = desc;
@@ -12,7 +12,8 @@ class AttackSkill : OneShotSkill{
     MinValue = minDamage;
     MaxValue = maxDamage;
     Modifier = modifier;
-    Stat = playerStat;
+    StatString = playerStat;
+    Stat = ApplyingType(StatString);
     Cooldown = false;
     CooldownTurns = 0;
   }
@@ -32,6 +33,11 @@ class AttackSkill : OneShotSkill{
     Cooldown = false;
     CooldownTurns = 0;
   }  
+
+  public AttackSkill()
+  {
+      
+  }
 
   public override string ToString(){
     string mainStat; 

@@ -1,0 +1,24 @@
+[
+    {
+        "Id": 101,
+        "Name": "Nasty Provocation",
+        "Desc": "Decrease Enemy Dodge",
+        "MinLevel": 0,
+        "TurnMax": 2,
+        "Qty": -4000,
+        "IsActivedOnce": true,
+        "XpCost": 0,
+        "WhereToApplyString": "dodge"
+    },
+    {
+        "Id": 102,
+        "Name": "Take Down",
+        "Desc": "Decrease Enemy Defense",
+        "MinLevel": 0,
+        "TurnMax": 2,
+        "Qty": -4,
+        "IsActivedOnce": true,
+        "XpCost": 0,
+        "WhereToApplyString": "defense"
+    }
+]

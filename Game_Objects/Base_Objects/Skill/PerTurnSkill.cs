@@ -11,11 +11,12 @@ abstract class PerTurnSkill : SkillBase{
     public bool IsUsed {get; set;}
     //Where to put the buff 
     public BuffType WhereToApply {get; set;}
+    //For JSON
+    public string WhereToApplyString {get; set;}
 
     public override int Applying(){          
         if(!this.IsActivedOnce){
             this.Tracked += this.Qty;
-            Console.WriteLine(this.Tracked);
             return this.Qty;
         }else if (this.IsActivedOnce && !this.IsUsed){
             this.IsUsed = true;
@@ -28,5 +29,24 @@ abstract class PerTurnSkill : SkillBase{
 
     public int Removal(){
         return this.Tracked;
+    }
+
+    public BuffType ApplyingType(string type){
+        if(type == "defense")
+            return BuffType.Defense;
+
+        if(type == "dodge")
+            return BuffType.Dodge;
+
+        if(type == "attack")
+            return BuffType.Attack;
+
+        if(type == "hp")
+            return BuffType.Hp;
+
+        if(type == "mp")
+            return BuffType.Mp;
+
+        return BuffType.Defense;
     }
 }

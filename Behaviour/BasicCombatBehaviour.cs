@@ -51,6 +51,7 @@ class BasicCombatBehaviour
     //It searches if the skill is already activated, if it is then it time is reset
     if(!creature.BuffActive.Exists(skill => skill.Id == 0)){
       BuffSkill _defense = (BuffSkill)creature.SkillTrained.Find(skill => skill.Id == 0);
+      Console.WriteLine(_defense.IsActivedOnce.ToString());
       creature.BuffActive.Add(new BuffSkill(_defense));
     }else{
       creature.BuffActive.Find(skill => skill.Id == 0).Turns = 0;
@@ -101,7 +102,7 @@ class BasicCombatBehaviour
 
           if(choice == -1)
           {
-            Consumable consumeNull = new(9999, "", 0, 0, 0, 0,FruitQuality.Prefab);
+            Consumable consumeNull = new(9999, "", 0, 0, 0, 0);
             return consumeNull;
           }
 
@@ -116,7 +117,7 @@ class BasicCombatBehaviour
 
         if(choice == -1)
         {
-          Consumable consumeNull = new(9999, "", 0, 0, 0, 0,FruitQuality.Prefab);
+          Consumable consumeNull = new(9999, "", 0, 0, 0, 0);
           return consumeNull;
         }
           

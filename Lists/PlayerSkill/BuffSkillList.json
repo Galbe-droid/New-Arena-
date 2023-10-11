@@ -1,0 +1,46 @@
+[
+    {
+        "Id": 0,
+        "Name": "Defensive Position",
+        "Desc": "Increase Base Defese",
+        "MinLevel": 0,
+        "TurnMax": 2,
+        "Qty": 4,
+        "IsActivedOnce": true,
+        "XpCost": 0,
+        "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 10,
+        "Name": "Light Movement",
+        "Desc": "Increase Dodge Chance",
+        "MinLevel": 0,
+        "TurnMax": 2,
+        "Qty": 15000,
+        "IsActivedOnce": true,
+        "XpCost": 0,
+        "WhereToApplyString": "dodge"
+    },
+    {
+        "Id": 11,
+        "Name": "Weak Point",
+        "Desc": "Aims on the enemy weak point",
+        "MinLevel": 0,
+        "TurnMax": 3,
+        "Qty": 4,
+        "IsActivedOnce": true,
+        "XpCost": 0,
+        "WhereToApplyString": "attack"
+    },
+    {
+        "Id": 12,
+        "Name": "Stone Skin",
+        "Desc": "Increase Def over 3 turns",
+        "MinLevel": 0,
+        "TurnMax": 3,
+        "Qty": 2,
+        "IsActiveOnce": false,
+        "XpCost": 0,
+        "WhereToApplyString": "defense"
+    }
+]

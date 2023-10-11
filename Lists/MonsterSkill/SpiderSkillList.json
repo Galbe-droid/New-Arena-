@@ -1,0 +1,39 @@
+{
+    "skills" : [
+        {
+            "Buff" : [
+
+            ],
+            "Debuff" : [
+                {
+                    "Id": 1101,
+                    "Name": "Shoot Web",
+                    "Desc": "Shoot a web, debilitating enemy movement by time",
+                    "MinLevel": 0,
+                    "TurnMax": 2,
+                    "Qty": -3000,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "WhereToApplyString": "dodge"
+                },
+                {
+                    "Id": 1102,
+                    "Name": "Poison Bite",
+                    "Desc": "Poison the enemy",
+                    "MinLevel": 0,
+                    "TurnMax": 3,
+                    "Qty": 3,
+                    "IsActivedOnce": true,
+                    "XpCost": 0,
+                    "WhereToApplyString": "hp"
+                }
+            ],
+            "Attack" : [
+        
+            ],
+            "Defense" : [
+        
+            ]
+        }
+    ]    
+}

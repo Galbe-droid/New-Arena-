@@ -1,0 +1,14 @@
+[
+    {
+        "Id": 301,
+        "Name": "First-Aid",
+        "Desc": "Simple regeneration",
+        "MinLevel": 0,
+        "TurnMax": 1,
+        "Cost": 0,
+        "MinValue": 5,
+        "MaxValue": 15,
+        "Modifier": 1.5,
+        "StatString": "int"
+    }
+]

@@ -12,7 +12,7 @@ class Consumable : ItemBase, IFood
   public bool FoodEaten {get; set;}
   public Enum Quality { get; set; }
 
-    public Consumable(int id, string name, int cost, int rarity, int hp, int mp, Enum quality)
+  public Consumable(int id, string name, int cost, int rarity, int hp, int mp)
   {
     Id = id;
     Name = name; 
@@ -20,7 +20,7 @@ class Consumable : ItemBase, IFood
     Rarity = rarity;
     RecoveryHp = hp; 
     RecoveryMp = mp;
-    Quality = quality;
+    Quality = FruitQuality.Prefab;
     FoodEaten = false;
   }
 

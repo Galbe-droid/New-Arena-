@@ -1,0 +1,26 @@
+[
+    {
+        "VariationId": 0,
+        "Name": "Poisonous",
+        "ExtraStr": 0,
+        "ExtraInt": 2,
+        "ExtraAgi": 1,
+        "ExtraVig": 0
+    },
+    {
+        "VariationId": 1,
+        "Name": "Tiny",
+        "ExtraStr": 0,
+        "ExtraInt": 1,
+        "ExtraAgi": 3,
+        "ExtraVig": 0
+    },
+    {
+        "VariationId": 2,
+        "Name": "Giant",
+        "ExtraStr": 2,
+        "ExtraInt": 0,
+        "ExtraAgi": 0,
+        "ExtraVig": 2
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "VariationId": 0,
+        "Name": "Incomplete",
+        "ExtraStr": 1,
+        "ExtraInt": 0,
+        "ExtraAgi": 0,
+        "ExtraVig": 1
+    },
+    {
+        "VariationId": 1,
+        "Name": "Helper",
+        "ExtraStr": 0,
+        "ExtraInt": 1,
+        "ExtraAgi": 0,
+        "ExtraVig": 2
+    },
+    {
+        "VariationId": 2,
+        "Name": "Armored",
+        "ExtraStr": 2,
+        "ExtraInt": 0,
+        "ExtraAgi": 0,
+        "ExtraVig": 2
+    }
+]

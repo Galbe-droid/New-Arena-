@@ -1,0 +1,40 @@
+{
+    "skills": [
+        {
+            "Buff" : [
+        
+            ],
+            "Debuff" : [
+        
+            ],
+            "Attack" : [
+                {
+                    "Id": 1001,
+                    "Name": "Volatility",
+                    "Desc": "Explodes On the enemy",
+                    "MinLevel": 0,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MinValue": 1,
+                    "MaxValue": 15,
+                    "Modifier": 1.0,
+                    "StatString": "vig"
+                }
+            ],
+            "Defense" : [
+                {            
+                    "Id": 1002,
+                    "Name": "Increase Mass",
+                    "Desc": "Generate more of it",
+                    "MinLevel": 0,
+                    "TurnMax": 5,
+                    "Cost": 0,
+                    "MinValue": 7,
+                    "MaxValue": 12,
+                    "Modifier": 1.0,
+                    "StatString": "int"            
+                }
+            ]
+        }
+    ]   
+}

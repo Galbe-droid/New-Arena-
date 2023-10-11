@@ -1,7 +1,7 @@
 using System; 
 
 class DebuffSkill : PerTurnSkill{
-  public DebuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, BuffType whereToApply){
+  public DebuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, string whereToApplyString){
     Id = id;
     Name = name;
     Desc = desc;
@@ -14,7 +14,8 @@ class DebuffSkill : PerTurnSkill{
     CooldownTurns = 0;
     Tracked = 0;
     IsUsed = false;
-    WhereToApply = whereToApply;
+    WhereToApplyString = "";
+    WhereToApply = ApplyingType(WhereToApplyString);
   }
 
   public DebuffSkill(DebuffSkill debuff){
@@ -31,6 +32,11 @@ class DebuffSkill : PerTurnSkill{
     Tracked = 0;
     IsUsed = false;
     WhereToApply = debuff.WhereToApply;
+  }
+
+  public DebuffSkill()
+  {
+      
   }
 
   public override string ToString(){

@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using New_Arena_.Behaviour;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
+using New_Arena_.Loading;
 
 class MainClass {  
   public static void Main (string[] args) {
     //Loading
-    SkillList.CreateMonsterSkillList();
-    SkillList.AddSkills();
-    MonsterList.AddMonsters();
-    MonsterList.CreateMonsterVariationList();
-    FoodList.AddFruits();  
+    MonsterLoading.Loading();
+    SkillsLoading.Loading();
+    ItemsLoading.ConsumablesLoading();
     //End Loading
 
     //Main Screen
@@ -176,6 +175,7 @@ class MainClass {
         SkillUse.CooldownCounting(chosen, monster);
       }      
       chosen.CheckForBuffsDebuffs();
+      UpdateConsole.StaticMessage(chosen.BuffActive.Count.ToString());
       monster.CheckForBuffsDebuffs();     
       
       //Generating initiative

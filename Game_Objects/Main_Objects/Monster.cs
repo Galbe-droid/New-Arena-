@@ -9,13 +9,13 @@ class Monster : Creature
   public Types Type {get; set;}
   public SubTypes[] SubType = new SubTypes[2];
 
-  public Monster(int id, string name, int level, Types type, int str, int inte, int agi, int vig)
+  public Monster(int id, string name, int level, int str, int inte, int agi, int vig)
   {
     Id = id;
     Name = name;
 
     Level = level;
-    Type = type;
+    Type = Types.Prefab;
 
     Str = str;
     Int = inte;

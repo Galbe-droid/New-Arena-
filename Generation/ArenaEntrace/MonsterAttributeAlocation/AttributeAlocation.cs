@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using New_Arena_.Loading;
 
 //Creating a monster for the player to choose from 
 //This code places the points on the monster
@@ -71,7 +72,7 @@ class AttributeAlocation
 
   public static void AddSkills(ref Monster monster)
   {
-    List<SkillBase> ListOfMonsterSkill = SkillList.ListPerMonster[monster.Id];
+    List<SkillBase> ListOfMonsterSkill = SkillsLoading.ListPerMonster[monster.Id];
 
     foreach (SkillBase skill in ListOfMonsterSkill){
       if(monster.Level >= skill.MinLevel){

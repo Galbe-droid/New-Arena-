@@ -1,0 +1,26 @@
+[
+    {
+        "VariationId": 0,
+        "Name": "Unstable",
+        "ExtraStr": 0,
+        "ExtraInt": 1,
+        "ExtraAgi": 1,
+        "ExtraVig": 0
+    },
+    {
+        "VariationId": 1,
+        "Name": "Resistent",
+        "ExtraStr": 0,
+        "ExtraInt": 0,
+        "ExtraAgi": 0,
+        "ExtraVig": 3
+    },
+    {
+        "VariationId": 2,
+        "Name": "Spiked",
+        "ExtraStr": 3,
+        "ExtraInt": 0,
+        "ExtraAgi": 0,
+        "ExtraVig": 1
+    }
+]

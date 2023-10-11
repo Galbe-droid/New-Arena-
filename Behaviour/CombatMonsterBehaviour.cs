@@ -114,11 +114,11 @@ class CombatMonsterBehaviour
     List<int> values = new();
     //values[0]
     if(t == Types.Offensive){
-      values.Add(99);
+      values.Add(75);
     }else if(t == Types.Balance){
-      values.Add(99);
+      values.Add(50);
     }else if(t == Types.Defensive){
-      values.Add(99);
+      values.Add(40);
     }
 
     //values[1]

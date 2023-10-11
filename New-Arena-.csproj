@@ -6,4 +6,9 @@
     <RootNamespace>New_Arena_</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLua" Version="1.6.3" />
+  </ItemGroup>
+
 </Project>

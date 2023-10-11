@@ -1,0 +1,42 @@
+[
+    {
+        "Id": 0,
+        "Name": "Apple",
+        "Cost": 0,
+        "Rarity": 0,
+        "RecoveryHp": 10,
+        "RecoveryMp": 0
+    },
+    {
+        "Id": 1,
+        "Name": "Pear",
+        "Cost": 0,
+        "Rarity": 0,
+        "RecoveryHp": 5,
+        "RecoveryMp": 0
+    },
+    {
+        "Id": 2,
+        "Name": "Apricot",
+        "Cost": 0,
+        "Rarity": 0,
+        "RecoveryHp": 15,
+        "RecoveryMp": 5
+    },
+    {
+        "Id": 3,
+        "Name": "Gooey Blue Fruit",
+        "Cost": 0,
+        "Rarity": 0,
+        "RecoveryHp": 5,
+        "RecoveryMp": 20
+    },
+    {
+        "Id": 4,
+        "Name": "Gooey Red Fruit",
+        "Cost": 0,
+        "Rarity": 0,
+        "RecoveryHp": 20,
+        "RecoveryMp": 5
+    }
+]

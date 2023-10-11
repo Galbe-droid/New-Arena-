@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Loading;
 //Creature Abstraction to use with player and monster 
 //This holds all information that any player or monster share
 abstract class Creature{
@@ -190,7 +191,7 @@ abstract class Creature{
   //Use on the beggining of combat for monsters, it loads a pre base skill 
   //For players this loads after character creation 
   public void Initialization(){
-    foreach(SkillBase b in SkillList.AllSkills){
+    foreach(SkillBase b in SkillsLoading.AllSkills){
       if(b.Id == 0){
         SkillTrained.Add(b);
       }

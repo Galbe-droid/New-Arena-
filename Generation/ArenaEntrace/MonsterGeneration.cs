@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Loading;
 
 class MonsterGeneration
 {
   public static List<Monster> MonstersListOfTheDay = new();
 
-  public static List<Monster> monsterListPrefab = MonsterList.Monsters;
+  public static List<Monster> monsterListPrefab = MonsterLoading.Monsters;
 
-  public static Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterList.ListOfMonsterVariation;
+  public static Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterLoading.ListOfMonsterVariation;
 
   public static Monster Creator()
   {

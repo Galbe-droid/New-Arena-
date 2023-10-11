@@ -1,4 +1,7 @@
 {
     "dotnet.defaultSolution": "New-Arena-.sln",
-    "FSharp.suggestGitignore": false
+    "FSharp.suggestGitignore": false,
+    "Lua.diagnostics.globals": [
+        "item"
+    ]
 }

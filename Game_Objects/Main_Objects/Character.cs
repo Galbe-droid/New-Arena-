@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using New_Arena_.Game_Objects.Base_Objects;
+using New_Arena_.Loading;
 //Character uses abstraction Creature 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death
@@ -109,7 +110,7 @@ class Character : Creature
   }
 
   public void FillAvaliableSkill(){
-    foreach(SkillBase s in SkillList.AllSkills){
+    foreach(SkillBase s in SkillsLoading.AllSkills){
       if(!this.CapableOfLearn.Exists(x => x.Id == s.Id) && !this.SkillTrained.Exists(x => x.Id == s.Id)){
         if(s.GetType() == typeof(BuffSkill)){
           this.CapableOfLearn.Add(new BuffSkill((BuffSkill)s));

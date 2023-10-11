@@ -1,0 +1,39 @@
+{
+    "skills" : [
+        {
+            "Buff" : [
+                {
+                    "Id": 1201,
+                    "Name": "Ancient Power",
+                    "Desc": "Extracts old power to increase attack",
+                    "MinLevel": 0,
+                    "TurnMax": 5,
+                    "Qty": 1,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "WhereToApplyString": "attack"
+                },
+                {
+                    "Id": 1202,
+                    "Name": "Defensive Grid",
+                    "Desc": "Increase its defense over time",
+                    "MinLevel": 0,
+                    "TurnMax": 5,
+                    "Qty": 1,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "WhereToApplyString": "defense"
+                }
+            ],
+            "Debuff" : [
+            
+            ],
+            "Attack" : [
+            
+            ],
+            "Defense" : [
+            
+            ]
+        }
+    ]    
+}

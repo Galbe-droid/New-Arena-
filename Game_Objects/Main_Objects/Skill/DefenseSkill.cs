@@ -1,7 +1,7 @@
 using System;
 
 class DefenseSkill : OneShotSkill{
-    public DefenseSkill(int id, string name, string desc, int minLevel, int turnsMax, int xpCost, int minValue, int maxValue, double modifier, StatsType playerStat){
+    public DefenseSkill(int id, string name, string desc, int minLevel, int turnsMax, int xpCost, int minValue, int maxValue, double modifier, string playerStat){
     Id = id;
     Name = name;
     Desc = desc;
@@ -12,7 +12,8 @@ class DefenseSkill : OneShotSkill{
     MinValue = minValue;
     MaxValue = maxValue;
     Modifier = modifier;
-    Stat = playerStat;
+    StatString = playerStat;
+    Stat = ApplyingType(StatString);
     Cooldown = false;
     CooldownTurns = 0;
   }
@@ -32,6 +33,11 @@ class DefenseSkill : OneShotSkill{
     Cooldown = false;
     CooldownTurns = 0;
   }  
+
+  public DefenseSkill()
+  {
+      
+  }
 
   public override string ToString(){
     string mainStat; 

@@ -1,0 +1,29 @@
+[
+    {
+        "Id": 0,
+        "Name": "Slime",
+        "Level": 1,
+        "Str": 3,
+        "Int": 3,
+        "Agi": 3,
+        "Vig": 3
+    },
+    {
+        "Id": 1,
+        "Name": "Spider",
+        "Level": 1,
+        "Str": 3,
+        "Int": 1,
+        "Agi": 4,
+        "Vig": 4
+    },
+    {
+        "Id": 2,
+        "Name": "Golem",
+        "Level": 1,
+        "Str": 5,
+        "Int": 1,
+        "Agi": 1,
+        "Vig": 7
+    }
+]
