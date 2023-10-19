@@ -1,50 +1,52 @@
 using System;
 using System.Collections.Generic;
-using New_Arena_.Game_Objects.Base_Objects;
-using New_Arena_.Game_Objects.Base_Objects.Interface;
+using System.Linq;
+using New_Arena_.Configuration;
 using New_Arena_.Loading;
 
 class FoodGeneration
 {
-    //ListOfTheDay
-    private static List<IFood> fruitOfTheDay = new List<IFood>();
-
     //Prefabs
-    public static List<Consumable> FruitsPrefab = ItemsLoading.ConsumablesList;
-
+    public static List<Food> FruitsPrefab = ItemsLoading.ConsumablesList;
     //Enum
-    public static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
+    private static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
 
-    public static List<IFood> FruitOfTheDay { get => fruitOfTheDay; set => fruitOfTheDay = value; }
+    private static List<Food> FruitOfTheDay = new List<Food>();
 
     //Creates the fruits and place then on the list
-    public static Consumable FruitCreator()
+    private static Food FruitCreator()
     {
-      Random random = new Random();
-      int randId = random.Next(FruitsPrefab.Count);
+      int randId = ManagerRandom.GetThreadRandom().Next(FruitsPrefab.Count);
   
-      Consumable fruit = new Consumable(FruitsPrefab.Find(f => f.Id == randId));
+      Food food = new Food(FruitsPrefab.Find(f => f.Id == randId));
   
-      fruit.Quality = (FruitQuality)typeListFruit.GetValue(random.Next(1, typeListFruit.Length));
+      food.Quality = (FruitQuality)typeListFruit.GetValue(ManagerRandom.GetThreadRandom().Next(1, typeListFruit.Length));
   
-      if((FruitQuality)fruit.Quality == FruitQuality.New)
+      if((FruitQuality)food.Quality == FruitQuality.New)
       {
-        fruit.RecoveryHp += (int)(fruit.RecoveryHp * 0.2f);
-        return fruit;
+        food.HpModifier += (int)Math.Truncate(food.HpModifier * 0.2f);
+        return food;
       }
       else
       {
-        fruit.RecoveryHp -= (int)(fruit.RecoveryHp * 0.2f);
-        return fruit;
+        food.HpModifier -= (int)Math.Truncate(food.HpModifier * 0.2f);
+        return food;
       }    
     }
 
   //Place the fruit on the list 
-  public static List<IFood> ListOfFruitOfTheDay()
+  public static List<Food> ListOfFruitOfTheDay()
   {
     for(int i = 0; i < 5; i++)
     {
-      FruitOfTheDay.Add(FruitCreator());
+      Food food = FruitCreator();    
+      
+      Food foodInList = FruitOfTheDay.FirstOrDefault(X => X.Id == food.Id && X.Quality.ToString() == food.Quality.ToString());
+
+      if(foodInList != null)
+        foodInList.Quantity++;      
+      else
+        FruitOfTheDay.Add(food);
     }
 
     return FruitOfTheDay;

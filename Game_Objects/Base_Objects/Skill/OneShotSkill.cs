@@ -1,4 +1,5 @@
 using System;
+using New_Arena_.Configuration;
 
 abstract class OneShotSkill : SkillBase{
     public int MinValue {get;set;}
@@ -12,9 +13,8 @@ abstract class OneShotSkill : SkillBase{
     }
 
     public override int Applying(){
-        Random rand = new Random();
 
-        int finalValue = rand.Next(this.MinValue, (this.MaxValue + 1));
+        int finalValue = ManagerRandom.GetThreadRandom().Next(this.MinValue, (this.MaxValue + 1));
         return finalValue;
     }  
 

@@ -13,7 +13,8 @@ class ArenaEntrance
       Console.WriteLine("=====================Cage:" + cage + "========================");
       Console.WriteLine($"Name: {m.Name} Lvl: {m.Level} Behavior: {m.Type} ({m.SubType[0]} and {m.SubType[1]})");
       Console.WriteLine($"Stats: Str: {m.Str} Int: {m.Int} Agi: {m.Agi} Vig: {m.Vig}");
-      Console.WriteLine($"Qty de skills: {m.SkillTrained.Count}");
+      Console.WriteLine($"Min/Max Damage: {m.MinDamage} - {m.MaxDamage}");
+      Console.WriteLine($"Min/Max Defense: {m.MinDefense} - {m.MaxDefense}");
       cage ++;
     }
   }

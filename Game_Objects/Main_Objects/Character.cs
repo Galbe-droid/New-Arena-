@@ -1,20 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using New_Arena_.Game_Objects;
 using New_Arena_.Game_Objects.Base_Objects;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
 using New_Arena_.Loading;
 //Character uses abstraction Creature 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death
-//Still no: Skills, classes(Maybe)
-class Character : Creature
+class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
 {
-  public int Id {get; set;}
-  
+  public int Id {get; set;}  
   public int Xp {get; set;}
-
-  public List<SkillBase> CapableOfLearn = new List<SkillBase>();
-
-  public List<ItemBase> ItemBag = new List<ItemBase>();
+  public Weapon Weapon { get; set; }
+  public Armor Armor { get; set; }
+  public List<Potion> PotionEffect { get; set; }
+  public List<SkillBase> CapableOfLearn = new();
+  public List<ItemBase> ItemBag = new();
+  public List<ItemBase> EquipamentBag = new();
 
   public Character(int id, string name, int str, int inte, int agi, int vig)
   {
@@ -29,7 +32,7 @@ class Character : Creature
     Agi = agi;
     Vig = vig; 
 
-    Defense = Vig/2;
+    Defense = (int)Math.Ceiling(Vig * 0.5);
     Dodge = 0 + (500 * Agi);
     Attack = Str;
 
@@ -43,6 +46,9 @@ class Character : Creature
     ModDefense = 0;
     ModDodge = 0 * 500;
     ModAttack = 0;
+
+    Weapon = null;
+    Armor = null;
 
     Dead = false;
   }
@@ -75,10 +81,13 @@ class Character : Creature
     ModDodge = 0 * 500;
     ModAttack = 0;
 
+    Weapon = null;
+    Armor = null;
+
     Dead = false;
   }
 
-   public Character()
+  public Character()
   {
     Id = 9999;
     Name = "";
@@ -106,6 +115,9 @@ class Character : Creature
     ModDodge = 0 * 500;
     ModAttack = 0;
 
+    Weapon = null;
+    Armor = null;
+
     Dead = false;
   }
 
@@ -128,14 +140,84 @@ class Character : Creature
     }
   }
 
+  public void UpdateCharacter()
+  {
+    this.Defense = this.Vig/2;
+    this.Dodge = 0 + (500 * this.Agi);
+    this.Attack = this.Str;
+
+    this.Health = 10 + (this.Vig * 10);
+    this.Mana = 5 + (this.Int * 5);
+
+    UpdateMinMaxValues();
+  }
+
   public void ExcludingSkills(int id){
     this.CapableOfLearn.Remove(this.CapableOfLearn.Find(s => s.Id == id));
+  }
+
+  public void AddingItens(ItemBase item)
+  {
+    switch(item.GetType().ToString())
+    {
+      case "Food":
+        Food food = new((Food)item);
+        Food foodInTheList = (Food)ItemBag.FirstOrDefault(X => X.Id == food.Id && X.Quality.ToString() == food.Quality.ToString());
+
+        if(foodInTheList != null)
+          foodInTheList.Quantity++;
+        else
+        {
+          ItemBag.Add(food);
+        }
+        break;
+
+      case "HpAndMpPotion":
+        HpAndMpPotion hPotion = new((HpAndMpPotion)item);
+        HpAndMpPotion hPotionInList = (HpAndMpPotion)ItemBag.FirstOrDefault(X => X.Id == hPotion.Id && X.Quality.ToString() == hPotion.Quality.ToString());
+
+        if(hPotionInList != null)
+          hPotionInList.Quantity++;
+        else
+        {
+          ItemBag.Add(hPotion);
+        }
+        break;
+
+      case "StatusPotion":
+        StatusPotion sPotion = new((StatusPotion)item);
+        StatusPotion sPotionInList = (StatusPotion)ItemBag.FirstOrDefault(X => X.Id == sPotion.Id && X.Quality.ToString() == sPotion.Quality.ToString());
+
+        if(sPotionInList != null)
+          sPotionInList.Quantity++;
+        else
+        {
+          ItemBag.Add(sPotion);
+        }
+        break;
+
+      case "Weapon":
+        Weapon weapon = new((Weapon)item);
+
+        EquipamentBag.Add(weapon);
+        break;
+
+      case "Armor":
+        Armor armor = new((Armor)item);
+
+        EquipamentBag.Add(armor);
+        break;
+    }
   }
 
   public override string ToString(){
     return $"Name: {this.Name} \n" +
            $"Total Xp: {this.Xp} || Total Gold: 0 \n" +
-           $"Str: {this.Str} || Agi: {this.Agi} || Int: {this.Int} || Vit: {this.Vig} \n";
+           $"Str: {this.Str} || Agi: {this.Agi} || Int: {this.Int} || Vit: {this.Vig} \n" +
+           $"Weapon: {this.Weapon.Name} || Quality: {this.Weapon.Quality} \n" +
+           $"Armor: {this.Armor.Name} || Quality: {this.Armor.Quality} \n" +
+           $"Min/Max Damage: {this.MinDamage} - {this.MaxDamage} \n" +
+           $"Min/Max Defense: {this.MinDefense} - {this.MinDefense}";
   }
 
   public string ShowSkills(){
@@ -150,9 +232,91 @@ class Character : Creature
 
   public string ShowBag(){
     string longString = "";
-    foreach(ItemBase i in this.ItemBag){
-      longString += $"Name: {i.Name} || Type: {i.GetType()} \n";
+    foreach(ItemBase i in ItemBag){
+      longString += i.ToString() + "\n";
     }
+    Console.WriteLine("=========Equipament========");
+    foreach(ItemBase i in EquipamentBag){
+      longString += i.ToString() + "\n";
+    }
+
     return longString;
+  }
+
+  public void AddEffects(StatusPotion statusPotion)
+  {
+    switch(statusPotion.BuffManipulated)
+    {
+      case BuffType.Attack:
+        ModAttack += statusPotion.Applying();
+        statusPotion.IsActive = true;
+        break;
+
+      case BuffType.Defense:
+        ModDefense += statusPotion.Applying();
+        statusPotion.IsActive = true;
+        break;
+
+      case BuffType.Dodge:
+        ModDodge += statusPotion.Applying();
+        statusPotion.IsActive = true;
+        break;
+    }
+  }
+
+  public void StatusPotionTurnPass()
+  {
+    foreach(StatusPotion potion in PotionEffect.Cast<StatusPotion>())
+    {
+      potion.TurnCount();
+    }
+  }
+
+  public void PotionEffectRemoval()
+  {
+    foreach(StatusPotion potion in PotionEffect.Cast<StatusPotion>())
+    {
+      if(potion.IsActive && potion.Turn >= potion.TurnMax)
+      {
+        PotionEffect.Remove(potion);
+      }
+    }
+  }
+
+  public void Checking(){
+    StatusPotionTurnPass();
+    PotionEffectRemoval();
+  }
+
+  public void Initalization()
+  {
+    FillAvaliableSkill();
+    InitializeWeapon();
+    InitializeArmor();
+    InitializationDefense();
+    UpdateMinMaxValues();
+  }
+
+  public void InitializeWeapon()
+  {
+    Weapon = new(ItemsLoading.WeaponList.Find(weapon => weapon.Id == 0))
+    {
+        Quality = WeaponType.Regular
+    };
+  }
+
+  public new void UpdateMinMaxValues(){
+    MinDamage = (int)Math.Ceiling(TotalAttack() * Weapon.MinDamageModifier) + Weapon.MinDamage;
+    MaxDamage = (int)Math.Ceiling(TotalAttack() * Weapon.MaxDamageModifier) + Weapon.MaxDamage;
+    MinDefense = (int)Math.Ceiling(TotalDefense() * Armor.MinDefenseModifier) + Armor.MinDefense;
+    MaxDefense = (int)Math.Ceiling(TotalDefense() * Armor.MaxDefenseModifier) + Armor.MaxDefense;
+  }
+
+  public void InitializeArmor()
+  {
+    Armor = new(ItemsLoading.ArmorList.Find(armor => armor.Id == 0))
+    {
+        Quality = WeaponType.Regular
+    };
   }
 }

@@ -44,8 +44,7 @@ class CombatScreen
 
     Console.WriteLine("Dodge");
     Console.WriteLine(CharTrueDodge + "%  ///// " + MonsterTrueDodge + "%");
-
-
+    
     Console.WriteLine("=================================");    
   }
 

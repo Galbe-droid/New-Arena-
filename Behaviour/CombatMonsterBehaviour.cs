@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using New_Arena_.Behaviour;
+using New_Arena_.Configuration;
 
 //Monster Behaviour in combate 
 //Still a lot of work
@@ -10,14 +11,12 @@ class CombatMonsterBehaviour
   //Method receive Player defense, Player Dodge chance, Monster damage and monster type
   public static void MonsterChoice(ref Character c, ref Monster m )
   {
-    //Depending of the monster type it will be more inclined to use certain actions 
-    Random rand = new Random();
-    int choice = rand.Next(0,101);
+    //Depending of the monster type it will be more inclined to use certain actions
+    int choice = ManagerRandom.GetThreadRandom().Next(0,101);
     List<int> monsterTypeChance = TypeProbability(m.Type, m.SubType);
 
     if(choice <= monsterTypeChance[0]){
-      rand.Next();
-      int choiceOfAttack = rand.Next(0,101);
+      int choiceOfAttack = ManagerRandom.GetThreadRandom().Next(0,101);
 
       if(choiceOfAttack <= monsterTypeChance[1])
       {
@@ -29,7 +28,7 @@ class CombatMonsterBehaviour
         
         if(possibleAttacksSkills.Count != 0)
         {
-          int skillDecision = rand.Next(possibleAttacksSkills.Count);
+          int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleAttacksSkills.Count);
           SkillUse.AttackSkillUse<Creature>(m, c, (AttackSkill)possibleAttacksSkills[skillDecision]);
         }
         else
@@ -39,14 +38,14 @@ class CombatMonsterBehaviour
       }      
     }
     else{
-      int choiceOfDefense = rand.Next(0,101);
+      int choiceOfDefense = ManagerRandom.GetThreadRandom().Next(0,101);
       if(choiceOfDefense <= monsterTypeChance[2])
       {
         ExecuteBasicDefense(c, m);
       }
       else
       {
-        int choiceOfSkill = rand.Next(0,101);
+        int choiceOfSkill = ManagerRandom.GetThreadRandom().Next(0,101);
 
         List<SkillBase> possibleDefenseSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DefenseSkill)).Where(s => s.Cooldown == false).ToList();
         List<SkillBase> possibleDebuffSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DebuffSkill)).Where(s => s.Cooldown == false).ToList();
@@ -61,7 +60,7 @@ class CombatMonsterBehaviour
             }
             else
             {
-              int skillDecision = rand.Next(possibleDefenseSkills.Count);
+              int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleDefenseSkills.Count);
               SkillUse.DefenseSkillUse<Monster>(m, (DefenseSkill)possibleDefenseSkills[skillDecision]);            
             }          
           }
@@ -72,7 +71,7 @@ class CombatMonsterBehaviour
             }
             else
             {
-              int skillDecision = rand.Next(possibleDebuffSkills.Count);
+              int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleDebuffSkills.Count);
               SkillUse.DebuffSkillUse<Creature>(c, m, (DebuffSkill)possibleDebuffSkills[skillDecision]);            
             }    
           }
@@ -83,7 +82,7 @@ class CombatMonsterBehaviour
             }
             else
             {
-              int skillDecision = rand.Next(possibleBuffSkills.Count);
+              int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleBuffSkills.Count);
               SkillUse.BuffSkillUse<Monster>(m, (BuffSkill)possibleBuffSkills[skillDecision]);            
             }
           }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using New_Arena_.Configuration;
 using New_Arena_.Loading;
 
 //Creating a monster for the player to choose from 
@@ -10,14 +11,13 @@ class AttributeAlocation
   //Generate a Balace Type Monster
   public static Monster PlacingAtributes(Monster monster)
   {
-    Random random = new Random();
     //Quatity of points to be allocated 
     int atributes = monster.Level * 2;
     int[] atributeChance = MonsterProbability(monster.Type);
 
     while(atributes > 0)
     {
-      int chance = random.Next(0, 100); 
+      int chance = ManagerRandom.GetThreadRandom().Next(0, 100); 
 
       if(chance >= atributeChance[0] && chance <= atributeChance[1])
       {
@@ -79,5 +79,7 @@ class AttributeAlocation
         monster.SkillTrained.Add(skill);
       }
     }
+
+    monster.InitializationDefense();
   }
 }

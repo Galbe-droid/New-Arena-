@@ -1,4 +1,4 @@
-enum StatsType{
+public enum StatsType{
   Str,
   Agi,
   Vig,

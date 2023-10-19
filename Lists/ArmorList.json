@@ -1,0 +1,42 @@
+[
+    {
+        "Id" : 0,
+        "Name" : "No Armor",
+        "Cost" : 0,
+        "Rarity" : 0,
+        "MinDefense" : 1,
+        "MaxDefense" : 2,
+        "MinDefenseModifier" : 0.3,
+        "MaxDefenseModifier" : 1
+    },
+    {
+        "Id" : 1,
+        "Name" : "Light Clothing",
+        "Cost" : 0,
+        "Rarity" : 0,
+        "MinDefense" : 2,
+        "MaxDefense" : 3,
+        "MinDefenseModifier" : 0.6,
+        "MaxDefenseModifier" : 1
+    },
+    {
+        "Id" : 2,
+        "Name" : "Leather Armor",
+        "Cost" : 0,
+        "Rarity" : 0,
+        "MinDefense" : 3,
+        "MaxDefense" : 5,
+        "MinDefenseModifier" : 0.2,
+        "MaxDefenseModifier" : 0.8
+    },
+    {
+        "Id" : 3,
+        "Name" : "Simple Metal Plate",
+        "Cost" : 0,
+        "Rarity" : 0,
+        "MinDefense" : 6,
+        "MaxDefense" : 7,
+        "MinDefenseModifier" : 0.2,
+        "MaxDefenseModifier" : 0.7
+    }
+]

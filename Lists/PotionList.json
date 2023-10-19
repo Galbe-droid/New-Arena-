@@ -1,0 +1,97 @@
+{
+    "Potion" : [
+        {
+            "HpAndMpPotion" : [
+                {
+                    "Id" : 0,
+                    "Name" : "Health Potion",
+                    "Cost" : 0,
+                    "Rarity" : 0,
+                    "HpModifier" : 25,
+                    "MpModifier" : 0,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 1,
+                    "Name" : "Mana Potion",
+                    "Cost" : 0,
+                    "Rarity" : 0,
+                    "HpModifier" : 0,
+                    "MpModifier" : 10,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 2,
+                    "Name" : "Elixer",
+                    "Cost" : 0,
+                    "Rarity" : 0,
+                    "HpModifier" : 30,
+                    "MpModifier" : 15,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 3,
+                    "Name" : "Molotov",
+                    "Cost" : 0,
+                    "Rarity" : 0,
+                    "HpModifier" : 15,
+                    "MpModifier" : 0,
+                    "UseOnPlayer" : false
+                }
+            ],
+            "StatusPotion" : [
+                {
+                    "Id" : 20,
+                    "Name" : "Stronger Potion",
+                    "Cost" : 0,
+                    "Rarity" : 0,        
+                    "BuffString" : "attack",
+                    "StatusQuantity" : 4,
+                    "TurnMax" : 2,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 21,
+                    "Name" : "Agility Potion",
+                    "Cost" : 0,
+                    "Rarity" : 0,        
+                    "BuffString" : "dodge",
+                    "StatusQuantity" : 4,
+                    "TurnMax" : 2,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 22,
+                    "Name" : "Resistent Potion",
+                    "Cost" : 0,
+                    "Rarity" : 0,        
+                    "BuffString" : "defense",
+                    "StatusQuantity" : 4,
+                    "TurnMax" : 2,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 23,
+                    "Name" : "Smoke Bomb",
+                    "Cost" : 0,
+                    "Rarity" : 0,        
+                    "BuffString" : "dodge",
+                    "StatusQuatity" : -4,
+                    "TurnMax" : 2,
+                    "UseOnPlayer" : false
+                },
+                {
+                    "Id" : 24,
+                    "Name" : "Stun Bomb",
+                    "Cost" : 0,
+                    "Rarity" : 0,        
+                    "BuffString" : "defense",
+                    "StatusQuantity" : -4,
+                    "TurnMax" : 2,
+                    "UseOnPlayer" : false
+                }
+            ]
+        }
+    ]
+    
+}

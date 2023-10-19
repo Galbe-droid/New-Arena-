@@ -5,7 +5,7 @@
         "Desc": "Decrease Enemy Dodge",
         "MinLevel": 0,
         "TurnMax": 2,
-        "Qty": -4000,
+        "Qty": -4,
         "IsActivedOnce": true,
         "XpCost": 0,
         "WhereToApplyString": "dodge"

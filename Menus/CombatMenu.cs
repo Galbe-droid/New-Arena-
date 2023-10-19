@@ -8,11 +8,11 @@ using New_Arena_.Game_Objects.Base_Objects;
 //A - Basic Attacks - Working
 //D - Basic Defense - Working
 //S - Skill - Working
-//I - Item - In Progress
+//I - Item - Working
 class CombatMenu
 {
   public static void PlayerChoice(ref Character c, ref Monster m){
-    string choice = "";
+    string choice;
     bool actionMade = false;
 
     do{
@@ -63,13 +63,7 @@ class CombatMenu
           break;
         }
         
-        Consumable consume = new(BasicCombatBehaviour.ItemOption(c.ItemBag));
-        if(consume.Id == 9999)
-          break;
-
-        c = BasicCombatBehaviour.ConsumableUse(c, consume);
-        c.ItemBag.Remove(c.ItemBag.First(item => item.Id == consume.Id));
-        actionMade = true;
+        actionMade = BasicCombatBehaviour.ItemOption(c, m, c.ItemBag);
         break;
 
       default:

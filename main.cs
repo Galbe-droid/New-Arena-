@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using New_Arena_.Behaviour;
-using New_Arena_.Game_Objects.Base_Objects.Interface;
+using New_Arena_.Configuration;
+using New_Arena_.Game_Objects.Base_Objects;
+using New_Arena_.Generation.Market;
 using New_Arena_.Loading;
 
 class MainClass {  
@@ -10,7 +11,7 @@ class MainClass {
     //Loading
     MonsterLoading.Loading();
     SkillsLoading.Loading();
-    ItemsLoading.ConsumablesLoading();
+    ItemsLoading.Loading();
     //End Loading
 
     //Main Screen
@@ -84,8 +85,7 @@ class MainClass {
           Character character = new Character(id, name, str, inte, agi, vig);
           //Adding the caracter on the caracter list then disable this screen and going back to the main menu
           //Applies the initial skill on it 
-          character.Initialization();
-          character.FillAvaliableSkill();
+          character.Initalization();
         
           Lists.CharacterList.Add(character);
           CharacterMaker = false;
@@ -99,12 +99,15 @@ class MainClass {
   {
     bool GameOn = true;
     int days = 0;
-    string dayMoment = "";
+    string dayMoment;
     bool daytime = true;    
     bool timePass = true;
-    List<Monster> cages = new List<Monster>();
-    List<IFood> innFoodTable = new List<IFood>();
-    List<SkillBase> skillOfTheDay = new List<SkillBase>();
+    List<Monster> cages = new();
+    List<Food> innFoodTable = new();
+    List<SkillBase> skillOfTheDay = new();
+    List<Potion> potionsOfTheDay = new();
+    List<Weapon> weaponsOfTheDay = new();
+    List<Armor> armorOfTheDay = new();
 
     while(GameOn)
     {
@@ -114,8 +117,12 @@ class MainClass {
         if(timePass){
           MonsterGeneration.CleaningCages();
           SkillChoices.ClearSkills();
+          PotionGeneration.ClearPotion();
           cages = MonsterGeneration.MonsterOfTheDay();
           skillOfTheDay = SkillChoices.LearningSkill(chosen);  
+          potionsOfTheDay = PotionGeneration.ListOfPotionsOfTheDay();
+          weaponsOfTheDay = WeaponGeneration.ListOfWeaponsOfTheDay();
+          armorOfTheDay = ArmorGeneration.ListOfArmorOfTheDay();
           days++;
         }
         dayMoment = " Daytime";
@@ -127,9 +134,15 @@ class MainClass {
           MonsterGeneration.CleaningCages();
           FoodGeneration.ClearFoods();
           SkillChoices.ClearSkills();
+          PotionGeneration.ClearPotion();
+          WeaponGeneration.ClearWeapons();
+          ArmorGeneration.ClearArmor();
           cages = MonsterGeneration.MonsterOfTheDay();
           innFoodTable = FoodGeneration.ListOfFruitOfTheDay();
           skillOfTheDay = SkillChoices.LearningSkill(chosen);
+          potionsOfTheDay = PotionGeneration.ListOfPotionsOfTheDay();
+          weaponsOfTheDay = WeaponGeneration.ListOfWeaponsOfTheDay();
+          armorOfTheDay = ArmorGeneration.ListOfArmorOfTheDay();
         }
         dayMoment = " Nightime";        
       }     
@@ -154,7 +167,7 @@ class MainClass {
       else
       {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
-        GameStartMenu.ArenaMenu(Decision,ref chosen, ref daytime, cages, innFoodTable, skillOfTheDay, ref timePass);        
+        GameStartMenu.ArenaMenu(Decision,ref chosen, ref daytime, cages, innFoodTable, skillOfTheDay, ref timePass, potionsOfTheDay, weaponsOfTheDay, armorOfTheDay);        
       }      
 
       Console.Clear();
@@ -169,22 +182,12 @@ class MainClass {
     bool charBigInit;
 
     //If both caracter are alive this boolean is true
-    while(CombatOn){
-      //Checking for Buffs and Debuffs and counting turns for cooldown if none skill is in cooldown then the code dont execute
-      if(chosen.SkillTrained.Exists(skill => skill.Cooldown == true) || monster.SkillTrained.Exists(skill => skill.Cooldown == true)){
-        SkillUse.CooldownCounting(chosen, monster);
-      }      
-      chosen.CheckForBuffsDebuffs();
-      UpdateConsole.StaticMessage(chosen.BuffActive.Count.ToString());
-      monster.CheckForBuffsDebuffs();     
-      
-      //Generating initiative
-      Random rand = new Random();
+    while(CombatOn){      
       //Ignore values that are the same 
       do
       {
-        chosen.Initiative = rand.Next(0,21) + chosen.Agi;
-        monster.Initiative = rand.Next(0,21) + monster.Agi;
+        chosen.Initiative = ManagerRandom.GetThreadRandom().Next(0,21) + chosen.Agi;
+        monster.Initiative = ManagerRandom.GetThreadRandom().Next(0,21) + monster.Agi;
       }while(chosen.Initiative == monster.Initiative);
 
       //Send to the game if the character will be the first to act
@@ -203,10 +206,8 @@ class MainClass {
       //Checks if both caracter and player arent dead
       if(!SomeoneDied)
       {
-        UpdateConsole.UpdateCombatStats(chosen, monster);
         ArenaBehaviour.TurnControl(ref chosen, ref monster, charBigInit);
         Console.WriteLine("End of Turn !");
-        SkillUse.CooldownCounting(chosen, monster);
         Console.ReadLine();
       }
       else

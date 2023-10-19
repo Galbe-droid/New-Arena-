@@ -32,6 +32,10 @@ abstract class Creature{
   public int ModDefense{get; set;}
   public int ModDodge{get; set;}
   public int ModAttack{get; set;}
+  public int MinDamage { get; set; }
+  public int MaxDamage { get; set; }
+  public int MinDefense { get; set; }
+  public int MaxDefense { get; set; }
 
   //Checking
   public bool Dead{get; set;}
@@ -190,11 +194,19 @@ abstract class Creature{
     
   //Use on the beggining of combat for monsters, it loads a pre base skill 
   //For players this loads after character creation 
-  public void Initialization(){
+  public void InitializationDefense(){
     foreach(SkillBase b in SkillsLoading.AllSkills){
       if(b.Id == 0){
         SkillTrained.Add(b);
       }
     }
+    UpdateMinMaxValues();
   }  
+
+  public void UpdateMinMaxValues(){
+    this.MinDamage = (int)Math.Ceiling(TotalAttack() * 0.8f);
+    this.MaxDamage = (int)Math.Ceiling(TotalAttack() * 1.2f);
+    this.MinDefense = (int)Math.Ceiling(TotalDefense() * 0.3f);
+    this.MaxDefense = (int)Math.Ceiling(TotalDefense() * 1f);
+  }
 }

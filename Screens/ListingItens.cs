@@ -10,14 +10,13 @@ namespace New_Arena_.Screens
     {
         public static void Screens(int page, decimal pageLimit, List<ItemBase> itemBag)
         {
+            int count = 0;
             Console.WriteLine($"=================Page {page}/{pageLimit} ====================");
             for(int i = 0; i < itemBag.Count; i ++){
+                count++;
                 int currentPage = (page - 1) * 3;
                 currentPage += i;
-
-                Consumable item = new((Consumable)itemBag.ElementAt(currentPage));
-
-                Console.WriteLine($"{i + 1} - Name:{item.Name} - Type:{item.GetType()} - Hp: {item.RecoveryHp} - Mp: {item.RecoveryMp}");
+                Console.WriteLine(count +" "+  itemBag[currentPage].ToString());
                 Console.WriteLine("======================================");  
             } 
         }

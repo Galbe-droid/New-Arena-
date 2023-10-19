@@ -36,7 +36,11 @@ abstract class PerTurnSkill : SkillBase{
             return BuffType.Defense;
 
         if(type == "dodge")
+        {
+            this.Qty *= 1000;
             return BuffType.Dodge;
+        }
+            
 
         if(type == "attack")
             return BuffType.Attack;

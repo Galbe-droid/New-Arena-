@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Configuration;
 
 namespace New_Arena_.Behaviour
 {
@@ -8,11 +9,8 @@ namespace New_Arena_.Behaviour
     {
         public static void AttackSkillUse<T>(T attacker, T defender, AttackSkill attackSkill) where T : Creature
         {
-            //Random numbers 
-            Random rand = new();               
-
             int _damage = 0;
-            int _protection = rand.Next(0,21);
+            int _protection = ManagerRandom.GetThreadRandom().Next(defender.MinDefense, defender.MaxDefense);
 
             //Iniitiate Cooldown 
             attacker.SkillTrained[attacker.SkillTrained.IndexOf(attackSkill)].CooldownControl();
@@ -20,7 +18,7 @@ namespace New_Arena_.Behaviour
             //Add damage and them reduce with defense 
             _damage += StatCheck(attackSkill.Stat, attackSkill, defender);
             _damage += attackSkill.Applying();
-            _damage -= (attacker.TotalDefense() + _protection);
+            _damage -= attacker.TotalDefense() + _protection;
             //
 
             if (_damage > 0)

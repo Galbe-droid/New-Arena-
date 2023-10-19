@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Configuration;
 using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Screens;
 
@@ -11,14 +12,13 @@ class BasicCombatBehaviour
   public static int AttackOption<T>(T attacker, T defender) where T : Creature
   {
     //Basic attacks generate from 0 to +20 for the basic damage and defense
-    Random rand = new Random();
-    int _totalAttack = rand.Next(0,21) + attacker.TotalAttack();
-    int _totalDefense = rand.Next(0,21) + defender.TotalDefense();
+    int _totalAttack = ManagerRandom.GetThreadRandom().Next(attacker.MinDamage, attacker.MaxDamage + 1);
+    int _totalDefense = ManagerRandom.GetThreadRandom().Next(defender.MinDefense, defender.MaxDefense + 1);
 
     //Dodge uses 6 digits to make a 0.000 to 100.000% chance 
     //Ex. 2.5% of dodge is 2.500
     //Accuracy uses the same mechanic, if accuracy is higher then it hits 
-    int _accuracy = rand.Next(0,100001);
+    int _accuracy = ManagerRandom.GetThreadRandom().Next(0,100001);
 
     int _monsterDodge = defender.TotalDodge();
 
@@ -50,28 +50,24 @@ class BasicCombatBehaviour
     Console.WriteLine(creature.Name + " is assuming a Defensive stance");
     //It searches if the skill is already activated, if it is then it time is reset
     if(!creature.BuffActive.Exists(skill => skill.Id == 0)){
-      BuffSkill _defense = (BuffSkill)creature.SkillTrained.Find(skill => skill.Id == 0);
-      Console.WriteLine(_defense.IsActivedOnce.ToString());
+      BuffSkill _defense = new((BuffSkill)creature.SkillTrained.Find(skill => skill.Id == 0));
       creature.BuffActive.Add(new BuffSkill(_defense));
     }else{
       creature.BuffActive.Find(skill => skill.Id == 0).Turns = 0;
     }  
   }
 
-  public static Consumable ItemOption(List<ItemBase> itemBag)
+  public static bool ItemOption(Character character, Monster monster, List<ItemBase> itemBag)
   {
-    int choice = 0;
+    int choice;
     int page = 1;
 
     //Recreates the item bag but with only consumables
-    List<ItemBase> consumableList = itemBag.Where(item => item.GetType() == typeof(Consumable)).ToList();
+    List<ItemBase> consumableList = itemBag;
     //This int needs to be initiated after everything, it controls the 3 itens per page and need to be initiated after the list but before the pageLimite
     int itemCount = consumableList.Count;
     //Create pages in case the skill list has more then 3 itens
-    decimal pageLimit = (consumableList.Count < 3) ? 1 : Math.Ceiling(Convert.ToDecimal(consumableList)/3);
-
-    //Create a page for each 3 Itens
-    pageLimit = (consumableList.Count > 3 + ((page - 1) * 3)) ? 3 : itemCount = consumableList.Count - (page - 1) * 3;
+    decimal pageLimit = (consumableList.Count < 3) ? 1 : Math.Ceiling(Convert.ToDecimal(itemCount)/3);
 
     ListingItens.Screens(page, pageLimit, itemBag);
 
@@ -94,20 +90,19 @@ class BasicCombatBehaviour
           page = 1;
         }
         else if(choice == 0){
-          return null;
+          return false;
         }
         else{
           //multiplay the choice with the page getting the correct position 
           choice = (choice * page) - 1;
 
-          if(choice == -1)
+          if(choice != -1)
           {
-            Consumable consumeNull = new(9999, "", 0, 0, 0, 0);
-            return consumeNull;
+            ChoiceMade(consumableList, choice, character, monster);
+            return true;
           }
-
-          Consumable consume = new((Consumable)consumableList[choice]);
-          return consume;
+          else
+            return false;           
         }        
       }
       else
@@ -115,29 +110,71 @@ class BasicCombatBehaviour
         choice = InputCheck.ListLength("Choose Item by number: ", itemCount);
         choice -= 1;
 
-        if(choice == -1)
+        if(choice != -1)
         {
-          Consumable consumeNull = new(9999, "", 0, 0, 0, 0);
-          return consumeNull;
+          ChoiceMade(consumableList, choice, character, monster);
+          return true;
         }
-          
-
-        Consumable consume = new((Consumable)consumableList[choice]);
-        return consume;
+        else
+          return false;          
       }  
-    }while((choice == 4 || choice == 5));   
+    }while(choice == 4 || choice == 5);   
 
-    return null;
+    return false;
   }
 
-  public static Character ConsumableUse(Character c, Consumable consume)
+  private static void ChoiceMade(List<ItemBase> itemBases, int choice, Character character, Monster monster)
   {
-    c.Damage = consume.RecoveryHp >= c.Damage ? 0 : consume.RecoveryHp - c.Damage;
-    c.ManaSpend = consume.RecoveryMp >= c.ManaSpend ? 0 : consume.RecoveryHp - c.ManaSpend;
+    switch(itemBases[choice].GetType().ToString())
+    {
+      case "Food":
+        Food food = (Food)itemBases[choice];
+        food.Action(ref character);
+        if(food.Quantity > 1)
+          food.Quantity--;
+        else if(food.Quantity == 1)
+          itemBases.Remove(itemBases[choice]);
 
-    Console.WriteLine($"Recovered: HP - {consume.RecoveryHp} / MP - {consume.RecoveryMp}");
-    Console.ReadKey();
+        UpdateConsole.StaticMessage($"{character.Name} eats {food.Name} and restores {food.HpModifier}Hp and {food.MpModifier}Mp, There is time for this !?");
+        break;
 
-    return c;
+      case "HpAndMpPotion":
+        HpAndMpPotion hPotion = (HpAndMpPotion)itemBases[choice];
+        if(hPotion.UseOnPlayer)
+        {
+          hPotion.Action(ref character);
+          UpdateConsole.StaticMessage($"{character.Name} uses {hPotion.Name} and restores {hPotion.HpModifier}Hp and {hPotion.MpModifier}Mp");
+        }          
+        else
+        {
+          hPotion.Action(ref monster);
+          UpdateConsole.StaticMessage($"{character.Name} uses {hPotion.Name} on {monster.Name} and causes -{hPotion.HpModifier}Hp and -{hPotion.MpModifier}Mp of Damage");
+        }
+               
+        if(hPotion.Quantity > 1)
+          hPotion.Quantity--;
+        else if(hPotion.Quantity == 1)
+          itemBases.Remove(itemBases[choice]);
+        break;
+
+      case "StatusPotion":
+        StatusPotion sPotion = (StatusPotion)itemBases[choice];
+        if(sPotion.UseOnPlayer)
+        {
+          character.AddEffects(sPotion);
+          UpdateConsole.StaticMessage($"{character.Name} uses {sPotion.Name} this increase {sPotion.BuffString} for some time");
+        }          
+        else
+        {
+          monster.AddEffects(sPotion);
+          UpdateConsole.StaticMessage($"{character.Name} uses {sPotion.Name} on {monster.Name} this decreased {sPotion.BuffString} for some time");
+        }
+
+        if(sPotion.Quantity > 1)
+          sPotion.Quantity--;
+        else if(sPotion.Quantity == 1)
+          itemBases.Remove(itemBases[choice]);
+        break;
+    }
   }
 }

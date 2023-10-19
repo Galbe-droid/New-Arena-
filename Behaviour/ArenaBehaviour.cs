@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using New_Arena_.Behaviour;
 using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
 
@@ -15,124 +17,53 @@ class ArenaBehaviour
       //Player Turn 
       if(!chosen.DeathCheck())
       {
-        CombatMenu.PlayerChoice(ref chosen, ref monster);
-        UpdateConsole.StaticMessage("Player turn ended.");
+        PlayerTurn(chosen, monster);
       }      
       //Monster Turn
       if(!monster.DeathCheck())
       {
-        CombatMonsterBehaviour.MonsterChoice(ref chosen, ref monster);
-        UpdateConsole.StaticMessage($"{monster.Name} turn ended.");
-      }
-      
+        MonsterTurn(chosen, monster);
+      }      
     }
     else
     {
       //Monster Turn
       if(!monster.DeathCheck())
       {
-        CombatMonsterBehaviour.MonsterChoice(ref chosen, ref monster);
-        UpdateConsole.StaticMessage($"{monster.Name} turn ended.");
+        MonsterTurn(chosen, monster);
       }
       //Player Turn 
       if(!chosen.DeathCheck())
       {
-        CombatMenu.PlayerChoice(ref chosen, ref monster);
-        UpdateConsole.StaticMessage("Player turn ended.");
+        PlayerTurn(chosen, monster);        
       }      
     }    
   }
 
-  //In case of status straining the player needs to be updated 
-  public static void UpdateCharacter(Character chosen)
+  private static void PlayerTurn(Character chosen, Monster monster)
   {
-    chosen.Defense = chosen.Vig/2;
-    chosen.Dodge = 0 + (500 * chosen.Agi);
-    chosen.Attack = chosen.Str;
-
-    chosen.Health = 10 + (chosen.Vig * 10);
-    chosen.Mana = 5 + (chosen.Int * 5);
+    UpdateConsole.UpdateCombatStats(chosen, monster);
+    CombatMenu.PlayerChoice(ref chosen, ref monster);
+    UpdateConsole.StaticMessage("Player turn ended.");
+    UpdateStatus(chosen, monster); 
   }
 
-  public static void InnFunction(ref Character chosen, List<IFood> foodtable)
-  {      
-    InnScreen.FoodDisplay(foodtable);
-
-    ArenaBehaviour.FoodConsuption(ref chosen, foodtable);
-
-    Console.Clear();
-
-    GameScreen.CharacterStats(chosen);
-
-    InnScreen.FoodDisplay(foodtable);
-
-    ArenaBehaviour.TakeFood(ref chosen, foodtable);
-
-    Console.Clear();
+  private static void MonsterTurn(Character chosen, Monster monster)
+  {
+    UpdateConsole.UpdateCombatStats(chosen, monster);
+    CombatMonsterBehaviour.MonsterChoice(ref chosen, ref monster);
+    UpdateConsole.StaticMessage($"{monster.Name} turn ended.");
+    UpdateStatus(chosen, monster);  
   }
 
-  private static void FoodConsuption(ref Character chosen, List<IFood> foodTable)
-  {
-    Console.WriteLine("Ready To Eat");
-    int choiceEat = InputCheck.IntCheck("Choice(0 To go back/Exit will pass time !):", "Only Number:");
-    int[] acceptedOptions = {1,2,3,4,5};
-
-    if(choiceEat != 0){
-      choiceEat--;
-      IFood foodChoice = foodTable[choiceEat];
-
-      do
-      {
-        Console.WriteLine("Food eaten!");
-        chosen.Damage -= chosen.Damage < foodChoice.RecoveryHp ? chosen.Damage : foodChoice.RecoveryHp;
-        chosen.ManaSpend -= chosen.ManaSpend < foodChoice.RecoveryMp ? chosen.ManaSpend : foodChoice.RecoveryMp;
-        foodTable[choiceEat].FoodEaten = true;
-        Console.ReadKey();
-      }while(!acceptedOptions.Contains(choiceEat));    
-    }   
-
-    
-  }
-  private static void TakeFood(ref Character chosen, List<IFood> foodTable)
-  {
-    int choiceTake = InputCheck.IntCheck("Choice(0 To go back/Exit will pass time !):", "Only Number:");
-    int[] acceptedOptions = {1,2,3,4,5};
-
-    if(choiceTake != 0)
-    {
-      IFood foodTake;
-      do
-      {
-        choiceTake--;
-        foodTake = foodTable[choiceTake];
-
-        if(foodTake.FoodEaten == true)
-        {
-          UpdateConsole.StaticMessage("Food Already Eaten ");
-          Console.ReadKey();
-          Console.Clear();
-          GameScreen.CharacterStats(chosen);
-          InnScreen.FoodDisplay(foodTable);
-          choiceTake = InputCheck.IntCheck("Choice(0 To go back/Exit will pass time !):", "Only Number:");
-        }
-        else
-        {
-          chosen.ItemBag.Add(IFoodConversor(foodTake));
-        }
-
-      }while(!acceptedOptions.Contains(choiceTake) || foodTake.FoodEaten == true);
-    }   
-  }
-
-  private static ItemBase IFoodConversor(IFood food)
-  {
-    
-    if(food.GetType() == typeof(Consumable))
-    {
-      Consumable fruit;
-      return fruit = (Consumable)food;
-    }
-
-    return null;
+  private static void UpdateStatus(Character chosen, Monster monster){
+    //Checking for Buffs and Debuffs and counting turns for cooldown if none skill is in cooldown then the code dont execute
+      if(chosen.SkillTrained.Exists(skill => skill.Cooldown == true) || monster.SkillTrained.Exists(skill => skill.Cooldown == true)){
+        SkillUse.CooldownCounting(chosen, monster);
+      }      
+      chosen.CheckForBuffsDebuffs();
+      monster.CheckForBuffsDebuffs();   
+      chosen.UpdateMinMaxValues();
+      monster.UpdateMinMaxValues();
   }
 }

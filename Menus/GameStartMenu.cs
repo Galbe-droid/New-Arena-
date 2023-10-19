@@ -1,17 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Behaviour;
+using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
+using New_Arena_.Menus;
 
 class GameStartMenu
 {
-  public static void ArenaMenu(string decision,ref Character chosen, ref bool DayOrNight, List<Monster> Cages, List<IFood>FoodTable, List<SkillBase> skillOfTheDay, ref bool timePass)
+  public static void ArenaMenu(string decision,ref Character chosen, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, List<SkillBase> skillOfTheDay, ref bool timePass, List<Potion> potionList, List<Weapon> weaponList, List<Armor> armorList)
   {       
     switch(decision)
     {
       //Goes to the cages 
       //Infoms the monsters for the player 
-      case("N"):
+      case "N":
         int choice;
         Monster monster = new Monster();
         Console.Clear();
@@ -42,7 +45,6 @@ class GameStartMenu
           DayOrNight = !DayOrNight;
           //Initiate Combat 
           AttributeAlocation.AddSkills(ref monster);
-          monster.Initialization();
           MainClass.Combat(chosen, monster);
           Console.Clear();
         }
@@ -50,13 +52,12 @@ class GameStartMenu
 
       //Market 
       //Under Development
-      case("M"):
-        Console.WriteLine("Not Ready!");
+      case "M":
+        MarketMenu.MarketDecision(ref chosen, potionList, weaponList, armorList);
         break;
 
       //Inn
-      //Under Development - Can only choose the food, nothing happens 
-      case("I"):
+      case "I":
         Console.Clear();
         GameScreen.CharacterStats(chosen);
 
@@ -68,7 +69,7 @@ class GameStartMenu
         }
         else
         {
-          ArenaBehaviour.InnFunction(ref chosen, FoodTable);         
+          InnBehaviour.InnFunction(ref chosen, FoodTable);         
           timePass = true;
           //Change to night 
           DayOrNight = !DayOrNight;
@@ -76,13 +77,12 @@ class GameStartMenu
         break;        
 
       //Training Hall
-      //Under Development 
-      case("T"):
+      case "T":
         Console.Clear();
         TrainingHallMenu.TrainingDecision(ref chosen, skillOfTheDay);
         break;    
 
-      case("C"):
+      case "C":
         Console.Clear();
         String character = chosen.ToString();
         Console.WriteLine(character);

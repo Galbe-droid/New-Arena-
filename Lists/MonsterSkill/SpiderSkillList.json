@@ -11,7 +11,7 @@
                     "Desc": "Shoot a web, debilitating enemy movement by time",
                     "MinLevel": 0,
                     "TurnMax": 2,
-                    "Qty": -3000,
+                    "Qty": -3,
                     "IsActivedOnce": false,
                     "XpCost": 0,
                     "WhereToApplyString": "dodge"

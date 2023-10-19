@@ -1,12 +1,16 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
 //Monster uses Creature Abstraction 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death, Monster Type
 //Still no: Skills, Boss(Maybe)
-class Monster : Creature
+class Monster : Creature, IPotionEffect
 {
   public int Id {get; set;}
   public Types Type {get; set;}
+  public List<Potion> PotionEffect { get; set; }
   public SubTypes[] SubType = new SubTypes[2];
 
   public Monster(int id, string name, int level, int str, int inte, int agi, int vig)
@@ -96,5 +100,57 @@ class Monster : Creature
     ModDefense = 0;
     ModDodge = 0;
     ModAttack = 0;
+  }
+  public void AddEffects(StatusPotion statusPotion)
+  {
+    switch(statusPotion.BuffManipulated)
+    {
+      case BuffType.Attack:
+        ModAttack += statusPotion.Applying();
+        statusPotion.IsActive = true;
+        break;
+      case BuffType.Defense:
+        ModDefense += statusPotion.Applying();
+        statusPotion.IsActive = true;
+        break;
+      case BuffType.Dodge:
+        ModDodge += statusPotion.Applying();
+        statusPotion.IsActive = true;
+        break;
+    }
+  }
+  public void StatusPotionTurnPass()
+  {
+    foreach(StatusPotion potion in PotionEffect.Cast<StatusPotion>())
+    {
+      potion.TurnCount();
+    }
+  }
+  public void PotionEffectRemoval()
+  {
+    foreach(StatusPotion potion in PotionEffect.Cast<StatusPotion>())
+    {
+      if(potion.IsActive && potion.Turn >= potion.TurnMax)
+      {
+        switch(potion.BuffManipulated)
+        {
+          case BuffType.Attack:
+            ModAttack -= potion.Applying();
+            break;
+          case BuffType.Defense:
+            ModDefense -= potion.Applying();
+            break;
+          case BuffType.Dodge:
+            ModDodge -= potion.Applying();
+            break;
+        }                
+        PotionEffect.Remove(potion);
+      }
+    }
+  }
+
+  public void Checking(){
+    StatusPotionTurnPass();
+    PotionEffectRemoval();
   }
 }

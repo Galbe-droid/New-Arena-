@@ -16,7 +16,7 @@
         "Desc": "Increase Dodge Chance",
         "MinLevel": 0,
         "TurnMax": 2,
-        "Qty": 15000,
+        "Qty": 15,
         "IsActivedOnce": true,
         "XpCost": 0,
         "WhereToApplyString": "dodge"

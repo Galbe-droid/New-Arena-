@@ -1,4 +1,4 @@
-enum BuffType{
+public enum BuffType{
   Defense,
   Dodge,
   Attack,

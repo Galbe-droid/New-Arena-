@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Configuration;
 using New_Arena_.Loading;
 
 class MonsterGeneration
@@ -24,24 +25,23 @@ class MonsterGeneration
     subTypesDefense.Add(SubTypes.Support);
     subTypesDefense.Add(SubTypes.Survival);
 
-    Random random = new Random();
-    int randId = random.Next(monsterListPrefab.Count);
+    int randId = ManagerRandom.GetThreadRandom().Next(monsterListPrefab.Count);
 
     Monster monsterChoosen = new Monster(monsterListPrefab.Find(m => m.Id == randId));
     
-    monsterChoosen.Level = random.Next(monsterChoosen.Level, monsterChoosen.Level + 3);
+    monsterChoosen.Level = ManagerRandom.GetThreadRandom().Next(monsterChoosen.Level, monsterChoosen.Level + 3);
 
-    monsterChoosen.Type = (Types)typeList.GetValue(random.Next(1, typeList.Length));
+    monsterChoosen.Type = (Types)typeList.GetValue(ManagerRandom.GetThreadRandom().Next(1, typeList.Length));
 
-    monsterChoosen.SubType[0] = (SubTypes)subTypesOffensive.ElementAt(random.Next(0, subTypesOffensive.Count));
-    monsterChoosen.SubType[1] = (SubTypes)subTypesDefense.ElementAt(random.Next(0, subTypesDefense.Count));
+    monsterChoosen.SubType[0] = (SubTypes)subTypesOffensive.ElementAt(ManagerRandom.GetThreadRandom().Next(0, subTypesOffensive.Count));
+    monsterChoosen.SubType[1] = (SubTypes)subTypesDefense.ElementAt(ManagerRandom.GetThreadRandom().Next(0, subTypesDefense.Count));
 
     AttributeAlocation.PlacingAtributes(monsterChoosen);
     //
 
     //ADDING VARIATION
     List<MonsterVariation> monsterVariations = new(monsterVariationDictionary[monsterChoosen.Id]);
-    int randVarId = random.Next(monsterVariations.Count);
+    int randVarId = ManagerRandom.GetThreadRandom().Next(monsterVariations.Count);
 
     MonsterVariation monsterVariation = new(monsterChoosen, monsterVariations.Find(mv => mv.VariationId == randVarId));
 
@@ -49,7 +49,8 @@ class MonsterGeneration
 
     monsterVariations.Clear();
     //
-
+    monsterVariation.InitializationDefense();
+    
     return monsterVariation;
   }
 

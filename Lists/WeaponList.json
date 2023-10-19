@@ -1,0 +1,42 @@
+[
+    {
+        "Id": 0,
+        "Name": "Bare Hands",
+        "Cost": 0,
+        "Rarity": 0,
+        "MinDamage": 1,
+        "MaxDamage": 2,
+        "MinDamageModifier": 0.3,
+        "MaxDamageModifier": 0.5
+    },
+    {
+        "Id": 1,
+        "Name": "Dagger",
+        "Cost": 0,
+        "Rarity": 0,
+        "MinDamage": 2,
+        "MaxDamage": 3,
+        "MinDamageModifier": 0.45,
+        "MaxDamageModifier": 0.6
+    },
+    {
+        "Id": 2,
+        "Name": "Iron Fist",
+        "Cost": 0,
+        "Rarity": 0,
+        "MinDamage": 2,
+        "MaxDamage": 2,
+        "MinDamageModifier": 0.6,
+        "MaxDamageModifier": 0.75
+    },
+    {
+        "Id": 3,
+        "Name": "Wooden club",
+        "Cost": 0,
+        "Rarity": 0,
+        "MinDamage": 2,
+        "MaxDamage": 5,
+        "MinDamageModifier": 0.4,
+        "MaxDamageModifier": 0.5
+    }
+]
