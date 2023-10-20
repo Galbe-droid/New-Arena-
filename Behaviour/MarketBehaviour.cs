@@ -6,90 +6,90 @@ namespace New_Arena_.Behaviour
 {
     class MarketBehaviour
     {
-        public static void PotionShop(ref Character character, List<Potion> potionList)
+        public static void PotionShop(ref Character character)
         {
             int choicePotion;           
             
             do{
                 choicePotion = InputCheck.IntCheck("Choice(0 To go back):", "Only Number:");
 
-                if(choicePotion > potionList.Count || choicePotion < -1 )
+                if(choicePotion > ArenaBehaviour.potionsOfTheDay.Count || choicePotion < -1 )
                 {
                     Console.Clear();
                     GameScreen.CharacterStats(character);
-                    PotionMarketScreen.PotionDisplay(potionList);
+                    PotionMarketScreen.PotionDisplay();
                 }
-            }while(choicePotion > potionList.Count || choicePotion < -1);            
+            }while(choicePotion > ArenaBehaviour.potionsOfTheDay.Count || choicePotion < -1);            
 
             if(choicePotion != 0)
             {
                 choicePotion--;
 
-                if(potionList[choicePotion].Quantity > 0)
+                if(ArenaBehaviour.potionsOfTheDay[choicePotion].Quantity > 0)
                 {
-                    character.AddingItens(potionList[choicePotion]);
-                    potionList[choicePotion].Quantity--;
-                    UpdateConsole.StaticMessage($"{potionList[choicePotion].Name} was brought");
+                    character.AddingItens(ArenaBehaviour.potionsOfTheDay[choicePotion]);
+                    ArenaBehaviour.potionsOfTheDay[choicePotion].Quantity--;
+                    UpdateConsole.StaticMessage($"{ArenaBehaviour.potionsOfTheDay[choicePotion].Name} was brought");
                 }
                 else
                     UpdateConsole.StaticMessage("No more of this item...");
             }            
         }
 
-        public static void WeaponShop(ref Character character, List<Weapon> weaponList)
+        public static void WeaponShop(ref Character character)
         {
             int choiceWeapon;           
             
             do{
                 choiceWeapon = InputCheck.IntCheck("Choice(0 To go back):", "Only Number:");
 
-                if(choiceWeapon > weaponList.Count || choiceWeapon < -1 )
+                if(choiceWeapon > ArenaBehaviour.weaponsOfTheDay.Count || choiceWeapon < -1 )
                 {
                     Console.Clear();
                     GameScreen.CharacterStats(character);
-                    WeaponMarketScreen.DisplayWeapons(weaponList);
+                    WeaponMarketScreen.DisplayWeapons();
                 }
-            }while(choiceWeapon > weaponList.Count || choiceWeapon < -1);          
+            }while(choiceWeapon > ArenaBehaviour.weaponsOfTheDay.Count || choiceWeapon < -1);          
 
             if(choiceWeapon != 0)
             {
                 choiceWeapon--;
 
-                if(!weaponList[choiceWeapon].IsBrought)
+                if(!ArenaBehaviour.weaponsOfTheDay[choiceWeapon].IsBrought)
                 {
-                    character.AddingItens(weaponList[choiceWeapon]);
-                    weaponList[choiceWeapon].IsBrought = true;
-                    UpdateConsole.StaticMessage($"{weaponList[choiceWeapon].Name} was brought");
+                    character.AddingItens(ArenaBehaviour.weaponsOfTheDay[choiceWeapon]);
+                    ArenaBehaviour.weaponsOfTheDay[choiceWeapon].IsBrought = true;
+                    UpdateConsole.StaticMessage($"{ArenaBehaviour.weaponsOfTheDay[choiceWeapon].Name} was brought");
                 }
                 else
                     UpdateConsole.StaticMessage("No more of this item...");
             }   
         }
 
-        public static void ArmorShop(ref Character character, List<Armor> armorList)
+        public static void ArmorShop(ref Character character)
         {
             int choiceArmor;           
             
             do{
                 choiceArmor = InputCheck.IntCheck("Choice(0 To go back):", "Only Number:");
 
-                if(choiceArmor > armorList.Count || choiceArmor < -1 )
+                if(choiceArmor > ArenaBehaviour.armorOfTheDay.Count || choiceArmor < -1 )
                 {
                     Console.Clear();
                     GameScreen.CharacterStats(character);
-                    ArmorMarketScreen.DisplayArmor(armorList);
+                    ArmorMarketScreen.DisplayArmor();
                 }
-            }while(choiceArmor > armorList.Count || choiceArmor < -1);    
+            }while(choiceArmor > ArenaBehaviour.armorOfTheDay.Count || choiceArmor < -1);    
 
             if(choiceArmor != 0)
             {
                 choiceArmor--;
 
-                if(!armorList[choiceArmor].IsBrought)
+                if(!ArenaBehaviour.armorOfTheDay[choiceArmor].IsBrought)
                 {
-                    character.AddingItens(armorList[choiceArmor]);
-                    armorList[choiceArmor].IsBrought = true;
-                    UpdateConsole.StaticMessage($"{armorList[choiceArmor].Name} was brought");
+                    character.AddingItens(ArenaBehaviour.armorOfTheDay[choiceArmor]);
+                    ArenaBehaviour.armorOfTheDay[choiceArmor].IsBrought = true;
+                    UpdateConsole.StaticMessage($"{ArenaBehaviour.armorOfTheDay[choiceArmor].Name} was brought");
                 }
                 else
                     UpdateConsole.StaticMessage("No more of this item...");

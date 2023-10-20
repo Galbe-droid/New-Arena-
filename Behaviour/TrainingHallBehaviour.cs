@@ -5,16 +5,16 @@ namespace New_Arena_.Behaviour
 {
     class TrainingHallBehaviour
     {
-        public static Character SkillToLearn(Character c, List<SkillBase>skillOfTheDay){
+        public static Character SkillToLearn(Character c){
             int choice;
             //Show the skill avaliable to learn for a day
-            SkillTrainingScreen.SkillDisplay(skillOfTheDay);
+            SkillTrainingScreen.SkillDisplay();
             
             Console.WriteLine();
             //Player Choice
             do{
-              choice = InputCheck.ListLength("Skill Choice (0 to go back): ", skillOfTheDay.Count);
-            }while((choice -1) > skillOfTheDay.Count || (choice -1) < -1);
+              choice = InputCheck.ListLength("Skill Choice (0 to go back): ", ArenaBehaviour.skillOfTheDay.Count);
+            }while((choice -1) > ArenaBehaviour.skillOfTheDay.Count || (choice -1) < -1);
         
             choice -= 1;
             
@@ -23,24 +23,24 @@ namespace New_Arena_.Behaviour
             }
             else{
                 //Initiate applying the skill on the player caracter and removing the skill from the day list
-                if(c.Xp >= skillOfTheDay[choice].XpCost){
-                    Console.WriteLine("Skill: {0} Learned !", skillOfTheDay[choice].Name);
+                if(c.Xp >= ArenaBehaviour.skillOfTheDay[choice].XpCost){
+                    Console.WriteLine("Skill: {0} Learned !", ArenaBehaviour.skillOfTheDay[choice].Name);
 
-                    if(skillOfTheDay[choice].GetType() == typeof(BuffSkill)){
-                        c.SkillTrained.Add(new BuffSkill((BuffSkill)skillOfTheDay[choice]));
+                    if(ArenaBehaviour.skillOfTheDay[choice].GetType() == typeof(BuffSkill)){
+                        c.SkillTrained.Add(new BuffSkill((BuffSkill)ArenaBehaviour.skillOfTheDay[choice]));
                     }
-                    else if(skillOfTheDay[choice].GetType() == typeof(DebuffSkill)){
-                        c.SkillTrained.Add(new DebuffSkill((DebuffSkill)skillOfTheDay[choice]));
+                    else if(ArenaBehaviour.skillOfTheDay[choice].GetType() == typeof(DebuffSkill)){
+                        c.SkillTrained.Add(new DebuffSkill((DebuffSkill)ArenaBehaviour.skillOfTheDay[choice]));
                     }
-                    else if(skillOfTheDay[choice].GetType() == typeof(AttackSkill)){
-                        c.SkillTrained.Add(new AttackSkill((AttackSkill)skillOfTheDay[choice]));
+                    else if(ArenaBehaviour.skillOfTheDay[choice].GetType() == typeof(AttackSkill)){
+                        c.SkillTrained.Add(new AttackSkill((AttackSkill)ArenaBehaviour.skillOfTheDay[choice]));
                     }
-                    else if(skillOfTheDay[choice].GetType() == typeof(DefenseSkill)){
-                        c.SkillTrained.Add(new DefenseSkill((DefenseSkill)skillOfTheDay[choice]));
+                    else if(ArenaBehaviour.skillOfTheDay[choice].GetType() == typeof(DefenseSkill)){
+                        c.SkillTrained.Add(new DefenseSkill((DefenseSkill)ArenaBehaviour.skillOfTheDay[choice]));
                     }
                     //Remove the skill so it cannot appear again 
-                    c.ExcludingSkills(skillOfTheDay[choice].Id);
-                    skillOfTheDay.Remove(skillOfTheDay[choice]);
+                    c.ExcludingSkills(ArenaBehaviour.skillOfTheDay[choice].Id);
+                    ArenaBehaviour.skillOfTheDay.Remove(ArenaBehaviour.skillOfTheDay[choice]);
 
                     Console.ReadKey();
                 }

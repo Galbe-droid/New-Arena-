@@ -7,7 +7,7 @@ namespace New_Arena_.Menus
 {
     class MarketMenu
     {
-        public static void MarketDecision(ref Character chosen, List<Potion> potionList, List<Weapon> weaponList, List<Armor> armorList)
+        public static void MarketDecision(ref Character chosen)
         {
             string choice;
             
@@ -15,7 +15,7 @@ namespace New_Arena_.Menus
             {
                 GameScreen.CharacterStats(chosen);
 
-                Console.WriteLine("Inside the Training Hall");
+                Console.WriteLine("Inside the Market");
                 Console.WriteLine("P - Potion Market /// W - Weapon Market /// A - Armor Market");
                 Console.Write("Choose (X to go back):");
                 choice = Console.ReadLine().ToUpper();
@@ -23,20 +23,20 @@ namespace New_Arena_.Menus
                 switch(choice)
                 {
                     case "P":
-                        PotionMarketScreen.PotionDisplay(potionList);
-                        MarketBehaviour.PotionShop(ref chosen, potionList);
+                        PotionMarketScreen.PotionDisplay();
+                        MarketBehaviour.PotionShop(ref chosen);
                         Console.Clear();
                         break;
 
                     case "W":
-                        WeaponMarketScreen.DisplayWeapons(weaponList);
-                        MarketBehaviour.WeaponShop(ref chosen, weaponList);
+                        WeaponMarketScreen.DisplayWeapons();
+                        MarketBehaviour.WeaponShop(ref chosen);
                         Console.Clear();
                         break;
 
                     case "A":
-                        ArmorMarketScreen.DisplayArmor(armorList);
-                        MarketBehaviour.ArmorShop(ref chosen, armorList);
+                        ArmorMarketScreen.DisplayArmor();
+                        MarketBehaviour.ArmorShop(ref chosen);
                         Console.Clear();
                         break;
 

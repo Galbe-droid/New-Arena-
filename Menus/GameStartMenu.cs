@@ -1,14 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using New_Arena_.Behaviour;
-using New_Arena_.Game_Objects.Base_Objects;
-using New_Arena_.Game_Objects.Base_Objects.Interface;
 using New_Arena_.Menus;
 
 class GameStartMenu
 {
-  public static void ArenaMenu(string decision,ref Character chosen, ref bool DayOrNight, List<Monster> Cages, List<Food>FoodTable, List<SkillBase> skillOfTheDay, ref bool timePass, List<Potion> potionList, List<Weapon> weaponList, List<Armor> armorList)
+  public static void ArenaMenu(string decision,ref Character chosen, ref bool DayOrNight, ref bool timePass)
   {       
     switch(decision)
     {
@@ -16,16 +12,16 @@ class GameStartMenu
       //Infoms the monsters for the player 
       case "N":
         int choice;
-        Monster monster = new Monster();
+        Monster monster = new();
         Console.Clear();
         //Cages Screen and monster info
         GameScreen.CharacterStats(chosen);        
-        ArenaEntrance.MonsterOfTheDayDisplay(Cages); 
+        ArenaEntrance.MonsterOfTheDayDisplay(); 
         //
       
         do{
           choice = InputCheck.IntCheck("Choice(0 to go back):", "Only Numbers.");
-        }while(choice < 0 || choice > Cages.Count);     
+        }while(choice < 0 || choice > ArenaBehaviour.cages.Count);     
       
         if(choice == 0)
         {          
@@ -33,11 +29,11 @@ class GameStartMenu
         }
         else 
         {
-          for(int i = 0; i < Cages.Count; i++)
+          for(int i = 0; i < ArenaBehaviour.cages.Count; i++)
           {
             if (i == choice - 1)
             {
-              monster = new Monster(Cages[i]);
+              monster = new Monster(ArenaBehaviour.cages[i]);
             }
           }
           timePass = true;
@@ -53,7 +49,7 @@ class GameStartMenu
       //Market 
       //Under Development
       case "M":
-        MarketMenu.MarketDecision(ref chosen, potionList, weaponList, armorList);
+        MarketMenu.MarketDecision(ref chosen);
         break;
 
       //Inn
@@ -69,7 +65,7 @@ class GameStartMenu
         }
         else
         {
-          InnBehaviour.InnFunction(ref chosen, FoodTable);         
+          InnBehaviour.InnFunction(ref chosen);         
           timePass = true;
           //Change to night 
           DayOrNight = !DayOrNight;
@@ -79,13 +75,12 @@ class GameStartMenu
       //Training Hall
       case "T":
         Console.Clear();
-        TrainingHallMenu.TrainingDecision(ref chosen, skillOfTheDay);
+        TrainingHallMenu.TrainingDecision(ref chosen);
         break;    
 
       case "C":
         Console.Clear();
-        String character = chosen.ToString();
-        Console.WriteLine(character);
+        Console.WriteLine(chosen.ToString());
         Console.WriteLine("=============Skill============");
         Console.WriteLine(chosen.ShowSkills());
         Console.WriteLine("=============Bag============");
@@ -93,6 +88,12 @@ class GameStartMenu
         Console.WriteLine("Press anything to go back...");
         Console.ReadKey();
         Console.Clear();
+        break;
+
+      case "Q":
+        Console.Clear();
+        CharacterEquipamentMenu.Decision(ref chosen);
+        Console.ReadLine();
         break;
 
       default:

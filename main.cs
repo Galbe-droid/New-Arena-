@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
-using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Generation.Market;
 using New_Arena_.Loading;
 
@@ -101,13 +99,7 @@ class MainClass {
     int days = 0;
     string dayMoment;
     bool daytime = true;    
-    bool timePass = true;
-    List<Monster> cages = new();
-    List<Food> innFoodTable = new();
-    List<SkillBase> skillOfTheDay = new();
-    List<Potion> potionsOfTheDay = new();
-    List<Weapon> weaponsOfTheDay = new();
-    List<Armor> armorOfTheDay = new();
+    bool timePass = true;   
 
     while(GameOn)
     {
@@ -115,14 +107,8 @@ class MainClass {
       {
         //Make list persistent
         if(timePass){
-          MonsterGeneration.CleaningCages();
-          SkillChoices.ClearSkills();
-          PotionGeneration.ClearPotion();
-          cages = MonsterGeneration.MonsterOfTheDay();
-          skillOfTheDay = SkillChoices.LearningSkill(chosen);  
-          potionsOfTheDay = PotionGeneration.ListOfPotionsOfTheDay();
-          weaponsOfTheDay = WeaponGeneration.ListOfWeaponsOfTheDay();
-          armorOfTheDay = ArmorGeneration.ListOfArmorOfTheDay();
+          ArenaBehaviour.ListPopulating(chosen);
+          ArenaBehaviour.ListCleaning();
           days++;
         }
         dayMoment = " Daytime";
@@ -130,19 +116,9 @@ class MainClass {
       else
       {
         //Make list persistent
-        if(timePass){
-          MonsterGeneration.CleaningCages();
-          FoodGeneration.ClearFoods();
-          SkillChoices.ClearSkills();
-          PotionGeneration.ClearPotion();
-          WeaponGeneration.ClearWeapons();
-          ArmorGeneration.ClearArmor();
-          cages = MonsterGeneration.MonsterOfTheDay();
-          innFoodTable = FoodGeneration.ListOfFruitOfTheDay();
-          skillOfTheDay = SkillChoices.LearningSkill(chosen);
-          potionsOfTheDay = PotionGeneration.ListOfPotionsOfTheDay();
-          weaponsOfTheDay = WeaponGeneration.ListOfWeaponsOfTheDay();
-          armorOfTheDay = ArmorGeneration.ListOfArmorOfTheDay();
+        if(timePass){          
+          ArenaBehaviour.ListPopulating(chosen);
+          ArenaBehaviour.ListCleaning();
         }
         dayMoment = " Nightime";        
       }     
@@ -167,7 +143,7 @@ class MainClass {
       else
       {
         //Exit waits for a boolean value its enter on the other screen and then go back to the main game screen        
-        GameStartMenu.ArenaMenu(Decision,ref chosen, ref daytime, cages, innFoodTable, skillOfTheDay, ref timePass, potionsOfTheDay, weaponsOfTheDay, armorOfTheDay);        
+        GameStartMenu.ArenaMenu(Decision,ref chosen, ref daytime, ref timePass);        
       }      
 
       Console.Clear();

@@ -6,12 +6,12 @@ namespace New_Arena_.Screens
 {
     public class WeaponMarketScreen
     {
-        public static void DisplayWeapons(List<Weapon> weaponList)
+        public static void DisplayWeapons()
         {
             int count = 0;
             Console.WriteLine("============Weapons==============");
 
-            foreach (Weapon weapon in weaponList)
+            foreach (Weapon weapon in ArenaBehaviour.weaponsOfTheDay)
             {
                 if(!weapon.IsBrought)
                 {

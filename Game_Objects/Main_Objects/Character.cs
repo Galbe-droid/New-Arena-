@@ -319,4 +319,52 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
         Quality = WeaponType.Regular
     };
   }
+
+  public void ChangeWeapon(Weapon newWeapon)
+  {
+    if(Weapon.Id == 0)
+    {
+      Weapon = newWeapon;
+      EquipamentBag.Remove(newWeapon);
+    }
+    else
+    {
+      EquipamentBag.Add(Weapon);
+      EquipamentBag.Remove(newWeapon);
+      Weapon = newWeapon;
+    }
+  }
+
+  public void ChangeArmor(Armor newArmor)
+  {
+    if(Armor.Id == 0)
+    {
+      Armor = newArmor;
+      EquipamentBag.Remove(newArmor);
+    }
+    else
+    {
+      EquipamentBag.Add(Armor);
+      EquipamentBag.Remove(newArmor);
+      Armor = newArmor;
+    }
+  }
+
+  public void RemoveWeapon()
+  {
+    if(Weapon.Id != 0)
+    {
+      EquipamentBag.Add(Weapon);
+      InitializeWeapon();
+    }
+  }
+
+  public void RemoveArmor()
+  {
+    if(Armor.Id != 0)
+    {
+      EquipamentBag.Add(Armor);
+      InitializeArmor();
+    }
+  }
 }

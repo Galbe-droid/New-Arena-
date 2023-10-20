@@ -4,5 +4,7 @@ namespace New_Arena_.Game_Objects.Base_Objects.Interface
     {
         Weapon Weapon {get; set;}
         void InitializeWeapon();
+        void ChangeWeapon(Weapon newWeapon);
+        void RemoveWeapon();
     }
 }

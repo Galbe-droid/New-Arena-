@@ -6,12 +6,12 @@ using New_Arena_.Game_Objects.Base_Objects.Interface;
 class InnScreen
 {
   
-  public static void FoodDisplay(List<Food> FruitsOfTheDay)
+  public static void FoodDisplay()
   {
     int count = 0;
     Console.WriteLine("============Fruits==============");
 
-    foreach(Food f in FruitsOfTheDay)
+    foreach(Food f in ArenaBehaviour.innFoodTable)
     {
       if(f.Quantity != 0)
       {

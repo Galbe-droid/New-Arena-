@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using New_Arena_.Behaviour;
-using New_Arena_.Game_Objects.Base_Objects;
-using New_Arena_.Game_Objects.Base_Objects.Interface;
+using New_Arena_.Generation.Market;
 
 class ArenaBehaviour
 {
+  public static List<Monster> cages;
+  public static List<Food> innFoodTable;
+  public static List<SkillBase> skillOfTheDay;
+  public static List<Potion> potionsOfTheDay;
+  public static List<Weapon> weaponsOfTheDay;
+  public static List<Armor> armorOfTheDay;
   //Controls Day and night behaviour, certain activities depend on it 
   public static void TurnControl(ref Character chosen, ref Monster monster, bool initiative)
   {
@@ -65,5 +68,25 @@ class ArenaBehaviour
       monster.CheckForBuffsDebuffs();   
       chosen.UpdateMinMaxValues();
       monster.UpdateMinMaxValues();
+  }
+
+  public static void ListPopulating(Character chosen)
+  {
+    cages = new(MonsterGeneration.MonsterOfTheDay());
+    skillOfTheDay = new(SkillChoices.LearningSkill(chosen));  
+    innFoodTable = new(FoodGeneration.ListOfFruitOfTheDay());
+    potionsOfTheDay = new(PotionGeneration.ListOfPotionsOfTheDay());
+    weaponsOfTheDay = new(WeaponGeneration.ListOfWeaponsOfTheDay());
+    armorOfTheDay = new(ArmorGeneration.ListOfArmorOfTheDay());
+  }
+
+  public static void ListCleaning()
+  {
+    MonsterGeneration.CleaningCages();
+    FoodGeneration.ClearFoods();
+    SkillChoices.ClearSkills();
+    PotionGeneration.ClearPotion();
+    WeaponGeneration.ClearWeapons();
+    ArmorGeneration.ClearArmor();
   }
 }

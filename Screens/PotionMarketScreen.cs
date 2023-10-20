@@ -6,12 +6,12 @@ namespace New_Arena_.Screens
 {
     public class PotionMarketScreen
     {
-        public static void PotionDisplay(List<Potion> potionList)
+        public static void PotionDisplay()
         {
             int count = 0;
             Console.WriteLine("============Potions==============");
 
-            foreach(Potion p in potionList)
+            foreach(Potion p in ArenaBehaviour.potionsOfTheDay)
             {
                 if(p.GetType() == typeof(StatusPotion))
                 {

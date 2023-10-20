@@ -4,7 +4,7 @@ using System.Linq;
 using New_Arena_.Behaviour;
 
 class TrainingHallMenu{  
-  public static void TrainingDecision(ref Character chosen, List<SkillBase> skillOfTheDay){
+  public static void TrainingDecision(ref Character chosen){
     string choice;
 
     do{
@@ -28,8 +28,8 @@ class TrainingHallMenu{
           break;
 
         case "K":
-          if(skillOfTheDay.Count >= 1){
-            chosen = TrainingHallBehaviour.SkillToLearn(chosen, skillOfTheDay);
+          if(ArenaBehaviour.skillOfTheDay.Count >= 1){
+            chosen = TrainingHallBehaviour.SkillToLearn(chosen);
           }else{
             Console.WriteLine("There is no Skill To Learn");
             Console.ReadKey();
