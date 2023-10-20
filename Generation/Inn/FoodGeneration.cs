@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
 using New_Arena_.Loading;
 
@@ -17,12 +18,13 @@ class FoodGeneration
     private static Food FruitCreator()
     {
       int randId = ManagerRandom.GetThreadRandom().Next(FruitsPrefab.Count);
-  
-      Food food = new Food(FruitsPrefab.Find(f => f.Id == randId));
-  
-      food.Quality = (FruitQuality)typeListFruit.GetValue(ManagerRandom.GetThreadRandom().Next(1, typeListFruit.Length));
-  
-      if((FruitQuality)food.Quality == FruitQuality.New)
+
+      Food food = new Food(FruitsPrefab.Find(f => f.Id == randId))
+      {
+          Quality = (FruitQuality)typeListFruit.GetValue(ManagerRandom.GetThreadRandom().Next(1, typeListFruit.Length))
+      };
+
+      if ((FruitQuality)food.Quality == FruitQuality.New)
       {
         food.HpModifier += (int)Math.Truncate(food.HpModifier * 0.2f);
         return food;
@@ -37,7 +39,7 @@ class FoodGeneration
   //Place the fruit on the list 
   public static List<Food> ListOfFruitOfTheDay()
   {
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < ProgressBehaviour.InnFoodQuantity; i++)
     {
       Food food = FruitCreator();    
       

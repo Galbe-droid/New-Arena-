@@ -1,54 +1,27 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using New_Arena_.Screens;
 
 //Main menu 
 class MainMenu
 {
   public static string TitleMenu()
   {
-    //Initiate the game, only if there is a character 
-    if(Lists.CountListPlayer() == 0)
-    {
-      Console.ForegroundColor = ConsoleColor.DarkGray;
-      Console.WriteLine("N - New Game");
-      Console.ResetColor();
-    }
-    else
-    {
-      Console.WriteLine("N - New Game");
-    }
-
-    Console.WriteLine("C - New Charater");
-
-    //See what characters are created, their level their stats, etc. 
-    if(Lists.CountListPlayer() == 0)
-    {
-      Console.ForegroundColor = ConsoleColor.DarkGray;
-      Console.WriteLine("V - View Characters");
-      Console.ResetColor();
-    }
-    else
-    {
-      Console.WriteLine("V - View Characters");
-    }
-
-    Console.WriteLine("E - EXIT");
-
+    TitleScreen.Display();
     //Receive the decesion input for the player 
     Console.Write("Choose: ");
-    string Decision = Console.ReadLine();
-    string DecisionUpper = Decision.ToUpper();
+    string Decision = Console.ReadLine().ToUpper();
 
     //Exit the application 
-    if(DecisionUpper == "E")
+    if(Decision == "E")
     {
       Console.Write("Exiting Program.");
-      return DecisionUpper;
+      return Decision;
     }
 
     //Enter on the title decision method to process the input 
-    TitleDecision(DecisionUpper); 
+    TitleDecision(Decision); 
     return null;
   }
 
@@ -85,7 +58,7 @@ class MainMenu
     else if(decision == "C")
     {
       //Initate the creation process 
-      MainClass.CreationProcess();
+      CharacterCreationMenu.CharacterCreationDecision();
     }
     else if(decision == "V")
     {

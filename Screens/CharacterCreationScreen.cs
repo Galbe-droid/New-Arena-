@@ -3,15 +3,16 @@ using System;
 //This screen Show the player stats on the character creation
 class CharacterCreation
 {
-  public static void Creator(string name, int xp, int lvl, int str, int inte, int agi, int vig)
+  public static void Creator(string name, int str, int inte, int agi, int vig, int pointsLeft)
   {
     float Health = 10 + (10 * vig);
     float Mana = 5 + (5 * inte);
            
     Console.WriteLine("STATS");
-    Console.WriteLine("Name:" + name + "   XP:" + xp + "   Level:" + lvl);
+    Console.WriteLine("Name:" + name);
     Console.WriteLine("HP:" + Health + " Mana:" + Mana);
     Console.WriteLine("Str:" + str + " Int:" + inte + " Agi:" +  agi + " Vig:" + vig);
+    Console.WriteLine($"Points Left: {pointsLeft}");
   }
 
   public static void CreatorMainScreen()

@@ -5,7 +5,7 @@
                 {
                     "Id" : 0,
                     "Name" : "Health Potion",
-                    "Cost" : 0,
+                    "Cost" : 15,
                     "Rarity" : 0,
                     "HpModifier" : 25,
                     "MpModifier" : 0,
@@ -14,7 +14,7 @@
                 {
                     "Id" : 1,
                     "Name" : "Mana Potion",
-                    "Cost" : 0,
+                    "Cost" : 15,
                     "Rarity" : 0,
                     "HpModifier" : 0,
                     "MpModifier" : 10,
@@ -23,7 +23,7 @@
                 {
                     "Id" : 2,
                     "Name" : "Elixer",
-                    "Cost" : 0,
+                    "Cost" : 40,
                     "Rarity" : 0,
                     "HpModifier" : 30,
                     "MpModifier" : 15,
@@ -32,7 +32,7 @@
                 {
                     "Id" : 3,
                     "Name" : "Molotov",
-                    "Cost" : 0,
+                    "Cost" : 50,
                     "Rarity" : 0,
                     "HpModifier" : 15,
                     "MpModifier" : 0,
@@ -43,7 +43,7 @@
                 {
                     "Id" : 20,
                     "Name" : "Stronger Potion",
-                    "Cost" : 0,
+                    "Cost" : 35,
                     "Rarity" : 0,        
                     "BuffString" : "attack",
                     "StatusQuantity" : 4,
@@ -53,7 +53,7 @@
                 {
                     "Id" : 21,
                     "Name" : "Agility Potion",
-                    "Cost" : 0,
+                    "Cost" : 35,
                     "Rarity" : 0,        
                     "BuffString" : "dodge",
                     "StatusQuantity" : 4,
@@ -63,7 +63,7 @@
                 {
                     "Id" : 22,
                     "Name" : "Resistent Potion",
-                    "Cost" : 0,
+                    "Cost" : 35,
                     "Rarity" : 0,        
                     "BuffString" : "defense",
                     "StatusQuantity" : 4,
@@ -73,17 +73,17 @@
                 {
                     "Id" : 23,
                     "Name" : "Smoke Bomb",
-                    "Cost" : 0,
+                    "Cost" : 35,
                     "Rarity" : 0,        
                     "BuffString" : "dodge",
-                    "StatusQuatity" : -4,
+                    "StatusQuantity" : -4,
                     "TurnMax" : 2,
                     "UseOnPlayer" : false
                 },
                 {
                     "Id" : 24,
                     "Name" : "Stun Bomb",
-                    "Cost" : 0,
+                    "Cost" : 40,
                     "Rarity" : 0,        
                     "BuffString" : "defense",
                     "StatusQuantity" : -4,

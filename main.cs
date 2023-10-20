@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
 using New_Arena_.Generation.Market;
 using New_Arena_.Loading;
@@ -10,6 +11,7 @@ class MainClass {
     MonsterLoading.Loading();
     SkillsLoading.Loading();
     ItemsLoading.Loading();
+    ParametersLoading.Loading();
     //End Loading
 
     //Main Screen
@@ -25,69 +27,6 @@ class MainClass {
       if(MainMenu.TitleMenu() == "E")
       {
         program = false;
-      }
-    }
-  }
-
-  //Character Creation Process 
-  public static void CreationProcess()
-  {
-    bool CharacterMaker = true;
-    int id = Lists.IdPlayerGeneration();
-    string name = "Nameless"; 
-    int xp = 0, lvl = 1, str = 1, inte = 1, agi = 1, vig = 1;
-
-    Console.Clear();
-    Console.WriteLine("AHHH a new face here");
-    //While loop for Character Creation, changing stats and info 
-    //Inside de loop has the menu and info display, switch cases and the inserion of the var to the caracter class 
-    while(CharacterMaker)
-    {
-      Console.WriteLine("=================================");
-      CharacterCreation.Creator(name, xp, lvl, str, inte, agi, vig);      
-      Console.WriteLine("=================================");
-      CharacterCreation.CreatorMainScreen();
-      Console.WriteLine("=================================");
-      Console.Write("Choice: ");
-      string decision = Console.ReadLine().ToUpper();
-
-      switch(decision)
-      {
-        case "N":
-          name = CharacterCreationMenu.NameInput(name);
-          break;
-
-        case "S":
-          str = CharacterCreationMenu.StatsInput(str);
-          break;
-        
-        case "I":
-          inte = CharacterCreationMenu.StatsInput(inte);
-          break;
-
-        case "A":
-          agi = CharacterCreationMenu.StatsInput(agi);
-          break;
-
-        case "V":
-          vig = CharacterCreationMenu.StatsInput(vig);
-          break;
-
-        case "E":
-          Console.Clear();
-          CharacterMaker = false;
-          break;   
-
-        case "F":
-          Console.Clear();
-          Character character = new Character(id, name, str, inte, agi, vig);
-          //Adding the caracter on the caracter list then disable this screen and going back to the main menu
-          //Applies the initial skill on it 
-          character.Initalization();
-        
-          Lists.CharacterList.Add(character);
-          CharacterMaker = false;
-          break;  
       }
     }
   }
@@ -190,7 +129,8 @@ class MainClass {
       {
         //Only Vicotry screen for now 
         if(monster.Dead == true){
-          Console.WriteLine("Victory!!");
+          Console.WriteLine($"                  VICTORY !!!\n================================================\n       Xp gain: {monster.XpReward}            Gold gain: {monster.GoldReward}");
+          chosen.ReceiveReward(monster.XpReward, monster.GoldReward);
           CombatOn = false;
           Console.ReadLine();
         }

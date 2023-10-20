@@ -70,6 +70,12 @@ class AttributeAlocation
     monster.Vig += monster.ExtraVig; 
   }
 
+  public static void ApplyRewardMultiply(ref MonsterVariation monster)
+  {
+    monster.XpReward += (int)Math.Truncate(monster.XpReward * monster.XpMultiply);
+    monster.GoldReward += (int)Math.Truncate(monster.GoldReward * monster.GoldMultiply);
+  }
+
   public static void AddSkills(ref Monster monster)
   {
     List<SkillBase> ListOfMonsterSkill = SkillsLoading.ListPerMonster[monster.Id];

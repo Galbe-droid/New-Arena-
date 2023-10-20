@@ -2,6 +2,8 @@
     {
         "VariationId": 0,
         "Name": "Incomplete",
+        "XpMultiply": 0.0,
+        "GoldMultiply": 0.0,
         "ExtraStr": 1,
         "ExtraInt": 0,
         "ExtraAgi": 0,
@@ -10,6 +12,8 @@
     {
         "VariationId": 1,
         "Name": "Helper",
+        "XpMultiply": 0.20,
+        "GoldMultiply": 0.20,
         "ExtraStr": 0,
         "ExtraInt": 1,
         "ExtraAgi": 0,
@@ -18,6 +22,8 @@
     {
         "VariationId": 2,
         "Name": "Armored",
+        "XpMultiply": 0.50,
+        "GoldMultiply": 0.10,
         "ExtraStr": 2,
         "ExtraInt": 0,
         "ExtraAgi": 0,

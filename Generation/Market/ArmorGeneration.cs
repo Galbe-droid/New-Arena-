@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
 using New_Arena_.Loading;
 
@@ -68,7 +69,7 @@ namespace New_Arena_.Generation.Market
                 ArmorOfTheDay.Add(armor);
 
                 count++;
-            }while(count < 3);
+            }while(count < ProgressBehaviour.WeaponAndArmorQuantity);
 
             return ArmorOfTheDay;
         }

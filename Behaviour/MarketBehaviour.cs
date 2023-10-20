@@ -27,9 +27,12 @@ namespace New_Arena_.Behaviour
 
                 if(ArenaBehaviour.potionsOfTheDay[choicePotion].Quantity > 0)
                 {
-                    character.AddingItens(ArenaBehaviour.potionsOfTheDay[choicePotion]);
-                    ArenaBehaviour.potionsOfTheDay[choicePotion].Quantity--;
-                    UpdateConsole.StaticMessage($"{ArenaBehaviour.potionsOfTheDay[choicePotion].Name} was brought");
+                    if(character.CheckCost(ArenaBehaviour.potionsOfTheDay[choicePotion].Cost))
+                    {
+                        character.AddingItens(ArenaBehaviour.potionsOfTheDay[choicePotion]);
+                        ArenaBehaviour.potionsOfTheDay[choicePotion].Quantity--;
+                        UpdateConsole.StaticMessage($"{ArenaBehaviour.potionsOfTheDay[choicePotion].Name} was brought");
+                    }                   
                 }
                 else
                     UpdateConsole.StaticMessage("No more of this item...");
@@ -57,9 +60,12 @@ namespace New_Arena_.Behaviour
 
                 if(!ArenaBehaviour.weaponsOfTheDay[choiceWeapon].IsBrought)
                 {
-                    character.AddingItens(ArenaBehaviour.weaponsOfTheDay[choiceWeapon]);
-                    ArenaBehaviour.weaponsOfTheDay[choiceWeapon].IsBrought = true;
-                    UpdateConsole.StaticMessage($"{ArenaBehaviour.weaponsOfTheDay[choiceWeapon].Name} was brought");
+                    if(character.CheckCost(ArenaBehaviour.weaponsOfTheDay[choiceWeapon].Cost))
+                    {
+                        character.AddingItens(ArenaBehaviour.weaponsOfTheDay[choiceWeapon]);
+                        ArenaBehaviour.weaponsOfTheDay[choiceWeapon].IsBrought = true;
+                        UpdateConsole.StaticMessage($"{ArenaBehaviour.weaponsOfTheDay[choiceWeapon].Name} was brought");
+                    }                   
                 }
                 else
                     UpdateConsole.StaticMessage("No more of this item...");
@@ -87,9 +93,12 @@ namespace New_Arena_.Behaviour
 
                 if(!ArenaBehaviour.armorOfTheDay[choiceArmor].IsBrought)
                 {
-                    character.AddingItens(ArenaBehaviour.armorOfTheDay[choiceArmor]);
-                    ArenaBehaviour.armorOfTheDay[choiceArmor].IsBrought = true;
-                    UpdateConsole.StaticMessage($"{ArenaBehaviour.armorOfTheDay[choiceArmor].Name} was brought");
+                    if(character.CheckCost(ArenaBehaviour.armorOfTheDay[choiceArmor].Cost))
+                    {
+                        character.AddingItens(ArenaBehaviour.armorOfTheDay[choiceArmor]);
+                        ArenaBehaviour.armorOfTheDay[choiceArmor].IsBrought = true;
+                        UpdateConsole.StaticMessage($"{ArenaBehaviour.armorOfTheDay[choiceArmor].Name} was brought");
+                    }                    
                 }
                 else
                     UpdateConsole.StaticMessage("No more of this item...");

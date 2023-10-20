@@ -6,11 +6,13 @@ using New_Arena_.Game_Objects.Base_Objects.Interface;
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death, Monster Type
 //Still no: Skills, Boss(Maybe)
-class Monster : Creature, IPotionEffect
+class Monster : Creature, IPotionEffect, IReward
 {
   public int Id {get; set;}
   public Types Type {get; set;}
   public List<Potion> PotionEffect { get; set; }
+  public int XpReward {get; set; }
+  public int GoldReward { get; set; }
   public SubTypes[] SubType = new SubTypes[2];
 
   public Monster(int id, string name, int level, int str, int inte, int agi, int vig)
@@ -21,6 +23,9 @@ class Monster : Creature, IPotionEffect
     Level = level;
     Type = Types.Prefab;
 
+    XpReward = 0;
+    GoldReward = 0;
+
     Str = str;
     Int = inte;
     Agi = agi;
@@ -28,7 +33,7 @@ class Monster : Creature, IPotionEffect
 
     Defense = Vig/2;
     Dodge = 0 + (500 * Agi);
-    Attack = Str;
+    Attack = (int)Math.Ceiling(Str * 1.4f);
 
     Health = 5 + (Vig * 5);
     Mana = 3 + (Int * 3);
@@ -52,6 +57,9 @@ class Monster : Creature, IPotionEffect
     Level = monster.Level;
     Type = monster.Type;
 
+    XpReward = monster.XpReward;
+    GoldReward = monster.GoldReward;
+
     Str = monster.Str;
     Int = monster.Int;
     Agi = monster.Agi;
@@ -59,7 +67,7 @@ class Monster : Creature, IPotionEffect
 
     Defense = Vig/2;
     Dodge = 0 + (500 * Agi);
-    Attack = Str;
+    Attack = (int)Math.Ceiling(Str * 1.4f);
 
     Health = 5 + (Vig * 5);
     Mana = 3 + (Int * 3);
@@ -82,14 +90,17 @@ class Monster : Creature, IPotionEffect
     Level = 0;
     Type = Types.Prefab;
 
+    XpReward = 0;
+    GoldReward = 0;
+
     Str = 0;
     Int = 0;
     Agi = 0;
     Vig = 0; 
 
-    Defense = Vig/2;
+    Defense = (int)Math.Ceiling(Vig * 0.5f);
     Dodge = 0 + (500 * Agi);
-    Attack = Str;
+    Attack = (int)Math.Ceiling(Str * 1.4f);
 
     Health = 5 + (Vig * 5);
     Mana = 3 + (Int * 3);
@@ -101,6 +112,7 @@ class Monster : Creature, IPotionEffect
     ModDodge = 0;
     ModAttack = 0;
   }
+
   public void AddEffects(StatusPotion statusPotion)
   {
     switch(statusPotion.BuffManipulated)

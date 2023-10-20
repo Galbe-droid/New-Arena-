@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
 using New_Arena_.Loading;
 
 class MonsterGeneration
 {
   public static List<Monster> MonstersListOfTheDay = new();
-
   public static List<Monster> monsterListPrefab = MonsterLoading.Monsters;
-
   public static Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterLoading.ListOfMonsterVariation;
 
   public static Monster Creator()
@@ -17,24 +16,28 @@ class MonsterGeneration
     //REGULAR MONSTER GENERATION
     Array typeList = Enum.GetValues(typeof(Types));  
 
-    List<SubTypes> subTypesOffensive = new();
-    subTypesOffensive.Add(SubTypes.Brute);
-    subTypesOffensive.Add(SubTypes.Tatical);
+    List<SubTypes> subTypesOffensive = new()
+    {
+        SubTypes.Brute,
+        SubTypes.Tatical
+    };
 
-    List<SubTypes> subTypesDefense = new();
-    subTypesDefense.Add(SubTypes.Support);
-    subTypesDefense.Add(SubTypes.Survival);
+    List<SubTypes> subTypesDefense = new()
+    {
+        SubTypes.Support,
+        SubTypes.Survival
+    };
 
     int randId = ManagerRandom.GetThreadRandom().Next(monsterListPrefab.Count);
 
-    Monster monsterChoosen = new Monster(monsterListPrefab.Find(m => m.Id == randId));
+    Monster monsterChoosen = new(monsterListPrefab.Find(m => m.Id == randId));
     
     monsterChoosen.Level = ManagerRandom.GetThreadRandom().Next(monsterChoosen.Level, monsterChoosen.Level + 3);
 
     monsterChoosen.Type = (Types)typeList.GetValue(ManagerRandom.GetThreadRandom().Next(1, typeList.Length));
 
-    monsterChoosen.SubType[0] = (SubTypes)subTypesOffensive.ElementAt(ManagerRandom.GetThreadRandom().Next(0, subTypesOffensive.Count));
-    monsterChoosen.SubType[1] = (SubTypes)subTypesDefense.ElementAt(ManagerRandom.GetThreadRandom().Next(0, subTypesDefense.Count));
+    monsterChoosen.SubType[0] = subTypesOffensive.ElementAt(ManagerRandom.GetThreadRandom().Next(0, subTypesOffensive.Count));
+    monsterChoosen.SubType[1] = subTypesDefense.ElementAt(ManagerRandom.GetThreadRandom().Next(0, subTypesDefense.Count));
 
     AttributeAlocation.PlacingAtributes(monsterChoosen);
     //
@@ -46,6 +49,7 @@ class MonsterGeneration
     MonsterVariation monsterVariation = new(monsterChoosen, monsterVariations.Find(mv => mv.VariationId == randVarId));
 
     AttributeAlocation.AddExtraStats(ref monsterVariation);
+    AttributeAlocation.ApplyRewardMultiply(ref monsterVariation);
 
     monsterVariations.Clear();
     //
@@ -57,7 +61,7 @@ class MonsterGeneration
   //Generates 5 monster per day
   public static List<Monster> MonsterOfTheDay()
   {
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < ProgressBehaviour.MonsterCageQuantity; i++)
     {
       MonstersListOfTheDay.Add(Creator());
     }

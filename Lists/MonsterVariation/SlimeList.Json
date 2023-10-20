@@ -2,6 +2,8 @@
     {
         "VariationId": 0,
         "Name": "Unstable",
+        "XpMultiply": 0.0,
+        "GoldMultiply": 0.0,
         "ExtraStr": 0,
         "ExtraInt": 1,
         "ExtraAgi": 1,
@@ -10,6 +12,8 @@
     {
         "VariationId": 1,
         "Name": "Resistent",
+        "XpMultiply": 0.10,
+        "GoldMultiply": 0.20,
         "ExtraStr": 0,
         "ExtraInt": 0,
         "ExtraAgi": 0,
@@ -18,6 +22,8 @@
     {
         "VariationId": 2,
         "Name": "Spiked",
+        "XpMultiply": 0.30,
+        "GoldMultiply": 0.10,
         "ExtraStr": 3,
         "ExtraInt": 0,
         "ExtraAgi": 0,

@@ -1,17 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Game_Objects.Base_Objects.Interface;
 
 //MonsterVariation Exists as a base for variations of another monster that may come with diferent unique gimecks and passives 
-class MonsterVariation : Monster{
+class MonsterVariation : Monster, IRewardMultiply
+{
     //Extra stats that come with the species
     public int VariationId { get; set; }
     public int ExtraStr {get; set;}
     public int ExtraInt {get; set;}
     public int ExtraAgi {get; set;}
     public int ExtraVig {get; set;}
+    public float XpMultiply { get; set; }
+    public float GoldMultiply { get; set; }
 
-    public MonsterVariation(Monster monster, int variationId, string name, int extraStr, int extraInt, int extraAgi, int extraVig){
+    public MonsterVariation(Monster monster, int variationId, float xpMultiply, float goldMultiply, string name, int extraStr, int extraInt, int extraAgi, int extraVig){
         Id = monster.Id;
         VariationId = variationId;
         Name = name + " " + monster.Name;
@@ -19,6 +23,11 @@ class MonsterVariation : Monster{
         Level = monster.Level;
         Type = monster.Type;
         SubType = monster.SubType;
+
+        XpReward = monster.XpReward;
+        GoldReward = monster.GoldReward;
+        XpMultiply = xpMultiply;
+        GoldMultiply = goldMultiply;
 
         Str = monster.Str;
         Int = monster.Int;
@@ -56,6 +65,11 @@ class MonsterVariation : Monster{
         Type = monster.Type;
         SubType = monster.SubType;
 
+        XpReward = monster.XpReward;
+        GoldReward = monster.GoldReward;
+        XpMultiply = monsterVariation.XpMultiply;
+        GoldMultiply = monsterVariation.GoldMultiply;
+
         Str = monster.Str;
         Int = monster.Int;
         Agi = monster.Agi;
@@ -85,7 +99,7 @@ class MonsterVariation : Monster{
         Dead = false;
     }
 
-    public MonsterVariation(int variationId, string name, int extraStr, int extraInt, int extraAgi, int extraVig){
+    public MonsterVariation(int variationId, string name, float xpMultiply, float goldMultiply, int extraStr, int extraInt, int extraAgi, int extraVig){
         Id = 9999;
         VariationId = variationId;
         Name = name;
@@ -93,6 +107,11 @@ class MonsterVariation : Monster{
         Level = 0;
         Type = Types.Prefab;
         SubType[0] = SubTypes.Prefab;
+
+        XpReward = 0;
+        GoldReward = 0;
+        XpMultiply = xpMultiply;
+        GoldMultiply = goldMultiply;
 
         Str = 0;
         Int = 0;
@@ -129,6 +148,11 @@ class MonsterVariation : Monster{
         Level = 0;
         Type = Types.Prefab;
         SubType[0] = SubTypes.Prefab;
+        
+        XpReward = 0;
+        GoldReward = 0;
+        XpMultiply = 0;
+        GoldMultiply = 0;
 
         Str = 0;
         Int = 0;

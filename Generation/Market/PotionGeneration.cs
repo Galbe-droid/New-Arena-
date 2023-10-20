@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
 using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Loading;
@@ -63,7 +64,7 @@ namespace New_Arena_.Generation.Market
                 }
 
                 count++;
-            }while(count < 8);           
+            }while(count <= ProgressBehaviour.PotionQuantity);           
 
             return PotionOfTheDay;
         }

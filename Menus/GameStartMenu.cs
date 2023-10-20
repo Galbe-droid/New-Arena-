@@ -93,7 +93,6 @@ class GameStartMenu
       case "Q":
         Console.Clear();
         CharacterEquipamentMenu.Decision(ref chosen);
-        Console.ReadLine();
         break;
 
       default:

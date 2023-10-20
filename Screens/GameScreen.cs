@@ -21,7 +21,7 @@ class GameScreen
     float dmg = chosen.Damage;
     float mpSpend = chosen.ManaSpend;
 
-    Console.WriteLine("Name:" + chosen.Name + " Lvl:" + chosen.Level + " Xp:" + chosen.Xp);
+    Console.WriteLine($"Name: {chosen.Name} Lvl: {chosen.Level} Xp:{chosen.Xp} Gold:{chosen.Gold}");
 
     Console.WriteLine("=================================");
 

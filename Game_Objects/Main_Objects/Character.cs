@@ -8,16 +8,20 @@ using New_Arena_.Loading;
 //Character uses abstraction Creature 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death
-class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
+class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp, IReceiveReward
 {
   public int Id {get; set;}  
+  public new int Level {get; set;}
   public int Xp {get; set;}
+  public int XpTotal {get; set;}
+  public int Gold {get; set;}
   public Weapon Weapon { get; set; }
   public Armor Armor { get; set; }
   public List<Potion> PotionEffect { get; set; }
   public List<SkillBase> CapableOfLearn = new();
   public List<ItemBase> ItemBag = new();
   public List<ItemBase> EquipamentBag = new();
+  public Dictionary<int, int> Levels { get; set; }
 
   public Character(int id, string name, int str, int inte, int agi, int vig)
   {
@@ -25,7 +29,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
     Name = name;
 
     Xp = 0;
-    Level = 1;
+    XpTotal = 0;
 
     Str = str;
     Int = inte;
@@ -34,7 +38,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
 
     Defense = (int)Math.Ceiling(Vig * 0.5);
     Dodge = 0 + (500 * Agi);
-    Attack = Str;
+    Attack = (int)Math.Ceiling(Str * 1.4f);
 
     Health = 10 + (vig * 10);
     Mana = 5 + (inte * 5);
@@ -59,7 +63,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
     Name = character.Name;
 
     Xp = 0;
-    Level = 1;
+    XpTotal = 0;
 
     Str = character.Str;
     Int = character.Int;
@@ -68,7 +72,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
 
     Defense = Vig/2;
     Dodge = 0 + (500 * Agi);
-    Attack = Str;
+    Attack = Str * 2;
 
     Health = 10 + (character.Vig * 10);
     Mana = 5 + (character.Int * 5);
@@ -93,7 +97,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
     Name = "";
 
     Xp = 0;
-    Level = 1;
+    XpTotal = 0;
 
     Str = 0;
     Int = 0;
@@ -102,7 +106,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
 
     Defense = Vig/2;
     Dodge = 0 + (500 * Agi);
-    Attack = Str;
+    Attack = Str * 2;
 
     Health = 10 + (0 * 10);
     Mana = 5 + (0 * 5);
@@ -121,6 +125,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
     Dead = false;
   }
 
+  
   public void FillAvaliableSkill(){
     foreach(SkillBase s in SkillsLoading.AllSkills){
       if(!this.CapableOfLearn.Exists(x => x.Id == s.Id) && !this.SkillTrained.Exists(x => x.Id == s.Id)){
@@ -139,7 +144,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
       }      
     }
   }
-
+ 
   public void UpdateCharacter()
   {
     this.Defense = this.Vig/2;
@@ -151,11 +156,11 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
 
     UpdateMinMaxValues();
   }
-
+  
   public void ExcludingSkills(int id){
     this.CapableOfLearn.Remove(this.CapableOfLearn.Find(s => s.Id == id));
   }
-
+ 
   public void AddingItens(ItemBase item)
   {
     switch(item.GetType().ToString())
@@ -209,17 +214,17 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
         break;
     }
   }
-
+ 
   public override string ToString(){
     return $"Name: {this.Name} \n" +
-           $"Total Xp: {this.Xp} || Total Gold: 0 \n" +
+           $"Xp: {this.Xp} || Total Gold: 0 \n" +
            $"Str: {this.Str} || Agi: {this.Agi} || Int: {this.Int} || Vit: {this.Vig} \n" +
            $"Weapon: {this.Weapon.Name} || Quality: {this.Weapon.Quality} \n" +
            $"Armor: {this.Armor.Name} || Quality: {this.Armor.Quality} \n" +
            $"Min/Max Damage: {this.MinDamage} - {this.MaxDamage} \n" +
            $"Min/Max Defense: {this.MinDefense} - {this.MinDefense}";
   }
-
+  
   public string ShowSkills(){
     string longString = "";
     foreach(SkillBase s in this.SkillTrained){
@@ -229,7 +234,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
     }
     return longString;
   }
-
+  
   public string ShowBag(){
     string longString = "";
     foreach(ItemBase i in ItemBag){
@@ -242,7 +247,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
 
     return longString;
   }
-
+ 
   public void AddEffects(StatusPotion statusPotion)
   {
     switch(statusPotion.BuffManipulated)
@@ -263,7 +268,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
         break;
     }
   }
-
+  
   public void StatusPotionTurnPass()
   {
     foreach(StatusPotion potion in PotionEffect.Cast<StatusPotion>())
@@ -271,7 +276,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
       potion.TurnCount();
     }
   }
-
+  
   public void PotionEffectRemoval()
   {
     foreach(StatusPotion potion in PotionEffect.Cast<StatusPotion>())
@@ -282,12 +287,12 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
       }
     }
   }
-
+  
   public void Checking(){
     StatusPotionTurnPass();
     PotionEffectRemoval();
   }
-
+  
   public void Initalization()
   {
     FillAvaliableSkill();
@@ -295,8 +300,11 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
     InitializeArmor();
     InitializationDefense();
     UpdateMinMaxValues();
+    InitializeLevel();
+    CheckCharacterLevel();
+    InitialGold();
   }
-
+ 
   public void InitializeWeapon()
   {
     Weapon = new(ItemsLoading.WeaponList.Find(weapon => weapon.Id == 0))
@@ -304,20 +312,25 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
         Quality = WeaponType.Regular
     };
   }
-
+  
   public new void UpdateMinMaxValues(){
     MinDamage = (int)Math.Ceiling(TotalAttack() * Weapon.MinDamageModifier) + Weapon.MinDamage;
     MaxDamage = (int)Math.Ceiling(TotalAttack() * Weapon.MaxDamageModifier) + Weapon.MaxDamage;
     MinDefense = (int)Math.Ceiling(TotalDefense() * Armor.MinDefenseModifier) + Armor.MinDefense;
     MaxDefense = (int)Math.Ceiling(TotalDefense() * Armor.MaxDefenseModifier) + Armor.MaxDefense;
   }
-
+  
   public void InitializeArmor()
   {
     Armor = new(ItemsLoading.ArmorList.Find(armor => armor.Id == 0))
     {
         Quality = WeaponType.Regular
     };
+  }
+  
+  public void InitializeLevel()
+  {
+    Levels = ParametersLoading.GlobalLevels;
   }
 
   public void ChangeWeapon(Weapon newWeapon)
@@ -334,7 +347,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
       Weapon = newWeapon;
     }
   }
-
+  
   public void ChangeArmor(Armor newArmor)
   {
     if(Armor.Id == 0)
@@ -349,7 +362,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
       Armor = newArmor;
     }
   }
-
+  
   public void RemoveWeapon()
   {
     if(Weapon.Id != 0)
@@ -358,7 +371,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
       InitializeWeapon();
     }
   }
-
+  
   public void RemoveArmor()
   {
     if(Armor.Id != 0)
@@ -366,5 +379,51 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor
       EquipamentBag.Add(Armor);
       InitializeArmor();
     }
+  }
+  
+  public bool CheckCost(int cost)
+  {
+    if(Gold >= cost)
+    {
+      Gold -= cost;
+      return true;
+    }
+    else
+    {
+      UpdateConsole.StaticMessage($"You dont have the necessary gold");
+      return false;
+    }  
+  }
+
+  public bool CheckXpCost(int cost)
+  {
+    if(Xp >= cost)
+    {
+      Xp -= cost;
+      return true;
+    }
+    else
+    {
+      UpdateConsole.StaticMessage("Not enought Xp.");
+      return false;
+    }
+  }
+
+  public void CheckCharacterLevel()
+  {
+    //Level is defined by Total Xp, the more the higher the rarity level and other benefits
+    Level = Levels.FirstOrDefault(xp => xp.Value >= XpTotal).Key;
+  }
+
+  public void ReceiveReward(int xp, int gold)
+  {
+    Gold += gold;
+    XpTotal += xp;
+    Xp += xp;
+  }
+
+  private void InitialGold()
+  {
+    Gold = 150;
   }
 }
