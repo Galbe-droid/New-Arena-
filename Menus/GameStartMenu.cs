@@ -1,6 +1,7 @@
 using System;
 using New_Arena_.Behaviour;
 using New_Arena_.Menus;
+using New_Arena_.Save;
 
 class GameStartMenu
 {
@@ -93,6 +94,11 @@ class GameStartMenu
       case "Q":
         Console.Clear();
         CharacterEquipamentMenu.Decision(ref chosen);
+        break;
+
+      case "S":
+        VerifySaveFile.GameSave(chosen);
+        Console.Clear();
         break;
 
       default:

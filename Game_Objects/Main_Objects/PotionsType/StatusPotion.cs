@@ -10,13 +10,14 @@ class StatusPotion : Potion, IStatusManipualtions, IUseInPlayer
     public int Turn { get; set; }
     public bool UseOnPlayer { get; set; }
     public bool IsActive {get; set;}
+    public new StatusPotionType Quality { get; set; }
     public StatusPotion(int id, string name, int cost, int rarity, string buffString, int statusQuantity, int turnMax, bool useOnPlayer)
     {
         this.Id = id;
         this.Name = name;
         this.Cost = cost;
         this.Rarity = rarity;
-        this.Quality = HpAndMpPotionType.Prefab; 
+        this.Quality = StatusPotionType.Poorly; 
         this.BuffString = buffString;
         this.StatusQuantity = statusQuantity;
         this.BuffManipulated = ApplyingType();
@@ -32,7 +33,7 @@ class StatusPotion : Potion, IStatusManipualtions, IUseInPlayer
         this.Name = statPotion.Name;
         this.Cost = statPotion.Cost;
         this.Rarity = statPotion.Rarity;
-        this.Quality = HpAndMpPotionType.Prefab; 
+        this.Quality = StatusPotionType.Poorly; 
         this.BuffString = statPotion.BuffString;        
         this.StatusQuantity = statPotion.StatusQuantity;
         this.BuffManipulated = statPotion.BuffManipulated;
@@ -48,7 +49,7 @@ class StatusPotion : Potion, IStatusManipualtions, IUseInPlayer
         this.Name = "";
         this.Cost = 0;
         this.Rarity = 0;
-        this.Quality = HpAndMpPotionType.Prefab; 
+        this.Quality = StatusPotionType.Poorly; 
         this.BuffString = "";
         this.BuffManipulated = BuffType.Attack;
         this.StatusQuantity = 0;

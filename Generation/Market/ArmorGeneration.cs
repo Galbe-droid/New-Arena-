@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
@@ -5,27 +6,26 @@ using New_Arena_.Loading;
 
 namespace New_Arena_.Generation.Market
 {
-    public class ArmorGeneration
+    class ArmorGeneration
     {
-        private static List<Armor> ArmorOfTheDay = new();
         private static List<Armor> ArmorPrefab = ItemsLoading.ArmorList;
 
-        public static List<Armor> ListOfArmorOfTheDay()
+        public static List<Armor> ListOfArmorOfTheDay(List<Armor> todayArmor)
         {
-          ArmorOfTheDay = ArmorCreator();
+          todayArmor = ArmorCreator(todayArmor);
 
-          return ArmorOfTheDay;
+          return todayArmor;
         }
 
-        public static void ClearArmor()
+        public static void ClearArmor(List<Armor> todayArmor)
         {
-          if(ArmorOfTheDay.Count > 0)
+          if(todayArmor.Count > 0)
           {
-            ArmorOfTheDay.Clear();
+            todayArmor.Clear();
           }
         }
 
-        private static List<Armor> ArmorCreator()
+        private static List<Armor> ArmorCreator(List<Armor> todayArmor)
         {
             List<int> armorId = new();
             int count = 0;
@@ -52,11 +52,13 @@ namespace New_Arena_.Generation.Market
                         armor.MaxDefense -= 1;
                         armor.MinDefenseModifier -= 0.05f;
                         armor.MaxDefenseModifier -= 0.25f;
+                        armor.Cost -= (int)MathF.Truncate(armor.Cost * 0.2f);
                         break;
 
                     case WeaponType.Poorly:
                         armor.MaxDefense -= 1;
                         armor.MaxDefenseModifier -= 0.1f;
+                        armor.Cost -= (int)MathF.Truncate(armor.Cost * 0.1f);
                         break;
 
                     case WeaponType.Prime:
@@ -64,25 +66,27 @@ namespace New_Arena_.Generation.Market
                         armor.MaxDefense += 2;
                         armor.MinDefenseModifier += 0.10f;
                         armor.MaxDefenseModifier += 0.25f;
+                        armor.Cost += (int)MathF.Truncate(armor.Cost * 0.3f);
                         break;
                 }
-                ArmorOfTheDay.Add(armor);
+                todayArmor.Add(armor);
 
                 count++;
             }while(count < ProgressBehaviour.WeaponAndArmorQuantity);
 
-            return ArmorOfTheDay;
+            return todayArmor;
         }
 
         private static WeaponType RandomQualityStatus()
         {
             int choice = ManagerRandom.GetThreadRandom().Next(0,101);
+            List<int> chance = ProgressBehaviour.WeaponAndArmorQualityChance;
 
-            if(choice >= 0 && choice <= 15)
+            if(choice < chance[0])
                 return WeaponType.Rust;
-            else if(choice >= 15 && choice <= 35)
+            else if(choice >= chance[0] && choice < chance[1])
                 return WeaponType.Poorly;
-            else if(choice >= 35 && choice <= 85)
+            else if(choice >= chance[1] && choice < chance[2])
                 return WeaponType.Regular;
             else
                 return WeaponType.Prime;

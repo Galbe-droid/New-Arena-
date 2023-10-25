@@ -1,13 +1,15 @@
 using System;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
 
-public class Armor : ItemBase, IDefense
+class Armor : ItemBase, IDefense
 {
     public int MinDefense { get; set; }
     public int MaxDefense { get; set; }
     public float MinDefenseModifier { get; set; }
     public float MaxDefenseModifier { get; set; }
     public bool IsBrought {get; set;}
+    public new WeaponType Quality {get; set;}
+
     public Armor(int id, string name, int cost, int rarity, int minDefense, int maxDefense, float minDefenseModifier, float maxDefenseModifier)
     {
         Id = id;
@@ -36,16 +38,7 @@ public class Armor : ItemBase, IDefense
     }       
     public Armor()
     {
-        Id = 0;
-        Name = "";
-        Cost = 0;
-        Rarity = 0; 
-        Quality = WeaponType.Prefab;
-        MinDefense = 0;
-        MaxDefense = 0;
-        MinDefenseModifier = 0;
-        MaxDefenseModifier = 0;
-        IsBrought = false;
+
     }         
     public override string ToString()
     {

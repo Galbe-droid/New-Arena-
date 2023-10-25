@@ -7,9 +7,15 @@ namespace New_Arena_.Behaviour
         public static string NameInput(string name)
         {
           Console.WriteLine("So you are not " + name + "...");
-          Console.WriteLine("Well whats is your name then.");
+          Console.WriteLine("Well whats is your name then.(Max 12 letters)");
           Console.Write("Name: ");
-          name = Console.ReadLine();
+          do{
+            name = Console.ReadLine();
+            if(name.Length > 12){
+              Console.WriteLine("Name too long. ");
+              Console.Write("Name: ");
+            }              
+          }while(name.Length <= 12);          
           Console.Clear();
           return name;
         }

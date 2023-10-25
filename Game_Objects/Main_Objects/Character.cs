@@ -4,12 +4,14 @@ using System.Linq;
 using New_Arena_.Game_Objects;
 using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
+using New_Arena_.Generation.Market;
 using New_Arena_.Loading;
 //Character uses abstraction Creature 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death
 class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp, IReceiveReward
 {
+  //Character Settings
   public int Id {get; set;}  
   public new int Level {get; set;}
   public int Xp {get; set;}
@@ -21,7 +23,19 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
   public List<SkillBase> CapableOfLearn = new();
   public List<ItemBase> ItemBag = new();
   public List<ItemBase> EquipamentBag = new();
-  public Dictionary<int, int> Levels { get; set; }
+  public Dictionary<int, int> Levels { get; set; } 
+  
+  //Arena settings
+  public int Days { get; set; }
+  public bool Daytime { get; set; }
+  public bool TimePass { get; set; }
+  public List<Food> InnTodayFood = new(); 
+  public List<Potion> MarketTodayPotion = new();
+  public List<Weapon> MarketTodayWeapon = new();
+  public List<Armor> MarketTodayArmor = new();
+  public List<SkillBase> TrainingHallTodaySkills = new();
+  public List<Monster> MonstersInArenaToday = new();
+  
 
   public Character(int id, string name, int str, int inte, int agi, int vig)
   {
@@ -55,6 +69,11 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
     Armor = null;
 
     Dead = false;
+
+    Days = 0;
+
+    Daytime = true;
+    TimePass = true;
   }
 
   public Character(Character character)
@@ -89,6 +108,11 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
     Armor = null;
 
     Dead = false;
+
+    Days = 0;
+
+    Daytime = true;
+    TimePass = true;
   }
 
   public Character()
@@ -123,6 +147,11 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
     Armor = null;
 
     Dead = false;
+
+    Days = 0;
+
+    Daytime = true;
+    TimePass = true;
   }
 
   
@@ -425,5 +454,26 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
   private void InitialGold()
   {
     Gold = 150;
+  }
+
+  //Arena Methods
+  public void GetTodayLists()
+  {
+    FoodGeneration.ListOfFruitOfTheDay(InnTodayFood);
+    PotionGeneration.ListOfPotionsOfTheDay(MarketTodayPotion);
+    WeaponGeneration.ListOfWeaponsOfTheDay(MarketTodayWeapon);
+    ArmorGeneration.ListOfArmorOfTheDay(MarketTodayArmor);
+    SkillChoices.LearningSkill(this, TrainingHallTodaySkills);
+    MonsterGeneration.MonsterOfTheDay(MonstersInArenaToday);
+  }
+
+  public void CleanTodayLists()
+  {
+    FoodGeneration.ClearFoods(InnTodayFood);
+    PotionGeneration.ClearPotion(MarketTodayPotion);
+    WeaponGeneration.ClearWeapons(MarketTodayWeapon);
+    ArmorGeneration.ClearArmor(MarketTodayArmor);
+    SkillChoices.ClearSkills(TrainingHallTodaySkills);
+    MonsterGeneration.CleaningCages(MonstersInArenaToday);
   }
 }

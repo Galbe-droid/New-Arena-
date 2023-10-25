@@ -8,6 +8,7 @@ class Food : ItemBase, IHpAndMpManipulation, IQuality, IQuantity
   public int HpModifier { get; set; }
   public int MpModifier { get; set; }
   public int Quantity { get; set; }
+  public new FruitQuality Quality { get; set; }
 
   public Food(int id, string name, int cost, int rarity, int hp, int mp)
   {

@@ -7,23 +7,23 @@ class SkillChoices{
   public static List<SkillBase> SkillOfTheDay = new List<SkillBase>();
 
   //Returns the list above to the TrainingHallMenu with the skills to learn
-  public static List<SkillBase> LearningSkill(Character c){    
+  public static List<SkillBase> LearningSkill(Character c, List<SkillBase> todaySkill){    
     //If the player has more then 5 skill to learn he will receive only 5 skill to learn per day, it's random
     if(c.CapableOfLearn.Count >= 5){
-      PopulatingList(5, c);
-      return SkillOfTheDay;
+      PopulatingList(5, c, todaySkill);
+      return todaySkill;
     }
     else if(c.CapableOfLearn.Count < 5 && c.CapableOfLearn.Count > 0){
-      PopulatingList(c.CapableOfLearn.Count, c);
-      return SkillOfTheDay;
+      PopulatingList(c.CapableOfLearn.Count, c, todaySkill);
+      return todaySkill;
     }
     else{
-      return SkillOfTheDay;
+      return todaySkill;
     }
   }
 
   //Start populating the list with random skills that the Player can learn 
-  public static void PopulatingList(int skillQty, Character c){
+  public static void PopulatingList(int skillQty, Character c, List<SkillBase> todayList){
     Random rand = new Random();
 
     int count = 0;
@@ -38,37 +38,37 @@ class SkillChoices{
       }      
     }
   
-    while(SkillOfTheDay.Count < skillQty){
+    while(todayList.Count < skillQty){
       //Pick up a random Id
       int idChoose = ids[rand.Next(0, ids.Length)];
 
       //Check if the skill is already on the list 
-      bool _alreadyOnList = SkillOfTheDay.Exists(skill => skill.Id == idChoose) ? true : false;
+      bool _alreadyOnList = todayList.Exists(skill => skill.Id == idChoose) ? true : false;
 
       if(!_alreadyOnList){
         SkillBase _skill = c.CapableOfLearn.Find(skill => skill.Id == idChoose);
 
         if(_skill.GetType() == typeof(BuffSkill))
-          SkillOfTheDay.Add(new BuffSkill((BuffSkill)_skill));
+          todayList.Add(new BuffSkill((BuffSkill)_skill));
 
         if(_skill.GetType() == typeof(DebuffSkill))
-          SkillOfTheDay.Add(new DebuffSkill((DebuffSkill)_skill));
+          todayList.Add(new DebuffSkill((DebuffSkill)_skill));
 
         if(_skill.GetType() == typeof(AttackSkill))
-          SkillOfTheDay.Add(new AttackSkill((AttackSkill)_skill));
+          todayList.Add(new AttackSkill((AttackSkill)_skill));
 
         if(_skill.GetType() == typeof(DefenseSkill))
-          SkillOfTheDay.Add(new DefenseSkill((DefenseSkill)_skill));
+          todayList.Add(new DefenseSkill((DefenseSkill)_skill));
       }
     }
   }
 
   //Clear the list for the next day 
-  public static void ClearSkills()
+  public static void ClearSkills(List<SkillBase> todayList)
   {
-    if(SkillOfTheDay.Count > 0)
+    if(todayList.Count > 0)
     {
-      SkillOfTheDay.Clear();
+      todayList.Clear();
     }
   }
 }

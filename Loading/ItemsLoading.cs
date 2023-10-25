@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
-using New_Arena_.Game_Objects;
-using New_Arena_.Game_Objects.Base_Objects;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace New_Arena_.Loading
@@ -28,7 +26,7 @@ namespace New_Arena_.Loading
             string fileName = "./Lists/FoodList.json";
             string jsonString = File.ReadAllText(fileName);
 
-            ConsumablesList = JsonSerializer.Deserialize<List<Food>>(jsonString);
+            ConsumablesList =  JsonConvert.DeserializeObject<List<Food>>(jsonString);
 
             return ConsumablesList;
         }   
@@ -38,7 +36,7 @@ namespace New_Arena_.Loading
             string fileName = "./Lists/WeaponList.json";
             string jsonString = File.ReadAllText(fileName);
 
-            WeaponList = JsonSerializer.Deserialize<List<Weapon>>(jsonString);
+            WeaponList =  JsonConvert.DeserializeObject<List<Weapon>>(jsonString);
             
             return WeaponList;
         }
@@ -48,7 +46,7 @@ namespace New_Arena_.Loading
             string fileName = "./Lists/ArmorList.json";
             string jsonString = File.ReadAllText(fileName);
 
-            ArmorList = JsonSerializer.Deserialize<List<Armor>>(jsonString);
+            ArmorList =  JsonConvert.DeserializeObject<List<Armor>>(jsonString);
             
             return ArmorList;
         }
@@ -68,11 +66,11 @@ namespace New_Arena_.Loading
                 {
                     switch(potionType.Name){
                         case "HpAndMpPotion":
-                            PotionList.AddRange(JsonSerializer.Deserialize<List<HpAndMpPotion>>(potionType.Value.ToString()));
+                            PotionList.AddRange(JsonConvert.DeserializeObject<List<HpAndMpPotion>>(potionType.Value.ToString()));
                             break;
 
                         case "StatusPotion":
-                            PotionList.AddRange(JsonSerializer.Deserialize<List<StatusPotion>>(potionType.Value.ToString()));
+                            PotionList.AddRange(JsonConvert.DeserializeObject<List<StatusPotion>>(potionType.Value.ToString()));
                             break;
 
                         default:

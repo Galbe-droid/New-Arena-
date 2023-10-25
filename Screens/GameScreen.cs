@@ -4,11 +4,9 @@ using System.Collections.Generic;
 //This screen shown the HP and MP for the player on the Arena Entrace 
 class GameScreen
 {
-  public static List<Character> GameList = Lists.CharacterList;
-
   public static void CharacterSelection()
   {
-    Lists.PlayerShowList();
+    CharacterListManagement.PlayerShowList();
   }
 
   public static void CharacterStats(Character chosen)
@@ -49,7 +47,7 @@ class GameScreen
     Console.WriteLine("Arena Gates / Day:" + dayCount + " / " + dayMoment);
     
 
-    Console.WriteLine("N - Entrance " + dayMoment + "\nM - Market / I - Inn \nT - Trainning Hall / C - See Character\nQ - Equipament / E - Exit Game");
+    Console.WriteLine("N - Entrance -" + dayMoment + "\nM - Market / I - Inn  / T - Trainning Hall\nC - See Character / Q - Equipament\nS - Save Game / E - Exit Game");
   }
 
   private static void _CharacterBar(float tick, float HealthOrMana, float DamageOrSpend)

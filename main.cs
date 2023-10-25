@@ -1,17 +1,19 @@
 using System;
-using System.Collections.Generic;
 using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
-using New_Arena_.Generation.Market;
 using New_Arena_.Loading;
+using New_Arena_.Save;
 
 class MainClass {  
   public static void Main (string[] args) {
+    //Verify if save file exist
+    VerifySaveFile.CreateFile();
     //Loading
     MonsterLoading.Loading();
     SkillsLoading.Loading();
     ItemsLoading.Loading();
     ParametersLoading.Loading();
+    CharactersLoading.LoadingCharacters();
     //End Loading
 
     //Main Screen
@@ -35,30 +37,33 @@ class MainClass {
   public static void GameStart(Character chosen)
   {
     bool GameOn = true;
-    int days = 0;
+    int days = chosen.Days;
     string dayMoment;
-    bool daytime = true;    
-    bool timePass = true;   
+    bool daytime = chosen.Daytime;    
+    bool timePass = chosen.TimePass;   
 
     while(GameOn)
     {
+      ProgressBehaviour.CheckingValuesInLevel(chosen);
       if(daytime == true)
       {
         //Make list persistent
         if(timePass){
-          ArenaBehaviour.ListPopulating(chosen);
-          ArenaBehaviour.ListCleaning();
+          chosen.CleanTodayLists();
+          chosen.GetTodayLists();
           days++;
         }
+        ArenaBehaviour.ReceiveLists(chosen);
         dayMoment = " Daytime";
       }
       else
       {
         //Make list persistent
-        if(timePass){          
-          ArenaBehaviour.ListPopulating(chosen);
-          ArenaBehaviour.ListCleaning();
+        if(timePass){    
+          chosen.CleanTodayLists();
+          chosen.GetTodayLists();      
         }
+        ArenaBehaviour.ReceiveLists(chosen);
         dayMoment = " Nightime";        
       }     
 
@@ -133,6 +138,7 @@ class MainClass {
           chosen.ReceiveReward(monster.XpReward, monster.GoldReward);
           CombatOn = false;
           Console.ReadLine();
+          VerifySaveFile.GameSave(chosen);
         }
         else if(chosen.Dead == true){
           chosen.Damage = 0;
@@ -140,6 +146,7 @@ class MainClass {
           CombatOn = false;
           chosen.Dead = false;
           Console.ReadLine();
+          VerifySaveFile.GameSave(chosen);
         }
       }
     }

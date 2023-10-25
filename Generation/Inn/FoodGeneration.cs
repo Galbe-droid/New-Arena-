@@ -12,8 +12,6 @@ class FoodGeneration
     //Enum
     private static Array typeListFruit = Enum.GetValues(typeof(FruitQuality));
 
-    private static List<Food> FruitOfTheDay = new List<Food>();
-
     //Creates the fruits and place then on the list
     private static Food FruitCreator()
     {
@@ -37,29 +35,28 @@ class FoodGeneration
     }
 
   //Place the fruit on the list 
-  public static List<Food> ListOfFruitOfTheDay()
+  public static List<Food> ListOfFruitOfTheDay(List<Food> todayFood)
   {
     for(int i = 0; i < ProgressBehaviour.InnFoodQuantity; i++)
     {
-      Food food = FruitCreator();    
-      
-      Food foodInList = FruitOfTheDay.FirstOrDefault(X => X.Id == food.Id && X.Quality.ToString() == food.Quality.ToString());
+      Food food = FruitCreator();          
+      Food foodInList = todayFood.FirstOrDefault(X => X.Id == food.Id && X.Quality.ToString() == food.Quality.ToString());
 
       if(foodInList != null)
         foodInList.Quantity++;      
       else
-        FruitOfTheDay.Add(food);
+        todayFood.Add(food);
     }
 
-    return FruitOfTheDay;
+    return todayFood;
   }
 
   //Clear the fruits of the list
-  public static void ClearFoods()
+  public static void ClearFoods(List<Food> todayFood)
   {
-    if(FruitOfTheDay.Count > 0)
+    if(todayFood.Count > 0)
     {
-      FruitOfTheDay.Clear();
+      todayFood.Clear();
     }
   }
 }

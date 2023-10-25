@@ -51,8 +51,8 @@ In Progress:
     7.1 Gameplay Loop // Complete
     7.2 GameOver // In Progress - No Penality
     7.3 Arena Victory // Completed
-    7.4 XP and Itens for Victory // TBD
-    7.5 Character Creation 2.0 // TBD
-    7.6 Character Progression // TBD
+    7.4 XP and Itens for Victory // Complete
+    7.5 Character Creation 2.0 // Complete
+    7.6 Character Progression // Working
     7.7 Monster Progression // Working
-    7.8 Itens Progression // TBD  
+    7.8 Itens Progression // Working  

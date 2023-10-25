@@ -7,7 +7,6 @@ using New_Arena_.Loading;
 
 class MonsterGeneration
 {
-  public static List<Monster> MonstersListOfTheDay = new();
   public static List<Monster> monsterListPrefab = MonsterLoading.Monsters;
   public static Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterLoading.ListOfMonsterVariation;
 
@@ -59,22 +58,22 @@ class MonsterGeneration
   }
 
   //Generates 5 monster per day
-  public static List<Monster> MonsterOfTheDay()
+  public static List<Monster> MonsterOfTheDay(List<Monster> todayList)
   {
     for(int i = 0; i < ProgressBehaviour.MonsterCageQuantity; i++)
     {
-      MonstersListOfTheDay.Add(Creator());
+      todayList.Add(Creator());
     }
 
-    return MonstersListOfTheDay;
+    return todayList;
   }
 
   //Remove monster from the list 
-  public static void CleaningCages()
+  public static void CleaningCages(List<Monster> todayList)
   {
-    if(MonstersListOfTheDay.Count > 0)
+    if(todayList.Count > 0)
     {
-      MonstersListOfTheDay.Clear();
+      todayList.Clear();
     }
   }
 }

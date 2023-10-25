@@ -6,6 +6,7 @@ class HpAndMpPotion : Potion, IHpAndMpManipulation, IUseInPlayer
     public int HpModifier { get; set; }
     public int MpModifier { get; set; }
     public bool UseOnPlayer { get; set; }
+    public new HpAndMpPotionType Quality { get; set; }
     public HpAndMpPotion()
     {
         Id = 9999;

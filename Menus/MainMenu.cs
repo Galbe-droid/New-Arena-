@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using New_Arena_.Screens;
+using New_Arena_.Loading;
 
 //Main menu 
 class MainMenu
@@ -31,14 +32,14 @@ class MainMenu
     //Initiate a new game, only if there is a character 
     if(decision == "N")
     {
-      if(Lists.CountListPlayer() == 0)
+      if(CharactersLoading.GlobalCharacterList.Count == 0)
       {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("No Characters avaliable, please create one first.");
         Console.ResetColor();
         Console.ReadKey();
         Console.Clear();
-        }
+      }
       else
       {
         GameScreen.CharacterSelection();
@@ -62,7 +63,7 @@ class MainMenu
     }
     else if(decision == "V")
     {
-      if(Lists.CountListPlayer() == 0)
+      if(CharactersLoading.GlobalCharacterList.Count == 0)
       {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("No Characters avaliable, please create one first.");
@@ -70,7 +71,7 @@ class MainMenu
       }
       else
       {
-        Lists.PlayerShowList();
+        CharacterListManagement.PlayerShowList();
         Console.Write("Press any key to continue...");
         Console.ReadKey();
         Console.Clear();

@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using New_Arena_.Behaviour;
-using New_Arena_.Generation.Market;
 
 class ArenaBehaviour
 {
-  public static List<Monster> cages;
-  public static List<Food> innFoodTable;
-  public static List<SkillBase> skillOfTheDay;
-  public static List<Potion> potionsOfTheDay;
-  public static List<Weapon> weaponsOfTheDay;
-  public static List<Armor> armorOfTheDay;
+  public static List<Monster> cages { get; set;}
+  public static List<Food> innFoodTable { get; set;}
+  public static List<SkillBase> skillOfTheDay { get; set;}
+  public static List<Potion> potionsOfTheDay { get; set;}
+  public static List<Weapon> weaponsOfTheDay { get; set;}
+  public static List<Armor> armorOfTheDay { get; set;}
   //Controls Day and night behaviour, certain activities depend on it 
   public static void TurnControl(ref Character chosen, ref Monster monster, bool initiative)
   {
@@ -70,23 +69,13 @@ class ArenaBehaviour
       monster.UpdateMinMaxValues();
   }
 
-  public static void ListPopulating(Character chosen)
+  public static void ReceiveLists(Character character)
   {
-    cages = new(MonsterGeneration.MonsterOfTheDay());
-    skillOfTheDay = new(SkillChoices.LearningSkill(chosen));  
-    innFoodTable = new(FoodGeneration.ListOfFruitOfTheDay());
-    potionsOfTheDay = new(PotionGeneration.ListOfPotionsOfTheDay());
-    weaponsOfTheDay = new(WeaponGeneration.ListOfWeaponsOfTheDay());
-    armorOfTheDay = new(ArmorGeneration.ListOfArmorOfTheDay());
-  }
-
-  public static void ListCleaning()
-  {
-    MonsterGeneration.CleaningCages();
-    FoodGeneration.ClearFoods();
-    SkillChoices.ClearSkills();
-    PotionGeneration.ClearPotion();
-    WeaponGeneration.ClearWeapons();
-    ArmorGeneration.ClearArmor();
+    cages = character.MonstersInArenaToday;
+    innFoodTable = character.InnTodayFood;
+    skillOfTheDay = character.TrainingHallTodaySkills;
+    potionsOfTheDay = character.MarketTodayPotion;
+    weaponsOfTheDay = character.MarketTodayWeapon;
+    armorOfTheDay = character.MarketTodayArmor;
   }
 }
