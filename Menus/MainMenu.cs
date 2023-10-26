@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using New_Arena_.Screens;
 using New_Arena_.Loading;
+using New_Arena_.Behaviour;
 
 //Main menu 
 class MainMenu
@@ -52,7 +53,7 @@ class MainMenu
         else
         {
           Console.Clear();
-          MainClass.GameStart(chosen);
+          GameStart.Start(chosen);
         }        
       }
     }

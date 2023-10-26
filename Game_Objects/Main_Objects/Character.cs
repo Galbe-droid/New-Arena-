@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using New_Arena_.Game_Objects;
-using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
 using New_Arena_.Generation.Market;
 using New_Arena_.Loading;
@@ -454,6 +452,19 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
   private void InitialGold()
   {
     Gold = 150;
+  }
+
+  public void CleanBuffDebuffsAndPotionList()
+  {
+    BuffActive.Clear();
+    DebuffActive.Clear();
+    PotionEffect.Clear();
+  }
+
+  public void LostABattle()
+  {
+    Xp = (int)MathF.Truncate(Xp - (Xp * 0.20f));
+    Gold = (int)MathF.Truncate(Gold - (Gold * 0.20f));
   }
 
   //Arena Methods

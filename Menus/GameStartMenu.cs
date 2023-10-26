@@ -42,7 +42,7 @@ class GameStartMenu
           DayOrNight = !DayOrNight;
           //Initiate Combat 
           AttributeAlocation.AddSkills(ref monster);
-          MainClass.Combat(chosen, monster);
+          CombatStart.Combat(chosen, monster);
           Console.Clear();
         }
         break;       
