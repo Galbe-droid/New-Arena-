@@ -3,7 +3,7 @@ using System;
 using New_Arena_.Game_Objects.Base_Objects;
 using New_Arena_.Game_Objects.Base_Objects.Interface;
 
-class Food : ItemBase, IHpAndMpManipulation, IQuality, IQuantity
+class Food : ItemBase, IHpAndMpManipulation, IQuantity
 {
   public int HpModifier { get; set; }
   public int MpModifier { get; set; }

@@ -8,7 +8,8 @@
         "Str": 3,
         "Int": 3,
         "Agi": 3,
-        "Vig": 3
+        "Vig": 3,
+        "CharacterMinLevel": 0
     },
     {
         "Id": 1,
@@ -19,7 +20,8 @@
         "Str": 3,
         "Int": 1,
         "Agi": 4,
-        "Vig": 4
+        "Vig": 4,
+        "CharacterMinLevel": 0
     },
     {
         "Id": 2,
@@ -30,6 +32,7 @@
         "Str": 5,
         "Int": 1,
         "Agi": 1,
-        "Vig": 7
+        "Vig": 7,
+        "CharacterMinLevel": 0
     }
 ]

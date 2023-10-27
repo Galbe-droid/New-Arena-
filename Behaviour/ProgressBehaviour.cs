@@ -6,7 +6,7 @@ namespace New_Arena_.Behaviour
 {
     class ProgressBehaviour
     {
-        private static int _CharacterLevel;
+        public static int CharacterLevel;
         public static int PotionQuantity;
         public static int WeaponAndArmorQuantity;
         public static int MonsterCageQuantity;
@@ -26,30 +26,30 @@ namespace New_Arena_.Behaviour
 
         public static void LevelCheck(Character character)
         {
-            _CharacterLevel = character.Level;
+            CharacterLevel = character.Level;
         }
 
         private static void MarketValuesCheck()
         {
-            PotionQuantity = ParametersLoading.GlobalMarketPotionQuantity.FirstOrDefault(level => level.Key == _CharacterLevel).Value;
-            WeaponAndArmorQuantity = ParametersLoading.GlobalMarketWeaponAndArmorQuantity.FirstOrDefault(level => level.Key == _CharacterLevel).Value;
+            PotionQuantity = ParametersLoading.GlobalMarketPotionQuantity.FirstOrDefault(level => level.Key == CharacterLevel).Value;
+            WeaponAndArmorQuantity = ParametersLoading.GlobalMarketWeaponAndArmorQuantity.FirstOrDefault(level => level.Key == CharacterLevel).Value;
         }
 
         private static void MonsterQuantityCheck()
         {
-            MonsterCageQuantity = ParametersLoading.GlobalMonsterCageQuantity.FirstOrDefault(level => level.Key == _CharacterLevel).Value;
+            MonsterCageQuantity = ParametersLoading.GlobalMonsterCageQuantity.FirstOrDefault(level => level.Key == CharacterLevel).Value;
         }
 
         private static void InnFoodQuantityCheck()
         {
-            InnFoodQuantity = ParametersLoading.GlobalInnFoodQuantity.FirstOrDefault(level => level.Key == _CharacterLevel).Value;
+            InnFoodQuantity = ParametersLoading.GlobalInnFoodQuantity.FirstOrDefault(level => level.Key == CharacterLevel).Value;
         }
 
         private static void MarketQualityCheck()
         {
-            HpAndMpPotionQualityChance = ParametersLoading.GlobalHpAndMpPotionQualityChance.FirstOrDefault(level => level.Key == _CharacterLevel).Value;
-            StatusPotionQualityChance = ParametersLoading.GlobalStatusPotionQualityChance.FirstOrDefault(level => level.Key == _CharacterLevel).Value;
-            WeaponAndArmorQualityChance = ParametersLoading.GlobalWeaponAndArmorQualityChance.FirstOrDefault(level => level.Key == _CharacterLevel).Value;
+            HpAndMpPotionQualityChance = ParametersLoading.GlobalHpAndMpPotionQualityChance.FirstOrDefault(level => level.Key == CharacterLevel).Value;
+            StatusPotionQualityChance = ParametersLoading.GlobalStatusPotionQualityChance.FirstOrDefault(level => level.Key == CharacterLevel).Value;
+            WeaponAndArmorQualityChance = ParametersLoading.GlobalWeaponAndArmorQualityChance.FirstOrDefault(level => level.Key == CharacterLevel).Value;
         }
     }
 }

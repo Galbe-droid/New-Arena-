@@ -15,7 +15,6 @@ class ArenaEntrance
       Console.WriteLine($"Stats: Str: {m.Str} Int: {m.Int} Agi: {m.Agi} Vig: {m.Vig}");
       Console.WriteLine($"Min/Max Damage: {m.MinDamage} - {m.MaxDamage}");
       Console.WriteLine($"Min/Max Defense: {m.MinDefense} - {m.MaxDefense}");
-      Console.WriteLine($"Min/Max Defense: {m.XpReward} - {m.GoldReward}");
       cage ++;
     }
   }

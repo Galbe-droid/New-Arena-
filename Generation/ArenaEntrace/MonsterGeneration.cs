@@ -7,11 +7,11 @@ using New_Arena_.Loading;
 
 class MonsterGeneration
 {
-  public static List<Monster> monsterListPrefab = MonsterLoading.Monsters;
-  public static Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterLoading.ListOfMonsterVariation;
-
   public static Monster Creator()
   {
+    List<Monster> monsterListPrefab = MonsterLoading.Monsters.Where(monster => monster.CharacterMinLevel <= ProgressBehaviour.CharacterLevel).ToList();
+    Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterLoading.ListOfMonsterVariation;
+
     //REGULAR MONSTER GENERATION
     Array typeList = Enum.GetValues(typeof(Types));  
 

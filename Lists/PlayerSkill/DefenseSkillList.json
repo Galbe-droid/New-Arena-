@@ -5,7 +5,7 @@
         "Desc": "Simple regeneration",
         "MinLevel": 0,
         "TurnMax": 1,
-        "Cost": 0,
+        "Cost": 20,
         "MinValue": 5,
         "MaxValue": 15,
         "Modifier": 1.5,

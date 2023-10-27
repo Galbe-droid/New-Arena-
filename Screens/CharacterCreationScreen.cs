@@ -18,6 +18,6 @@ class CharacterCreation
   public static void CreatorMainScreen()
   {
     Console.WriteLine("Select one of the options to chance its values.");
-    Console.WriteLine("N - Name\nS - Str / I - Int\nA- Agi / V - Vig\nE - Exit(it will not save the character) / F - Finish");
+    Console.WriteLine("N - Name\nS - Str / I - Int\nA - Agi / V - Vig\nE - Exit(it will not save the character) / F - Finish");
   }
 }

@@ -5,7 +5,7 @@
         "Desc": "A far more powerful strike",
         "MinLevel": 0,
         "TurnMax": 3,
-        "Cost": 0,
+        "Cost": 25,
         "MinValue": 10,
         "MaxValue": 20,
         "Modifier": 1.3,

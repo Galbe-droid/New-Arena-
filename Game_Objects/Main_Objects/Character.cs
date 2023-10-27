@@ -467,6 +467,21 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
     Gold = (int)MathF.Truncate(Gold - (Gold * 0.20f));
   }
 
+  public int StatusPrice()
+  {
+    int sumAll = Str + Int + Agi + Vig;
+    float priceModifier = 0;
+
+    if(sumAll <= 20)
+      priceModifier = 0.5f;
+    if(sumAll > 30 && sumAll <= 40)
+      priceModifier = 0.65f;
+    if(sumAll > 40 && sumAll <= 50)
+      priceModifier = 0.8f;      
+
+    return (int)MathF.Truncate((Str + Int + Agi + Vig) * priceModifier);  
+  }
+
   //Arena Methods
   public void GetTodayLists()
   {

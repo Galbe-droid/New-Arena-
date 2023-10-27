@@ -1,4 +1,3 @@
-
 using System;
 
 public abstract class ItemBase
@@ -7,5 +6,5 @@ public abstract class ItemBase
     public string Name { get; set; }
     public int Cost {get; set;}  
     public int Rarity {get; set;}
-    public Enum Quality { get; set; }    
+    public Enum Quality {get; set;}
 }

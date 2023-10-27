@@ -18,7 +18,7 @@
         "TurnMax": 2,
         "Qty": 15,
         "IsActivedOnce": true,
-        "XpCost": 0,
+        "XpCost": 30,
         "WhereToApplyString": "dodge"
     },
     {
@@ -29,7 +29,7 @@
         "TurnMax": 3,
         "Qty": 4,
         "IsActivedOnce": true,
-        "XpCost": 0,
+        "XpCost": 30,
         "WhereToApplyString": "attack"
     },
     {
@@ -40,7 +40,7 @@
         "TurnMax": 3,
         "Qty": 2,
         "IsActiveOnce": false,
-        "XpCost": 0,
+        "XpCost": 30,
         "WhereToApplyString": "defense"
     }
 ]

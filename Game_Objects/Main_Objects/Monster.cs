@@ -14,8 +14,9 @@ class Monster : Creature, IPotionEffect, IReward
   public int XpReward {get; set; }
   public int GoldReward { get; set; }
   public SubTypes[] SubType = new SubTypes[2];
+  public int CharacterMinLevel {get; set;}
 
-  public Monster(int id, string name, int level, int str, int inte, int agi, int vig)
+  public Monster(int id, string name, int level, int str, int inte, int agi, int vig, int characterMinLevel)
   {
     Id = id;
     Name = name;
@@ -30,6 +31,8 @@ class Monster : Creature, IPotionEffect, IReward
     Int = inte;
     Agi = agi;
     Vig = vig; 
+
+    CharacterMinLevel = characterMinLevel;
 
     Defense = Vig/2;
     Dodge = 0 + (500 * Agi);
@@ -65,6 +68,8 @@ class Monster : Creature, IPotionEffect, IReward
     Agi = monster.Agi;
     Vig = monster.Vig; 
 
+    CharacterMinLevel = monster.CharacterMinLevel;
+
     Defense = Vig/2;
     Dodge = 0 + (500 * Agi);
     Attack = (int)Math.Ceiling(Str * 1.4f);
@@ -97,6 +102,8 @@ class Monster : Creature, IPotionEffect, IReward
     Int = 0;
     Agi = 0;
     Vig = 0; 
+
+    CharacterMinLevel = 0;
 
     Defense = (int)Math.Ceiling(Vig * 0.5f);
     Dodge = 0 + (500 * Agi);

@@ -23,7 +23,7 @@ namespace New_Arena_.Behaviour
             }
             else{
                 //Initiate applying the skill on the player caracter and removing the skill from the day list
-                if(c.Xp >= ArenaBehaviour.skillOfTheDay[choice].XpCost){
+                if(c.CheckXpCost(ArenaBehaviour.skillOfTheDay[choice].XpCost)){
                     Console.WriteLine("Skill: {0} Learned !", ArenaBehaviour.skillOfTheDay[choice].Name);
 
                     if(ArenaBehaviour.skillOfTheDay[choice].GetType() == typeof(BuffSkill)){
@@ -44,10 +44,6 @@ namespace New_Arena_.Behaviour
 
                     Console.ReadKey();
                 }
-                else{
-                    Console.WriteLine("Insulficient Xp.");
-                    Console.ReadKey();
-                }
             }   
         
             return c;
@@ -55,35 +51,39 @@ namespace New_Arena_.Behaviour
 
         public static bool StatsIncrease(ref Character chosen)
         {
-            string choice = "";
-
+            int cost = chosen.StatusPrice();
             Console.WriteLine("Choose a status to improve: "); 
-            Console.WriteLine("S - Str / A - Agi / I - Int / V - Vig");
-            Console.Write("Choose (Any other key to go back):");
-            choice = Console.ReadLine().ToUpper();        
+            Console.WriteLine($"S - Str / A - Agi / I - Int / V - Vig / Cost XP: {cost}");
+            Console.Write("Choose (Any other key to go back):");            
+            string choice = Console.ReadLine().ToUpper();  
 
-            switch(choice)
+            if(chosen.CheckXpCost(cost))
             {
-                case("S"):
-                    chosen.Str++;
-                    return true;
+                switch(choice)
+                {
+                    case"S":
+                        chosen.Str++;
+                        return true;
 
-                case("A"):
-                    chosen.Agi++;
-                    return true;
+                    case"A":
+                        chosen.Agi++;
+                        return true;
 
-                case("I"):
-                    chosen.Int++;
-                    return true;
+                    case"I":
+                        chosen.Int++;
+                        return true;
 
-                case("V"):
-                    chosen.Vig++;
-                    return true;
+                    case"V":
+                        chosen.Vig++;
+                        return true;
 
-                default:
-                    Console.WriteLine("Error.");
-                    return false;
-            }
+                    default:
+                        Console.WriteLine("Error.");
+                        return false;
+                }
+            }    
+
+            return false;            
         }
     }
 }
