@@ -49,7 +49,7 @@ In Progress:
     
   7.GamePlay
     7.1 Gameplay Loop // Complete
-    7.2 GameOver // In Progress - No Penality
+    7.2 GameOver // Completed
     7.3 Arena Victory // Completed
     7.4 XP and Itens for Victory // Complete
     7.5 Character Creation 2.0 // Complete

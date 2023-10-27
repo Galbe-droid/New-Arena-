@@ -1,4 +1,4 @@
-enum StatusPotionType
+public enum StatusPotionType
 {
     Poorly,
     Regular,

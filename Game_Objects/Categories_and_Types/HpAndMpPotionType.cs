@@ -1,4 +1,4 @@
-enum HpAndMpPotionType
+public enum HpAndMpPotionType
 {
     Prefab,
     Poorly,

@@ -1,4 +1,4 @@
-enum WeaponType
+public enum WeaponType
 {
     Prefab,
     Rust, 

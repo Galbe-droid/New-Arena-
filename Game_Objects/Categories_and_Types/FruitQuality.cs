@@ -1,5 +1,5 @@
 //Fruit Types determine if the fruit restoring capability 
-enum FruitQuality
+public enum FruitQuality
 {
   Prefab,
   New,
