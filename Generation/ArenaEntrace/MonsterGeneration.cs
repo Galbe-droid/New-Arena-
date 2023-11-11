@@ -9,6 +9,8 @@ class MonsterGeneration
 {
   public static Monster Creator()
   {
+    int minLevel;
+    int maxLevel;
     List<Monster> monsterListPrefab = MonsterLoading.Monsters.Where(monster => monster.CharacterMinLevel <= ProgressBehaviour.CharacterLevel).ToList();
     Dictionary<int, List<MonsterVariation>> monsterVariationDictionary = MonsterLoading.ListOfMonsterVariation;
 
@@ -30,8 +32,18 @@ class MonsterGeneration
     int randId = ManagerRandom.GetThreadRandom().Next(monsterListPrefab.Count);
 
     Monster monsterChoosen = new(monsterListPrefab.Find(m => m.Id == randId));
-    
-    monsterChoosen.Level = ManagerRandom.GetThreadRandom().Next(monsterChoosen.Level, monsterChoosen.Level + 3);
+
+    if((ProgressBehaviour.CharacterLevel -1) <= 0)
+      minLevel = 1;
+    else
+      minLevel = ProgressBehaviour.CharacterLevel -1;
+
+    if((ProgressBehaviour.CharacterLevel + 2) >= 5)
+      maxLevel = 5;
+    else
+      maxLevel = ProgressBehaviour.CharacterLevel + 2;
+
+    monsterChoosen.Level = ManagerRandom.GetThreadRandom().Next(minLevel, maxLevel);
 
     monsterChoosen.Type = (Types)typeList.GetValue(ManagerRandom.GetThreadRandom().Next(1, typeList.Length));
 
@@ -58,7 +70,7 @@ class MonsterGeneration
   }
 
   //Generates 5 monster per day
-  public static List<Monster> MonsterOfTheDay(List<Monster> todayList)
+  public static List<Monster> MonsterOfTheDay(ref List<Monster> todayList)
   {
     for(int i = 0; i < ProgressBehaviour.MonsterCageQuantity; i++)
     {

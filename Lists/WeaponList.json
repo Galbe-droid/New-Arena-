@@ -38,5 +38,95 @@
         "MaxDamage": 8,
         "MinDamageModifier": 0.4,
         "MaxDamageModifier": 0.5
+    },
+    {
+        "Id": 4,
+        "Name": "Small Sword",
+        "Cost": 100,
+        "Rarity": 1,
+        "MinDamage": 4,
+        "MaxDamage": 8,
+        "MinDamageModifier": 0.55,
+        "MaxDamageModifier": 0.75
+    },
+    {
+        "Id": 5,
+        "Name": "Full Metal Fist",
+        "Cost": 115,
+        "Rarity": 1,
+        "MinDamage": 7,
+        "MaxDamage": 9,
+        "MinDamageModifier": 0.8,
+        "MaxDamageModifier": 0.95
+    },
+    {
+        "Id": 6,
+        "Name": "Simple Mace",
+        "Cost": 130,
+        "Rarity": 1,
+        "MinDamage": 7,
+        "MaxDamage": 12,
+        "MinDamageModifier": 0.6,
+        "MaxDamageModifier": 0.8
+    },
+    {
+        "Id": 7,
+        "Name": "Broad Sword",
+        "Cost": 190,
+        "Rarity": 2,
+        "MinDamage": 8,
+        "MaxDamage": 13,
+        "MinDamageModifier": 0.6,
+        "MaxDamageModifier": 0.8
+    },
+    {
+        "Id": 8,
+        "Name": "Spiked Knucles",
+        "Cost": 230,
+        "Rarity": 2,
+        "MinDamage": 9,
+        "MaxDamage": 10,
+        "MinDamageModifier": 1,
+        "MaxDamageModifier": 1.15
+    },
+    {
+        "Id": 8,
+        "Name": "Heavy Hammer",
+        "Cost": 260,
+        "Rarity": 2,
+        "MinDamage": 10,
+        "MaxDamage": 15,
+        "MinDamageModifier": 0.7,
+        "MaxDamageModifier": 0.95
+    },
+    {
+        "Id": 9,
+        "Name": "Two Hand Sword",
+        "Cost": 320,
+        "Rarity": 3,
+        "MinDamage": 11,
+        "MaxDamage": 15,
+        "MinDamageModifier": 0.7,
+        "MaxDamageModifier": 0.95
+    },
+    {
+        "Id": 10,
+        "Name": "Heavy Knucles",
+        "Cost": 380,
+        "Rarity": 3,
+        "MinDamage": 12,
+        "MaxDamage": 13,
+        "MinDamageModifier": 1.15,
+        "MaxDamageModifier": 1.3
+    },
+    {
+        "Id": 11,
+        "Name": "Heavy Hammer",
+        "Cost": 450,
+        "Rarity": 3,
+        "MinDamage": 14,
+        "MaxDamage": 19,
+        "MinDamageModifier": 0.8,
+        "MaxDamageModifier": 1.1
     }
 ]

@@ -1,13 +1,13 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using New_Arena_.Behaviour;
+using New_Arena_.Configuration;
 
 class SkillChoices{  
   //A List of the skill that the player can learn, it hold it values from one day, then it shuffles again 
   public static List<SkillBase> SkillOfTheDay = new List<SkillBase>();
 
   //Returns the list above to the TrainingHallMenu with the skills to learn
-  public static List<SkillBase> LearningSkill(Character c, List<SkillBase> todaySkill){    
+  public static List<SkillBase> LearningSkill(Character c, ref List<SkillBase> todaySkill){    
     //If the player has more then 5 skill to learn he will receive only 5 skill to learn per day, it's random
     if(c.CapableOfLearn.Count >= 5){
       PopulatingList(5, c, todaySkill);
@@ -24,26 +24,24 @@ class SkillChoices{
 
   //Start populating the list with random skills that the Player can learn 
   public static void PopulatingList(int skillQty, Character c, List<SkillBase> todayList){
-    Random rand = new Random();
-
+    List<int> skillIds = new();
     int count = 0;
-    int[] ids = new int[skillQty];
 
     //It checks if the skill is already trained 
     foreach(SkillBase s in c.CapableOfLearn){
-      if(!c.SkillTrained.Exists(x => x.Id == s.Id) && count != skillQty)
+      if(!c.SkillTrained.Exists(x => x.Id == s.Id) && s.MinLevel <= ProgressBehaviour.CharacterLevel && count != skillQty)
       {
-        ids[count] = s.Id;
+        skillIds.Add(s.Id);
         count++;
       }      
     }
   
     while(todayList.Count < skillQty){
       //Pick up a random Id
-      int idChoose = ids[rand.Next(0, ids.Length)];
+      int idChoose = skillIds[ManagerRandom.GetThreadRandom().Next(skillIds.Count)];
 
       //Check if the skill is already on the list 
-      bool _alreadyOnList = todayList.Exists(skill => skill.Id == idChoose) ? true : false;
+      bool _alreadyOnList = todayList.Exists(skill => skill.Id == idChoose);
 
       if(!_alreadyOnList){
         SkillBase _skill = c.CapableOfLearn.Find(skill => skill.Id == idChoose);

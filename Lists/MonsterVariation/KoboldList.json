@@ -1,0 +1,32 @@
+[
+    {
+        "VariationId" : 0,
+        "Name" : "Cave",
+        "XpMultiply": 0.9,
+        "GoldMultiply": 0.2,
+        "ExtraStr": 1,
+        "ExtraInt": 1,
+        "ExtraAgi": 1,
+        "ExtraVig": 5
+    },
+    {
+        "VariationId" : 1,
+        "Name" : "Fire",
+        "XpMultiply": 1.2,
+        "GoldMultiply": 0.5,
+        "ExtraStr": 0,
+        "ExtraInt": 5,
+        "ExtraAgi": 0,
+        "ExtraVig": 2
+    },
+    {
+        "VariationId" : 2,
+        "Name" : "Fierce",
+        "XpMultiply": 1.0,
+        "GoldMultiply": 0.8,
+        "ExtraStr": 4,
+        "ExtraInt": 2,
+        "ExtraAgi": 4,
+        "ExtraVig": 0
+    }
+]

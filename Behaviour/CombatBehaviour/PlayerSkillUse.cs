@@ -7,8 +7,9 @@ namespace New_Arena_.Behaviour
 {
   class PlayerSkillUse
   {
-    public static int SkillChoice(Character c, Monster m, out int skillChoice)
+    public static int SkillChoice(Character c, Monster m)
     {
+      int skillChoice;
       int choice = 0;
       int page = 1;
       bool _skillInCooldown = false;
@@ -53,12 +54,15 @@ namespace New_Arena_.Behaviour
             //multiplay the choice with the page getting the correct position 
             choice = (choice * page) - 1;
 
-            //Check if skill is on cooldown and prevent using it 
-            if(skillList.ElementAt(choice).Cooldown){
-              _skillInCooldown = true;
-            }
-            else{
-              _skillInCooldown = false;
+            if(c.ManaCheck(skillList.ElementAt(choice)))
+            {
+              //Check if skill is on cooldown and prevent using it 
+              if(skillList.ElementAt(choice).Cooldown){
+                _skillInCooldown = true;
+              }
+              else{
+                _skillInCooldown = false;
+              }
             }
           }        
         }
@@ -70,14 +74,18 @@ namespace New_Arena_.Behaviour
           if(choice == -1)
             break;
 
-          if(skillList.ElementAt(choice).Cooldown){
-            _skillInCooldown = true;
-          }
-          else{
-            _skillInCooldown = false;
+          if(c.ManaCheck(skillList.ElementAt(choice)))
+          {
+            //Check if skill is on cooldown and prevent using it 
+            if(skillList.ElementAt(choice).Cooldown){
+              _skillInCooldown = true;
+            }
+            else{
+              _skillInCooldown = false;
+            }
           }
         }  
-      }while((choice == 4 || choice == 5 || _skillInCooldown));   
+      }while(choice == 4 || choice == 5 || _skillInCooldown);   
 
       skillChoice = choice;
       //if the player selects 0 it will send a -1 indicating to the program that he wants to exit the skill screen
@@ -86,8 +94,17 @@ namespace New_Arena_.Behaviour
         return skillChoice;
       }
       else{
-        UsingSkill(c, m, skillList.ElementAt(skillChoice));
-        return skillChoice;
+        if(c.ManaCheck(skillList.ElementAt(skillChoice)))
+        {
+          UsingSkill(c, m, skillList.ElementAt(skillChoice));
+          c.ManaSpending(skillList.ElementAt(skillChoice));
+          return skillChoice;
+        }
+        else
+        {
+          UpdateConsole.StaticMessage("Not enough Mana !");
+          return -1;
+        }          
       }
     }
 
@@ -96,7 +113,7 @@ namespace New_Arena_.Behaviour
     {
       if (s.GetType() == typeof(BuffSkill))
       {
-        SkillUse.BuffSkillUse<Character>(c, (BuffSkill)s);
+        SkillUse.BuffSkillUse<Creature>(c, (BuffSkill)s);
       }
       else if (s.GetType() == typeof(DebuffSkill))
       {
@@ -108,12 +125,12 @@ namespace New_Arena_.Behaviour
       }
       else if (s.GetType() == typeof(DefenseSkill))
       {
-        SkillUse.DefenseSkillUse<Character>(c, (DefenseSkill)s);
+        SkillUse.DefenseSkillUse<Creature>(c, (DefenseSkill)s);
       }
       else
       {
-          Console.WriteLine("Error.");
-      }
+        Console.WriteLine("Error.");
+      }    
     }
   }
 }

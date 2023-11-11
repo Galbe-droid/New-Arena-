@@ -14,7 +14,7 @@ class Food : ItemBase, IHpAndMpManipulation, IQuantity
   {
     Id = id;
     Name = name; 
-    Cost = cost;
+    Cost = 0;
     Rarity = rarity;
     HpModifier = hp; 
     MpModifier = mp;

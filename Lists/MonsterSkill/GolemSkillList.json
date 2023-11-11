@@ -11,6 +11,7 @@
                     "Qty": 1,
                     "IsActivedOnce": false,
                     "XpCost": 0,
+                    "MpCost": 10,
                     "WhereToApplyString": "attack"
                 },
                 {
@@ -22,17 +23,91 @@
                     "Qty": 1,
                     "IsActivedOnce": false,
                     "XpCost": 0,
+                    "MpCost": 10,
                     "WhereToApplyString": "defense"
+                },
+                {
+                    "Id": 1203,
+                    "Name": "Super Core",
+                    "Desc": "Extracts A LOT of power to increase attack",
+                    "MinLevel": 3,
+                    "TurnMax": 10,
+                    "Qty": 2,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "MpCost": 30,
+                    "WhereToApplyString": "attack"
+                },
+                {
+                    "Id": 1204,
+                    "Name": "Defensive Matrix",
+                    "Desc": "Increase a lot of its defense over time",
+                    "MinLevel": 3,
+                    "TurnMax": 10,
+                    "Qty": 2,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "MpCost": 30,
+                    "WhereToApplyString": "defense"
+                },
+                {
+                    "Id": 1207,
+                    "Name": "Self Repair",
+                    "Desc": "Deploy repair runes",
+                    "MinLevel": 2,
+                    "TurnMax": 3,
+                    "Qty": 5,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "MpCost": 15,
+                    "WhereToApplyString": "hp"
                 }
             ],
             "Debuff" : [
             
             ],
             "Attack" : [
-            
+                {
+                    "Id": 1205,
+                    "Name": "Power Surge",
+                    "Desc": "Fires a imense arcana bean",
+                    "MinLevel": 2,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 5,
+                    "MinValue": 10,
+                    "MaxValue": 12,
+                    "Modifier": 1.2,
+                    "StatString": "int"   
+                },
+                {
+                    "Id": 1206,
+                    "Name": "Body Toss",
+                    "Desc": "Charge itself to the enemy",
+                    "MinLevel": 1,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 5,
+                    "MinValue": 10,
+                    "MaxValue": 17,
+                    "Modifier": 1.0,
+                    "StatString": "vig"   
+                }
             ],
             "Defense" : [
-            
+                {
+                    "Id": 1208,
+                    "Name": "Immediate Reapir",
+                    "Desc": "Deploy immediate repairs",
+                    "MinLevel": 3,
+                    "TurnMax": 5,
+                    "Cost": 0,
+                    "MpCost": 40,
+                    "MinValue": 20,
+                    "MaxValue": 45,
+                    "Modifier": 2.0,
+                    "StatString": "vig"   
+                }
             ]
         }
     ]    

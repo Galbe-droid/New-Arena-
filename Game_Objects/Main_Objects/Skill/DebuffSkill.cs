@@ -1,7 +1,7 @@
 using System; 
 
 class DebuffSkill : PerTurnSkill{
-  public DebuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, string whereToApplyString){
+  public DebuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, int mpCost, bool isActivedOnce, string whereToApplyString){
     Id = id;
     Name = name;
     Desc = desc;
@@ -11,6 +11,7 @@ class DebuffSkill : PerTurnSkill{
     Qty = qty;
     IsActivedOnce = isActivedOnce;
     XpCost = xpCost;
+    MpCost = mpCost;
     CooldownTurns = 0;
     Tracked = 0;
     IsUsed = false;
@@ -28,6 +29,7 @@ class DebuffSkill : PerTurnSkill{
     Qty = debuff.Qty;
     IsActivedOnce = debuff.IsActivedOnce;
     XpCost = debuff.XpCost;
+    MpCost = debuff.MpCost;
     CooldownTurns = 0;
     Tracked = 0;
     IsUsed = false;
@@ -57,10 +59,10 @@ class DebuffSkill : PerTurnSkill{
            "Turns Durantion: " + this.TurnMax + " | " +
            "Decreases: " + whereToAct + " | " + 
            "Qty: " + this.Qty + " | " +
-           "Cooldown: " + (this.TurnMax + 1);
+           "Mp: " + this.MpCost + " Cooldown: " + (this.TurnMax + 1);
   }
 
   public override string SkillDescription(){
-    return $"Name: {this.Name} || Type:Debuff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply}";
+    return $"Name: {this.Name} || Type:Debuff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply} \\ Mp: {this.MpCost}";
   }
 }

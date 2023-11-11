@@ -12,7 +12,7 @@ namespace New_Arena_.Behaviour
             int choice;
             int page = 1;
 
-            //Recreates the item bag but with only consumables
+            //Recreates the item bag but with only weapon
             List<ItemBase> weaponList = character.EquipamentBag.Where(weapon => weapon.GetType() == typeof(Weapon)).ToList();
             //This int needs to be initiated after everything, it controls the 3 itens per page and need to be initiated after the list but before the pageLimite
             int itemCount = weaponList.Count;
@@ -78,8 +78,8 @@ namespace New_Arena_.Behaviour
             int choice;
             int page = 1;
 
-            //Recreates the item bag but with only consumables
-            List<ItemBase> armorList = character.EquipamentBag.Where(weapon => weapon.GetType() == typeof(Armor)).ToList();
+            //Recreates the item bag but with only armor
+            List<ItemBase> armorList = character.EquipamentBag.Where(armor => armor.GetType() == typeof(Armor)).ToList();
             //This int needs to be initiated after everything, it controls the 3 itens per page and need to be initiated after the list but before the pageLimite
             int itemCount = armorList.Count;
             //Create pages in case the skill list has more then 3 itens

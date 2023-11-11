@@ -1,0 +1,69 @@
+{
+    "skills" : [
+        {
+            "Buff" : [
+                
+            ],
+            "Debuff" : [
+            
+            ],
+            "Attack" : [
+                {
+                    "Id": 1601,
+                    "Name": "Arcanist Fury",
+                    "Desc": "Launch a assult arcana energy",
+                    "MinLevel": 3,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 5,
+                    "MinValue": 5,
+                    "MaxValue": 10,
+                    "Modifier": 2.5,
+                    "StatString": "int" 
+                },
+                {
+                    "Id": 1602,
+                    "Name": "Gravity Crusher",
+                    "Desc": "Change gravity around to crush enemies",
+                    "MinLevel": 3,
+                    "TurnMax": 4,
+                    "Cost": 0,
+                    "MpCost": 10,
+                    "MinValue": 15,
+                    "MaxValue": 30,
+                    "Modifier": 2.0,
+                    "StatString": "int" 
+                },
+                {
+                    "Id": 1603,
+                    "Name": "Mountain Mover",
+                    "Desc": "Deslocate heavy rocks against the character",
+                    "MinLevel": 4,
+                    "TurnMax": 6,
+                    "Cost": 0,
+                    "MpCost": 30,
+                    "MinValue": 25,
+                    "MaxValue": 40,
+                    "Modifier": 2.5,
+                    "StatString": "int" 
+                },
+                {
+                    "Id": 1604,
+                    "Name": "One with the end",
+                    "Desc": "It is over...",
+                    "MinLevel": 4,
+                    "TurnMax": 20,
+                    "Cost": 0,
+                    "MpCost": 1,
+                    "MinValue": 1,
+                    "MaxValue": 100,
+                    "Modifier": 0,
+                    "StatString": "int" 
+                }
+            ],
+            "Defense" : [
+            
+            ]
+        }
+    ]    
+}

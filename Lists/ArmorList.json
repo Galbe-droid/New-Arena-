@@ -38,5 +38,95 @@
         "MaxDefense" : 8,
         "MinDefenseModifier" : 0.2,
         "MaxDefenseModifier" : 0.6
+    },
+    {
+        "Id" : 4,
+        "Name" : "Combat Clothing",
+        "Cost" : 75,
+        "Rarity" : 1,
+        "MinDefense" : 4,
+        "MaxDefense" : 7,
+        "MinDefenseModifier" : 0.75,
+        "MaxDefenseModifier" : 1.1
+    },
+    {
+        "Id" : 5,
+        "Name" : "Heavy Leather Armor",
+        "Cost" : 100,
+        "Rarity" : 1,
+        "MinDefense" : 8,
+        "MaxDefense" : 10,
+        "MinDefenseModifier" : 0.3,
+        "MaxDefenseModifier" : 0.75
+    },
+    {
+        "Id" : 6,
+        "Name" : "Metal Chestplate",
+        "Cost" : 90,
+        "Rarity" : 1,
+        "MinDefense" : 10,
+        "MaxDefense" : 12,
+        "MinDefenseModifier" : 0.25,
+        "MaxDefenseModifier" : 0.65
+    },
+    {
+        "Id" : 7,
+        "Name" : "Matador Cape",
+        "Cost" : 120,
+        "Rarity" : 2,
+        "MinDefense" : 7,
+        "MaxDefense" : 9,
+        "MinDefenseModifier" : 0.95,
+        "MaxDefenseModifier" : 1.2
+    },
+    {
+        "Id" : 8,
+        "Name" : "Leather and Metal Plates",
+        "Cost" : 155,
+        "Rarity" : 2,
+        "MinDefense" : 10,
+        "MaxDefense" : 12,
+        "MinDefenseModifier" : 0.45,
+        "MaxDefenseModifier" : 0.8
+    },
+    {
+        "Id" : 8,
+        "Name" : "Full Body Armor",
+        "Cost" : 200,
+        "Rarity" : 2,
+        "MinDefense" : 16,
+        "MaxDefense" : 18,
+        "MinDefenseModifier" : 0.3,
+        "MaxDefenseModifier" : 0.7
+    },
+    {
+        "Id" : 9,
+        "Name" : "Heavy Cloth Protection",
+        "Cost" : 350,
+        "Rarity" : 3,
+        "MinDefense" : 10,
+        "MaxDefense" : 11,
+        "MinDefenseModifier" : 1,
+        "MaxDefenseModifier" : 1.3
+    },
+    {
+        "Id" : 10,
+        "Name" : "Exotic Leather Cape",
+        "Cost" : 405,
+        "Rarity" : 3,
+        "MinDefense" : 15,
+        "MaxDefense" : 17,
+        "MinDefenseModifier" : 0.6,
+        "MaxDefenseModifier" : 0.95
+    },
+    {
+        "Id" : 11,
+        "Name" : "Steel Full Body Armor",
+        "Cost" : 450,
+        "Rarity" : 3,
+        "MinDefense" : 20,
+        "MaxDefense" : 24,
+        "MinDefenseModifier" : 0.35,
+        "MaxDefenseModifier" : 0.75
     }
 ]

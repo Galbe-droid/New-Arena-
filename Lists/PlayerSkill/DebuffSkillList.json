@@ -5,9 +5,10 @@
         "Desc": "Decrease Enemy Dodge",
         "MinLevel": 0,
         "TurnMax": 2,
-        "Qty": -4,
+        "Qty": -5,
         "IsActivedOnce": true,
         "XpCost": 30,
+        "MpCost": 10,
         "WhereToApplyString": "dodge"
     },
     {
@@ -19,6 +20,91 @@
         "Qty": -4,
         "IsActivedOnce": true,
         "XpCost": 30,
+        "MpCost": 10,
         "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 103,
+        "Name": "Intimidation",
+        "Desc": "Decrease Enemy Attack",
+        "MinLevel": 0,
+        "TurnMax": 2,
+        "Qty": -4,
+        "IsActivedOnce": true,
+        "XpCost": 30,
+        "MpCost": 10,
+        "WhereToApplyString": "attack"
+    },
+    {
+        "Id": 104,
+        "Name": "Agressive Positioning",
+        "Desc": "Reduce enemy Dodge, Keep yourself close to them",
+        "MinLevel": 2,
+        "TurnMax": 3,
+        "Qty": -20,
+        "IsActivedOnce": true,
+        "XpCost": 90,
+        "MpCost": 15,
+        "WhereToApplyString": "dodge"
+    },
+    {
+        "Id": 105,
+        "Name": "Pinning Down",
+        "Desc": "Reduce enemy Defese, Forces them to open up it defenses",
+        "MinLevel": 2,
+        "TurnMax": 3,
+        "Qty": -6,
+        "IsActivedOnce": true,
+        "XpCost": 90,
+        "MpCost": 15,
+        "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 106,
+        "Name": "Disarm",
+        "Desc": "Reduce enemy Attack, Reduces enemy attack options",
+        "MinLevel": 2,
+        "TurnMax": 3,
+        "Qty": -6,
+        "IsActivedOnce": true,
+        "XpCost": 90,
+        "MpCost": 15,
+        "WhereToApplyString": "attack"
+    },
+    {
+        "Id": 107,
+        "Name": "No Quarter Given",
+        "Desc": "Reduce enemy Dodge... by giving no option of where to go",
+        "MinLevel": 4,
+        "TurnMax": 5,
+        "Qty": -40,
+        "IsActivedOnce": true,
+        "XpCost": 180,
+        "MpCost": 40,
+        "WhereToApplyString": "dodge"
+    },
+    {
+        "Id": 108,
+        "Name": "Defense Division",
+        "Desc": "Reduce enemy Defense... by hitting between the armor",
+        "MinLevel": 4,
+        "TurnMax": 5,
+        "Qty": -8,
+        "IsActivedOnce": true,
+        "XpCost": 180,
+        "MpCost": 40,
+        "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 109,
+        "Name": "Defensive Tatics",
+        "Desc": "Reduce enemy Attack... by giving it no chance of attack",
+        "MinLevel": 4,
+        "TurnMax": 5,
+        "Qty": -8,
+        "IsActivedOnce": true,
+        "XpCost": 180,
+        "MpCost": 40,
+        "WhereToApplyString": "attack"
     }
 ]

@@ -2,7 +2,6 @@
     {
         "Id": 0,
         "Name": "Slime",
-        "Level": 1,
         "XpReward" : 5,
         "GoldReward" : 10,
         "Str": 3,
@@ -14,7 +13,6 @@
     {
         "Id": 1,
         "Name": "Spider",
-        "Level": 1,
         "XpReward" : 7,
         "GoldReward" : 15,
         "Str": 3,
@@ -26,7 +24,6 @@
     {
         "Id": 2,
         "Name": "Golem",
-        "Level": 1,
         "XpReward" : 10,
         "GoldReward" : 10,
         "Str": 5,
@@ -34,5 +31,49 @@
         "Agi": 1,
         "Vig": 7,
         "CharacterMinLevel": 0
+    },
+    {
+        "Id": 3,
+        "Name": "Kobold",
+        "XpReward" : 20,
+        "GoldReward" : 25,
+        "Str": 4,
+        "Int": 2,
+        "Agi": 8,
+        "Vig": 4,
+        "CharacterMinLevel": 1
+    },
+    {
+        "Id": 4,
+        "Name": "Artificial Life",
+        "XpReward" : 30,
+        "GoldReward" : 40,
+        "Str": 6,
+        "Int": 5,
+        "Agi": 6,
+        "Vig": 5,
+        "CharacterMinLevel": 1
+    },
+    {
+        "Id": 5,
+        "Name": "Undead",
+        "XpReward" : 50,
+        "GoldReward" : 20,
+        "Str": 7,
+        "Int": 2,
+        "Agi": 7,
+        "Vig": 6,
+        "CharacterMinLevel": 2
+    },
+    {
+        "Id": 6,
+        "Name": "Mage",
+        "XpReward" : 40,
+        "GoldReward" : 40,
+        "Str": 3,
+        "Int": 12,
+        "Agi": 4,
+        "Vig": 5,
+        "CharacterMinLevel": 3
     }
 ]

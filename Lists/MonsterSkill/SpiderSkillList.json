@@ -14,6 +14,7 @@
                     "Qty": -3,
                     "IsActivedOnce": false,
                     "XpCost": 0,
+                    "MpCost": 10,
                     "WhereToApplyString": "dodge"
                 },
                 {
@@ -22,17 +23,54 @@
                     "Desc": "Poison the enemy",
                     "MinLevel": 0,
                     "TurnMax": 3,
-                    "Qty": 3,
+                    "Qty": -3,
                     "IsActivedOnce": true,
                     "XpCost": 0,
+                    "MpCost": 10,
                     "WhereToApplyString": "hp"
+                },
+                {
+                    "Id": 1104,
+                    "Name": "Scary Look",
+                    "Desc": "Definaly not cute",
+                    "MinLevel": 2,
+                    "TurnMax": 3,
+                    "Qty": -8,
+                    "IsActivedOnce": true,
+                    "XpCost": 0,
+                    "MpCost": 10,
+                    "WhereToApplyString": "attack"
                 }
             ],
             "Attack" : [
-        
+                {
+                    "Id": 1103,
+                    "Name": "Stronger Bite",
+                    "Desc": "A stronger bite that corrode the skin",
+                    "MinLevel": 2,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 10,
+                    "MinValue": 7,
+                    "MaxValue": 14,
+                    "Modifier": 0.8,
+                    "StatString": "str"
+                }
             ],
             "Defense" : [
-        
+                {
+                    "Id": 1105,
+                    "Name": "Coccon",
+                    "Desc": "Hides on it to regenerate",
+                    "MinLevel": 1,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 20,
+                    "MinValue": 10,
+                    "MaxValue": 30,
+                    "Modifier": 1.5,
+                    "StatString": "int"   
+                }
             ]
         }
     ]    

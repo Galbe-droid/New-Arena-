@@ -1,0 +1,32 @@
+[
+    {
+        "VariationId" : 0,
+        "Name" : "Incomplete",
+        "XpMultiply": 0.5,
+        "GoldMultiply": 0.8,
+        "ExtraStr": 2,
+        "ExtraInt": 2,
+        "ExtraAgi": 2,
+        "ExtraVig": 2
+    },
+    {
+        "VariationId" : 1,
+        "Name" : "Incomprehensive",
+        "XpMultiply": 1.1,
+        "GoldMultiply": 0.0,
+        "ExtraStr": 5,
+        "ExtraInt": 2,
+        "ExtraAgi": 0,
+        "ExtraVig": 5
+    },
+    {
+        "VariationId" : 2,
+        "Name" : "Imaculated",
+        "XpMultiply": 1.5,
+        "GoldMultiply": 1,
+        "ExtraStr": 4,
+        "ExtraInt": 4,
+        "ExtraAgi": -2,
+        "ExtraVig": 0
+    }
+]

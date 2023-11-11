@@ -1,7 +1,7 @@
 using System;
 
 class BuffSkill : PerTurnSkill{
-  public BuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, bool isActivedOnce, string whereToApplyString)
+  public BuffSkill(int id, string name, string desc, int minLevel, int turnsMax, int qty, int xpCost, int mpCost, bool isActivedOnce, string whereToApplyString)
   {
     Id = id;
     Name = name;
@@ -12,6 +12,7 @@ class BuffSkill : PerTurnSkill{
     Qty = qty;
     IsActivedOnce = isActivedOnce;
     XpCost = xpCost;
+    MpCost = mpCost;
     Cooldown = false;
     CooldownTurns = 0;
     Tracked = 0;
@@ -30,6 +31,7 @@ class BuffSkill : PerTurnSkill{
     Qty = buff.Qty;
     IsActivedOnce = buff.IsActivedOnce;
     XpCost = buff.XpCost;
+    MpCost = buff.MpCost;
     Cooldown = false;
     CooldownTurns = 0;
     Tracked = 0;
@@ -60,11 +62,11 @@ class BuffSkill : PerTurnSkill{
            "Turns Durantion: " + this.TurnMax + " | " +
            "Increases: " + whereToAct + " | " + 
            "Qty: " + this.Qty + " | " +
-           "Cooldown: " + (this.TurnMax + 1);
+           "Mp: " + this.MpCost + " Cooldown: " + (this.TurnMax + 1);
   }
 
   public override string SkillDescription(){
-    return $"Name: {this.Name} || Type:Buff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply}";
+    return $"Name: {this.Name} || Type:Buff \\ Description: {this.Desc} \\ Affects: {this.WhereToApply} \\ Mp: {this.MpCost}";
   }
 }
 

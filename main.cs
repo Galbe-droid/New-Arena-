@@ -9,10 +9,15 @@ class MainClass {
     VerifySaveFile.CreateFile();
     //Loading
     MonsterLoading.Loading();
+    Console.WriteLine("Loading Monsters...");
     SkillsLoading.Loading();
+    Console.WriteLine("Loading Skills...");
     ItemsLoading.Loading();
+    Console.WriteLine("Loading Itens...");
     ParametersLoading.Loading();
+    Console.WriteLine("Loading Parameters...");
     CharactersLoading.LoadingCharacters();
+    Console.WriteLine("Loading Monsters...");
     //End Loading
 
     //Main Screen

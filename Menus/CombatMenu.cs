@@ -51,7 +51,7 @@ class CombatMenu
           UpdateConsole.StaticMessage("No Skills.");
         }
         else{
-          int skillChoice = PlayerSkillUse.SkillChoice(c, m, out skillChoice);
+          int skillChoice = PlayerSkillUse.SkillChoice(c, m);
           actionMade = skillChoice == -1 ? false : true;
         }
         break;

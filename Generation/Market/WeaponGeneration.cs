@@ -11,7 +11,7 @@ namespace New_Arena_.Generation.Market
     {
         private static List<Weapon> WeaponPrefab = ItemsLoading.WeaponList;
 
-        public static List<Weapon> ListOfWeaponsOfTheDay(List<Weapon> todayWeapon)
+        public static List<Weapon> ListOfWeaponsOfTheDay(ref List<Weapon> todayWeapon)
         {
           todayWeapon = WeaponCreator(todayWeapon);
 
@@ -34,7 +34,9 @@ namespace New_Arena_.Generation.Market
             foreach(Weapon weapon in WeaponPrefab)
             {
                 if(weapon.Id != 0)
-                    weaponId.Add(weapon.Id);
+                    if(weapon.Rarity <= ProgressBehaviour.CharacterLevel)
+                        weaponId.Add(weapon.Id);
+                    
             }
 
             do

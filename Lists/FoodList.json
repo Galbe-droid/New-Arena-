@@ -2,41 +2,92 @@
     {
         "Id": 0,
         "Name": "Apple",
-        "Cost": 0,
         "Rarity": 0,
         "HpModifier": 10,
         "MpModifier": 0
     },
     {
         "Id": 1,
-        "Name": "Pear",
-        "Cost": 0,
-        "Rarity": 0,
-        "HpModifier": 5,
-        "MpModifier": 0
-    },
-    {
-        "Id": 2,
         "Name": "Apricot",
-        "Cost": 0,
         "Rarity": 0,
         "HpModifier": 15,
         "MpModifier": 5
     },
     {
-        "Id": 3,
+        "Id": 2,
         "Name": "Gooey Blue Fruit",
-        "Cost": 0,
-        "Rarity": 0,
+        "Rarity": 1,
         "HpModifier": 5,
         "MpModifier": 20
     },
     {
-        "Id": 4,
+        "Id": 3,
         "Name": "Gooey Red Fruit",
-        "Cost": 0,
-        "Rarity": 0,
+        "Rarity": 1,
         "HpModifier": 20,
         "MpModifier": 5
+    },
+    {
+        "Id": 4,
+        "Name": "Hard Candy",
+        "Rarity": 2,
+        "HpModifier": 15,
+        "MpModifier": 15
+    },
+    {
+        "Id": 5,
+        "Name": "Sandwitch",
+        "Rarity": 2,
+        "HpModifier": 30,
+        "MpModifier": 10
+    },
+    {
+        "Id": 6,
+        "Name": "Soup",
+        "Rarity": 2,
+        "HpModifier": 20,
+        "MpModifier": 30
+    },
+    {
+        "Id": 7,
+        "Name": "Simple Meat cut",
+        "Rarity": 3,
+        "HpModifier": 50,
+        "MpModifier": 25
+    },
+    {
+        "Id": 8,
+        "Name": "Box of sweets",
+        "Rarity": 3,
+        "HpModifier": 10,
+        "MpModifier": 35
+    },
+    {
+        "Id": 9,
+        "Name": "Meal Couse with Small Desert",
+        "Rarity": 3,
+        "HpModifier": 30,
+        "MpModifier": 30
+    },
+    {
+        "Id": 10,
+        "Name": "Expensive Meal Cuts",
+        "Rarity": 4,
+        "HpModifier": 70,
+        "MpModifier": 35
+    },
+    {
+        "Id": 11,
+        "Name": "Chocolate Cake",
+        "Rarity": 4,
+        "HpModifier": 20,
+        "MpModifier": 45
+    },
+    {
+        "Id": 12,
+        "Name": "Expensive Meal Course",
+        "Rarity": 4,
+        "HpModifier": 50,
+        "MpModifier": 50
     }
 ]

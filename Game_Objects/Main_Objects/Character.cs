@@ -7,7 +7,7 @@ using New_Arena_.Loading;
 //Character uses abstraction Creature 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death
-class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp, IReceiveReward
+class Character : Creature, IHaveWeapons, IPotionEffect, IHaveArmor, IGold, IXp, IReceiveReward
 {
   //Character Settings
   public int Id {get; set;}  
@@ -17,7 +17,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
   public int Gold {get; set;}
   public Weapon Weapon { get; set; }
   public Armor Armor { get; set; }
-  public List<Potion> PotionEffect { get; set; }
+  public List<Potion> PotionEffect = new();
   public List<SkillBase> CapableOfLearn = new();
   public List<ItemBase> ItemBag = new();
   public List<ItemBase> EquipamentBag = new();
@@ -451,7 +451,7 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
 
   private void InitialGold()
   {
-    Gold = 150;
+    Gold = 250;
   }
 
   public void CleanBuffDebuffsAndPotionList()
@@ -459,6 +459,21 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
     BuffActive.Clear();
     DebuffActive.Clear();
     PotionEffect.Clear();
+  }
+
+  public void ResetSkillsCooldown()
+  {
+    foreach (SkillBase skill in SkillTrained)
+    {
+      skill.Cooldown = false;
+    }
+  }
+
+  public void ResetModValues()
+  {
+    ModAttack = 0;
+    ModDefense = 0;
+    ModDodge = 0;
   }
 
   public void LostABattle()
@@ -481,16 +496,15 @@ class Character : Creature, IPotionEffect, IHaveWeapons, IHaveArmor, IGold, IXp,
 
     return (int)MathF.Truncate((Str + Int + Agi + Vig) * priceModifier);  
   }
-
   //Arena Methods
   public void GetTodayLists()
   {
-    FoodGeneration.ListOfFruitOfTheDay(InnTodayFood);
-    PotionGeneration.ListOfPotionsOfTheDay(MarketTodayPotion);
-    WeaponGeneration.ListOfWeaponsOfTheDay(MarketTodayWeapon);
-    ArmorGeneration.ListOfArmorOfTheDay(MarketTodayArmor);
-    SkillChoices.LearningSkill(this, TrainingHallTodaySkills);
-    MonsterGeneration.MonsterOfTheDay(MonstersInArenaToday);
+    FoodGeneration.ListOfFruitOfTheDay(ref InnTodayFood);
+    PotionGeneration.ListOfPotionsOfTheDay(ref MarketTodayPotion);
+    WeaponGeneration.ListOfWeaponsOfTheDay(ref MarketTodayWeapon);
+    ArmorGeneration.ListOfArmorOfTheDay(ref MarketTodayArmor);
+    SkillChoices.LearningSkill(this, ref TrainingHallTodaySkills);
+    MonsterGeneration.MonsterOfTheDay(ref MonstersInArenaToday);
   }
 
   public void CleanTodayLists()

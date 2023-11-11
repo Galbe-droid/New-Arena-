@@ -7,9 +7,9 @@ class CombatScreen
 {
   public static void Stats(Character c, Monster m)
   {
-    float CharTrueDodge = (c.TotalDodge() / 100000f) * 100f;
+    float CharTrueDodge = c.TotalDodge() / 100000f * 100f;
 
-    float MonsterTrueDodge = (m.TotalDodge() / 100000f) * 100f;
+    float MonsterTrueDodge = m.TotalDodge() / 100000f * 100f;
     
 
     Console.WriteLine("Name:" + c.Name + " Lvl:" + c.Level + "  ///  " + "Monster:" + m.Name + " Lvl:" + m.Level);

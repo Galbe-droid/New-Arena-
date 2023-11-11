@@ -40,7 +40,7 @@ namespace New_Arena_.Behaviour
                 
                 //If player dont advance time the list doens't change 
                 if(timePass){
-                  timePass = !timePass;
+                  chosen.TimePass = !chosen.TimePass;
                 }
                 
                 //Screen info for caracter stats 

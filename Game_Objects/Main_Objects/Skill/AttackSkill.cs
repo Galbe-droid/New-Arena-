@@ -1,7 +1,7 @@
 using System;
 
 class AttackSkill : OneShotSkill{
-  public AttackSkill(int id, string name, string desc, int minLevel, int turnsMax, int xpCost, int minDamage, int maxDamage, double modifier, string playerStat){
+  public AttackSkill(int id, string name, string desc, int minLevel, int turnsMax, int xpCost, int mpCost, int minDamage, int maxDamage, double modifier, string playerStat){
     Id = id;
     Name = name;
     Desc = desc;
@@ -9,6 +9,7 @@ class AttackSkill : OneShotSkill{
     TurnMax = turnsMax;
     Turns = 0;
     XpCost = xpCost;
+    MpCost = mpCost;
     MinValue = minDamage;
     MaxValue = maxDamage;
     Modifier = modifier;
@@ -26,6 +27,7 @@ class AttackSkill : OneShotSkill{
     TurnMax = attack.TurnMax;
     Turns = 0; 
     XpCost = attack.XpCost;
+    MpCost = attack.MpCost;
     MinValue = attack.MinValue;
     MaxValue = attack.MaxValue;
     Modifier = attack.Modifier;
@@ -58,10 +60,10 @@ class AttackSkill : OneShotSkill{
     return "Name: " + this.Name + " | " +
            "Cost: " + this.XpCost + "xp | " + 
            "Damage: (" + this.MinValue + " ~ " + this.MaxValue + ") + " + String.Format("{0:N1}", this.Modifier) + " * " + mainStat + " | " +
-           "Cooldown: " + (this.TurnMax + 1);
+           "Mp: " + this.MpCost + " Cooldown: " + (this.TurnMax + 1);
   }
 
   public override string SkillDescription(){
-    return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Damage: ({this.MinValue} ~ {this.MaxValue}) * {this.Modifier}({this.Stat})"; 
+    return $"Name: {this.Name} || Type:Attack \\ Description: {this.Desc} \\ Damage: ({this.MinValue} ~ {this.MaxValue}) * {this.Modifier}({this.Stat}) \\ Mp: {this.MpCost}"; 
   }
 }

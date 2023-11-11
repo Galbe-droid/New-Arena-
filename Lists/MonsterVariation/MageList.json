@@ -1,0 +1,32 @@
+[
+    {
+        "VariationId" : 0,
+        "Name" : "False",
+        "XpMultiply": 0.9,
+        "GoldMultiply": 0.8,
+        "ExtraStr": 1,
+        "ExtraInt": 4,
+        "ExtraAgi": 1,
+        "ExtraVig": 1
+    },
+    {
+        "VariationId" : 1,
+        "Name" : "Corrupt",
+        "XpMultiply": 1.5,
+        "GoldMultiply": 1.0,
+        "ExtraStr": 2,
+        "ExtraInt": 8,
+        "ExtraAgi": 1,
+        "ExtraVig": 1
+    },
+    {
+        "VariationId" : 2,
+        "Name" : "Renegate",
+        "XpMultiply": 2,
+        "GoldMultiply": 2,
+        "ExtraStr": 4,
+        "ExtraInt": 12,
+        "ExtraAgi": 0,
+        "ExtraVig": 0 
+    }
+]

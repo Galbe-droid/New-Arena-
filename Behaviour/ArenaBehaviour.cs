@@ -53,7 +53,7 @@ class ArenaBehaviour
   private static void MonsterTurn(Character chosen, Monster monster)
   {
     UpdateConsole.UpdateCombatStats(chosen, monster);
-    CombatMonsterBehaviour.MonsterChoice(ref chosen, ref monster);
+    CombatMonsterBehaviour.MonsterChoice(chosen, monster);
     UpdateConsole.StaticMessage($"{monster.Name} turn ended.");
     UpdateStatus(chosen, monster);  
   }

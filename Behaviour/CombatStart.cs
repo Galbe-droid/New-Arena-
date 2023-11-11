@@ -53,17 +53,21 @@ namespace New_Arena_.Behaviour
                         CombatOn = false;
                         Console.ReadLine();
                         chosen.CleanBuffDebuffsAndPotionList();
+                        chosen.ResetSkillsCooldown();
+                        chosen.ResetModValues();
                         VerifySaveFile.GameSave(chosen);
                     }
                     else if(chosen.Dead == true)
                     {
                         chosen.Damage = 0;
                         chosen.LostABattle();
-                        Console.WriteLine($"                  DEFEATED !!!\n================================================\n       Xp lost: {(int)MathF.Truncate(chosen.Xp - (chosen.Xp * 0.20f))}            Gold lost: {(int)MathF.Truncate(chosen.Gold - (chosen.Gold * 0.20f))}");
+                        Console.WriteLine($"                  DEFEATED !!!\n================================================\n       Xp lost: {(int)Math.Truncate(chosen.Xp - (chosen.Xp * 0.20f))}            Gold lost: {(int)Math.Truncate(chosen.Gold - (chosen.Gold * 0.20f))}");
                         CombatOn = false;
                         chosen.Dead = false;
                         Console.ReadLine();
                         chosen.CleanBuffDebuffsAndPotionList();
+                        chosen.ResetSkillsCooldown();
+                        chosen.ResetModValues();
                         VerifySaveFile.GameSave(chosen);
                     }
                 }

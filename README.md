@@ -4,6 +4,8 @@ Created by Gabriel Lima Bertoldo (Galbe-Droid)
 
 New Arena is a project of game Design using c#, this project is a Text RPG combat arena where the player fights many monsters day and night, get better equipament, skills and armor and try to survive as long as it possible 
 
+11/11/2023 - Project fully completed, it was a amazing and sometimes frustanting experience but now a i feel i'm a better developer and programmer since i learn a lot though this project. 
+
 Working: 
   1. Main Menu 
   2. Character Creation 
@@ -53,6 +55,6 @@ In Progress:
     7.3 Arena Victory // Completed
     7.4 XP and Itens for Victory // Complete
     7.5 Character Creation 2.0 // Complete
-    7.6 Character Progression // Working
-    7.7 Monster Progression // Working
-    7.8 Itens Progression // Working  
+    7.6 Character Progression // Complete
+    7.7 Monster Progression // Complete
+    7.8 Itens Progression // Complete

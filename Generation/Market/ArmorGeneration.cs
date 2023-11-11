@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using New_Arena_.Behaviour;
 using New_Arena_.Configuration;
 using New_Arena_.Loading;
@@ -10,7 +11,7 @@ namespace New_Arena_.Generation.Market
     {
         private static List<Armor> ArmorPrefab = ItemsLoading.ArmorList;
 
-        public static List<Armor> ListOfArmorOfTheDay(List<Armor> todayArmor)
+        public static List<Armor> ListOfArmorOfTheDay(ref List<Armor> todayArmor)
         {
           todayArmor = ArmorCreator(todayArmor);
 
@@ -30,10 +31,11 @@ namespace New_Arena_.Generation.Market
             List<int> armorId = new();
             int count = 0;
 
-            foreach(Armor weapon in ArmorPrefab)
+            foreach(Armor armor in ArmorPrefab)
             {
-                if(weapon.Id != 0)
-                    armorId.Add(weapon.Id);
+                if(armor.Id != 0)
+                    if(armor.Rarity <= ProgressBehaviour.CharacterLevel)
+                        armorId.Add(armor.Id);
             }
 
             do

@@ -14,7 +14,7 @@ class CharacterListManagement
     {
       alreadyUseIds.Add(c.Id);
     }
-    return alreadyUseIds.Count() != 0 ? alreadyUseIds.Max() + 1 : 0;
+    return alreadyUseIds.Count != 0 ? alreadyUseIds.Max() + 1 : 0;
   }
 
   public static void PlayerShowList()
@@ -22,7 +22,7 @@ class CharacterListManagement
     foreach(Character c in CharactersLoading.GlobalCharacterList)
     {
       Console.WriteLine("=================================");
-      Console.WriteLine("ID:" + c.Id + " Name:" + c.Name + "  Lvl:" + c.Level + "  Xp:" + c.Xp);
+      Console.WriteLine($"ID: {c.Id} Name: {c.Name} Lvl: {c.Level} Xp: {c.XpTotal} Gold: {c.Gold}");
     }
   }
 }

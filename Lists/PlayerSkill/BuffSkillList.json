@@ -19,6 +19,7 @@
         "Qty": 15,
         "IsActivedOnce": true,
         "XpCost": 30,
+        "MpCost": 10,
         "WhereToApplyString": "dodge"
     },
     {
@@ -30,6 +31,7 @@
         "Qty": 4,
         "IsActivedOnce": true,
         "XpCost": 30,
+        "MpCost": 10,
         "WhereToApplyString": "attack"
     },
     {
@@ -41,6 +43,151 @@
         "Qty": 2,
         "IsActiveOnce": false,
         "XpCost": 30,
+        "MpCost": 10,
         "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 13,
+        "Name": "Acrobatics",
+        "Desc": "Increase Dodge Chance by a lot",
+        "MinLevel": 2,
+        "TurnMax": 4,
+        "Qty": 30,
+        "IsActivedOnce": true,
+        "XpCost": 90,
+        "MpCost": 20,
+        "WhereToApplyString": "dodge"
+    },
+    {
+        "Id": 14,
+        "Name": "See Though",
+        "Desc": "Aims on the enemy vital points",
+        "MinLevel": 2,
+        "TurnMax": 4,
+        "Qty": 6,
+        "IsActivedOnce": true,
+        "XpCost": 90,
+        "MpCost": 20,
+        "WhereToApplyString": "attack"
+    },
+    {
+        "Id": 15,
+        "Name": "Analysing",
+        "Desc": "See enemy movement and chooses the best course to action",
+        "MinLevel": 2,
+        "TurnMax": 4,
+        "Qty": 2,
+        "IsActivedOnce": false,
+        "XpCost": 90,
+        "MpCost": 20,
+        "WhereToApplyString": "attack"
+    },
+    {
+        "Id": 16,
+        "Name": "Observe Terrain",
+        "Desc": "Observe the terrain for better movement",
+        "MinLevel": 2,
+        "TurnMax": 4,
+        "Qty": 5,
+        "IsActivedOnce": false,
+        "XpCost": 90,
+        "MpCost": 20,
+        "WhereToApplyString": "dodge"
+    },
+    {
+        "Id": 17,
+        "Name": "Memorize Attacks",
+        "Desc": "Easy to defende attacks",
+        "MinLevel": 2,
+        "TurnMax": 4,
+        "Qty": 2,
+        "IsActivedOnce": false,
+        "XpCost": 90,
+        "MpCost": 20,
+        "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 18,
+        "Name": "Full Defense",
+        "Desc": "Use your armor in full capacity",
+        "MinLevel": 2,
+        "TurnMax": 4,
+        "Qty": 6,
+        "IsActivedOnce": true,
+        "XpCost": 90,
+        "MpCost": 20,
+        "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 19,
+        "Name": "Stone Wall",
+        "Desc": "Perfect your defense... using magic",
+        "MinLevel": 4,
+        "TurnMax": 6,
+        "Qty": 8,
+        "IsActivedOnce": true,
+        "XpCost": 200,
+        "MpCost": 40,
+        "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 20,
+        "Name": "Ambient usage",
+        "Desc": "Perfect your defense... using the terrain",
+        "MinLevel": 4,
+        "TurnMax": 6,
+        "Qty": 4,
+        "IsActivedOnce": false,
+        "XpCost": 200,
+        "MpCost": 40,
+        "WhereToApplyString": "defense"
+    },
+    {
+        "Id": 21,
+        "Name": "Heavy Hitter",
+        "Desc": "Use all you might",
+        "MinLevel": 4,
+        "TurnMax": 6,
+        "Qty": 8,
+        "IsActivedOnce": true,
+        "XpCost": 200,
+        "MpCost": 40,
+        "WhereToApplyString": "attack"
+    },
+    {
+        "Id": 22,
+        "Name": "Strange Magic",
+        "Desc": "Use all you might... with magic, may take a while",
+        "MinLevel": 4,
+        "TurnMax": 6,
+        "Qty": 4,
+        "IsActivedOnce": false,
+        "XpCost": 200,
+        "MpCost": 40,
+        "WhereToApplyString": "attack"
+    },
+    {
+        "Id": 23,
+        "Name": "Wind Blessing",
+        "Desc": "By magic increase the chance of dodge",
+        "MinLevel": 4,
+        "TurnMax": 6,
+        "Qty": 10,
+        "IsActivedOnce": false,
+        "XpCost": 200,
+        "MpCost": 40,
+        "WhereToApplyString": "dodge"
+    },
+    {
+        "Id": 24,
+        "Name": "Gymnastics",
+        "Desc": "Use your flexibility to the max",
+        "MinLevel": 4,
+        "TurnMax": 6,
+        "Qty": 50,
+        "IsActivedOnce": true,
+        "XpCost": 200,
+        "MpCost": 40,
+        "WhereToApplyString": "dodge"
     }
 ]

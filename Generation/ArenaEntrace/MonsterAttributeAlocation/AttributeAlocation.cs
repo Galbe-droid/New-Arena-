@@ -12,7 +12,7 @@ class AttributeAlocation
   public static Monster PlacingAtributes(Monster monster)
   {
     //Quatity of points to be allocated 
-    int atributes = monster.Level * 2;
+    int atributes = monster.Level * 4;
     int[] atributeChance = MonsterProbability(monster.Type);
 
     while(atributes > 0)

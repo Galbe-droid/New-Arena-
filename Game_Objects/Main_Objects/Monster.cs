@@ -5,23 +5,23 @@ using New_Arena_.Game_Objects.Base_Objects.Interface;
 //Monster uses Creature Abstraction 
 //Under modifications, passing some stats to an Abstract class
 //Base Stats, Death, Monster Type
-//Still no: Skills, Boss(Maybe)
+//Still no: Boss(Maybe)
 class Monster : Creature, IPotionEffect, IReward
 {
   public int Id {get; set;}
   public Types Type {get; set;}
-  public List<Potion> PotionEffect { get; set; }
+  public List<Potion> PotionEffect = new();
   public int XpReward {get; set; }
   public int GoldReward { get; set; }
   public SubTypes[] SubType = new SubTypes[2];
   public int CharacterMinLevel {get; set;}
 
-  public Monster(int id, string name, int level, int str, int inte, int agi, int vig, int characterMinLevel)
+  public Monster(int id, string name, int str, int inte, int agi, int vig, int characterMinLevel)
   {
     Id = id;
     Name = name;
 
-    Level = level;
+    Level = 1;
     Type = Types.Prefab;
 
     XpReward = 0;
@@ -57,7 +57,7 @@ class Monster : Creature, IPotionEffect, IReward
     Id = monster.Id;
     Name = monster.Name;
 
-    Level = monster.Level;
+    Level = 1;
     Type = monster.Type;
 
     XpReward = monster.XpReward;

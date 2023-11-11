@@ -1,0 +1,32 @@
+[
+    {
+        "VariationId" : 0,
+        "Name" : "Commoner",
+        "XpMultiply": 0.5,
+        "GoldMultiply": 0.3,
+        "ExtraStr": 2,
+        "ExtraInt": 0,
+        "ExtraAgi": 2,
+        "ExtraVig": 0
+    },
+    {
+        "VariationId" : 1,
+        "Name" : "Noble",
+        "XpMultiply": 0.1,
+        "GoldMultiply": 1.5,
+        "ExtraStr": 0,
+        "ExtraInt": 7,
+        "ExtraAgi": 2,
+        "ExtraVig": 3
+    },
+    {
+        "VariationId" : 2,
+        "Name" : "Heroic",
+        "XpMultiply": 2,
+        "GoldMultiply": 1,
+        "ExtraStr": 5,
+        "ExtraInt": 4,
+        "ExtraAgi": 3,
+        "ExtraVig": 3
+    }
+]

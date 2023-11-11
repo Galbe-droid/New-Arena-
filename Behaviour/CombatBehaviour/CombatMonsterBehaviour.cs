@@ -9,7 +9,7 @@ using New_Arena_.Configuration;
 class CombatMonsterBehaviour
 {
   //Method receive Player defense, Player Dodge chance, Monster damage and monster type
-  public static void MonsterChoice(ref Character c, ref Monster m )
+  public static void MonsterChoice(Character c, Monster m )
   {
     //Depending of the monster type it will be more inclined to use certain actions
     int choice = ManagerRandom.GetThreadRandom().Next(0,101);
@@ -24,12 +24,15 @@ class CombatMonsterBehaviour
       }
       else
       {
-        List<SkillBase> possibleAttacksSkills = m.SkillTrained.Where(s => s.GetType() == typeof(AttackSkill)).Where(s => s.Cooldown == false).ToList();
+        List<SkillBase> possibleAttacksSkills = m.SkillTrained.Where(s => s.GetType() == typeof(AttackSkill))
+                                                              .Where(s => s.Cooldown == false)
+                                                              .Where(s => m.ManaCheck(s) == true).ToList();
         
         if(possibleAttacksSkills.Count != 0)
         {
           int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleAttacksSkills.Count);
           SkillUse.AttackSkillUse<Creature>(m, c, (AttackSkill)possibleAttacksSkills[skillDecision]);
+          m.ManaSpending(possibleAttacksSkills[skillDecision]);
         }
         else
         {
@@ -37,7 +40,8 @@ class CombatMonsterBehaviour
         }      
       }      
     }
-    else{
+    else
+    {
       int choiceOfDefense = ManagerRandom.GetThreadRandom().Next(0,101);
       if(choiceOfDefense <= monsterTypeChance[2])
       {
@@ -47,13 +51,21 @@ class CombatMonsterBehaviour
       {
         int choiceOfSkill = ManagerRandom.GetThreadRandom().Next(0,101);
 
-        List<SkillBase> possibleDefenseSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DefenseSkill)).Where(s => s.Cooldown == false).ToList();
-        List<SkillBase> possibleDebuffSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DebuffSkill)).Where(s => s.Cooldown == false).ToList();
-        List<SkillBase> possibleBuffSkills = m.SkillTrained.Where(s => s.GetType() == typeof(BuffSkill)).Where(s => s.Cooldown == false).ToList();
+        List<SkillBase> possibleDefenseSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DefenseSkill))
+                                                              .Where(s => s.Cooldown == false)
+                                                              .Where(s => m.ManaCheck(s) == true).ToList();
+
+        List<SkillBase> possibleDebuffSkills = m.SkillTrained.Where(s => s.GetType() == typeof(DebuffSkill))
+                                                              .Where(s => s.Cooldown == false)
+                                                              .Where(s => m.ManaCheck(s) == true).ToList();
+
+        List<SkillBase> possibleBuffSkills = m.SkillTrained.Where(s => s.GetType() == typeof(BuffSkill))
+                                                              .Where(s => s.Cooldown == false)
+                                                              .Where(s => m.ManaCheck(s) == true).ToList();
 
         if(possibleDefenseSkills.Count != 0 || possibleDebuffSkills.Count != 0 || possibleBuffSkills.Count != 0)
         {
-          if((choiceOfSkill >= 0 && choiceOfSkill >= monsterTypeChance[3]))
+          if(choiceOfSkill >= 0 && choiceOfSkill >= monsterTypeChance[3])
           {
             if(possibleDefenseSkills.Count == 0){
               choiceOfSkill = monsterTypeChance[4];
@@ -61,7 +73,8 @@ class CombatMonsterBehaviour
             else
             {
               int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleDefenseSkills.Count);
-              SkillUse.DefenseSkillUse<Monster>(m, (DefenseSkill)possibleDefenseSkills[skillDecision]);            
+              SkillUse.DefenseSkillUse<Monster>(m, (DefenseSkill)possibleDefenseSkills[skillDecision]);   
+              m.ManaSpending(possibleDefenseSkills[skillDecision]);         
             }          
           }
           else if(choiceOfSkill >= monsterTypeChance[4] && choiceOfSkill >= monsterTypeChance[5])
@@ -72,7 +85,8 @@ class CombatMonsterBehaviour
             else
             {
               int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleDebuffSkills.Count);
-              SkillUse.DebuffSkillUse<Creature>(c, m, (DebuffSkill)possibleDebuffSkills[skillDecision]);            
+              SkillUse.DebuffSkillUse<Creature>(c, m, (DebuffSkill)possibleDebuffSkills[skillDecision]);     
+              m.ManaSpending(possibleDebuffSkills[skillDecision]);          
             }    
           }
           else
@@ -83,7 +97,8 @@ class CombatMonsterBehaviour
             else
             {
               int skillDecision = ManagerRandom.GetThreadRandom().Next(possibleBuffSkills.Count);
-              SkillUse.BuffSkillUse<Monster>(m, (BuffSkill)possibleBuffSkills[skillDecision]);            
+              SkillUse.BuffSkillUse<Monster>(m, (BuffSkill)possibleBuffSkills[skillDecision]);   
+              m.ManaSpending(possibleBuffSkills[skillDecision]);             
             }
           }
         }
@@ -122,10 +137,10 @@ class CombatMonsterBehaviour
 
     //values[1]
     if(s[0] == SubTypes.Brute){
-      values.Add(0);
+      values.Add(75);
     }
     else{
-      values.Add(0);
+      values.Add(25);
     }
 
     if(s[1] == SubTypes.Support){

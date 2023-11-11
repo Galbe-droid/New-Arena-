@@ -1,0 +1,68 @@
+{
+    "skills" : [
+        {
+            "Buff" : [
+                
+            ],
+            "Debuff" : [
+            
+            ],
+            "Attack" : [
+                {
+                    "Id": 1503,
+                    "Name": "Cursed Strike",
+                    "Desc": "Damage Character Soul",
+                    "MinLevel": 2,
+                    "TurnMax": 4,
+                    "Cost": 0,
+                    "MpCost": 25,
+                    "MinValue": 10,
+                    "MaxValue": 20,
+                    "Modifier": 1.5,
+                    "StatString": "int" 
+                },
+                {
+                    "Id": 1504,
+                    "Name": "Decaing",
+                    "Desc": "Damage Character Body",
+                    "MinLevel": 4,
+                    "TurnMax": 3,
+                    "Cost": 0,
+                    "MpCost": 20,
+                    "MinValue": 5,
+                    "MaxValue": 10,
+                    "Modifier": 3,
+                    "StatString": "int" 
+                }
+            ],
+            "Defense" : [
+                {
+                    "Id": 1501,
+                    "Name": "Embrace of the dead",
+                    "Desc": "Restores the deacaing body and soul",
+                    "MinLevel": 2,
+                    "TurnMax": 4,
+                    "Cost": 0,
+                    "MpCost": 25,
+                    "MinValue": 40,
+                    "MaxValue": 50,
+                    "Modifier": 1.5,
+                    "StatString": "vig" 
+                },
+                {
+                    "Id": 1502,
+                    "Name": "Eternal Torment",
+                    "Desc": "Restores the deacaing body and soul",
+                    "MinLevel": 4,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 15,
+                    "MinValue": 25,
+                    "MaxValue": 50,
+                    "Modifier": 0.5,
+                    "StatString": "vig" 
+                }
+            ]
+        }
+    ]    
+}

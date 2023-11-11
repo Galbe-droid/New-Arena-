@@ -37,6 +37,78 @@
                     "HpModifier" : 15,
                     "MpModifier" : 0,
                     "UseOnPlayer" : false
+                },
+                {
+                    "Id" : 4,
+                    "Name" : "Big Health Potion",
+                    "Cost" : 40,
+                    "Rarity" : 1,
+                    "HpModifier" : 40,
+                    "MpModifier" : 0,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 5,
+                    "Name" : "Big Mana Potion",
+                    "Cost" : 40,
+                    "Rarity" : 1,
+                    "HpModifier" : 0,
+                    "MpModifier" : 25,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 6,
+                    "Name" : "Big Elixer",
+                    "Cost" : 80,
+                    "Rarity" : 1,
+                    "HpModifier" : 50,
+                    "MpModifier" : 35,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 7,
+                    "Name" : "Explosive Potion",
+                    "Cost" : 70,
+                    "Rarity" : 1,
+                    "HpModifier" : 35,
+                    "MpModifier" : 0,
+                    "UseOnPlayer" : false
+                },
+                {
+                    "Id" : 8,
+                    "Name" : "Super Concetrate Health Potion",
+                    "Cost" : 80,
+                    "Rarity" : 3,
+                    "HpModifier" : 60,
+                    "MpModifier" : 0,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 9,
+                    "Name" : "Super Concetrate Mana Potion",
+                    "Cost" : 80,
+                    "Rarity" : 3,
+                    "HpModifier" : 0,
+                    "MpModifier" : 40,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 10,
+                    "Name" : "Super Concetrate Elixir",
+                    "Cost" : 120,
+                    "Rarity" : 3,
+                    "HpModifier" : 90,
+                    "MpModifier" : 60,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 11,
+                    "Name" : "Fire Typhoon Rune",
+                    "Cost" : 150,
+                    "Rarity" : 3,
+                    "HpModifier" : 40,
+                    "MpModifier" : 0,
+                    "UseOnPlayer" : false
                 }
             ],
             "StatusPotion" : [
@@ -44,7 +116,7 @@
                     "Id" : 20,
                     "Name" : "Stronger Potion",
                     "Cost" : 35,
-                    "Rarity" : 0,        
+                    "Rarity" : 1,        
                     "BuffString" : "attack",
                     "StatusQuantity" : 4,
                     "TurnMax" : 2,
@@ -54,7 +126,7 @@
                     "Id" : 21,
                     "Name" : "Agility Potion",
                     "Cost" : 35,
-                    "Rarity" : 0,        
+                    "Rarity" : 1,        
                     "BuffString" : "dodge",
                     "StatusQuantity" : 4,
                     "TurnMax" : 2,
@@ -64,7 +136,7 @@
                     "Id" : 22,
                     "Name" : "Resistent Potion",
                     "Cost" : 35,
-                    "Rarity" : 0,        
+                    "Rarity" : 1,        
                     "BuffString" : "defense",
                     "StatusQuantity" : 4,
                     "TurnMax" : 2,
@@ -74,9 +146,9 @@
                     "Id" : 23,
                     "Name" : "Smoke Bomb",
                     "Cost" : 35,
-                    "Rarity" : 0,        
+                    "Rarity" : 1,        
                     "BuffString" : "dodge",
-                    "StatusQuantity" : -4,
+                    "StatusQuantity" : -8,
                     "TurnMax" : 2,
                     "UseOnPlayer" : false
                 },
@@ -84,10 +156,80 @@
                     "Id" : 24,
                     "Name" : "Stun Bomb",
                     "Cost" : 40,
-                    "Rarity" : 0,        
+                    "Rarity" : 1,        
                     "BuffString" : "defense",
                     "StatusQuantity" : -4,
                     "TurnMax" : 2,
+                    "UseOnPlayer" : false
+                },
+                {
+                    "Id" : 25,
+                    "Name" : "Calming Device",
+                    "Cost" : 40,
+                    "Rarity" : 1,        
+                    "BuffString" : "attack",
+                    "StatusQuantity" : -4,
+                    "TurnMax" : 2,
+                    "UseOnPlayer" : false
+                },
+                {
+                    "Id" : 26,
+                    "Name" : "Large Stronger Potion",
+                    "Cost" : 100,
+                    "Rarity" : 3,        
+                    "BuffString" : "attack",
+                    "StatusQuantity" : 6,
+                    "TurnMax" : 3,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 27,
+                    "Name" : "Large Agility Potion",
+                    "Cost" : 100,
+                    "Rarity" : 3,        
+                    "BuffString" : "dodge",
+                    "StatusQuantity" : 15,
+                    "TurnMax" : 3,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 28,
+                    "Name" : "Large Resistence Potion",
+                    "Cost" : 100,
+                    "Rarity" : 3,        
+                    "BuffString" : "defense",
+                    "StatusQuantity" : 8,
+                    "TurnMax" : 3,
+                    "UseOnPlayer" : true
+                },
+                {
+                    "Id" : 29,
+                    "Name" : "Big Smoke Bomb",
+                    "Cost" : 120,
+                    "Rarity" : 1,        
+                    "BuffString" : "dodge",
+                    "StatusQuantity" : -15,
+                    "TurnMax" : 3,
+                    "UseOnPlayer" : false
+                },
+                {
+                    "Id" : 30,
+                    "Name" : "Brighter Stun Bomb",
+                    "Cost" : 120,
+                    "Rarity" : 1,        
+                    "BuffString" : "defense",
+                    "StatusQuantity" : -8,
+                    "TurnMax" : 3,
+                    "UseOnPlayer" : false
+                },
+                {
+                    "Id" : 31,
+                    "Name" : "No Agression Rune",
+                    "Cost" : 120,
+                    "Rarity" : 1,        
+                    "BuffString" : "attack",
+                    "StatusQuantity" : -8,
+                    "TurnMax" : 3,
                     "UseOnPlayer" : false
                 }
             ]

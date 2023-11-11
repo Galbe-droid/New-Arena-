@@ -15,14 +15,22 @@ class FoodGeneration
     //Creates the fruits and place then on the list
     private static Food FruitCreator()
     {
-      int randId = ManagerRandom.GetThreadRandom().Next(FruitsPrefab.Count);
+      List<int> foodId = new();
+
+      foreach(Food foodInList in FruitsPrefab)
+      {
+        if(foodInList.Rarity <= ProgressBehaviour.CharacterLevel)
+          foodId.Add(foodInList.Id);
+      }
+
+      int randId = foodId[ManagerRandom.GetThreadRandom().Next(foodId.Count)];
 
       Food food = new Food(FruitsPrefab.Find(f => f.Id == randId))
       {
           Quality = (FruitQuality)typeListFruit.GetValue(ManagerRandom.GetThreadRandom().Next(1, typeListFruit.Length))
       };
 
-      if ((FruitQuality)food.Quality == FruitQuality.New)
+      if (food.Quality == FruitQuality.New)
       {
         food.HpModifier += (int)Math.Truncate(food.HpModifier * 0.2f);
         return food;
@@ -35,7 +43,7 @@ class FoodGeneration
     }
 
   //Place the fruit on the list 
-  public static List<Food> ListOfFruitOfTheDay(List<Food> todayFood)
+  public static List<Food> ListOfFruitOfTheDay(ref List<Food> todayFood)
   {
     for(int i = 0; i < ProgressBehaviour.InnFoodQuantity; i++)
     {

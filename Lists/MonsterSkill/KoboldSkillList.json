@@ -1,0 +1,78 @@
+{
+    "skills" : [
+        {
+            "Buff" : [
+                {
+                    "Id": 1301,
+                    "Name": "Montain Power",
+                    "Desc": "Extracts Power of the earth",
+                    "MinLevel": 0,
+                    "TurnMax": 3,
+                    "Qty": 5,
+                    "IsActivedOnce": true,
+                    "XpCost": 0,
+                    "MpCost": 15,
+                    "WhereToApplyString": "attack"
+                },
+                {
+                    "Id": 1302,
+                    "Name": "Trench",
+                    "Desc": "Did a trench for protection",
+                    "MinLevel": 2,
+                    "TurnMax": 4,
+                    "Qty": 9,
+                    "IsActivedOnce": true,
+                    "XpCost": 0,
+                    "MpCost": 30,
+                    "WhereToApplyString": "defense"
+                }
+            ],
+            "Debuff" : [
+            
+            ],
+            "Attack" : [
+                {
+                    "Id": 1303,
+                    "Name": "Fury of the earth",
+                    "Desc": "Launch a assult of stones spikes",
+                    "MinLevel": 2,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 5,
+                    "MinValue": 10,
+                    "MaxValue": 15,
+                    "Modifier": 1.0,
+                    "StatString": "int" 
+                },
+                {
+                    "Id": 1304,
+                    "Name": "Earthquake",
+                    "Desc": "Launch a earthquake",
+                    "MinLevel": 4,
+                    "TurnMax": 6,
+                    "Cost": 0,
+                    "MpCost": 30,
+                    "MinValue": 20,
+                    "MaxValue": 35,
+                    "Modifier": 1.0,
+                    "StatString": "int" 
+                }           
+            ],
+            "Defense" : [
+                {
+                    "Id": 1305,
+                    "Name": "Healing mud",
+                    "Desc": "Generate a magical mud that heals",
+                    "MinLevel": 3,
+                    "TurnMax": 2,
+                    "Cost": 0,
+                    "MpCost": 20,
+                    "MinValue": 10,
+                    "MaxValue": 15,
+                    "Modifier": 1.0,
+                    "StatString": "int"
+                }
+            ]
+        }
+    ]    
+}

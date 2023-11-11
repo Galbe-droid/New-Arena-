@@ -12,9 +12,9 @@ namespace New_Arena_.Generation.Market
     {
         private static List<Potion> PotionPrefab = ItemsLoading.PotionList;
 
-        public static List<Potion> ListOfPotionsOfTheDay(List<Potion> todayPotion)
+        public static List<Potion> ListOfPotionsOfTheDay(ref List<Potion> todayPotion)
         {
-          todayPotion = new(PotionCreator(todayPotion));
+          todayPotion = PotionCreator(todayPotion);
 
           return todayPotion;
         }
@@ -36,7 +36,8 @@ namespace New_Arena_.Generation.Market
 
             foreach (Potion potion in PotionPrefab)
             {
-                potionId.Add(potion.Id);
+                if(potion.Rarity <= ProgressBehaviour.CharacterLevel)
+                    potionId.Add(potion.Id);
             }
 
             do{

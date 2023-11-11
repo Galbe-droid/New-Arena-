@@ -209,4 +209,20 @@ abstract class Creature{
     this.MinDefense = (int)Math.Ceiling(TotalDefense() * 0.3f);
     this.MaxDefense = (int)Math.Ceiling(TotalDefense() * 1f);
   }
+
+  public bool ManaCheck(SkillBase skill)
+  {
+    float actualMana = Mana - ManaSpend;
+    if(skill.MpCost > actualMana)
+    {
+      return false;
+    }      
+    
+    return true;
+  }
+
+  public void ManaSpending(SkillBase skill)
+  {
+    ManaSpend += skill.MpCost;
+  }
 }

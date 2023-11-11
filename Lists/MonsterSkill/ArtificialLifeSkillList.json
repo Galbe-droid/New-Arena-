@@ -1,0 +1,78 @@
+{
+    "skills" : [
+        {
+            "Buff" : [
+                
+            ],
+            "Debuff" : [
+                {
+                    "Id": 1401,
+                    "Name": "Complex Forms",
+                    "Desc": "Send to the enemy complex geometry for the brain to handle",
+                    "MinLevel": 2,
+                    "TurnMax": 2,
+                    "Qty": -5,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "MpCost": 5,
+                    "WhereToApplyString": "hp"
+                },
+                {
+                    "Id": 1402,
+                    "Name": "Unimaginable Emotions",
+                    "Desc": "Send to the enemy emotions never felt before",
+                    "MinLevel": 3,
+                    "TurnMax": 2,
+                    "Qty": -7,
+                    "IsActivedOnce": false,
+                    "XpCost": 0,
+                    "MpCost": 12,
+                    "WhereToApplyString": "hp"
+                },
+                {
+                    "Id": 1403,
+                    "Name": "Ilogical Vision",
+                    "Desc": "Reduce Enemy Defense by changing the way it is seem by the world",
+                    "MinLevel": 4,
+                    "TurnMax": 5,
+                    "Qty": -10,
+                    "IsActivedOnce": true,
+                    "XpCost": 0,
+                    "MpCost": 20,
+                    "WhereToApplyString": "defense"
+                }
+            ],
+            "Attack" : [
+                {
+                    "Id": 1404,
+                    "Name": "Divided by zero",
+                    "Desc": "Ilogical and irational feelings and ideias",
+                    "MinLevel": 2,
+                    "TurnMax": 4,
+                    "Cost": 0,
+                    "MpCost": 2,
+                    "MinValue": 1,
+                    "MaxValue": 20,
+                    "Modifier": 2.0,
+                    "StatString": "int" 
+                },
+                {
+                    "Id": 1405,
+                    "Name": "Prohibited Words",
+                    "Desc": "Ilogical and irational words with distubed meaning",
+                    "MinLevel": 4,
+                    "TurnMax": 6,
+                    "Cost": 0,
+                    "MpCost": 20,
+                    "MinValue": 20,
+                    "MaxValue": 21,
+                    "Modifier": 2.0,
+                    "StatString": "int" 
+                }            
+            ],
+            "Defense" : [
+            
+            ]
+        }
+    ]    
+}

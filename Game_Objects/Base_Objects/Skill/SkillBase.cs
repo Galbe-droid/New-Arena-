@@ -8,6 +8,7 @@ abstract class SkillBase
   public int TurnMax {get; set;}
   public int Turns {get; set;}
   public int XpCost {get; set;}
+  public int MpCost { get; set; }
   public bool Cooldown {get; set;}
   public int CooldownTurns {get; set;}
 
