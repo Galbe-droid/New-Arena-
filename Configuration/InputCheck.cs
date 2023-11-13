@@ -3,7 +3,7 @@ using System;
 //Use to check if the input uses only numbers 
 class InputCheck{
   public static int IntCheck(string message, string errorMessage){
-    bool isNumeric = false;
+    bool isNumeric;
     int inputResult;
     
     Console.Write(message);

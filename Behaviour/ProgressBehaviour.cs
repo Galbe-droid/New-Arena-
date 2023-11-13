@@ -29,6 +29,17 @@ namespace New_Arena_.Behaviour
             CharacterLevel = character.Level;
         }
 
+        public static void LevelUpCheck(Character character)
+        {
+            int oldLevel = character.Level;
+            character.CheckCharacterLevel();
+            int newLevel = character.Level;
+
+            if(oldLevel != newLevel){
+                UpdateConsole.StaticMessage("LEVEL UP !!!!!!!!");
+            }
+        }
+
         private static void MarketValuesCheck()
         {
             PotionQuantity = ParametersLoading.GlobalMarketPotionQuantity.FirstOrDefault(level => level.Key == CharacterLevel).Value;

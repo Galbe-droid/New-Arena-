@@ -15,7 +15,7 @@ namespace New_Arena_.Behaviour
               Console.WriteLine("Name too long. ");
               Console.Write("Name: ");
             }              
-          }while(name.Length <= 12);          
+          }while(name.Length > 12);          
           Console.Clear();
           return name;
         }

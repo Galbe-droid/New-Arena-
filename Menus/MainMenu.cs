@@ -73,8 +73,10 @@ class MainMenu
       else
       {
         CharacterListManagement.PlayerShowList();
-        Console.Write("Press any key to continue...");
-        Console.ReadKey();
+        Console.WriteLine("D - Delete Character / Any - To go back");
+        Console.Write("Choose");
+        if(Console.ReadLine().ToUpper() == "D")
+          CharacterListManagement.DeleteCharacter();
         Console.Clear();
       }
     }

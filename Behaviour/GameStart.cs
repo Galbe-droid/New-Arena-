@@ -15,6 +15,7 @@ namespace New_Arena_.Behaviour
 
             while(GameOn)
             {
+                ProgressBehaviour.LevelUpCheck(chosen);
                 ProgressBehaviour.CheckingValuesInLevel(chosen);
                 if(daytime == true)
                 {

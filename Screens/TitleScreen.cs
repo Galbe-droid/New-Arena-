@@ -25,7 +25,7 @@ namespace New_Arena_.Screens
             if(CharactersLoading.GlobalCharacterList.Count == 0)
             {
               Console.ForegroundColor = ConsoleColor.DarkGray;
-              Console.WriteLine("V - View Characters");
+              Console.WriteLine("V - View and Delete Characters");
               Console.ResetColor();
             }
             else

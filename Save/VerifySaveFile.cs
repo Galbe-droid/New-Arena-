@@ -38,6 +38,7 @@ namespace New_Arena_.Save
         public static void ReloadSaveList()
         {
             SaveCharacterList = CharactersLoading.GlobalCharacterList;
+            UpdateSaveCharacterList();
         }
 
         private static void UpdateSaveCharacterList()
